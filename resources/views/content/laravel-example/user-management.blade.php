@@ -160,7 +160,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label" for="add-user-contact">Contact</label>
-          <input type="text" id="add-user-contact" class="form-control phone-mask" inputmode="numeric" placeholder="Numero de telephone ..." aria-label="john.doe@example.com" name="contact" />
+          <input type="text" id="add-user-contact" class="form-control phone-mask" inputmode="numeric" placeholder="Telephone ..." aria-label="john.doe@example.com" name="contact" />
         </div>
         <div class="mb-3">
           <label class="form-label" for="add-user-company">Adresse</label>
