@@ -2,82 +2,60 @@
 
 namespace App\Models;
 
-use App\Models\Role;
-use App\Models\Grade;
-use App\Models\Section;
-use App\Models\Commissariat;
-use Laravel\Sanctum\HasApiTokens;
-use App\Notifications\ResetPassNotif;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Notifications\ResetPassNotif as NotificationsResetPassNotif;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var string[]
      */
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
      * The attributes that should be cast.
      *
-     * @var array<string, string>
+     * @var array
      */
-    // protected $casts = [
-    //     'email_verified_at' => 'datetime',
-    // ];
-
-    // public function commissariat()
-    // {
-    //     return $this->belongsTo(Commissariat::class);
-    // }
-
-    // public function section()
-    // {
-    //     return $this->belongsToMany(Section::class);
-    // }
-
-    // public function grade()
-    // {
-    //     return $this->belongsTo(Grade::class);
-    // }
-
-    // public function roles()
-    // {
-    //     return $this->belongsToMany(Role::class, 'role_users')->withTimestamps();
-    // }
-
-    // public function sessions()
-    // {
-    //     return $this->hasMany(Session::class);
-    // }
-
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
     /**
-     * Send the password reset notification.
+     * The accessors to append to the model's array form.
      *
-     * @param  string  $token
-     * @return void
+     * @var array
      */
-    // public function sendPasswordResetNotification($token)
-    // {
-    //     $this->notify(new ResetPassNotif($token));
-    // }
+    protected $appends = [
+        'profile_photo_url',
+    ];
 }

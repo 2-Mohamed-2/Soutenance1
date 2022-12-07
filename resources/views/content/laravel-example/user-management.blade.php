@@ -143,22 +143,26 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
-      <form class="add-new-user pt-0" id="addNewUserForm">
+      <form class="add-new-user pt-0" id="addNewUserForm" enctype="multipart/form-data">
         <input type="hidden" name="id" id="user_id">
 
         <div class="mb-3">
           <label class="form-label" for="add-user-fullname">Matricule</label>
           <input type="text" class="form-control" id="add-user-matricule" placeholder="Matricule ..." name="matricule" />
         </div>
-        <div class="mb-3">
+        {{-- <div class="mb-3">
           <label class="form-label" for="add-user-fullname">Nom complet</label>
           <input type="text" class="form-control" id="add-user-fullname" placeholder="Nom complet ..." name="name" aria-label="John Doe" />
         </div>
         <div class="mb-3">
           <label class="form-label" for="add-user-email">Email</label>
           <input type="text" id="add-user-email" class="form-control" placeholder="example@example.com" aria-label="john.doe@example.com" name="email" />
-        </div>
+        </div> --}}
         <div class="mb-3">
+          <label for="formFile" class="form-label">Image</label>
+          <input class="form-control" id="add-user-img" name="img" type="file">
+        </div>
+        {{-- <div class="mb-3">
           <label class="form-label" for="add-user-contact">Contact</label>
           <input type="text" id="add-user-contact" class="form-control phone-mask" inputmode="numeric" placeholder="Telephone ..." aria-label="john.doe@example.com" name="contact" />
         </div>
@@ -181,7 +185,7 @@
             <option value="H">Homme</option>
             <option value="F">Femme</option>
           </select>
-        </div>
+        </div> --}}
         {{-- <div class="mb-3">
           <label class="form-label" for="user-role">User Role</label>
           <select id="user-role" class="form-select">

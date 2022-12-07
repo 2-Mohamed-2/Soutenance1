@@ -20,6 +20,7 @@
 </h4>
 
 <div class="row">
+
   <!-- Basic  -->
   <div class="col-12">
     <div class="card mb-4">
@@ -38,6 +39,7 @@
     </div>
   </div>
   <!-- /Basic  -->
+
   <!-- Multi  -->
   <div class="col-12">
     <div class="card">
