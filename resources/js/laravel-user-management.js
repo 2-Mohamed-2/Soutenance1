@@ -417,6 +417,8 @@ $(function () {
     $.get(`${baseUrl}user-list\/${user_id}\/edit`, function (data) {
       $('#user_id').val(data.id);
       $('#add-user-fullname').val(data.name);
+      $('#add-user-matricule').val(data.matricule);
+      $('#add-user-contact').val(data.contact);
       $('#add-user-email').val(data.email);
     });
   });
@@ -440,7 +442,7 @@ $(function () {
   // user form validation
   const fv = FormValidation.formValidation(addNewUserForm, {
     fields: {
-      name: {
+      matricule: {
         validators: {
           notEmpty: {
             message: 'Please enter fullname'
@@ -456,21 +458,8 @@ $(function () {
             message: 'The value is not a valid email address'
           }
         }
-      },
-      userContact: {
-        validators: {
-          notEmpty: {
-            message: 'Please enter your contact'
-          }
-        }
-      },
-      company: {
-        validators: {
-          notEmpty: {
-            message: 'Please enter your company'
-          }
-        }
       }
+
     },
     plugins: {
       trigger: new FormValidation.plugins.Trigger(),
@@ -501,7 +490,7 @@ $(function () {
         Swal.fire({
           icon: 'success',
           title: `Successfully ${status}!`,
-          text: `User ${status} Successfully.`,
+          text: `Opération bien effectuée.`,
           customClass: {
             confirmButton: 'btn btn-success'
           }

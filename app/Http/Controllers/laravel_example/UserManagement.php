@@ -132,13 +132,13 @@ class UserManagement extends Controller
     $userID = $request->id;
 
     if ($userID) {
-      dd($request->image);
+      // dd($request->image);
       // update the value
       $users = User::updateOrCreate(
         ['id' => $userID],
         [
-          'name' => $request->name, 'email' => $request->email, 'adresse' => $request->adresse,
-          'telephone' => $request->contact, 'matricule' => $request->matricule, 'genre' => $request->genre,
+          'name' => $request->name, 'matricule' => $request->matricule, 'email' => $request->email, 'adresse' => $request->adresse,
+          'telephone' => $request->contact, 'genre' => $request->genre,
           'datearrive' => $request->datearr, 'datedepart' => $request->datedep
         ]
       );
@@ -150,13 +150,13 @@ class UserManagement extends Controller
       $userEmail = User::where('email', $request->email)->first();
 
       if (empty($userEmail)) {
-        $image = $request->image->store("image");
+        //$image = $request->image->store("image");
         $users = User::updateOrCreate(
           ['id' => $userID],
-          ['name' => $request->name, 'email' => $request->email, 'password' => bcrypt(Str::random(123456)),
+          [
+            'name' => $request->name, 'email' => $request->email, 'password' => bcrypt(123456),
             'adresse' => $request->adresse, 'telephone' => $request->contact, 'matricule' => $request->matricule,
-            'datearrive' => $request->datearr, 'datedepart' => $request->datedep, 'genre' => $request->genre,
-            'photo' => $image
+            'datearrive' => $request->datearr, 'datedepart' => $request->datedep, 'genre' => $request->genre
           ]
         );
 
