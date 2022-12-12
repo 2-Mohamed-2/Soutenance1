@@ -1,26 +1,11 @@
 {
   "menu": [
     {
-      "name": "Dashboards",
+      "url": "/",
+      "name": "Accueil",
       "icon": "menu-icon tf-icons bx bx-home-circle",
-      "slug": "dashboard",
-      "submenu": [
-        {
-          "url": "/",
-          "name": "Analytics",
-          "slug": "dashboard-analytics"
-        },
-        {
-          "url": "/dashboard/crm",
-          "name": "CRM",
-          "slug": "dashboard-crm"
-        },
-        {
-          "url": "/dashboard/ecommerce",
-          "name": "eCommerce",
-          "slug": "dashboard-ecommerce"
-        }
-      ]
+      "slug": "dashboard-analytics"
+
     },
     {
       "name": "Layouts",
@@ -90,6 +75,12 @@
     },
     {
       "menuHeader": "Apps & Pages"
+    },
+    {
+      "url": "/Commissariat",
+      "name": "Commissariat",
+      "icon": "menu-icon tf-icons bx bx-home",
+      "slug": "comm-view"
     },
     {
       "url": "app/calendar",

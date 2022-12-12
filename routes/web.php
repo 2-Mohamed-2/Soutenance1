@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\laravel_example\ComController;
 use App\Http\Controllers\laravel_example\UserManagement;
 
 
@@ -202,4 +203,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     // laravel example
     Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
     Route::resource('/user-list', UserManagement::class);
+
+    // Routes pour le crud du commissariat
+    Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
+    Route::resource('/Commiss', ComController::class);
 });

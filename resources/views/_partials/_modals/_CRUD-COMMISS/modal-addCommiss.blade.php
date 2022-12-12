@@ -14,31 +14,31 @@
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Nom</label>
             <div class="input-group input-group-merge">
-              <input type="text" name="libelle" class="form-control" placeholder="1er Arrondissement " />
+              <input required autocomplete="off" type="text" name="libelle" class="form-control" placeholder="1er Arrondissement " />
             </div>
           </div>
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Dimunitif</label>
             <div class="input-group input-group-merge">
-              <input type="text" name="sigle" class="form-control" placeholder="1e_Arrd " />
+              <input required autocomplete="off" type="text" name="sigle" class="form-control" placeholder="1e_Arrd " />
             </div>
           </div>
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Adresse</label>
             <div class="input-group input-group-merge">
-              <input type="text" name="localite" class="form-control" placeholder="Kati " />
+              <input required autocomplete="off" type="text" name="localite" class="form-control" placeholder="Kati " />
             </div>
           </div>
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Telephone</label>
             <div class="input-group input-group-merge">
-              <input type="text" pattern="00223 [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}" maxlength="17" name="telephone" class="form-control phone-mask" placeholder="00223 01 02 03 04 " />
+              <input required type="text" autocomplete="off" maxlength="10" name="telephone" class="form-control phone-mask" placeholder="00223 01 02 03 04 " />
             </div>
           </div>
 
           <div class="col-12">
             <button type="submit" class="btn btn-primary me-sm-3 me-1">Enregistrer</button>
-            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Anuler</button>
           </div>
         </form>
 

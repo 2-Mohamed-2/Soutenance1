@@ -42,7 +42,7 @@ $navbarDetached = ($navbarDetached ?? '');
           <div class="nav-item navbar-search-wrapper mb-0">
             <a class="nav-item nav-link search-toggler px-0" href="javascript:void(0);">
               <i class="bx bx-search bx-sm"></i>
-              <span class="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
+              <span class="d-none d-md-inline-block text-muted">Rechercher (Ctrl+/)</span>
             </a>
           </div>
         </div>
@@ -395,7 +395,7 @@ $navbarDetached = ($navbarDetached ?? '');
                         @if (Auth::check())
                         {{ Auth::user()->name }}
                         @else
-                        John Doe
+                        ²Mohamed²
                         @endif
                       </span>
                       <small class="text-muted">Admin</small>
@@ -409,7 +409,7 @@ $navbarDetached = ($navbarDetached ?? '');
               <li>
                 <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
                   <i class="bx bx-user me-2"></i>
-                  <span class="align-middle">My Profile</span>
+                  <span class="align-middle">Profil</span>
                 </a>
               </li>
               @if (Auth::check() && Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -496,7 +496,7 @@ $navbarDetached = ($navbarDetached ?? '');
 
       <!-- Search Small Screens -->
       <div class="navbar-search-wrapper search-input-wrapper {{ isset($menuHorizontal) ? $containerNav : '' }} d-none">
-        <input type="text" class="form-control search-input {{ isset($menuHorizontal) ? '' : $containerNav }} border-0" placeholder="Search..." aria-label="Search...">
+        <input type="text" class="form-control search-input {{ isset($menuHorizontal) ? '' : $containerNav }} border-0" placeholder="Rechercher ..." aria-label="Search...">
         <i class="bx bx-x bx-sm search-toggler cursor-pointer"></i>
       </div>
 

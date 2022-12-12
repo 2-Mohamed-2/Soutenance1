@@ -1,8 +1,8 @@
 <?php
   // Variables
   return [
-    "creatorName" => "ThemeSelection",
-    "creatorUrl" => "https://themeselection.com",
+    "creatorName" => "²Mohamed²",
+    "creatorUrl" => "",
     "templateName" => "Coms_ML",
     "templateSuffix" => "Bootstrap 5 HTML Admin Template - Pro",
     "templateVersion" => "1.0.0",

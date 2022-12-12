@@ -19,7 +19,8 @@
 <h4 class="fw-semibold py-3 mb-4"><span class="text-muted fw-light">UI elements /</span> Toasts</h4>
 
 <!-- Toast with Animation -->
-<div class="bs-toast toast toast-ex animate__animated my-2" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
+<div class="bs-toast toast toast-ex animate__animated my-2" role="alert" aria-live="assertive" aria-atomic="true"
+  data-bs-delay="2000">
   <div class="toast-header">
     <i class='bx bx-bell me-2'></i>
     <div class="me-auto fw-semibold">Bootstrap</div>
@@ -33,7 +34,8 @@
 <!--/ Toast with Animation -->
 
 <!-- Toast with Placements -->
-<div class="bs-toast toast toast-placement-ex m-2" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
+<div class="bs-toast toast toast-placement-ex m-2" role="alert" aria-live="assertive" aria-atomic="true"
+  data-bs-delay="2000">
   <div class="toast-header">
     <i class='bx bx-bell me-2'></i>
     <div class="me-auto fw-semibold">Bootstrap</div>
@@ -411,7 +413,8 @@
         </div>
         <div class="mb-3">
           <label class="form-label" for="message">Message</label>
-          <textarea class="form-control" id="message" rows="3" placeholder="Enter a message ..." spellcheck="false"></textarea>
+          <textarea class="form-control" id="message" rows="3" placeholder="Enter a message ..."
+            spellcheck="false"></textarea>
         </div>
         <div class="mb-3">
           <div class="form-check">
@@ -468,35 +471,43 @@
         <div class="mb-3" id="positionGroup">
           <label class="form-label">Position</label>
           <div class="form-check">
-            <input type="radio" id="topRightRadio" name="positionsRadio" class="form-check-input" value="toast-top-right" />
+            <input type="radio" id="topRightRadio" name="positionsRadio" class="form-check-input"
+              value="toast-top-right" />
             <label class="form-check-label" for="topRightRadio">Top Right</label>
           </div>
           <div class="form-check">
-            <input type="radio" id="bottomRightRadio" name="positionsRadio" class="form-check-input" value="toast-bottom-right" />
+            <input type="radio" id="bottomRightRadio" name="positionsRadio" class="form-check-input"
+              value="toast-bottom-right" />
             <label class="form-check-label" for="bottomRightRadio">Bottom Right</label>
           </div>
           <div class="form-check">
-            <input type="radio" id="bottomLeftRadio" name="positionsRadio" class="form-check-input" value="toast-bottom-left" />
+            <input type="radio" id="bottomLeftRadio" name="positionsRadio" class="form-check-input"
+              value="toast-bottom-left" />
             <label class="form-check-label" for="bottomLeftRadio">Bottom Left</label>
           </div>
           <div class="form-check">
-            <input type="radio" id="topLeftRadio" name="positionsRadio" class="form-check-input" value="toast-top-left" />
+            <input type="radio" id="topLeftRadio" name="positionsRadio" class="form-check-input"
+              value="toast-top-left" />
             <label class="form-check-label" for="topLeftRadio">Top Left</label>
           </div>
           <div class="form-check">
-            <input type="radio" id="topFullWidthRadio" name="positionsRadio" class="form-check-input" value="toast-top-full-width" />
+            <input type="radio" id="topFullWidthRadio" name="positionsRadio" class="form-check-input"
+              value="toast-top-full-width" />
             <label class="form-check-label" for="topFullWidthRadio">Top Full Width</label>
           </div>
           <div class="form-check">
-            <input type="radio" id="bottomFullWidthRadio" name="positionsRadio" class="form-check-input" value="toast-bottom-full-width" />
+            <input type="radio" id="bottomFullWidthRadio" name="positionsRadio" class="form-check-input"
+              value="toast-bottom-full-width" />
             <label class="form-check-label" for="bottomFullWidthRadio">Bottom Full Width</label>
           </div>
           <div class="form-check">
-            <input type="radio" id="topCenterRadio" name="positionsRadio" class="form-check-input" value="toast-top-center" />
+            <input type="radio" id="topCenterRadio" name="positionsRadio" class="form-check-input"
+              value="toast-top-center" />
             <label class="form-check-label" for="topCenterRadio">Top Center</label>
           </div>
           <div class="form-check">
-            <input type="radio" id="bottomCenterRadio" name="positionsRadio" class="form-check-input" value="toast-bottom-center" />
+            <input type="radio" id="bottomCenterRadio" name="positionsRadio" class="form-check-input"
+              value="toast-bottom-center" />
             <label class="form-check-label" for="bottomCenterRadio">Bottom Center</label>
           </div>
         </div>
@@ -512,11 +523,13 @@
         </div>
         <div class="mb-3">
           <label class="form-label" for="showMethod">Show Method</label>
-          <input id="showMethod" type="text" class="form-control" placeholder="show, fadeIn, slideDown" value="fadeIn" />
+          <input id="showMethod" type="text" class="form-control" placeholder="show, fadeIn, slideDown"
+            value="fadeIn" />
         </div>
         <div class="mb-3">
           <label class="form-label" for="hideMethod">Hide Method</label>
-          <input id="hideMethod" type="text" class="form-control" placeholder="hide, fadeOut, slideUp" value="fadeOut" />
+          <input id="hideMethod" type="text" class="form-control" placeholder="hide, fadeOut, slideUp"
+            value="fadeOut" />
         </div>
       </div>
       <div class="col-lg-6 col-xl-3">
