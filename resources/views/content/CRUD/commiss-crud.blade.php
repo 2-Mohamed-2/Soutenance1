@@ -12,7 +12,7 @@
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des commissariats enregistrés</h5>
-  <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="modal" data-bs-target="#enableOTP">
+  <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addComm" aria-controls="offcanvasEnd">
     Créer un nouveau comm.
   </button>
   <div class="table-responsive text-nowrap">

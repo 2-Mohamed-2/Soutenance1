@@ -12,7 +12,7 @@ class ComController extends Controller
     public function ComView(){
         $coms = Commissariat::latest()->get();
 
-        return view('content.laravel-example.commiss-crud', compact('coms'));
+        return view('content.CRUD.commiss-crud', compact('coms'));
     }
 
 
@@ -69,7 +69,7 @@ class ComController extends Controller
 
     public function destroy($id) {
         $id = decrypt($id);
-        
+
         $com = Commissariat::findOrFail($id);
         $com->delete();
         toastr()->success('Le commissariat a bien été supprimé !', 'Réussite');
