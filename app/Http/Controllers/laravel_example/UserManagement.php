@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\laravel_example;
 
 use App\Http\Controllers\Controller;
+use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -16,6 +17,7 @@ class UserManagement extends Controller
   public function UserManagement()
   {
     $users = User::all();
+    $comms = Commissariat::all();
     $userCount = $users->count();
     $verified = User::whereNotNull('email_verified_at')->get()->count();
     $notVerified = User::whereNull('email_verified_at')->get()->count();
@@ -27,6 +29,7 @@ class UserManagement extends Controller
       'verified' => $verified,
       'notVerified' => $notVerified,
       'userDuplicates' => $userDuplicates,
+      'comms' => $comms,
     ]);
   }
 
@@ -138,7 +141,7 @@ class UserManagement extends Controller
         ['id' => $userID],
         [
           'name' => $request->name, 'matricule' => $request->matricule, 'email' => $request->email, 'adresse' => $request->adresse,
-          'telephone' => $request->contact, 'genre' => $request->genre,
+          'telephone' => $request->contact, 'commissariat_id' => $request->commis, 'genre' => $request->genre,
           'datearrive' => $request->datearr, 'datedepart' => $request->datedep
         ]
       );
@@ -154,7 +157,7 @@ class UserManagement extends Controller
         $users = User::updateOrCreate(
           ['id' => $userID],
           [
-            'name' => $request->name, 'email' => $request->email, 'password' => bcrypt(123456),
+            'name' => $request->name, 'commissariat_id' => $request->commis, 'email' => $request->email, 'password' => bcrypt(123456),
             'adresse' => $request->adresse, 'telephone' => $request->contact, 'matricule' => $request->matricule,
             'datearrive' => $request->datearr, 'datedepart' => $request->datedep, 'genre' => $request->genre
           ]
