@@ -76,11 +76,12 @@
     {
       "menuHeader": "Apps & Pages"
     },
-    {
+     {
+
       "url": "/Commissariat",
-      "name": "Commissariat",
-      "icon": "menu-icon tf-icons bx bx-home",
-      "slug": "comm-view"
+       "name": "Commissariat",
+       "icon": "menu-icon tf-icons bx bx-home",
+       "slug": "comm-view"
     },
     {
       "url": "app/calendar",

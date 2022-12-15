@@ -14,25 +14,25 @@
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Nom</label>
             <div class="input-group input-group-merge">
-              <input required autocomplete="off" type="text" name="libelle" class="form-control" placeholder="1er Arrondissement " />
+              <input required autocomplete="off" type="text" name="libelle" class="form-control" placeholder="Arrondissement " />
             </div>
           </div>
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Dimunitif</label>
             <div class="input-group input-group-merge">
-              <input required autocomplete="off" type="text" name="sigle" class="form-control" placeholder="1e_Arrd " />
+              <input required autocomplete="off" type="text" name="sigle" class="form-control" placeholder="Arrd " />
             </div>
           </div>
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Adresse</label>
             <div class="input-group input-group-merge">
-              <input required autocomplete="off" type="text" name="localite" class="form-control" placeholder="Kati " />
+              <input required autocomplete="off" type="text" name="localite" class="form-control" placeholder="Localiter " />
             </div>
           </div>
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Telephone</label>
             <div class="input-group input-group-merge">
-              <input required type="text" autocomplete="off" maxlength="10" name="telephone" class="form-control phone-mask" placeholder="00223 01 02 03 04 " />
+              <input required type="text" autocomplete="off" maxlength="10" name="telephone" class="form-control phone-mask" placeholder="Telephone " />
             </div>
           </div>
 
