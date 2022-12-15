@@ -147,6 +147,18 @@
         <input type="hidden" name="id" id="user_id">
 
         <div class="mb-3">
+          <label class="form-label" for="genre">Commissariat</label>
+          <select id="commis" name="commis" class="form-select">
+            <option value="" selected disabled>Selection du comm.</option>
+            @forelse ($comms as $comm)
+              <option value="{{$comm->id}}">{{$comm->sigle}} de {{$comm->localite}}</option>
+            @empty
+
+            @endforelse
+
+          </select>
+        </div>
+        <div class="mb-3">
           <label class="form-label" for="add-user-fullname">Matricule</label>
           <input type="text" class="form-control" id="add-user-matricule" placeholder="Matricule ..." name="matricule" />
         </div>

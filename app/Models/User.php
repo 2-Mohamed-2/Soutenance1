@@ -44,10 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // public function commissariat()
-    // {
-    //     return $this->belongsTo(Commissariat::class);
-    // }
+    public function commissariat()
+    {
+        return $this->belongsTo(Commissariat::class);
+    }
 
     // public function section()
     // {

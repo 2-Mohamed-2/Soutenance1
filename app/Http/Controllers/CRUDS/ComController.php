@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\laravel_example;
+namespace App\Http\Controllers\CRUDS;
 
 use toastr;
 use App\Models\Commissariat;

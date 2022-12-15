@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\laravel_example\ComController;
+use App\Http\Controllers\CRUDS\ComController;
 use App\Http\Controllers\laravel_example\UserManagement;
 
 
@@ -194,17 +194,21 @@ Route::get('/maps/leaflet', $controller_path . '\maps\Leaflet@index')->name('map
 Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
 Route::resource('/user-list', UserManagement::class);
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-
-  Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    // laravel example
-    Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
-    Route::resource('/user-list', UserManagement::class);
-
     // Routes pour le crud du commissariat
     Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
     Route::resource('/Commiss', ComController::class);
-});
+
+// Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+
+//   Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+
+//     // laravel example
+//     Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
+//     Route::resource('/user-list', UserManagement::class);
+
+//     // Routes pour le crud du commissariat
+//     Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
+//     Route::resource('/Commiss', ComController::class);
+// });
