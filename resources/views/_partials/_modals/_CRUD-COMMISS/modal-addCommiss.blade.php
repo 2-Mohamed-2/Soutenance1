@@ -1,5 +1,5 @@
 <!-- Enable OTP Modal -->
-{{-- <div class="modal fade" id="enableOTP" tabindex="-1" aria-hidden="true">
+  <!-- <div class="modal fade" id="enableOTP" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
     <div class="modal-content p-3 p-md-5">
       <div class="modal-body">
@@ -9,9 +9,9 @@
         </div>
         <h6>Veuillez renseigner toutes ces informations</h6>
 
-<<<<<<< HEAD
+
         <form id="enableOTPForm" class="row g-3" action="{{route('Commiss.store')}}" method="POST">
-          @csrf
+         // @csrf
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Nom</label>
             <div class="input-group input-group-merge">
@@ -36,14 +36,13 @@
               <input required type="text" autocomplete="off" maxlength="10" name="telephone" class="form-control phone-mask" placeholder="Telephone " />
             </div>
           </div>
-=======
->>>>>>> b1951e791c4c558a69ad9ce26d4b51286b298f24
+
 
 
       </div>
     </div>
   </div>
-</div> --}}
+</div> -->
 <!--/ Enable OTP Modal -->
 
 

@@ -1,7 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\CRUDS\ComController;
+use App\Http\Controllers\CRUDS\CarteController;
+use App\Http\Controllers\CRUDS\GradeController;
+use App\Http\Controllers\CRUDS\InconnuController;
+use App\Http\Controllers\CRUDS\SectionController;
+use App\Http\Controllers\CRUDS\ResidenceController;
 use App\Http\Controllers\laravel_example\UserManagement;
 
 
@@ -197,6 +203,25 @@ Route::resource('/user-list', UserManagement::class);
     // Routes pour le crud du commissariat
     Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
     Route::resource('/Commiss', ComController::class);
+
+    //Routes pour le crud Inconnu
+    Route::get('/Inconnu', [InconnuController::class, 'IncoView'])->name('inco-view');
+    Route::resource('/Inco', InconnuController::class);
+    //Routes pour crud du residence
+    Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
+    Route::resource('/Resi', ResidenceController::class);
+
+    //Routes pour crud du section
+    Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view');
+    Route::resource('/Sect', SectionController::class);
+    
+    //Routes pour crud du grade
+    Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view');
+    Route::resource('/Grade', GradeController::class);
+
+    //Routes pour crud du carte
+    Route::get('/Carte', [CarteController::class, 'CarteView'])->name('carte-view');
+    Route::resource('/Carte', CarteController::class);
 
 // Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 

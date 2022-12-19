@@ -20,4 +20,10 @@ class Commissariat extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function sections() 
+    {
+        return $this->hasMany(Section::class);
+    }
+
 }

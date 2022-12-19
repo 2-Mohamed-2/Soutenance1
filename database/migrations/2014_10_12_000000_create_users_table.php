@@ -21,8 +21,8 @@ return new class extends Migration
             $table->foreignId('commissariat_id')->constrained()
                   ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
-            // $table->foreignId('grade_id')->constrained()
-            //         ->onUpdate('cascade')->onDelete('cascade')->nullable();
+           $table->foreignId('grade_id')->constrained()
+                ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
             $table->string('name');
             $table->string('matricule')->unique()->nullable();

@@ -83,6 +83,43 @@
        "icon": "menu-icon tf-icons bx bx-home",
        "slug": "comm-view"
     },
+      {
+
+      "url": "/Inconnu",
+       "name": "Inconnu",
+       "icon": "menu-icon tf-icons fa fa-person",
+       "slug": "inco-view"
+    },
+    {
+
+      "url": "/Residence",
+       "name": "Residence",
+       "icon": "menu-icon tf-icons fa fa-person",
+       "slug": "resi-view"
+    },
+
+    {
+
+      "url": "/Section",
+       "name": "Section",
+       "icon": "menu-icon tf-icons fa fa-section",
+       "slug": "sect-view"
+    },
+    {
+
+      "url": "/Carte",
+       "name": "Carte",
+       "icon": "menu-icon tf-icons fa fa-address-card",
+       "slug": "carte-view"
+    },
+
+    {
+
+      "url": "/Grade",
+       "name": "Grade",
+       "icon": "menu-icon tf-icons fa fa-person",
+       "slug": "grade-view"
+    },
     {
       "url": "app/calendar",
       "name": "Calendar",
