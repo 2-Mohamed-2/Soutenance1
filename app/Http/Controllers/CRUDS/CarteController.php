@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\CRUDS;
 
+use PDF;
 use App\Models\Carte;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CRUDS\CarteController;
 
 class CarteController extends Controller
 {
@@ -127,6 +129,22 @@ class CarteController extends Controller
         toastr()->success('La carte a bien été supprimé !', 'Réussite');
         return redirect('/Carte');
 
+    }
+
+    public function PDF(Request $request) {
+
+    
+        //$resi = Residence::find($request->id);
+        //$pdf = App::make('dompdf.wrapper');
+       // $pdf->loadView('_partials.pdfResi', compact('resi'));
+       // $pdf->setPaper('A4', 'landscape');
+       //$pdf->loadView('layouts.carte', compact('cart'));
+
+       // return $pdf->stream();
+       $carte = Carte::find($request->id);
+       $pdf = PDF::loadView('_partials.pdfCarte',  compact('carte'));
+       $pdf->setPaper('A4');
+       return $pdf->stream();
     }
 
  

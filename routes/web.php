@@ -184,10 +184,10 @@ Route::get('/form/wizard-icons', $controller_path . '\form_wizard\Icons@index')-
 Route::get('/form/validation', $controller_path . '\form_validation\Validation@index')->name('form-validation');
 
 // tables
-Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
-Route::get('/tables/datatables-basic', $controller_path . '\tables\DatatableBasic@index')->name('tables-datatables-basic');
-Route::get('/tables/datatables-advanced', $controller_path . '\tables\DatatableAdvanced@index')->name('tables-datatables-advanced');
-Route::get('/tables/datatables-extensions', $controller_path . '\tables\DatatableExtensions@index')->name('tables-datatables-extensions');
+    Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
+    Route::get('/tables/datatables-basic', $controller_path . '\tables\DatatableBasic@index')->name('tables-datatables-basic');
+    Route::get('/tables/datatables-advanced', $controller_path . '\tables\DatatableAdvanced@index')->name('tables-datatables-advanced');
+    Route::get('/tables/datatables-extensions', $controller_path . '\tables\DatatableExtensions@index')->name('tables-datatables-extensions');
 
 // charts
 Route::get('/charts/apex', $controller_path . '\charts\ApexCharts@index')->name('charts-apex');
@@ -210,11 +210,13 @@ Route::resource('/user-list', UserManagement::class);
     //Routes pour crud du residence
     Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
     Route::resource('/Resi', ResidenceController::class);
+    Route::get('/residencePDF/{id}',[ResidenceController::class, 'PDF'])->name('residencePDF');
 
     //Routes pour crud du section
     Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view');
     Route::resource('/Sect', SectionController::class);
     
+
     //Routes pour crud du grade
     Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view');
     Route::resource('/Grade', GradeController::class);
@@ -222,6 +224,7 @@ Route::resource('/user-list', UserManagement::class);
     //Routes pour crud du carte
     Route::get('/Carte', [CarteController::class, 'CarteView'])->name('carte-view');
     Route::resource('/Carte', CarteController::class);
+    Route::get('/cartePDF/{id}', [CarteController::class, 'PDF'])->name('cartePDF');
 
 // Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 

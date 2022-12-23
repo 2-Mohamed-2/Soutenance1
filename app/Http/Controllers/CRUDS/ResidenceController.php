@@ -7,6 +7,7 @@ use App\Models\Inconnu;
 use App\Models\Residence;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use PDF;
 
 class ResidenceController extends Controller
 {
@@ -107,4 +108,22 @@ class ResidenceController extends Controller
         return redirect('/Residence');
     }
     
+
+    public function PDF(Request $request) {
+
+    
+        //$resi = Residence::find($request->id);
+        //$pdf = App::make('dompdf.wrapper');
+       // $pdf->loadView('_partials.pdfResi', compact('resi'));
+       // $pdf->setPaper('A4', 'landscape');
+       //$pdf->loadView('layouts.carte', compact('cart'));
+
+       // return $pdf->stream();
+       $resi = Residence::find($request->id);
+       $pdf = PDF::loadView('_partials.pdfResi',  compact('resi'));
+       $pdf->setPaper('A4');
+       return $pdf->stream();
+    }
+
+   
 }

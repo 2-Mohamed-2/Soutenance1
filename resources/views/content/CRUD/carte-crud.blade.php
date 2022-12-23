@@ -45,6 +45,9 @@
             {{-- Vue du modal de modification --}}
             @include('_partials/_modals/_CRUD-CARTE/modal-updtCarte') 
 
+            {{-- Button de fichier pdf pour carte --}}
+            <a class="dropdown-item" href="{{ route('cartePDF', $carte->id    ) }};" data-bs-toggle="modal" data-bs-target="#{{$carte->id}}"><i class="fa fa-file-pdf me-1"></i>PDF</a>
+
             {{-- Vue du modal de suppression --}}
          @include('_partials/_modals/_CRUD-CARTE/modal-deleteCarte') 
 

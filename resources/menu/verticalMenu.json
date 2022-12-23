@@ -94,10 +94,10 @@
 
       "url": "/Residence",
        "name": "Residence",
-       "icon": "menu-icon tf-icons fa fa-person",
+       "icon": "menu-icon tf-icons fa fa-file",
        "slug": "resi-view"
     },
-
+    
     {
 
       "url": "/Section",
