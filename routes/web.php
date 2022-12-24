@@ -2,14 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\apps\AccessRoles;
 use App\Http\Controllers\CRUDS\ComController;
 use App\Http\Controllers\CRUDS\CarteController;
 use App\Http\Controllers\CRUDS\GradeController;
 use App\Http\Controllers\CRUDS\InconnuController;
 use App\Http\Controllers\CRUDS\SectionController;
 use App\Http\Controllers\CRUDS\ResidenceController;
+use App\Http\Controllers\CRUDS\userController;
 use App\Http\Controllers\laravel_example\UserManagement;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -54,14 +55,14 @@ Route::get('/app/invoice/preview', $controller_path . '\apps\InvoicePreview@inde
 Route::get('/app/invoice/print', $controller_path . '\apps\InvoicePrint@index')->name('app-invoice-print');
 Route::get('/app/invoice/edit', $controller_path . '\apps\InvoiceEdit@index')->name('app-invoice-edit');
 Route::get('/app/invoice/add', $controller_path . '\apps\InvoiceAdd@index')->name('app-invoice-add');
-Route::get('/app/user/list', $controller_path . '\apps\UserList@index')->name('app-user-list');
+
 Route::get('/app/user/view/account', $controller_path . '\apps\UserViewAccount@index')->name('app-user-view-account');
 Route::get('/app/user/view/security', $controller_path . '\apps\UserViewSecurity@index')->name('app-user-view-security');
 Route::get('/app/user/view/billing', $controller_path . '\apps\UserViewBilling@index')->name('app-user-view-billing');
 Route::get('/app/user/view/notifications', $controller_path . '\apps\UserViewNotifications@index')->name('app-user-view-notifications');
 Route::get('/app/user/view/connections', $controller_path . '\apps\UserViewConnections@index')->name('app-user-view-connections');
-Route::get('/app/access-roles', $controller_path . '\apps\AccessRoles@index')->name('app-access-roles');
-Route::get('/app/access-permission', $controller_path . '\apps\AccessPermission@index')->name('app-access-permission');
+// Route::get('/app/access-roles', $controller_path . '\apps\AccessRoles@index')->name('app-access-roles');
+// Route::get('/app/access-permission', $controller_path . '\apps\AccessPermission@index')->name('app-access-permission');
 
 // pages
 Route::get('/pages/profile-user', $controller_path . '\pages\UserProfile@index')->name('pages-profile-user');
@@ -197,8 +198,8 @@ Route::get('/charts/chartjs', $controller_path . '\charts\ChartJs@index')->name(
 Route::get('/maps/leaflet', $controller_path . '\maps\Leaflet@index')->name('maps-leaflet');
 
 // laravel example
-Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
-Route::resource('/user-list', UserManagement::class);
+// Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
+// Route::resource('/user-list', UserManagement::class);
 
     // Routes pour le crud du commissariat
     Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
@@ -211,10 +212,11 @@ Route::resource('/user-list', UserManagement::class);
     Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
     Route::resource('/Resi', ResidenceController::class);
 
+
     //Routes pour crud du section
     Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view');
     Route::resource('/Sect', SectionController::class);
-    
+
     //Routes pour crud du grade
     Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view');
     Route::resource('/Grade', GradeController::class);
@@ -222,6 +224,10 @@ Route::resource('/user-list', UserManagement::class);
     //Routes pour crud du carte
     Route::get('/Carte', [CarteController::class, 'CarteView'])->name('carte-view');
     Route::resource('/Carte', CarteController::class);
+
+    //routes pour le crud du user
+    Route::get('/Membre', [userController::class, 'index'])->name('user-view');
+    Route::resource('/Mbr', userController::class);
 
 // Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
@@ -236,4 +242,8 @@ Route::resource('/user-list', UserManagement::class);
 //     // Routes pour le crud du commissariat
 //     Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
 //     Route::resource('/Commiss', ComController::class);
+
+//     Route::get('/app/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
+//     // Route::get('/app/access-permission', $controller_path . '\apps\AccessPermission@index')->name('app-access-permission');
+
 // });

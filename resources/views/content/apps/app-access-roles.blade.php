@@ -20,7 +20,7 @@
 
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plu gins/AutoFocus.min.js')}}"></script>
 @endsection
 
 @section('page-script')
@@ -60,6 +60,11 @@
         <div class="d-flex justify-content-between align-items-end">
           <div class="role-heading">
             <h4 class="mb-1">Administrator</h4>
+            @forelse ($roles as $role)
+              <h4>{{$role->id}}</h4>
+            @empty
+            <h2>RAS</h2>
+            @endforelse
             <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#addRoleModal" class="role-edit-modal"><small>Edit Role</small></a>
           </div>
           <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
@@ -67,7 +72,7 @@
       </div>
     </div>
   </div>
-  <div class="col-xl-4 col-lg-6 col-md-6">
+  {{-- <div class="col-xl-4 col-lg-6 col-md-6">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between mb-2">
@@ -236,7 +241,7 @@
       </div>
     </div>
     <!--/ Role Table -->
-  </div>
+  </div> --}}
 </div>
 <!--/ Role cards -->
 

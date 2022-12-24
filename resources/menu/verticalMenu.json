@@ -76,8 +76,15 @@
     {
       "menuHeader": "Apps & Pages"
     },
-     {
 
+    {
+      "url": "/Membre",
+       "name": "Membre",
+       "icon": "menu-icon tf-icons fa fa-person",
+       "slug": "user-view"
+    },
+
+    {
       "url": "/Commissariat",
        "name": "Commissariat",
        "icon": "menu-icon tf-icons bx bx-home",
@@ -159,9 +166,9 @@
       "slug": "app-user",
       "submenu": [
         {
-          "url": "/app/user/list",
+          "url": "/user/list",
           "name": "List",
-          "slug": "app-user-list"
+          "slug": "index"
         },
         {
           "name": "View",

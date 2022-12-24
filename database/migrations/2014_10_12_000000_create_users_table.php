@@ -21,7 +21,10 @@ return new class extends Migration
             $table->foreignId('commissariat_id')->constrained()
                   ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
-           $table->foreignId('grade_id')->constrained()
+            $table->foreignId('grade_id')->constrained()
+                ->onUpdate('cascade')->onDelete('cascade')->nullable();
+
+            $table->foreignId('section_id')->constrained()
                 ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
             $table->string('name');
@@ -34,8 +37,9 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('isActive')->default(false); //Pour recuperer la premiere connexion
-            $table->string('created_by')->nullable();
+            $table->boolean('isConnected')->default(false); //Pour recuperer la premiere connexion
+            $table->boolean('isActive')->default(true); //Pour activer ou desactiver un compte
+            $table->string('created_by')->nullable(); //Pour retrouver la personne qui a crée le user
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

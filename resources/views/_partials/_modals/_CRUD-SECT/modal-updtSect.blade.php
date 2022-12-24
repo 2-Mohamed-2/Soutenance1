@@ -12,27 +12,26 @@
           <form id="enableOTPForm" class="row g-3" action="{{route('Sect.update', encrypt($sect->id))}}" method="POST">
             @method('PUT')
             @csrf
-    
 
             <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
                 <div class="input-group input-group-merge">
                  <select  class="form-control"  name="commissariat_id">
-                  <option  value="">{{$sect->commissariat->libelle}}</option>
+                  <option  value="{{$sect->commissariat->id}}">{{$sect->commissariat->libelle}}</option>
                   @foreach ($coms as $k => $com)
                   <option value="{{$com->id}}">{{$com->libelle}}</option>
-                      
+
                   @endforeach
                  </select>
                 </div>
               </div>
-             
+
               <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">libelle</label>
                 <div class="input-group input-group-merge">
                   <input required autocomplete="off" type="text" value="{{$sect->libelle}}" name="libelle" class="form-control" placeholder="Libelle " />
                 </div>
-            
+
               </div>
               <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Sigle</label>
@@ -40,14 +39,14 @@
                   <input required type="text" autocomplete="off" maxlength="10"  value="{{$sect->sigle}}"  name="sigle" class="form-control phone-mask" placeholder="sigle " />
                 </div>
               </div><br>
-            
+
             <div class="col-12">
               <label class="form-label" for="modalEnableOTPPhone">Fonction</label>
               <div class="input-group input-group-merge">
                 <input required type="text" autocomplete="off" maxlength="10"  value="{{$sect->fonction}}"  name="fonction" class="form-control phone-mask" placeholder="Fonction " />
               </div>
             </div>
-            
+
 
             <div class="col-12">
               <button type="submit" class="btn btn-primary me-sm-3 me-1">Modifier</button>

@@ -445,7 +445,7 @@ $(function () {
       matricule: {
         validators: {
           notEmpty: {
-            message: 'Please enter fullname'
+            message: 'Please enter matricule test'
           }
         }
       },
@@ -480,7 +480,7 @@ $(function () {
     // adding or updating user when form successfully validate
     $.ajax({
       data: $('#addNewUserForm').serialize(),
-      url: `${baseUrl}user-list`,
+      url: `user-list`,
       type: 'POST',
       success: function (status) {
         dt_user.draw();
