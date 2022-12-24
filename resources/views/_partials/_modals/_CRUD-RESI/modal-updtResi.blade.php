@@ -16,7 +16,7 @@
                 <label class="form-label" for="modalEnableOTPPhone">Inconnu</label>
                 <div class="input-group input-group-merge" >
                     <select value="{{$resi->inconnu_id}}" class="form-control" name="inconnu_id">
-                        <option value=""> --  --</option>
+                        <option value="{{$resi->inconnu_id}}">--  --</option>
                         @foreach($inconnus as $inconnu)
                         <option value="{{ $inconnu->id }}">{{ $inconnu->nomcomplet }}
                         </option>
