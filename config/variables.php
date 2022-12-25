@@ -4,7 +4,7 @@
     "creatorName" => "²Mohamed²",
     "creatorUrl" => "",
     "templateName" => "Coms_ML",
-    "templateSuffix" => "Bootstrap 5 HTML Admin Template - Pro",
+    "templateSuffix" => "Mali",
     "templateVersion" => "1.0.0",
     "templateFree" => false,
     "templateDescription" => "Most Powerful & Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!",

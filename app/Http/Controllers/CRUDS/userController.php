@@ -18,7 +18,7 @@ class userController extends Controller
      */
     public function index()
     {
-      $users = User::latest()->get();
+      $users = User::latest()->where('id', '!=', '1')->get();
       //$coms = Commissariat::latest()->get();
 
       return view('content.CRUD.user-crud', compact('users'));

@@ -34,23 +34,40 @@ $customizerHidden = 'customizer-hide';
           </a>
         </div>
         <!-- /Logo -->
-        <h4 class="mb-2">Bonjou 👋 et Bienvenu sur {{config('variables.templateName')}}!</h4>
+        <h4 class="mb-2">Bonjour 👋 et Bienvenu sur {{config('variables.templateName')}}!</h4>
         <p class="mb-4">Veuillez renseigner les champs ci-dessous</p>
 
-        @if (session('status'))
+        @error ('fail')
         <div class="alert alert-success mb-1 rounded-0" role="alert">
           <div class="alert-body">
-            {{ session('status') }}
+            {{ $message }}
           </div>
         </div>
-        @endif
+        @enderror
 
         <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
           @csrf
           <div class="mb-3">
+            <label for="login-email" class="form-label">Commissariat</label>
+            <select class="form-control @error('commissariat_id') is-invalid @enderror" name="commissariat_id" id="">
+              <option value="{{0 ?? old('commissariat_id') }}" autofocus>Votre commissariat</option>
+              @forelse ($coms as $com )
+              <option value="{{$com->id}}">{{$com->sigle}} de {{$com->localite}}</option>
+              @empty
+
+              @endforelse
+            </select>
+            @error('commissariat_id')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+          </div>
+          <div class="mb-3">
             <label for="login-email" class="form-label">Matricule</label>
-            <input type="text" autocomplete="off" class="form-control @error('email') is-invalid @enderror" id="login-email" name="matricule" placeholder="Votre matricule" autofocus value="{{ old('email') }}">
-            @error('email')
+            <input type="text" autocomplete="off" class="form-control @error('matricule') is-invalid @enderror"
+              id="login-email" name="matricule" placeholder="Votre matricule" value="{{ old('matricule') }}">
+            @error('matricule')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>

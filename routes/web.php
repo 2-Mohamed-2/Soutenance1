@@ -4,12 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\apps\AccessRoles;
 use App\Http\Controllers\CRUDS\ComController;
+use App\Http\Controllers\dashboard\Analytics;
+use App\Http\Controllers\CRUDS\userController;
 use App\Http\Controllers\CRUDS\CarteController;
 use App\Http\Controllers\CRUDS\GradeController;
 use App\Http\Controllers\CRUDS\InconnuController;
 use App\Http\Controllers\CRUDS\SectionController;
 use App\Http\Controllers\CRUDS\ResidenceController;
-use App\Http\Controllers\CRUDS\userController;
 use App\Http\Controllers\laravel_example\UserManagement;
 
 /*
@@ -26,7 +27,7 @@ use App\Http\Controllers\laravel_example\UserManagement;
 $controller_path = 'App\Http\Controllers';
 
 // Main Page Route
-Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
+//Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
 Route::get('/dashboard/analytics', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
 Route::get('/dashboard/crm', $controller_path . '\dashboard\Crm@index')->name('dashboard-crm');
 Route::get('/dashboard/ecommerce', $controller_path . '\dashboard\Ecommerce@index')->name('dashboard-ecommerce');
@@ -201,52 +202,55 @@ Route::get('/maps/leaflet', $controller_path . '\maps\Leaflet@index')->name('map
 // Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
 // Route::resource('/user-list', UserManagement::class);
 
-    // Routes pour le crud du commissariat
-    Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
-    Route::resource('/Commiss', ComController::class);
-
-    //Routes pour le crud Inconnu
-    Route::get('/Inconnu', [InconnuController::class, 'IncoView'])->name('inco-view');
-    Route::resource('/Inco', InconnuController::class);
-    //Routes pour crud du residence
-    Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
-    Route::resource('/Resi', ResidenceController::class);
-    Route::get('/residencePDF/{id}',[ResidenceController::class, 'PDF'])->name('residencePDF');
 
 
-    //Routes pour crud du section
-    Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view');
-    Route::resource('/Sect', SectionController::class);
 
 
-    //Routes pour crud du grade
-    Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view');
-    Route::resource('/Grade', GradeController::class);
 
-    //Routes pour crud du carte
-    Route::get('/Carte', [CarteController::class, 'CarteView'])->name('carte-view');
-    Route::resource('/Carte', CarteController::class);
-    Route::get('/cartePDF/{id}', [CarteController::class, 'PDF'])->name('cartePDF');
 
-    //routes pour le crud du user
-    Route::get('/Membre', [userController::class, 'index'])->name('user-view');
-    Route::resource('/Mbr', userController::class);
 
-// Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
-//   Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
 
-//     // laravel example
-//     Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
-//     Route::resource('/user-list', UserManagement::class);
 
-//     // Routes pour le crud du commissariat
-//     Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
-//     Route::resource('/Commiss', ComController::class);
 
-//     Route::get('/app/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
-//     // Route::get('/app/access-permission', $controller_path . '\apps\AccessPermission@index')->name('app-access-permission');
 
-// });
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+
+  //Page d'acceuil
+  Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
+
+  // Routes pour le crud du commissariat
+  Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
+  Route::resource('/Commiss', ComController::class);
+
+  //Routes pour le crud Inconnu
+  Route::get('/Inconnu', [InconnuController::class, 'IncoView'])->name('inco-view');
+  Route::resource('/Inco', InconnuController::class);
+  //Routes pour crud du residence
+  Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
+  Route::resource('/Resi', ResidenceController::class);
+  Route::get('/residencePDF/{id}', [ResidenceController::class, 'PDF'])->name('residencePDF');
+
+
+  //Routes pour crud du section
+  Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view');
+  Route::resource('/Sect', SectionController::class);
+
+
+  //Routes pour crud du grade
+  Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view');
+  Route::resource('/Grade', GradeController::class);
+
+  //Routes pour crud du carte
+  Route::get('/Carte', [CarteController::class, 'CarteView'])->name('carte-view');
+  Route::resource('/Carte', CarteController::class);
+  Route::get('/cartePDF/{id}', [CarteController::class, 'PDF'])->name('cartePDF');
+
+  //routes pour le crud du user
+  Route::get('/Membre', [userController::class, 'index'])->name('user-view');
+  Route::resource('/Mbr', userController::class);
+
+  Route::get('/app/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
+  // Route::get('/app/access-permission', $controller_path . '\apps\AccessPermission@index')->name('app-access-permission');
+
+});

@@ -17,7 +17,7 @@
                 <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
                 <div class="input-group input-group-merge">
                  <select  class="form-control"  name="commissariat_id">
-                  <option  value="{{$sect->commissariat->id}}">{{$sect->commissariat->libelle}}</option>
+                  {{-- <option  value="{{$sect->commissariat->id}}">{{$sect->commissariat->libelle}}</option> --}}
                   @foreach ($coms as $k => $com)
                   <option value="{{$com->id}}">{{$com->libelle}}</option>
 

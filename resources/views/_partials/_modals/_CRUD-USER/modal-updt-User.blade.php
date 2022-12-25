@@ -1,11 +1,11 @@
 <!-- Offcanvas to add new user -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="userUpdt{{$user->id}}" aria-labelledby="offcanvasAddUserLabel">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="userUpdt{{$user->id ?? ''}}" aria-labelledby="offcanvasAddUserLabel">
   <div class="offcanvas-header">
     <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Ajouter un membre {{$user->matricule}}</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body mx-0 flex-grow-0">
-    <form class="add-new-user pt-0" id="addNewUserForm" method="POST" action="{{route('Mbr.update')}}">
+    <form class="add-new-user pt-0" id="addNewUserForm" method="POST" action="{{route('Mbr.update', bcrypt($user->id))}}">
       @method('PUT')
       @csrf
 
