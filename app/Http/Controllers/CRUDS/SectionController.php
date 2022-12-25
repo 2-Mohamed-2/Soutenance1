@@ -32,7 +32,7 @@ class SectionController extends Controller
             'commissariat_id' => 'required',
             'libelle' => 'required|max:255',
             'sigle' => 'required|max:255',
-            'fonction' => 'required|max:255',            
+            'fonction' => 'required|max:255',
         ]);
 
         $sect = Section::create([
@@ -41,7 +41,7 @@ class SectionController extends Controller
             'sigle' => $request->sigle,
             'fonction' => $request->fonction,
         ]);
-        
+
         if ($sect) {
             toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Section');
@@ -52,10 +52,12 @@ class SectionController extends Controller
 
     }
 
-  
+
     public function update(Request $request, $id) {
 
         $id = decrypt($id);
+        // dd($id);
+
         $validateData = $this->validate($request, [
             'commissariat_id' => 'required',
             'libelle' => 'required|max:255',

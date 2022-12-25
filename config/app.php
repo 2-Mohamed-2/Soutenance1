@@ -202,7 +202,7 @@ return [
     'Helper' => App\Helpers\Helpers::class,
 
     'PDF'  =>  Barryvdh\DomPDF\Facade::class,
-   
+
 
   ])->toArray(),
 

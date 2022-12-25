@@ -26,31 +26,31 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        {{-- @forelse ($grades as $grade) --}}
+        @forelse ($users as $user)
         <tr>
-          <td><strong></strong></td>
-          <td><strong></strong></td>
-          <td><strong></strong></td>
+          <td><strong>{{$user->matricule}}</strong></td>
+          <td><strong>{{$user->name}}</strong></td>
+          <td><strong>{{$user->telephone}}</strong></td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#gradeUpdt"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#gradeDst"><i class="bx bx-trash me-1"></i> Supprimer</a>
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userUpdt{{$user->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userDst{{$user->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
               </div>
             </div>
 
             {{-- Vue du modal de modification --}}
-            {{-- @include('_partials/_modals/_CRUD-GRADE/modal-updtGrade') --}}
+            @include('_partials._modals._CRUD-USER.modal-updt-User')
 
             {{-- Vue du modal de suppression --}}
            {{-- @include('_partials/_modals/_CRUD-GRADE/modal-deleteGrade') --}}
 
           </td>
         </tr>
-        {{-- @empty
-        {{-- Le tableau sera vide s'il n'y a pas d'insertion
-        @endforelse --}}
+        @empty
+        {{-- Le tableau sera vide s'il n'y a pas d'insertion --}}
+        @endforelse
 
 
       </tbody>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Models\User;
+// use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 
 class UserManagement extends Controller
@@ -154,10 +155,11 @@ class UserManagement extends Controller
 
       if (empty($userEmail)) {
         //$image = $request->image->store("image");
+        $test=0;
         $users = User::updateOrCreate(
           ['id' => $userID],
           [
-            'name' => $request->name, 'commissariat_id' => $request->commis, 'email' => $request->email, 'password' => bcrypt(123456),
+            'name' => $request->name, 'commissariat_id' => $request->commis, 'grade_id' => $test,'email' => $request->email, 'password' => bcrypt(123456),
             'adresse' => $request->adresse, 'telephone' => $request->contact, 'matricule' => $request->matricule,
             'datearrive' => $request->datearr, 'datedepart' => $request->datedep, 'genre' => $request->genre
           ]

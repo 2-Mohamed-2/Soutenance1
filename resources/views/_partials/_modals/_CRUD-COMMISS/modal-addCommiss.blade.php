@@ -77,7 +77,7 @@
       <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">Telephone</label>
         <div class="input-group input-group-merge">
-          <input type="text" required autocomplete="off" pattern="00223 [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}" maxlength="17" name="telephone" class="form-control phone-mask" placeholder="00223 01 02 03 04 " />
+          <input type="tel" id="space" required autocomplete="off" maxlength="17" name="telephone" class="form-control phone-mask" placeholder="00223 01 02 03 04 " />
         </div>
       </div>
 
@@ -88,3 +88,9 @@
     </form>
   </div>
 </div>
+
+<script>
+  document.getElementById('space').addEventListener('input', function (e) {
+  e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{2})/g, '$1 ').trim();
+});
+</script>
