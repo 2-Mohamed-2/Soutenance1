@@ -1472,16 +1472,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.45.0",
+            "version": "v9.45.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f2c51fdfcb0c50c19cdc49c2e82690ad1a21eafe"
+                "reference": "faeb20d3fc61b69790068161ab42bcf2d5faccbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f2c51fdfcb0c50c19cdc49c2e82690ad1a21eafe",
-                "reference": "f2c51fdfcb0c50c19cdc49c2e82690ad1a21eafe",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/faeb20d3fc61b69790068161ab42bcf2d5faccbc",
+                "reference": "faeb20d3fc61b69790068161ab42bcf2d5faccbc",
                 "shasum": ""
             },
             "require": {
@@ -1654,7 +1654,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-12-20T14:16:06+00:00"
+            "time": "2022-12-21T19:37:46+00:00"
         },
         {
             "name": "laravel/jetstream",
@@ -2328,16 +2328,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.10.7",
+            "version": "v2.10.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "fa0441bf82f1674beecb3a8ad8a4ae428736ed18"
+                "reference": "4cc5dedaab1e9512efb4d528fde67df98e9b465a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/fa0441bf82f1674beecb3a8ad8a4ae428736ed18",
-                "reference": "fa0441bf82f1674beecb3a8ad8a4ae428736ed18",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/4cc5dedaab1e9512efb4d528fde67df98e9b465a",
+                "reference": "4cc5dedaab1e9512efb4d528fde67df98e9b465a",
                 "shasum": ""
             },
             "require": {
@@ -2389,7 +2389,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.10.7"
+                "source": "https://github.com/livewire/livewire/tree/v2.10.8"
             },
             "funding": [
                 {
@@ -2397,7 +2397,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-08-08T13:52:53+00:00"
+            "time": "2022-12-21T22:28:25+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -3176,16 +3176,16 @@
         },
         {
             "name": "php-flasher/flasher",
-            "version": "v1.8.2",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-flasher/flasher.git",
-                "reference": "a0fe150811967874e121b028c949666e2d91c149"
+                "reference": "5679cc063212396791a8633b6c41116482d300ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-flasher/flasher/zipball/a0fe150811967874e121b028c949666e2d91c149",
-                "reference": "a0fe150811967874e121b028c949666e2d91c149",
+                "url": "https://api.github.com/repos/php-flasher/flasher/zipball/5679cc063212396791a8633b6c41116482d300ad",
+                "reference": "5679cc063212396791a8633b6c41116482d300ad",
                 "shasum": ""
             },
             "require": {
@@ -3229,7 +3229,7 @@
                 "toastr"
             ],
             "support": {
-                "source": "https://github.com/php-flasher/flasher/tree/v1.8.2"
+                "source": "https://github.com/php-flasher/flasher/tree/v1.9.0"
             },
             "funding": [
                 {
@@ -3237,36 +3237,36 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-07T22:10:03+00:00"
+            "time": "2022-12-24T15:36:11+00:00"
         },
         {
             "name": "php-flasher/flasher-laravel",
-            "version": "v1.8.2",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-flasher/flasher-laravel.git",
-                "reference": "ac42621953e8472042c6f2bf621a5799a232962b"
+                "reference": "19377eea1da3368aecd5e1361a0012d632ea4105"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-flasher/flasher-laravel/zipball/ac42621953e8472042c6f2bf621a5799a232962b",
-                "reference": "ac42621953e8472042c6f2bf621a5799a232962b",
+                "url": "https://api.github.com/repos/php-flasher/flasher-laravel/zipball/19377eea1da3368aecd5e1361a0012d632ea4105",
+                "reference": "19377eea1da3368aecd5e1361a0012d632ea4105",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^4.0|^5.0|^6.0|^7.0|^8.0|^9.0",
+                "illuminate/support": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
                 "php": ">=5.3",
-                "php-flasher/flasher": "^1.8"
+                "php-flasher/flasher": "^1.9"
             },
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Flasher\\Laravel\\FlasherServiceProvider"
-                    ],
                     "aliases": {
                         "Flasher": "Flasher\\Laravel\\Facade\\Flasher"
-                    }
+                    },
+                    "providers": [
+                        "Flasher\\Laravel\\FlasherServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -3308,7 +3308,7 @@
                 "yoeunes"
             ],
             "support": {
-                "source": "https://github.com/php-flasher/flasher-laravel/tree/v1.8.2"
+                "source": "https://github.com/php-flasher/flasher-laravel/tree/v1.9.0"
             },
             "funding": [
                 {
@@ -3316,25 +3316,25 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-07T22:10:03+00:00"
+            "time": "2022-12-24T15:36:11+00:00"
         },
         {
             "name": "php-flasher/flasher-toastr",
-            "version": "v1.8.2",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-flasher/flasher-toastr.git",
-                "reference": "4396869a48cdd8aeeec46c884aae4056e3de6315"
+                "reference": "0d8611443f53f875b375fa2e5eff2b083d71bbe9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-flasher/flasher-toastr/zipball/4396869a48cdd8aeeec46c884aae4056e3de6315",
-                "reference": "4396869a48cdd8aeeec46c884aae4056e3de6315",
+                "url": "https://api.github.com/repos/php-flasher/flasher-toastr/zipball/0d8611443f53f875b375fa2e5eff2b083d71bbe9",
+                "reference": "0d8611443f53f875b375fa2e5eff2b083d71bbe9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3",
-                "php-flasher/flasher": "^1.8"
+                "php-flasher/flasher": "^1.9"
             },
             "type": "library",
             "autoload": {
@@ -3369,7 +3369,7 @@
                 "toastr"
             ],
             "support": {
-                "source": "https://github.com/php-flasher/flasher-toastr/tree/v1.8.2"
+                "source": "https://github.com/php-flasher/flasher-toastr/tree/v1.9.0"
             },
             "funding": [
                 {
@@ -3377,7 +3377,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-11-21T20:31:08+00:00"
+            "time": "2022-12-24T15:36:11+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -3872,16 +3872,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.9",
+            "version": "v0.11.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "1acec99d6684a54ff92f8b548a4e41b566963778"
+                "reference": "e9eadffbed9c9deb5426fd107faae0452bf20a36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/1acec99d6684a54ff92f8b548a4e41b566963778",
-                "reference": "1acec99d6684a54ff92f8b548a4e41b566963778",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/e9eadffbed9c9deb5426fd107faae0452bf20a36",
+                "reference": "e9eadffbed9c9deb5426fd107faae0452bf20a36",
                 "shasum": ""
             },
             "require": {
@@ -3942,9 +3942,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.9"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.10"
             },
-            "time": "2022-11-06T15:29:46+00:00"
+            "time": "2022-12-23T17:47:18+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -6841,22 +6841,22 @@
         },
         {
             "name": "yoeunes/toastr",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yoeunes/toastr.git",
-                "reference": "05ac678690d4a5f69dd1cc0a71e4cf9164f2c408"
+                "reference": "de224ba8f80e68141190a7d30533846e81694329"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yoeunes/toastr/zipball/05ac678690d4a5f69dd1cc0a71e4cf9164f2c408",
-                "reference": "05ac678690d4a5f69dd1cc0a71e4cf9164f2c408",
+                "url": "https://api.github.com/repos/yoeunes/toastr/zipball/de224ba8f80e68141190a7d30533846e81694329",
+                "reference": "de224ba8f80e68141190a7d30533846e81694329",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3",
-                "php-flasher/flasher-laravel": "^1.6",
-                "php-flasher/flasher-toastr": "^1.6"
+                "php-flasher/flasher-laravel": "^1.9",
+                "php-flasher/flasher-toastr": "^1.9"
             },
             "type": "library",
             "extra": {
@@ -6924,7 +6924,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-10-25T23:44:36+00:00"
+            "time": "2022-12-25T01:08:34+00:00"
         }
     ],
     "packages-dev": [
@@ -7381,16 +7381,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v6.3.1",
+            "version": "v6.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "0f6349c3ed5dd28467087b08fb59384bb458a22b"
+                "reference": "83699b231e7f277bfa2e823788973bf4082f019a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/0f6349c3ed5dd28467087b08fb59384bb458a22b",
-                "reference": "0f6349c3ed5dd28467087b08fb59384bb458a22b",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/83699b231e7f277bfa2e823788973bf4082f019a",
+                "reference": "83699b231e7f277bfa2e823788973bf4082f019a",
                 "shasum": ""
             },
             "require": {
@@ -7465,7 +7465,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-09-29T12:29:49+00:00"
+            "time": "2022-12-23T21:36:49+00:00"
         },
         {
             "name": "phar-io/manifest",

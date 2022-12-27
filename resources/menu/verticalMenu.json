@@ -34,7 +34,7 @@
     {
       "url": "/Commissariat",
        "name": "Commissariat",
-       "icon": "menu-icon tf-icons bx bx-home",
+       "icon": "menu-icon tf-icons fa-solid fa-building-shield",
        "slug": "comm-view"
     },
       {
@@ -71,8 +71,16 @@
 
       "url": "/Grade",
        "name": "Grade",
-       "icon": "menu-icon tf-icons fa fa-person",
+       "icon": "menu-icon tf-icons fa fa-medal",
        "slug": "grade-view"
+    },
+
+    {
+
+      "url": "/Vehicule",
+       "name": "Vehicule",
+       "icon": "menu-icon tf-icons fa fa-car",
+       "slug": "vehi-view"
     },
     {
       "url": "app/calendar",
