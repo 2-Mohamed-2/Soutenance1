@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\apps\AccessRoles;
+use App\Http\Controllers\CRUDS\AccessRoles;
 use App\Http\Controllers\CRUDS\ComController;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\CRUDS\userController;
+use App\Http\Controllers\CRUDS\AccessPermission;
 use App\Http\Controllers\CRUDS\CarteController;
 use App\Http\Controllers\CRUDS\GradeController;
 use App\Http\Controllers\CRUDS\InconnuController;
@@ -236,7 +237,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
   Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view');
   Route::resource('/Sect', SectionController::class);
 
-
   //Routes pour crud du grade
   Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view');
   Route::resource('/Grade', GradeController::class);
@@ -250,7 +250,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
   Route::get('/Membre', [userController::class, 'index'])->name('user-view');
   Route::resource('/Mbr', userController::class);
 
-  Route::get('/app/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
-  // Route::get('/app/access-permission', $controller_path . '\apps\AccessPermission@index')->name('app-access-permission');
+  //Pour le crud de
+  Route::get('/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
+  Route::resource('/role', AccessRoles::class);
+
+  //Pour le crud de la permission
+  Route::get('/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
+  Route::resource('/permission', AccessPermission::class);
 
 });

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\laravel_example;
 
 use App\Http\Controllers\Controller;
-use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Models\User;
-// use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 
 class UserManagement extends Controller
@@ -18,7 +16,6 @@ class UserManagement extends Controller
   public function UserManagement()
   {
     $users = User::all();
-    $comms = Commissariat::all();
     $userCount = $users->count();
     $verified = User::whereNotNull('email_verified_at')->get()->count();
     $notVerified = User::whereNull('email_verified_at')->get()->count();
@@ -30,7 +27,6 @@ class UserManagement extends Controller
       'verified' => $verified,
       'notVerified' => $notVerified,
       'userDuplicates' => $userDuplicates,
-      'comms' => $comms,
     ]);
   }
 
@@ -136,15 +132,10 @@ class UserManagement extends Controller
     $userID = $request->id;
 
     if ($userID) {
-      // dd($request->image);
       // update the value
       $users = User::updateOrCreate(
         ['id' => $userID],
-        [
-          'name' => $request->name, 'matricule' => $request->matricule, 'email' => $request->email, 'adresse' => $request->adresse,
-          'telephone' => $request->contact, 'commissariat_id' => $request->commis, 'genre' => $request->genre,
-          'datearrive' => $request->datearr, 'datedepart' => $request->datedep
-        ]
+        ['name' => $request->name, 'email' => $request->email]
       );
 
       // user updated
@@ -154,15 +145,9 @@ class UserManagement extends Controller
       $userEmail = User::where('email', $request->email)->first();
 
       if (empty($userEmail)) {
-        //$image = $request->image->store("image");
-        $test=0;
         $users = User::updateOrCreate(
           ['id' => $userID],
-          [
-            'name' => $request->name, 'commissariat_id' => $request->commis, 'grade_id' => $test,'email' => $request->email, 'password' => bcrypt(123456),
-            'adresse' => $request->adresse, 'telephone' => $request->contact, 'matricule' => $request->matricule,
-            'datearrive' => $request->datearr, 'datedepart' => $request->datedep, 'genre' => $request->genre
-          ]
+          ['name' => $request->name, 'email' => $request->email, 'password' => bcrypt(Str::random(10))]
         );
 
         // user created

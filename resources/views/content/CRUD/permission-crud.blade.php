@@ -17,21 +17,14 @@
 <script src="{{asset('assets/vendor/libs/datatables-buttons/datatables-buttons.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js')}}"></script>
 
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
 @endsection
 
 @section('page-script')
 <script src="{{asset('assets/js/app-access-permission.js')}}"></script>
-<script src="{{asset('assets/js/modal-add-permission.js')}}"></script>
-<script src="{{asset('assets/js/modal-edit-permission.js')}}"></script>
 @endsection
 
 @section('content')
-<h4 class="fw-bold py-3 mb-2">Permissions List</h4>
-
-<p class="mb-4">Each category (Basic, Professional, and Business) includes the four predefined roles shown below.</p>
+<h4 class="fw-bold py-3 mb-2">Liste des permissions</h4>
 
 
 <!-- Permission Table -->
@@ -40,14 +33,40 @@
     <table class="datatables-permissions table border-top">
       <thead>
         <tr>
-          <th></th>
-          <th></th>
-          <th>Name</th>
-          <th>Assigned To</th>
-          <th>Created Date</th>
+          <th>Permission</th>
+          <th>Creation</th>
           <th>Actions</th>
         </tr>
       </thead>
+      <tbody class="table-border-bottom-0">
+        @forelse ($permissions as $permission)
+        <tr>
+          <td><strong>{{$permission->desc}}</strong></td>
+
+          <td><strong>{{$permission->created_at->format('d-m-Y à H:i')}}</strong></td>
+          <td>
+            <div class="dropdown">
+              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#editPermissionModal{{$permission->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#deletePermissionModal{{$permission->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
+              </div>
+            </div>
+
+            {{-- Vue du modal de modification --}}
+            @include('_partials._modals._CRUD-PERMISSION.modal-edit-permission')
+
+            {{-- Vue du modal de suppression --}}
+           @include('_partials._modals._CRUD-PERMISSION.modal-delete-permission')
+
+          </td>
+        </tr>
+        @empty
+        {{-- Le tableau sera vide s'il n'y a pas d'insertion --}}
+        @endforelse
+
+
+      </tbody>
     </table>
   </div>
 </div>
@@ -55,7 +74,7 @@
 
 
 <!-- Modal -->
-@include('_partials/_modals/modal-add-permission')
-@include('_partials/_modals/modal-edit-permission')
+@include('_partials._modals._CRUD-PERMISSION.modal-add-permission')
+
 <!-- /Modal -->
 @endsection
