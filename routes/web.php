@@ -9,6 +9,7 @@ use App\Http\Controllers\CRUDS\userController;
 use App\Http\Controllers\CRUDS\AccessPermission;
 use App\Http\Controllers\CRUDS\CarteController;
 use App\Http\Controllers\CRUDS\GradeController;
+use App\Http\Controllers\CRUDS\VehiculeController;
 use App\Http\Controllers\CRUDS\InconnuController;
 use App\Http\Controllers\CRUDS\SectionController;
 use App\Http\Controllers\CRUDS\ResidenceController;
@@ -257,5 +258,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
   //Pour le crud de la permission
   Route::get('/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
   Route::resource('/permission', AccessPermission::class);
+
+  Route::get('/Vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
+  Route::resource('/Vehi', VehiculeController::class);
+
 
 });
