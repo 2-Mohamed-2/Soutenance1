@@ -38,7 +38,7 @@ return array(
         'hideDuration'      => 1000,
         'hideEasing'        => 'linear',
         'hideMethod'        => 'fadeOut',
-        'iconClass'         => 'toast-info',
+        // 'iconClass'         => 'toast-info',
         'iconClasses'       => [
             'error'   => 'toast-error',
             'info'    => 'toast-info',

@@ -184,6 +184,9 @@ return [
         App\Providers\JetstreamServiceProvider::class,
     App\Providers\MenuServiceProvider::class,
 
+    //Spatie
+    Spatie\Permission\PermissionServiceProvider::class,
+
   ],
 
   /*

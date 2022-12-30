@@ -15,12 +15,17 @@ return new class extends Migration
     {
         Schema::create('vehicules', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('commissariat_id')->constrained()
+            ->onUpdate('cascade')->onDelete('cascade')->nullable();
+
+            $table->foreignId('user_id')->constrained()
+            ->onUpdate('cascade')->onDelete('cascade')->nullable();
+
+            $table->string('identifiant')->unique();
             $table->string('type');
-            $table->integer('identifient')->unique();
             $table->string('modele');
-            $table->string('mat_plaque');
             $table->string('revision');
-            $table->foreignId('commissariats_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }

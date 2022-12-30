@@ -9,11 +9,6 @@ use App\Http\Controllers\Controller;
 class GradeController extends Controller
 {
 
-    public function GradeView(){
-        
-    }
-
-
     public function index() {
         //
         $grades = Grade::latest()->get();

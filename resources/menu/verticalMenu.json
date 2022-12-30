@@ -201,13 +201,13 @@
       "slug": "app-access",
       "submenu": [
         {
-          "url": "/app/access-roles",
+          "url": "/access-roles",
           "name": "Roles",
           "slug": "app-access-roles"
         },
         {
-          "url": "/app/access-permission",
-          "name": "Permission",
+          "url": "/access-permission",
+          "name": "Permissions",
           "slug": "app-access-permission"
         }
       ]
