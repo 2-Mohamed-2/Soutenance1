@@ -201,8 +201,8 @@ Route::get('/charts/chartjs', $controller_path . '\charts\ChartJs@index')->name(
 Route::get('/maps/leaflet', $controller_path . '\maps\Leaflet@index')->name('maps-leaflet');
 
 // laravel example
-// Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
-// Route::resource('/user-list', UserManagement::class);
+Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
+Route::resource('/user-list', UserManagement::class);
 
 
 
@@ -228,6 +228,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
   //Routes pour le crud Inconnu
   Route::get('/Inconnu', [InconnuController::class, 'IncoView'])->name('inco-view');
   Route::resource('/Inco', InconnuController::class);
+
   //Routes pour crud du residence
   Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
   Route::resource('/Resi', ResidenceController::class);
@@ -259,6 +260,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
   Route::get('/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
   Route::resource('/permission', AccessPermission::class);
 
+  //Pour le crud des vehicules
   Route::get('/Vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
   Route::resource('/Vehi', VehiculeController::class);
 

@@ -10,7 +10,7 @@
   <x-slot name="form">
 
     <x-jet-action-message on="saved">
-      {{ __('Saved.') }}
+      {{ __('Enregistré.') }}
     </x-jet-action-message>
 
     <!-- Profile Photo -->
@@ -64,7 +64,7 @@
   <x-slot name="actions">
     <div class="d-flex align-items-baseline">
       <x-jet-button>
-        {{ __('Save') }}
+        {{ __('Sauvegarder') }}
       </x-jet-button>
     </div>
   </x-slot>

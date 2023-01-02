@@ -9,6 +9,7 @@
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
 @endsection
 
@@ -17,11 +18,10 @@
 <script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/datatables-responsive/datatables.responsive.js')}}"></script>
 <script src="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/datatables-buttons/datatables-buttons.js')}}"></script>
+<script src="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js')}}"></script>
 
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+
 <script src="{{asset('assets/js/checkbox.js')}}"></script>
 
 <script type="text/javascript">
@@ -31,7 +31,6 @@
     });
   });
 </script>
-
 
 @endsection
 
@@ -99,7 +98,6 @@
             <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#deleteRoleModal{{$role->id}}" class="role-edit-modal"><small>Supprimer</small></a>  |||
             <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#permissionRoleModal{{$role->id}}" class="role-edit-modal"><small>Permissions</small></a>
           </div>
-          {{-- <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a> --}}
         </div>
       </div>
     </div>

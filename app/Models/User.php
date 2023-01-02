@@ -50,15 +50,15 @@ class User extends Authenticatable
         return $this->belongsTo(Commissariat::class);
     }
 
-    // public function section()
-    // {
-    //     return $this->belongsToMany(Section::class);
-    // }
+    public function section()
+    {
+        return $this->belongsToMany(Section::class);
+    }
 
-    // public function grade()
-    // {
-    //     return $this->belongsTo(Grade::class);
-    // }
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class);
+    }
 
     // public function roles()
     // {

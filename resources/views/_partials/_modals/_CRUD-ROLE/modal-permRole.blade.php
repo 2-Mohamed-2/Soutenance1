@@ -6,7 +6,7 @@
       <div class="modal-body">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="text-center mb-4">
-          <h3 class="mb-3">Suppression d'une section</h3>
+          <h3 class="mb-3">Les permissions du role : {{$role->name}}</h3>
         </div>
 
         @php
@@ -16,8 +16,6 @@
             ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
             ->all();
         @endphp
-
-
 
 
         <!-- Permission table -->

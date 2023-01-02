@@ -50,17 +50,43 @@ class userController extends Controller
       ]);
       $com=1;
       $gra=1;
+      $section=1;
 
-      $user = User::create([
-          'commissariat_id' => $com,
-          'grade_id' => $gra,
-          'password' => Hash::make(123456),
-          'matricule' => $request->matricule,
-          'name' => $request->name,
-          'email' => $request->email,
-          'genre' => $request->genre,
-          'telephone' => $request->telephone,
-      ]);
+      $test = User::select('*')
+                  ->where([
+                    ['matricule', '=', $request->matricule]
+                  ])->exists();
+
+    $test1 = User::select('*')
+      ->where([
+        ['email', '=', $request->email]
+      ])->exists();
+
+
+      if ($test) {
+        toastr()->error('Ce matricule existe déjà !', 'Erreur');
+        return redirect('/Membre');
+      }else {
+        if ($test1) {
+          toastr()->error('Cet email existe déjà !', 'Erreur');
+          return redirect('/Membre');
+        }else {
+          $user = User::create([
+            'commissariat_id' => $com,
+            'grade_id' => $gra,
+            'section_id' => $section,
+            'password' => Hash::make(123456),
+            'matricule' => $request->matricule,
+            'name' => $request->name,
+            'email' => $request->email,
+            'genre' => $request->genre,
+            'telephone' => $request->telephone,
+          ]);  
+        }
+
+      }
+
+
 
       if ($user) {
           toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
@@ -102,7 +128,35 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+      $id = decrypt($id);
+      //dd($id);
+
+
+      $this->validate($request, [
+        'matricule' => 'required',
+        'name' => 'required|max:255',
+        'email' => 'required|max:255',
+        'telephone' => 'required|max:255',
+        'genre' => 'required',
+      ]);
+      // dd($request->all());
+
+      $user = User::find($id);
+      if ($user) {
+          $user->matricule = $request->matricule;
+          $user->name = $request->name;
+          $user->email = $request->email;
+          $user->telephone = $request->telephone;
+          $user->genre = $request->genre;
+
+          $user->save();
+          toastr()->success('Le membre a bien été modifié !', 'Réussite');
+          return redirect('/Membre');
+      } else {
+          toastr()->error('Modification non effectuée !', 'Erreur');
+          return redirect('/Membre');
+      }
     }
 
     /**
@@ -113,6 +167,11 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        //
+    $id = decrypt($id);
+
+    $user = User::findOrFail($id);
+    $user->delete();
+    toastr()->success('Le membre a bien été supprimé !', 'Réussite');
+    return redirect('/Membre');
     }
 }

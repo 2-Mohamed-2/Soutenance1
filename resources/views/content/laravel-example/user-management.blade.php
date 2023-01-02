@@ -150,11 +150,11 @@
           <label class="form-label" for="genre">Commissariat</label>
           <select id="commis" name="commis" class="form-select">
             <option value="" selected disabled>Selection du comm.</option>
-            @forelse ($comms as $comm)
+            {{-- @forelse ($comms as $comm)
               <option value="{{$comm->id}}">{{$comm->sigle}} de {{$comm->localite}}</option>
             @empty
 
-            @endforelse
+            @endforelse --}}
 
           </select>
         </div>

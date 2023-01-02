@@ -44,7 +44,8 @@
             @include('_partials._modals._CRUD-USER.modal-updt-User')
 
             {{-- Vue du modal de suppression --}}
-           {{-- @include('_partials/_modals/_CRUD-GRADE/modal-deleteGrade') --}}
+            @include('_partials._modals._CRUD-USER.mofal-delete-User')
+
 
           </td>
         </tr>

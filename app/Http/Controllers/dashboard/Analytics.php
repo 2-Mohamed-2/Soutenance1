@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class Analytics extends Controller
 {
   public function index()
   {
-    return view('content.dashboard.dashboards-analytics');
+    $users = User::all();
+    $usernbr = $users->count();
+
+    return view('content.dashboard.dashboards-principal', compact('usernbr'));
   }
 }
