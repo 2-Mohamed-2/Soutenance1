@@ -266,29 +266,28 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
   Route::get('/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
   Route::resource('/permission', AccessPermission::class);
 
-<<<<<<< HEAD
-  //Pour le crud des vehicules
-=======
-//Route pour vehicule
->>>>>>> 05c32c3d7c9d4412ec3c592b9e94ce553c1025bb
+  //Route pour vehicule
   Route::get('/Vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
   Route::resource('/Vehi', VehiculeController::class);
+
   //Route pour Armement
   Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('arme-view');
   Route::resource('/Arme', ArmementController::class);
-//Route pour tenue
+
+  //Route pour tenue
   Route::get('/Tenue', [TenueController::class, 'TenueView'])->name('tenue-view');
   Route::resource('/Tenue', TenueController::class);
 
-//Route pour Munition
-Route::get('/Munition', [MunitionController::class, 'MuniView'])->name('muni-view');
-Route::resource('/Muni', MunitionController::class);
+  //Route pour Munition
+  Route::get('/Munition', [MunitionController::class, 'MuniView'])->name('muni-view');
+  Route::resource('/Muni', MunitionController::class);
 
-//Route pour statut
-Route::get('/Statut', [StatutController::class, 'StatutView'])->name('statut-view');
-Route::resource('/Statut', StatutController::class);
+  //Route pour statut
+  Route::get('/Statut', [StatutController::class, 'StatutView'])->name('statut-view');
+  Route::resource('/Statut', StatutController::class);
 
-//Route pour Avoir
-Route::get('/Avoir', [AvoirController::class, 'AvoirView'])->name('avoir-view');
-Route::resource('/Avoir', AvoirController::class);
+  //Route pour Avoir
+  Route::get('/Avoir', [AvoirController::class, 'AvoirView'])->name('avoir-view');
+  Route::resource('/Avoir', AvoirController::class);
+  
 });
