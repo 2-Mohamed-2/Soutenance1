@@ -3,17 +3,20 @@
 namespace App\Models;
 
 use App\Models\Role;
+use App\Models\Avoir;
 use App\Models\Grade;
+use App\Models\Tenue;
 use App\Models\Section;
+use App\Models\Armement;
 use App\Models\Commissariat;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\ResetPassNotif;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\ResetPassNotif as NotificationsResetPassNotif;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -53,6 +56,17 @@ class User extends Authenticatable
     public function section()
     {
         return $this->belongsToMany(Section::class);
+    }
+    public function tenues(){
+        return $this->hasMany(Tenue::class);
+    }
+
+    public function avoir(){
+        return $this->hasOne('App\Models\Avoir');
+    }
+
+    public function arme() {
+        return $this->belongsTo(Armement::class);
     }
 
     public function grade()
