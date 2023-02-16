@@ -64,11 +64,11 @@
             </div>
           </div>
 
-          <div class="col-12">
+          {{-- <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Date acquisition</label>
             <div class="input-group input-group-merge">
               <input  autocomplete="off" type="date" name="date_acqui" class="form-control" placeholder="Acquisition " />
-            </div> <br>
+            </div> <br> --}}
 
 
 

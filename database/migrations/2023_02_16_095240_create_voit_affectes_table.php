@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('commissariat_id')->OnUpdate('cascade')->OnDelete('cascade');
              $table->foreignId('vehicule_id')->OnUpdate('cascade')->OnDelete('cascade');
              $table->foreignId('statut_id')->OnUpdate('cascade')->OnDelete('cascade');
-             $table->date('date_acqui');
+             $table->date('date_acqui')->default(now());
 
             $table->timestamps();
         });
