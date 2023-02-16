@@ -76,56 +76,49 @@
     },
 
     {
-
-      "url": "/Vehicule",
-       "name": "Vehicule",
-       "icon": "menu-icon tf-icons fa fa-car",
-       "slug": "vehi-view"
+      "name": "Logistique",
+      "icon": "menu-icon tf-icons bx bxl-php",
+      "slug": "logistique",
+      "submenu": [
+        {
+          "url": "/Vehicule",
+          "name": "Vehicule",
+          "icon": "menu-icon tf-icons fa fa-car",
+          "slug": "vehi-view"
+        },
+        {
+          "url": "/Armement",
+          "name": "Armement",
+          "icon": "menu-icon tf-icons fa fa-gun",
+          "slug": "arme-view"
+        },
+        {
+          "url": "/Tenue",
+          "name": "Tenue",
+          "icon": "menu-icon tf-icons fa fa-shirt",
+          "slug": "tenue-view"
+        },
+        {
+          "url": "/Munition",
+          "name": "Munition",
+          "icon": "menu-icon tf-icons fa fa-car",
+          "slug": "muni-view"
+        },
+        {
+          "url": "/Statut",
+          "name": "Statut",
+          "icon": "menu-icon tf-icons fa fa-car",
+          "slug": "statut-view"
+        },
+        {
+          "url": "/Avoir",
+          "name": "Arme_Affecter",
+          "icon": "menu-icon tf-icons fa fa-car",
+          "slug": "avoir-view"
+        }
+      ]
     },
-    {
 
-      "url": "/Armement",
-       "name": "Armement",
-       "icon": "menu-icon tf-icons fa fa-gun",
-       "slug": "arme-view"
-    },
-    {
-
-      "url": "/Tenue",
-       "name": "Tenue",
-       "icon": "menu-icon tf-icons fa fa-shirt",
-       "slug": "tenue-view"
-    },
-    {
-
-      "url": "/Munition",
-       "name": "Munition",
-       "icon": "menu-icon tf-icons fa fa-car",
-       "slug": "muni-view"
-    },
-
-    {
-
-      "url": "/Statut",
-       "name": "Statut",
-       "icon": "menu-icon tf-icons fa fa-car",
-       "slug": "statut-view"
-    },
-
-    {
-
-      "url": "/Avoir",
-       "name": "Arme_Affecter",
-       "icon": "menu-icon tf-icons fa fa-car",
-       "slug": "avoir-view"
-    },
-
-    {
-      "url": "/voitaffecte",
-      "name": "Vehicule_Affecter",
-      "icon": "menu-icon tf-icons fa fa-car",
-      "slug": "voitaffecte"
-    },
     {
       "url": "app/calendar",
       "name": "Calendar",
