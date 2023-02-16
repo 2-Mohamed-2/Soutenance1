@@ -115,9 +115,16 @@
     {
 
       "url": "/Avoir",
-       "name": "Avoir",
+       "name": "Arme_Affecter",
        "icon": "menu-icon tf-icons fa fa-car",
        "slug": "avoir-view"
+    },
+
+    {
+      "url": "/voitaffecte",
+      "name": "Vehicule_Affecter",
+      "icon": "menu-icon tf-icons fa fa-car",
+      "slug": "voitaffecte"
     },
     {
       "url": "app/calendar",

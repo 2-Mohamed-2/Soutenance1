@@ -9,10 +9,12 @@
 
 <hr class="my-5">
 
+
+
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des Vehicules enregistrés</h5>
-  <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addVehi" aria-controls="offcanvasEnd">
+  <button class="btn btn-primary col-xl-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addVehi" aria-controls="offcanvasEnd">
     Créer un nouveau Vehicule.
   </button>
   <div class="table-responsive text-nowrap">
@@ -20,7 +22,7 @@
       <thead>
         <tr>
           <th>Type</th>
-          <th>Identifient</th>
+          <th>Identifiant</th>
           <th>Modele</th>
           <th>Plaque Numero</th>
           <th>Revision</th>
@@ -32,11 +34,11 @@
         @forelse ($vehis as $vehi)
         <tr>
           <td><strong>{{$vehi->type}}</strong></td>
-          <td>{{$vehi->identifient}}</span></td>
+          <td>{{$vehi->identifiant}}</span></td>
           <td>{{$vehi->modele}}</span></td>
-          <td>{{$vehi->mat_plaque}}</span></td>
+          <td>{{$vehi->plaque}}</span></td>
           <td>{{$vehi->revision}}</span></td>
-          <td>{{$vehi->commissariats_id}}</span></td>
+          <td>{{$vehi->commissariat->libelle}}</span></td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
@@ -47,10 +49,10 @@
             </div>
 
             {{-- Vue du modal de modification --}}
-           @include('_partials/_modals/_CRUD-VEHI/modal-updtVehi') 
+           @include('_partials/_modals/_CRUD-VEHI/modal-updtVehi')
 
             {{-- Vue du modal de suppression --}}
-          @include('_partials/_modals/_CRUD-VEHI/modal-deleteVehi') 
+          @include('_partials/_modals/_CRUD-VEHI/modal-deleteVehi')
 
           </td>
         </tr>
@@ -65,7 +67,7 @@
 </div>
 
 {{-- Vue du modal d'insertion --}}
-  @include('_partials/_modals/_CRUD-VEHI/modal-addVehi') 
+  @include('_partials/_modals/_CRUD-VEHI/modal-addVehi')
 
 
 @endsection
