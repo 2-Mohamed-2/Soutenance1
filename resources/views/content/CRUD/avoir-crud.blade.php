@@ -4,16 +4,16 @@
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light">Tables /</span> Avoir
+  <span class="text-muted fw-light">Tables /</span> Affectation
 </h4>
 
 <hr class="my-5">
 
 <!-- Hoverable Table rows -->
 <div class="card">
-  <h5 class="card-header">Liste des Avoirs enregistrés</h5>
+  <h5 class="card-header">Liste des Armes affecter</h5>
   <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addAvoir" aria-controls="offcanvasEnd">
-    Créer un nouveau Avoir.
+    Affecter..
   </button>
   <div class="table-responsive text-nowrap">
     <table class="table table-hover">
@@ -45,10 +45,10 @@
             </div>
 
             {{-- Vue du modal de modification --}}
-         @include('_partials/_modals/_CRUD-AVOIR/modal-updtAvoir')  
+         @include('_partials/_modals/_CRUD-AVOIR/modal-updtAvoir')
 
             {{-- Vue du modal de suppression --}}
-          @include('_partials/_modals/_CRUD-AVOIR/modal-deleteAvoir') 
+          @include('_partials/_modals/_CRUD-AVOIR/modal-deleteAvoir')
 
          </td>
         </tr>
@@ -57,7 +57,7 @@
        @endforelse
 
 
-      </tbody> 
+      </tbody>
     </table>
   </div>
 </div>

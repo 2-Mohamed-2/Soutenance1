@@ -8,6 +8,7 @@ use App\Models\Grade;
 use App\Models\Tenue;
 use App\Models\Section;
 use App\Models\Armement;
+use App\Models\VoitAffecte;
 use App\Models\Commissariat;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\ResetPassNotif;
@@ -64,6 +65,11 @@ class User extends Authenticatable
     public function avoir(){
         return $this->hasOne('App\Models\Avoir');
     }
+
+  public function voitaffecte()
+  {
+    return $this->hasOne('VoitAffecte');
+  }
 
     public function arme() {
         return $this->belongsTo(Armement::class);

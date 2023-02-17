@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\VoitAffecte;
+use App\Models\Commissariat;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vehicule extends Model
 {
@@ -11,5 +13,12 @@ class Vehicule extends Model
 
     protected $guarded = [];
 
-    
+    public function commissariat(){
+        return $this->belongsTo(Commissariat::class);
+    }
+
+  public function voitaffecte()
+  {
+    return $this->hasOne(VoitAffecte::class);
+  }
 }

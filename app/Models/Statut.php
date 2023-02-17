@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\VoitAffecte;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
+=======
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+>>>>>>> c878fd62bd696e968a0863e388fd02ddac162e1d
 
 class Statut extends Model
 {
@@ -16,5 +20,15 @@ class Statut extends Model
         return $this->hasMany(Avoir::class);
     }
 
+<<<<<<< HEAD
+=======
+  public function voitaffectes()
+  {
+    return $this->hasMany(VoitAffecte::class);
+  }
+
+
+
+>>>>>>> c878fd62bd696e968a0863e388fd02ddac162e1d
 
 }

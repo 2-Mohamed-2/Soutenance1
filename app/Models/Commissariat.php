@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Avoir;
 use App\Models\Section;
 use App\Models\Munition;
+use App\Models\Vehicule;
+use App\Models\VoitAffecte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -24,7 +26,7 @@ class Commissariat extends Model
         return $this->hasMany(User::class);
     }
 
-    public function sections() 
+    public function sections()
     {
         return $this->hasMany(Section::class);
     }
@@ -48,4 +50,14 @@ class Commissariat extends Model
     public function tenues(){
         return $this->hasMany(Tenue::class);
     }
+
+    public function vehicules()
+    {
+      return $this->hasMany(Vehicule::class);
+    }
+
+  public function voitaffecte()
+  {
+    return $this->hasMany(VoitAffecte::class);
+  }
 }

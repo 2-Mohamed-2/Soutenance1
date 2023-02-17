@@ -12,38 +12,29 @@ class VehiculeController extends Controller
 
     public function VehiView(){
         $vehis = Vehicule::latest()->get();
-            $comms = Commissariat::latest()->get();
+        $comms = Commissariat::latest()->get();
             return view('content.CRUD.vehi-crud', compact('vehis', 'comms'));
     }
 
         public function index()
         {
-            
+
         }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+       $data = $this->validate($request, [
 
             'type' => 'required|max:255',
-            'identifient' => 'required',
+            'identifiant' => 'required',
             'modele' => 'required|max:255',
-            'mat_plaque' => 'required|max:255',
+            'plaque' => 'required|max:255',
             'revision' => 'required|max:255',
-            'commissariats_id' => 'required|max:255',
+            'commissariat_id' => 'required|max:255',
 
         ]);
 
-        $vehi = Vehicule::create([
-
-            'type' => $request->type,
-            'identifient' => $request->identifient,
-            'modele' => $request->modele,
-            'mat_plaque' => $request->mat_plaque,
-            'revision' => $request->revision,
-            'commissariats_id' => $request->commissariats_id,
-
-        ]);
+        $vehi = Vehicule::create($data);
 
         if ($vehi) {
             toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
@@ -64,18 +55,18 @@ class VehiculeController extends Controller
     {
         //
     }
-    
+
     public function update(Request $request, $id)
     {
         $id = decrypt($id);
         $validateData = $this->validate($request, [
- 
+
             'type' => 'required|max:255',
-            'identifient' => 'required',
+            'identifiant' => 'required',
             'modele' => 'required|max:255',
-            'mat_plaque' => 'required|max:255',
+            'plaque' => 'required|max:255',
             'revision' => 'required|max:255',
-            'commissariats_id' => 'required|max:255',
+            'commissariat_id' => 'required|max:255',
 
         ]);
 

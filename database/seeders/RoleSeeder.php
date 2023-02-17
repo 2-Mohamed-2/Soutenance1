@@ -31,6 +31,6 @@ class RoleSeeder extends Seeder
         ]
 
       ]);
-      $role1->syncPermissions([1,2,3,4,5]);
+      // $role1->syncPermissions([1,2,3,4,5]);
     }
 }

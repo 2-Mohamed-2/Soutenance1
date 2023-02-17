@@ -19,7 +19,9 @@ use App\Http\Controllers\CRUDS\MaterielController;
 use App\Http\Controllers\CRUDS\MunitionController;
 use App\Http\Controllers\CRUDS\VehiculeController;
 use App\Http\Controllers\CRUDS\ResidenceController;
+use App\Http\Controllers\CRUDS\VoitAffecteController;
 use App\Http\Controllers\laravel_example\UserManagement;
+use App\Models\VoitAffecte;
 
 /*
 |--------------------------------------------------------------------------
@@ -289,5 +291,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
   //Route pour Avoir
   Route::get('/Avoir', [AvoirController::class, 'AvoirView'])->name('avoir-view');
   Route::resource('/Avoir', AvoirController::class);
-  
+
+    //Route pour voiture affecter
+    Route::get('/voitaffecte', [VoitAffecteController::class, 'AvoirView'])->name('voitaffecte');
+      Route::resource('/voitaffecte', VoitAffecteController::class);
+
 });

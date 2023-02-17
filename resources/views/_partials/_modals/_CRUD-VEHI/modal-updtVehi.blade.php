@@ -12,69 +12,59 @@
           <form id="enableOTPForm" class="row g-3" action="{{route('Vehi.update', encrypt($vehi->id))}}" method="POST">
             @method('PUT')
             @csrf
-            {{-- <div class="col-12">
-                <label class="form-label" for="modalEnableOTPPhone">Inconnu</label>
-                <div class="input-group input-group-merge" >
-                    <select value="{{$resi->inconnu_id}}" class="form-control" name="inconnu_id">
-                        <option value="{{$resi->inconnu_id}}">--  --</option>
-                        @foreach($inconnus as $inconnu)
-                        <option value="{{ $inconnu->id }}">{{ $inconnu->nomcomplet }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-              </div> --}}
-             
+
+
               <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Type</label>
                 <div class="input-group input-group-merge">
                   <input required autocomplete="off" type="text" name="type"  value="{{$vehi->type}}" class="form-control" placeholder="Type de Vehicule" />
                 </div>
-        
+
               </div>
               <div class="col-12">
-                <label class="form-label" for="modalEnableOTPPhone">Identifient</label>
+                <label class="form-label" for="modalEnableOTPPhone">Identifiant</label>
                 <div class="input-group input-group-merge">
-                  <input required type="number" autocomplete="off" maxlength="10"  value="{{$vehi->identifient}}"  name="identifient" class="form-control phone-mask" placeholder="Identifient " />
+                  <input required type="number" autocomplete="off" maxlength="10"  value="{{$vehi->identifiant}}"  name="identifiant" class="form-control phone-mask" placeholder="Identifient " />
                 </div>
               </div><br>
-        
+
               <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Modele</label>
                 <div class="input-group input-group-merge">
                   <input required type="text" autocomplete="off" maxlength="10"  value="{{$vehi->modele}}"  name="modele" class="form-control phone-mask" placeholder="Modele" />
                 </div>
               </div>
-        
-        
-            <div class="col-12">
+
+
+             <div class="col-12">
               <label class="form-label" for="modalEnableOTPPhone">Plaque</label>
               <div class="input-group input-group-merge">
-                <input required type="text" autocomplete="off" maxlength="10"  value="{{$vehi->mat_plaque}}"  name="mat_plaque" class="form-control phone-mask" placeholder="NUmero du plaque" />
+                <input required type="text" autocomplete="off" maxlength="10"  value="{{$vehi->plaque}}"  name="plaque" class="form-control phone-mask" placeholder="NUmero du plaque" />
               </div>
             </div>
-        
+
             <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Revision</label>
                 <div class="input-group input-group-merge">
                   <input required type="text" autocomplete="off" maxlength="10"  value="{{$vehi->revision}}"  name="revision" class="form-control phone-mask" placeholder="" />
                 </div>
               </div>
-              
+
               <div class="col-12">
                   <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
                   <div class="input-group input-group-merge">
-                      <select  value="{{$vehi->commissariats_id}}"  class="form-control" name="commissariats_id">
-                          <option value="value="{{$vehi->commissariats_id}}""> --  --</option>
+                      <select  value="{{$vehi->commissariat_id}}"  class="form-control" name="commissariat_id">
+
                           @foreach($comms as $comm)
+                          <option value=""> {{$comm->libelle}}  </option>
                           <option value="{{ $comm->id }}">{{ $comm->libelle }}
                           </option>
                           @endforeach
                       </select>
                   </div>
                 </div>
-            
-        
+
+
 
             <div class="col-12">
               <button type="submit" class="btn btn-primary me-sm-3 me-1">Modifier</button>

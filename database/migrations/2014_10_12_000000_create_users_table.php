@@ -28,7 +28,7 @@ return new class extends Migration
                 ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
             $table->string('name');
-            $table->string('matricule')->unique()->nullable();
+            $table->string('matricule')->unique();
             $table->string('adresse')->nullable();
             $table->string('telephone')->nullable();
             $table->date('datearrive')->nullable();
