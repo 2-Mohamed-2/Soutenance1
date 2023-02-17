@@ -5,7 +5,7 @@ $customizerHidden = 'customizer-hide';
 
 @extends('layouts/blankLayout')
 
-@section('title', 'Login')
+@section('title', 'Cnnexion')
 
 @section('page-style')
 <!-- Page -->
@@ -37,7 +37,8 @@ $customizerHidden = 'customizer-hide';
         <h4 class="mb-2">Bonjour 👋 et Bienvenu sur {{config('variables.templateName')}}!</h4>
         <p class="mb-4">Veuillez renseigner les champs ci-dessous</p>
 
-        @error ('fail')
+     
+        @error ('throttle')
         <div class="alert alert-success mb-1 rounded-0" role="alert">
           <div class="alert-body">
             {{ $message }}
@@ -63,15 +64,18 @@ $customizerHidden = 'customizer-hide';
             </span>
             @enderror
           </div>
+
           <div class="mb-3">
             <label for="login-email" class="form-label">Matricule</label>
             <input type="text" autocomplete="off" class="form-control @error('matricule') is-invalid @enderror"
-              id="login-email" name="matricule" placeholder="Votre matricule" value="{{ old('matricule') }}">
+               name="matricule" placeholder="Votre matricule" value="{{ old('matricule') }}">
+
             @error('matricule')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
             @enderror
+
           </div>
           <div class="mb-3 form-password-toggle">
             <div class="d-flex justify-content-between">
@@ -113,21 +117,8 @@ $customizerHidden = 'customizer-hide';
         </p> --}}
 
         <div class="divider my-4">
-          <div class="divider-text">or</div>
+         
         </div>
-
-        <div class="d-flex justify-content-center">
-          <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
-            <i class="tf-icons bx bxl-facebook"></i>
-          </a>
-
-          <a href="javascript:;" class="btn btn-icon btn-label-google-plus me-3">
-            <i class="tf-icons bx bxl-google-plus"></i>
-          </a>
-
-          <a href="javascript:;" class="btn btn-icon btn-label-twitter">
-            <i class="tf-icons bx bxl-twitter"></i>
-          </a>
         </div>
       </div>
     </div>

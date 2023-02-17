@@ -49,7 +49,7 @@ return [
 
     'username' => 'matricule',
 
-    'email' => 'matricule',
+    'email' => 'email',
 
     /*
     |--------------------------------------------------------------------------
@@ -61,7 +61,7 @@ return [
     | and the user is authenticated. You are free to change this value.
     |
     */
-
+    
     'home' => RouteServiceProvider::HOME,
 
     /*
@@ -135,7 +135,7 @@ return [
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-        // Features::emailVerification(),
+        Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([
