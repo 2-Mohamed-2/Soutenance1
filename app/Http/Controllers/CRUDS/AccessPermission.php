@@ -28,7 +28,7 @@ class AccessPermission extends Controller
    */
   public function store(Request $request){
 
-    $this->validate($request,[
+    $this->validate($request, [
 
         'name' => 'required|max:255',
     ]);
