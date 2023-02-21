@@ -6,6 +6,7 @@ use DB;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 
 class AccessRoles extends Controller
@@ -24,6 +25,7 @@ class AccessRoles extends Controller
     $roles = Role::all();
     $permissions = Permission::all();
 
+    
     return view('content.CRUD.role-crud', compact('roles','permissions'));
   }
 
