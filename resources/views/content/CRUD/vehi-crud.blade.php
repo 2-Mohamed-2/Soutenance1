@@ -3,20 +3,72 @@
 @section('title', 'Tables - Basic Tables')
 
 @section('content')
+<?php
+  use App\Models\Vehicule;
+  use App\Models\VoitAffecte;
+?>
 <h4 class="fw-bold py-3 mb-4">
   <span class="text-muted fw-light">Tables /</span> Vehicule
 </h4>
 
 <hr class="my-5">
 
+<div class="row g-4 mb-4">
+  <div class="col-sm-6 col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-start justify-content-between">
+          <div class="content-left">
+            <span>Vehicule</span>
+            <div class="d-flex align-items-end mt-2">
+              <h3 class="mb-0 me-2">{{ count(Vehicule::all()) }}</h3>
+              <small class="text-success">(100%)</small>
+            </div>
+            <small>Total Vehicule</small>
+          </div>
+          <span class="badge bg-label-primary rounded p-2">
+            <i class="bx bx-car bx-sm"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-start justify-content-between">
+          <div class="content-left">
+            <span>Vehicule Affecter</span>
+            <div class="d-flex align-items-end mt-2">
+              <h3 class="mb-0 me-2">{{ count(VoitAffecte::all()) }}</h3>
+              <small class="text-success">(+95%)</small>
+            </div>
+            <small>Total vehicule affecter</small>
+          </div>
+          <span class="badge bg-label-success rounded p-2">
+            <i class="bx bx-car bx-sm"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 
 
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des Vehicules enregistrés</h5>
-  <button class="btn btn-primary col-xl-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addVehi" aria-controls="offcanvasEnd">
+
+   <div class="d-flex justify-content-center mx-auto gap-3">
+     <button class="btn btn-primary justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addVehi" aria-controls="offcanvasEnd">
     Créer un nouveau Vehicule.
   </button>
+    <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addVoit" aria-controls="offcanvasEnd">
+    Affecter Un Vehicule..
+  </button>
+   </div>
   <div class="table-responsive text-nowrap">
     <table class="table table-hover">
       <thead>
@@ -31,7 +83,7 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        @forelse ($vehis as $vehi)
+        @forelse ($vehicules as $vehi)
         <tr>
           <td><strong>{{$vehi->type}}</strong></td>
           <td>{{$vehi->identifiant}}</span></td>
@@ -68,6 +120,7 @@
 
 {{-- Vue du modal d'insertion --}}
   @include('_partials/_modals/_CRUD-VEHI/modal-addVehi')
+  @include('_partials/_modals/_CRUD-VOIT/modal-addVoit')
 
 
 @endsection

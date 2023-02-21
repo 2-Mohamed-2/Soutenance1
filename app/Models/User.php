@@ -18,6 +18,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\ResetPassNotif as NotificationsResetPassNotif;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -71,7 +72,8 @@ class User extends Authenticatable
     return $this->hasOne('VoitAffecte');
   }
 
-    public function arme() {
+    public function arme(): BelongsTo
+    {
         return $this->belongsTo(Armement::class);
     }
 

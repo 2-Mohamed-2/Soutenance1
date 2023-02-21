@@ -11,12 +11,14 @@
 
 
 
+
+
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des Vehicules enregistrés</h5>
-  <button class="btn btn-primary col-xl-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addVoit" aria-controls="offcanvasEnd">
+  {{-- <button class="btn btn-primary col-xl-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addVoit" aria-controls="offcanvasEnd">
     Affecter.
-  </button>
+  </button> --}}
   <div class="table-responsive text-nowrap">
     <table class="table table-hover">
       <thead>

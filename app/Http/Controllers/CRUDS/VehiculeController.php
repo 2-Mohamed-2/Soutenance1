@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\CRUDS;
 
+use App\Models\User;
 use App\Models\Vehicule;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Statut;
 
 class VehiculeController extends Controller
 {
 
     public function VehiView(){
-        $vehis = Vehicule::latest()->get();
+        $vehicules = Vehicule::latest()->get();
         $comms = Commissariat::latest()->get();
-            return view('content.CRUD.vehi-crud', compact('vehis', 'comms'));
+        $users = User::latest()->get();
+        $statuts = Statut::latest()->get();
+            return view('content.CRUD.vehi-crud', compact('vehicules', 'comms', 'users','statuts'));
     }
 
         public function index()
@@ -30,9 +34,12 @@ class VehiculeController extends Controller
             'modele' => 'required|max:255',
             'plaque' => 'required|max:255',
             'revision' => 'required|max:255',
-            'commissariat_id' => 'required|max:255',
+            'commissariat_id' => 'max:255',
 
         ]);
+        //  $vehi = Vehicule::create($data);
+        //  $vehi->commissariat_id = 0;
+        //  $vehi->save();
 
         $vehi = Vehicule::create($data);
 
@@ -66,7 +73,7 @@ class VehiculeController extends Controller
             'modele' => 'required|max:255',
             'plaque' => 'required|max:255',
             'revision' => 'required|max:255',
-            'commissariat_id' => 'required|max:255',
+            'commissariat_id' => 'max:255',
 
         ]);
 
