@@ -224,7 +224,7 @@ Route::resource('/user-list', UserManagement::class);
 
 
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'Mot_passe:123456', config('jetstream.auth_session'), 'verified'])->group(function () {
 
   //Page d'acceuil
   Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
