@@ -8,7 +8,7 @@
       </div>
 
       <div class="modal-body">
-          <form action="{{route('voitaffecte.store')}}" method="post">
+          <form action="{{route('voitaffecte.store')}}" method="post" enctype="multipart/form-data">
           @csrf
 
           <div class="col-12 mb-4">
@@ -47,7 +47,7 @@
                     <td>
                       <div class="d-inline-flex">
                         <div class="form-check me-3 me-lg-3">
-                          <input class="form-check-input selectMultiple" name="vehicule_id" value="{{$vehi->id}}" type="checkbox" />
+                          <input class="form-check-input selectMultiple" multiple name="vehicule_id[]" value="{{$vehi->id}}" type="checkbox" />
                         </div>
                       </div>
                     </td>

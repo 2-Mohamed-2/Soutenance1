@@ -58,11 +58,16 @@ class VoitAffecteController extends Controller
         'vehicule_id' => 'required',
         // 'statut_id' => 'required',
     ]);
+    for($i = 0; $i < count($request->vehicule_id); $i++ )
+    {
 
+      $voitaffecte = new VoitAffecte;
+      $voitaffecte->commissariat_id = $request->commissariat_id;
+      $voitaffecte->vehicule_id = $request->vehicule_id[$i];
+      $voitaffecte->date_acqui = now();
+      $voitaffecte->save();
+    }
 
-    $voitaffecte = VoitAffecte::create($data);
-    $voitaffecte->date_acqui = now();
-    $voitaffecte->save();
     if($voitaffecte){
       toastr()->success('Affectation reussi avec succes');
     }else{
