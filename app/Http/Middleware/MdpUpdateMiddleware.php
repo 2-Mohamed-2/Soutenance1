@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MdpUpdateMiddleware
 {
@@ -21,7 +22,11 @@ class MdpUpdateMiddleware
         $password = Auth::user()->password;
         if (Hash::check($mdp, $password)) {
             
-            return redirect(route('profile.show'));
+            
+
+            return redirect(route('profile.show'))->with('info', 'Veuillez changer votre mot de passe avant de continuer !!!');
+
+            
                        
         }
         

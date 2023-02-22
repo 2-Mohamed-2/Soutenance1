@@ -5,7 +5,7 @@ $customizerHidden = 'customizer-hide';
 
 @extends('layouts/blankLayout')
 
-@section('title', 'Cnnexion')
+@section('title', 'Connexion')
 
 @section('page-style')
 <!-- Page -->

@@ -187,6 +187,9 @@ return [
     //Spatie
     Spatie\Permission\PermissionServiceProvider::class,
 
+    //Message d'alert
+    RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
   ],
 
   /*
@@ -205,6 +208,9 @@ return [
     'Helper' => App\Helpers\Helpers::class,
 
     'PDF'  =>  Barryvdh\DomPDF\Facade::class,
+
+    //Msg d'alert
+    'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
 
   ])->toArray(),

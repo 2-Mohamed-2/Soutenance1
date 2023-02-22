@@ -35,4 +35,7 @@ $breadcrumbs = [['link' => 'home', 'name' => 'Home'], ['link' => 'javascript:voi
     @livewire('profile.delete-user-form')
   @endif
 
+
+  @include('sweetalert::alert')
+
 @endsection

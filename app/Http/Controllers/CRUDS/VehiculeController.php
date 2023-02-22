@@ -45,6 +45,7 @@ class VehiculeController extends Controller
 
         if ($vehi) {
             toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            return route('Vehi.index');
             return redirect('/Vehicule');
         } else {
             toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
