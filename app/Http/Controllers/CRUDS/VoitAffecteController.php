@@ -53,10 +53,10 @@ class VoitAffecteController extends Controller
 
     $data = $this->validate($request, [
 
-        'user_id' => 'required',
+        // 'user_id' => 'required',
         'commissariat_id' => 'required',
         'vehicule_id' => 'required',
-        'statut_id' => 'required',
+        // 'statut_id' => 'required',
     ]);
 
 

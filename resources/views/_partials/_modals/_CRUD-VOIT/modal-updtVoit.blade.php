@@ -26,7 +26,7 @@
                   </div>
                 </div>
 
-                <div class="col-12">
+                {{-- <div class="col-12">
                   <label class="form-label" for="modalEnableOTPPhone">User</label>
                   <div class="input-group input-group-merge">
                       <select class="form-control" value="{{$voitaffecte->user_id}}" name="user_id">
@@ -37,7 +37,7 @@
                           @endforeach
                       </select>
                   </div>
-                </div>
+                </div> --}}
 
                 <div class="col-12">
                     <label class="form-label" for="modalEnableOTPPhone">Vihecule</label>
@@ -52,7 +52,7 @@
                     </div>
                   </div>
 
-                  <div class="col-12">
+                  {{-- <div class="col-12">
                     <label class="form-label" for="modalEnableOTPPhone">Satut</label>
                     <div class="input-group input-group-merge">
                         <select class="form-control" value="{{$voitaffecte->statut_id}}" name="statut_id">
@@ -63,7 +63,7 @@
                             @endforeach
                         </select>
                     </div>
-                  </div>
+                  </div> --}}
 
                   <div class="col-12">
                     <label class="form-label" for="modalEnableOTPPhone">Date acquisition</label>

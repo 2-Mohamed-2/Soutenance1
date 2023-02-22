@@ -23,10 +23,9 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>Affecte a</th>
           <th>Commissariat</th>
           <th>Vehicule</th>
-          <th>Statut</th>
+          {{-- <th>Statut</th> --}}
           <th>Date Acquisition</th>
           <th>Action</th>
         </tr>
@@ -34,10 +33,9 @@
       <tbody class="table-border-bottom-0">
         @forelse ($voitaffectes as $voitaffecte)
         <tr>
-          <td><strong>{{$voitaffecte->user->name}}</strong></td>
           <td>{{$voitaffecte->commissariat->libelle}}</td>
           <td>{{$voitaffecte->vehicule->modele}}</td>
-          <td>{{$voitaffecte->statut->libelle}}</td>
+          {{-- <td>{{$voitaffecte->statut->libelle}}</td> --}}
           <td>{{$voitaffecte->date_acqui}}</td>
           <td>
             <div class="dropdown">

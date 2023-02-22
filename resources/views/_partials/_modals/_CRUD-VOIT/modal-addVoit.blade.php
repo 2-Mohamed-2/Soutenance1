@@ -1,81 +1,76 @@
 <!-- End Offcanvas -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="addVoit" aria-labelledby="offcanvasEndLabel">
-    <div class="offcanvas-header">
-      <h5 id="offcanvasEndLabel" class="offcanvas-title">Insertion d'une nouvelle Affectation</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body mx-0 flex-grow-0">
-      <form id="enableOTPForm" class="row g-3" action="{{route('voitaffecte.store')}}" method="POST">
-        @csrf
+<div class="modal fade" id="addVoit" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalScrollableTitle">Affectation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
+      <div class="modal-body">
+          <form action="{{route('voitaffecte.store')}}" method="post">
+          @csrf
 
-
-         <div class="col-12">
-            <label class="form-label" for="modalEnableOTPPhone">User</label>
-            <div class="input-group input-group-merge">
-                <select class="form-control" name="user_id">
-                    <option value=""> --  --</option>
-                    @foreach($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-          </div>
-
-          <div class="col-12">
-            <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
-            <div class="input-group input-group-merge">
-                <select class="form-control" name="commissariat_id">
+          <div class="col-12 mb-4">
+           <select class="form-control" name="commissariat_id">
                     <option value=""> --  --</option>
                     @foreach($comms as $comm)
                     <option value="{{ $comm->id }}">{{ $comm->libelle }}
                     </option>
                     @endforeach
-                </select>
-            </div>
-          </div>
-
-
-
-           <div class="col-12">
-            <label class="form-label" for="modalEnableOTPPhone">Vehicule</label>
-            <div class="input-group input-group-merge">
-                <select class="form-control" name="vehicule_id">
-                    <option value=""> --  --</option>
-                    @foreach($vehicules as $vehicule)
-                    <option value="{{ $vehicule->id }}">{{ $vehicule->modele }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
+           </select>
           </div>
 
           <div class="col-12">
-            <label class="form-label" for="modalEnableOTPPhone">Satut</label>
-            <div class="input-group input-group-merge">
-                <select class="form-control" name="statut_id">
-                    <option value=""> --  --</option>
-                    @foreach($statuts as $statut)
-                    <option value="{{ $statut->id }}">{{ $statut->libelle }}
-                    </option>
-                    @endforeach
-                </select>
+            <h4></h4>
+            <!-- Permission table -->
+            <div class="table-responsive">
+              <table class="table table-flush-spacing">
+                <tbody>
+                  <tr>
+                    <td class="text-nowrap fw-semibold">Affecter Vehicule <i class="bx bx-info-circle bx-xs"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Acces total sur la plateforme"></i></td>
+                    <td>
+                      <div class="form-Multiple check ">
+                        <input class="form-check-input" name="" type="checkbox" id="selectAll" />
+                        <label class="form-check-label" for="selectAll">
+                          Tout selectionné
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  @forelse ($vehicules as $vehi)
+                  <tr>
+                    <td class="text-nowrap fw-semibold">
+                      {{$vehi->modele}}</td>
+                    <td>
+                    <td>
+                      <div class="d-inline-flex">
+                        <div class="form-check me-3 me-lg-3">
+                          <input class="form-check-input selectMultiple" name="vehicule_id" value="{{$vehi->id}}" type="checkbox" />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  @empty
+                   {{-- Pas de permission enregistrée pour le moment, <a href="{{route('app-access-permission')}}">ici</a> --}}
+                  @endforelse
+
+                </tbody>
+              </table>
             </div>
+            <!-- Permission table -->
           </div>
+      </div>
 
-          {{-- <div class="col-12">
-            <label class="form-label" for="modalEnableOTPPhone">Date acquisition</label>
-            <div class="input-group input-group-merge">
-              <input  autocomplete="off" type="date" name="date_acqui" class="form-control" placeholder="Acquisition " />
-            </div> <br> --}}
+      <div class="modal-footer">
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+      </div>
 
-
-
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary me-sm-3 me-1">Enregistrer</button>
-          <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas" aria-label="Close">Anuler</button>
-        </div>
       </form>
-    </div>
+     </div>
   </div>
+</div>
+
+

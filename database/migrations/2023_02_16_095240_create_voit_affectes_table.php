@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('voit_affectes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->OnUpdate('cascade')->OnDelete('cascade');
-            $table->foreignId('commissariat_id')->OnUpdate('cascade')->OnDelete('cascade');
-             $table->foreignId('vehicule_id')->OnUpdate('cascade')->OnDelete('cascade');
-             $table->foreignId('statut_id')->OnUpdate('cascade')->OnDelete('cascade');
+            // $table->foreignId('user_id')->OnUpdate('cascade')->OnDelete('cascade');
+            $table->foreignId('commissariat_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
+            $table->foreignId('vehicule_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
+            //  $table->foreignId('statut_id')->OnUpdate('cascade')->OnDelete('cascade');
              $table->date('date_acqui')->default(now());
 
             $table->timestamps();

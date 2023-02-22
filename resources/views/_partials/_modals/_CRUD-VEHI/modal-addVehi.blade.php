@@ -15,12 +15,12 @@
           </div>
 
         </div>
-        <div class="col-12">
+        {{-- <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Identifiant</label>
           <div class="input-group input-group-merge">
             <input required type="number" autocomplete="off" maxlength="10" name="identifiant" class="form-control phone-mask" placeholder="Identifient " />
           </div>
-        </div><br>
+        </div><br> --}}
 
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Modele</label>
@@ -30,19 +30,19 @@
         </div>
 
 
-      <div class="col-12">
+       <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">Plaque</label>
         <div class="input-group input-group-merge">
           <input required type="text" autocomplete="off" maxlength="10" name="plaque" class="form-control phone-mask" placeholder="NUmero du plaque" />
         </div>
       </div>
 
-      <div class="col-12">
+      {{-- <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Revision</label>
           <div class="input-group input-group-merge">
             <input required type="text" autocomplete="off" maxlength="10" name="revision" class="form-control phone-mask" placeholder="" />
           </div>
-        </div>
+        </div> --}}
 
         <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>

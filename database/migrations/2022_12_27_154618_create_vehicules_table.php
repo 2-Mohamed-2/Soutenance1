@@ -22,11 +22,11 @@ return new class extends Migration
             // $table->foreignId('user_id')->constrained()
             // ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
-            $table->string('identifiant')->unique();
+            // $table->string('identifiant')->unique();
             $table->string('type');
             $table->string('modele');
             $table->string('plaque');
-            $table->string('revision');
+            // $table->string('revision');
             $table->timestamps();
         });
     }

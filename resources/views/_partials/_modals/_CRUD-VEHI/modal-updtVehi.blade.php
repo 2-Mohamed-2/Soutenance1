@@ -21,12 +21,12 @@
                 </div>
 
               </div>
-              <div class="col-12">
+              {{-- <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Identifiant</label>
                 <div class="input-group input-group-merge">
                   <input required type="number" autocomplete="off" maxlength="10"  value="{{$vehi->identifiant}}"  name="identifiant" class="form-control phone-mask" placeholder="Identifient " />
                 </div>
-              </div><br>
+              </div><br> --}}
 
               <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Modele</label>
@@ -43,12 +43,12 @@
               </div>
             </div>
 
-            <div class="col-12">
+            {{-- <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Revision</label>
                 <div class="input-group input-group-merge">
                   <input required type="text" autocomplete="off" maxlength="10"  value="{{$vehi->revision}}"  name="revision" class="form-control phone-mask" placeholder="" />
                 </div>
-              </div>
+              </div> --}}
 
               <div class="col-12">
                   <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>

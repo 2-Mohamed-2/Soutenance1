@@ -64,10 +64,13 @@
    <div class="d-flex justify-content-center mx-auto gap-3">
      <button class="btn btn-primary justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addVehi" aria-controls="offcanvasEnd">
     Créer un nouveau Vehicule.
-  </button>
-    <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addVoit" aria-controls="offcanvasEnd">
+   </button>
+  {{--  <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addVoit" aria-controls="offcanvasEnd">
     Affecter Un Vehicule..
-  </button>
+  </button> --}}
+   <button data-bs-target="#addVoit" data-bs-toggle="modal" class="btn btn-primary  text-nowrap add-new-role">
+      Affecter Un Vehicule..
+    </button>
    </div>
   <div class="table-responsive text-nowrap">
     <table class="table table-hover">

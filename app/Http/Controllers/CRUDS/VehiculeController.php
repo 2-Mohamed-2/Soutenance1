@@ -30,10 +30,10 @@ class VehiculeController extends Controller
        $data = $this->validate($request, [
 
             'type' => 'required|max:255',
-            'identifiant' => 'required',
+            // 'identifiant' => 'required',
             'modele' => 'required|max:255',
             'plaque' => 'required|max:255',
-            'revision' => 'required|max:255',
+            // 'revision' => 'required|max:255',
             'commissariat_id' => 'max:255',
 
         ]);
@@ -45,7 +45,7 @@ class VehiculeController extends Controller
 
         if ($vehi) {
             toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
-            return route('Vehi.index');
+            // return route('Vehi.index');
             return redirect('/Vehicule');
         } else {
             toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
@@ -70,10 +70,10 @@ class VehiculeController extends Controller
         $validateData = $this->validate($request, [
 
             'type' => 'required|max:255',
-            'identifiant' => 'required',
+            // 'identifiant' => 'required',
             'modele' => 'required|max:255',
             'plaque' => 'required|max:255',
-            'revision' => 'required|max:255',
+            // 'revision' => 'required|max:255',
             'commissariat_id' => 'max:255',
 
         ]);
