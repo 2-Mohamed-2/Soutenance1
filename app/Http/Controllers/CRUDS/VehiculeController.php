@@ -34,7 +34,7 @@ class VehiculeController extends Controller
             'modele' => 'required|max:255',
             'plaque' => 'required|max:255',
             // 'revision' => 'required|max:255',
-            'commissariat_id' => 'max:255',
+            // 'commissariat_id' => 'max:255',
 
         ]);
         //  $vehi = Vehicule::create($data);
@@ -74,7 +74,7 @@ class VehiculeController extends Controller
             'modele' => 'required|max:255',
             'plaque' => 'required|max:255',
             // 'revision' => 'required|max:255',
-            'commissariat_id' => 'max:255',
+            // 'commissariat_id' => 'max:255',
 
         ]);
 
