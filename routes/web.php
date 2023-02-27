@@ -1,16 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Models\VoitAffecte;
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CRUDS\AccessRoles;
 use App\Http\Controllers\CRUDS\ComController;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\CRUDS\userController;
 use App\Http\Controllers\CRUDS\AvoirController;
-use App\Http\Controllers\CRUDS\AccessPermission;
 use App\Http\Controllers\CRUDS\CarteController;
 use App\Http\Controllers\CRUDS\GradeController;
 use App\Http\Controllers\CRUDS\TenueController;
+use App\Http\Controllers\CRUDS\AccessPermission;
 use App\Http\Controllers\CRUDS\StatutController;
 use App\Http\Controllers\CRUDS\InconnuController;
 use App\Http\Controllers\CRUDS\SectionController;
@@ -20,8 +21,8 @@ use App\Http\Controllers\CRUDS\MunitionController;
 use App\Http\Controllers\CRUDS\VehiculeController;
 use App\Http\Controllers\CRUDS\ResidenceController;
 use App\Http\Controllers\CRUDS\VoitAffecteController;
+use App\Http\Controllers\UserCompte\UserProfilSecurity;
 use App\Http\Controllers\laravel_example\UserManagement;
-use App\Models\VoitAffecte;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,7 +82,7 @@ Route::get('/pages/profile-teams', $controller_path . '\pages\UserTeams@index')-
 Route::get('/pages/profile-projects', $controller_path . '\pages\UserProjects@index')->name('pages-profile-projects');
 Route::get('/pages/profile-connections', $controller_path . '\pages\UserConnections@index')->name('pages-profile-connections');
 Route::get('/pages/account-settings-account', $controller_path . '\pages\AccountSettingsAccount@index')->name('pages-account-settings-account');
-Route::get('/pages/account-settings-security', $controller_path . '\pages\AccountSettingsSecurity@index')->name('pages-account-settings-security');
+// Route::get('/pages/account-settings-security', $controller_path . '\pages\AccountSettingsSecurity@index')->name('pages-account-settings-security');
 Route::get('/pages/account-settings-billing', $controller_path . '\pages\AccountSettingsBilling@index')->name('pages-account-settings-billing');
 Route::get('/pages/account-settings-notifications', $controller_path . '\pages\AccountSettingsNotifications@index')->name('pages-account-settings-notifications');
 Route::get('/pages/account-settings-connections', $controller_path . '\pages\AccountSettingsConnections@index')->name('pages-account-settings-connections');
@@ -224,76 +225,83 @@ Route::resource('/user-list', UserManagement::class);
 
 
 
-Route::middleware(['auth:sanctum', 'Mot_passe:123456', config('jetstream.auth_session'), 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
-  //Page d'acceuil
-  Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
+  Route::middleware(['Mot_passe:123456'])->group(function () {
 
-  // Routes pour le crud du commissariat
-  Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
-  Route::resource('/Commiss', ComController::class);
+    //Page d'acceuil
+    Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 
-  //Routes pour le crud Inconnu
-  Route::get('/Inconnu', [InconnuController::class, 'IncoView'])->name('inco-view');
-  Route::resource('/Inco', InconnuController::class);
+    // Routes pour le crud du commissariat
+    Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
+    Route::resource('/Commiss', ComController::class);
 
-  //Routes pour crud du residence
-  Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
-  Route::resource('/Resi', ResidenceController::class);
-  Route::get('/residencePDF/{id}', [ResidenceController::class, 'PDF'])->name('residencePDF');
+    //Routes pour le crud Inconnu
+    Route::get('/Inconnu', [InconnuController::class, 'IncoView'])->name('inco-view');
+    Route::resource('/Inco', InconnuController::class);
+
+    //Routes pour crud du residence
+    Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
+    Route::resource('/Resi', ResidenceController::class);
+    Route::get('/residencePDF/{id}', [ResidenceController::class, 'PDF'])->name('residencePDF');
 
 
-  //Routes pour crud du section
-  Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view');
-  Route::resource('/Sect', SectionController::class);
+    //Routes pour crud du section
+    Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view');
+    Route::resource('/Sect', SectionController::class);
 
-  //Routes pour crud du grade
-  Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view');
-  Route::resource('/Grade', GradeController::class);
+    //Routes pour crud du grade
+    Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view');
+    Route::resource('/Grade', GradeController::class);
 
-  //Routes pour crud du carte
-  Route::get('/Carte', [CarteController::class, 'CarteView'])->name('carte-view');
-  Route::resource('/Carte', CarteController::class);
-  Route::get('/cartePDF/{id}', [CarteController::class, 'PDF'])->name('cartePDF');
+    //Routes pour crud du carte
+    Route::get('/Carte', [CarteController::class, 'CarteView'])->name('carte-view');
+    Route::resource('/Carte', CarteController::class);
+    Route::get('/cartePDF/{id}', [CarteController::class, 'PDF'])->name('cartePDF');
 
-  //routes pour le crud du user
-  Route::get('/Membre', [userController::class, 'index'])->name('user-view');
-  Route::resource('/Mbr', userController::class);
+    //routes pour le crud du user
+    Route::get('/Membre', [userController::class, 'index'])->name('user-view');
+    Route::resource('/Mbr', userController::class);
 
-  //Pour le crud de
-  Route::get('/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
-  Route::resource('/role', AccessRoles::class);
+    //Pour le crud de
+    Route::get('/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
+    Route::resource('/role', AccessRoles::class);
 
-  //Pour le crud de la permission
-  Route::get('/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
-  Route::resource('/permission', AccessPermission::class);
+    //Pour le crud de la permission
+    Route::get('/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
+    Route::resource('/permission', AccessPermission::class);
 
-  //Route pour vehicule
-  Route::get('/Vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
-  Route::resource('/Vehi', VehiculeController::class);
+    //Route pour vehicule
+    Route::get('/Vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
+    Route::resource('/Vehi', VehiculeController::class);
 
-  //Route pour Armement
-  Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('arme-view');
-  Route::resource('/Arme', ArmementController::class);
+    //Route pour Armement
+    Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('arme-view');
+    Route::resource('/Arme', ArmementController::class);
 
-  //Route pour tenue
-  Route::get('/Tenue', [TenueController::class, 'TenueView'])->name('tenue-view');
-  Route::resource('/Tenue', TenueController::class);
+    //Route pour tenue
+    Route::get('/Tenue', [TenueController::class, 'TenueView'])->name('tenue-view');
+    Route::resource('/Tenue', TenueController::class);
 
-  //Route pour Munition
-  Route::get('/Munition', [MunitionController::class, 'MuniView'])->name('muni-view');
-  Route::resource('/Muni', MunitionController::class);
+    //Route pour Munition
+    Route::get('/Munition', [MunitionController::class, 'MuniView'])->name('muni-view');
+    Route::resource('/Muni', MunitionController::class);
 
-  //Route pour statut
-  Route::get('/Statut', [StatutController::class, 'StatutView'])->name('statut-view');
-  Route::resource('/Statut', StatutController::class);
+    //Route pour statut
+    Route::get('/Statut', [StatutController::class, 'StatutView'])->name('statut-view');
+    Route::resource('/Statut', StatutController::class);
 
-  //Route pour Avoir
-  Route::get('/Avoir', [AvoirController::class, 'AvoirView'])->name('avoir-view');
-  Route::resource('/Avoir', AvoirController::class);
+    //Route pour Avoir
+    Route::get('/Avoir', [AvoirController::class, 'AvoirView'])->name('avoir-view');
+    Route::resource('/Avoir', AvoirController::class);
 
     //Route pour voiture affecter
     Route::get('/voitaffecte', [VoitAffecteController::class, 'AvoirView'])->name('voitaffecte');
-      Route::resource('/voitaffecte', VoitAffecteController::class);
+    Route::resource('/voitaffecte', VoitAffecteController::class);
+    
+  });
+  
 
+  //Routes pour l'acces au compte du user
+  Route::get('/Paramètre/Sécurité', [UserProfilSecurity::class, 'index'])->name('pages-account-settings-security');
 });

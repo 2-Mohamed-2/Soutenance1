@@ -259,8 +259,8 @@
               "slug": "pages-account-settings-account"
             },
             {
-              "url": "/pages/account-settings-security",
-              "name": "Security",
+              "url": "/Paramètre/Sécurité",
+              "name": "Sécurité",
               "slug": "pages-account-settings-security"
             },
             {

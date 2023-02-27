@@ -52,7 +52,7 @@ $navbarDetached = ($navbarDetached ?? '');
         <ul class="navbar-nav flex-row align-items-center ms-auto">
           @if(!isset($menuHorizontal))
           <!-- Language -->
-          <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
+          {{-- <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
               <i class='fi fi-us fis rounded-circle fs-3 me-1'></i>
             </a>
@@ -82,7 +82,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           <!--/ Language -->
           @endif
 
@@ -105,7 +105,7 @@ $navbarDetached = ($navbarDetached ?? '');
           <!--/ Style Switcher -->
 
           <!-- Quick links  -->
-          <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
+          {{-- <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
               <i class='bx bx-grid-alt bx-sm'></i>
             </a>
@@ -183,11 +183,14 @@ $navbarDetached = ($navbarDetached ?? '');
                 </div>
               </div>
             </div>
-          </li>
+          </li> --}}
           <!-- Quick links -->
 
           <!-- Notification -->
-          <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
+
+          {{-- Apres je vais venir modifier ce point --}}
+
+          {{-- <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-1">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
               <i class="bx bx-bell bx-sm"></i>
               <span class="badge bg-danger rounded-pill badge-notifications">5</span>
@@ -371,7 +374,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           <!--/ Notification -->
 
           <!-- User -->
@@ -383,7 +386,8 @@ $navbarDetached = ($navbarDetached ?? '');
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
-                <a class="dropdown-item" href="{{ Route::has('profile.show') ? route('profile.show') : url('pages/profile-user') }}">
+                {{-- Route coupees dans le lien ci-dessous ::: || Route::has('profile.show') ? route('profile.show') : || --}}
+                <a class="dropdown-item" href="{{ url('/Paramètre/Sécurité') }}">
                   <div class="d-flex">
                     <div class="flex-shrink-0 me-3">
                       <div class="avatar avatar-online">
@@ -395,10 +399,14 @@ $navbarDetached = ($navbarDetached ?? '');
                         @if (Auth::check())
                         {{ Auth::user()->name }}
                         @else
-                        ²Mohamed²
+                        Police_Nationale
                         @endif
                       </span>
-                      <small class="text-muted">Admin</small>
+                      <small class="text-muted">
+                        @if (Auth::check())
+                        {{ Auth::user()->grade->libelle ?? 'Utilisateur' }}
+                        @endif
+                      </small>
                     </div>
                   </div>
                 </a>
@@ -474,7 +482,7 @@ $navbarDetached = ($navbarDetached ?? '');
               <li>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                   <i class='bx bx-power-off me-2'></i>
-                  <span class="align-middle">Logout</span>
+                  <span class="align-middle">Deconnexion</span>
                 </a>
               </li>
               <form method="POST" id="logout-form" action="{{ route('logout') }}">
@@ -484,7 +492,7 @@ $navbarDetached = ($navbarDetached ?? '');
               <li>
                 <a class="dropdown-item" href="{{ Route::has('login') ? route('login') : 'javascript:void(0)' }}">
                   <i class='bx bx-log-in me-2'></i>
-                  <span class="align-middle">Login</span>
+                  <span class="align-middle">Connexion</span>
                 </a>
               </li>
               @endif
