@@ -75,7 +75,7 @@
             </div>
 
 
-              <div class="col-12">
+              {{-- <div class="col-12">
                   <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
                   <div class="input-group input-group-merge">
                       <select  value="{{$vehi->commissariat_id}}"  class="form-control" name="commissariat_id">
@@ -87,7 +87,7 @@
                           @endforeach
                       </select>
                   </div>
-                </div>
+                </div> --}}
 
 
 

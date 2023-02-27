@@ -93,7 +93,7 @@
           <td>{{$vehi->modele}}</span></td>
           <td>{{$vehi->plaque}}</span></td>
           {{-- <td>{{$vehi->revision}}</span></td> --}}
-          <td>{{$vehi->commissariat->libelle}}</span></td>
+          {{-- <td>{{$vehi->commissariat->libelle}}</span></td> --}}
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>

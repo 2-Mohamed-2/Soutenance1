@@ -43,7 +43,7 @@
             <input required type="text" autocomplete="off" maxlength="10" name="revision" class="form-control phone-mask" placeholder="" />
           </div>
         </div> --}}
-
+{{-- 
         <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
             <div class="input-group input-group-merge">
@@ -55,7 +55,7 @@
                     @endforeach
                 </select>
             </div>
-          </div>
+          </div> --}}
 
 
 
