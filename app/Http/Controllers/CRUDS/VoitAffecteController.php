@@ -111,10 +111,10 @@ class VoitAffecteController extends Controller
     $id = decrypt($id);
     $validateData = $this->validate($request, [
 
-      'user_id' => 'required',
+      // 'user_id' => 'required',
       'commissariat_id' => 'required',
       'vehicule_id' => 'required',
-      'statut_id' => 'required',
+      // 'statut_id' => 'required',
       // 'date_acqui' => 'required|max:255',
 
     ]);
