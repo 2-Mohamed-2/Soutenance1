@@ -14,7 +14,7 @@
 
             <div class="col-12">
               <div class="text-wrap">
-                {{-- Etes-vous sûr de vouloir supprimer definitivement affectation : {{$voitaffecte->user->nom}} ? --}}
+                 Etes-vous sûr de vouloir supprimer definitivement affectation : {{$voitaffecte->vehicule->libelle}} ?
               </div>
             </div>
             <br>

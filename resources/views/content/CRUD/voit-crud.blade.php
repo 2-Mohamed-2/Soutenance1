@@ -65,7 +65,7 @@
 </div>
 
 {{-- Vue du modal d'insertion --}}
-   @include('_partials/_modals/_CRUD-VOIT/modal-addVoit')
+   {{-- @include('_partials/_modals/_CRUD-VOIT/modal-addVoit') --}}
 
 
 @endsection
