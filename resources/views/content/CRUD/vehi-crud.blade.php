@@ -81,7 +81,6 @@
           <th>Modele</th>
           <th>Plaque Numero</th>
           {{-- <th>Revision</th> --}}
-          <th>Commissariat</th>
           <th>Action</th>
         </tr>
       </thead>
