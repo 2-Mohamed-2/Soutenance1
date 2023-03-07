@@ -14,26 +14,57 @@
             @csrf
 
 
-              <div class="col-12">
-                <label class="form-label" for="modalEnableOTPPhone">Type</label>
-                <div class="input-group input-group-merge">
-                  <input required autocomplete="off" type="text" name="type"  value="{{$vehi->type}}" class="form-control" placeholder="Type de Vehicule" />
-                </div>
+             div class="col-12 mb-4">
+           <select class="form-control" name="commissariat_id">
 
-              </div>
-              {{-- <div class="col-12">
-                <label class="form-label" for="modalEnableOTPPhone">Identifiant</label>
-                <div class="input-group input-group-merge">
-                  <input required type="number" autocomplete="off" maxlength="10"  value="{{$vehi->identifiant}}"  name="identifiant" class="form-control phone-mask" placeholder="Identifient " />
-                </div>
-              </div><br> --}}
+                    @foreach($comms as $comm)
+                     <option value="">{{ $comm->libelle }}</option>
+                    <option value="{{ $comm->id }}">{{ $comm->libelle }}
+                    </option>
+                    @endforeach
+           </select>
+          </div>
 
-              <div class="col-12">
-                <label class="form-label" for="modalEnableOTPPhone">Modele</label>
-                <div class="input-group input-group-merge">
-                  <input required type="text" autocomplete="off" maxlength="10"  value="{{$vehi->modele}}"  name="modele" class="form-control phone-mask" placeholder="Modele" />
-                </div>
-              </div>
+          <div class="col-12">
+            <h4></h4>
+            <!-- Permission table -->
+            <div class="table-responsive">
+              <table class="table table-flush-spacing">
+                <tbody>
+                  <tr>
+                    <td class="text-nowrap fw-semibold">Affecter Vehicule <i class="bx bx-info-circle bx-xs"
+                        data-bs-toggle="tooltip" data-bs-placement="top" title="Acces total sur la plateforme"></i></td>
+                    <td>
+                      <div class="form-Multiple check ">
+                        <input class="form-check-input" name="" type="checkbox" id="selectAll" />
+                        <label class="form-check-label" for="selectAll">
+                          Tout selectionné
+                        </label>
+                      </div>
+                    </td>
+                  </tr>
+                  @forelse ($vehicules as $vehi)
+                  <tr>
+                    <td class="text-nowrap fw-semibold">
+                      {{$vehi->modele}}</td>
+                    <td>
+                    <td>
+                      <div class="d-inline-flex">
+                        <div class="form-check me-3 me-lg-3">
+                          <input class="form-check-input selectMultiple" multiple name="vehicule_id[]" value="{{$vehi->id}}" type="checkbox" />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  @empty
+                   {{-- Pas de permission enregistrée pour le moment, <a href="{{route('app-access-permission')}}">ici</a> --}}
+                  @endforelse
+
+                </tbody>
+              </table>
+            </div>
+            <!-- Permission table -->
+          </div>
 
 
              <div class="col-12">
@@ -43,14 +74,8 @@
               </div>
             </div>
 
-            {{-- <div class="col-12">
-                <label class="form-label" for="modalEnableOTPPhone">Revision</label>
-                <div class="input-group input-group-merge">
-                  <input required type="text" autocomplete="off" maxlength="10"  value="{{$vehi->revision}}"  name="revision" class="form-control phone-mask" placeholder="" />
-                </div>
-              </div> --}}
 
-              <div class="col-12">
+              {{-- <div class="col-12">
                   <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
                   <div class="input-group input-group-merge">
                       <select  value="{{$vehi->commissariat_id}}"  class="form-control" name="commissariat_id">
@@ -62,7 +87,7 @@
                           @endforeach
                       </select>
                   </div>
-                </div>
+                </div> --}}
 
 
 

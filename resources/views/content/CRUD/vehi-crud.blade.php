@@ -77,11 +77,10 @@
       <thead>
         <tr>
           <th>Type</th>
-          <th>Identifiant</th>
+          {{-- <th>Identifiant</th> --}}
           <th>Modele</th>
           <th>Plaque Numero</th>
-          <th>Revision</th>
-          <th>Commissariat</th>
+          {{-- <th>Revision</th> --}}
           <th>Action</th>
         </tr>
       </thead>
@@ -89,11 +88,11 @@
         @forelse ($vehicules as $vehi)
         <tr>
           <td><strong>{{$vehi->type}}</strong></td>
-          <td>{{$vehi->identifiant}}</span></td>
+          {{-- <td>{{$vehi->identifiant}}</span></td> --}}
           <td>{{$vehi->modele}}</span></td>
           <td>{{$vehi->plaque}}</span></td>
-          <td>{{$vehi->revision}}</span></td>
-          <td>{{$vehi->commissariat->libelle}}</span></td>
+          {{-- <td>{{$vehi->revision}}</span></td> --}}
+          {{-- <td>{{$vehi->commissariat->libelle}}</span></td> --}}
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
@@ -107,7 +106,7 @@
            @include('_partials/_modals/_CRUD-VEHI/modal-updtVehi')
 
             {{-- Vue du modal de suppression --}}
-          @include('_partials/_modals/_CRUD-VEHI/modal-deleteVehi')
+           @include('_partials/_modals/_CRUD-VEHI/modal-deleteVehi')
 
           </td>
         </tr>

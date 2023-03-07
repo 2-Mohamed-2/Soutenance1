@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('vehicules', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('commissariat_id')->constrained()
-            ->onUpdate('cascade')->onDelete('cascade')->nullable();
+            // $table->foreignId('commissariat_id')->constrained()
+            // ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
             // $table->foreignId('user_id')->constrained()
             // ->onUpdate('cascade')->onDelete('cascade')->nullable();
