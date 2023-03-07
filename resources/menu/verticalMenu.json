@@ -7,19 +7,41 @@
       "slug": "dashboard-analytics"
 
     },
-
     {
-      "name": "Laravel Example",
-      "icon": "menu-icon tf-icons bx bxl-php",
-      "slug": "laravel-example",
+      "name": "Paramètre",
+      "icon": "menu-icon tf-icons bx bx-crown",
+      "slug": "icons",
       "submenu": [
         {
-          "url": "laravel/user-management",
-          "name": "User Management",
-          "slug": "laravel-example-user-management"
+          "url": "icons/boxicons",
+          "name": "Boxicons",
+          "slug": "icons-boxicons"
+        },
+        {
+          "url": "icons/font-awesome",
+          "name": "Fontawesome",
+          "slug": "icons-font-awesome"
         }
       ]
     },
+    {
+      "name": "Compte",
+      "icon": "menu-icon tf-icons bx bx-collection",
+      "slug": "compte",
+      "submenu": [
+        {
+          "url": "Compte/Profil",
+          "name": "Profil",
+          "slug": "compte-profil-user-view"
+        },
+        {
+          "url": "Compte/Paramètre/Sécurité",
+          "name": "Sécurité",
+          "slug": "compte-user-settings-security"
+        }
+      ]
+    },
+
     {
       "menuHeader": "Apps & Pages"
     },

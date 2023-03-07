@@ -20,15 +20,15 @@ class MdpUpdateMiddleware
     public function handle(Request $request, Closure $next, String $mdp)
     {
         $password = Auth::user()->password;
-        if (Hash::check($mdp, $password)) {          
+       
+            if (Hash::check($mdp, $password)) {          
             
-
-            return redirect(route('pages-account-settings-security'))->with('info', 'Veuillez changer votre mot de passe avant de continuer !!!');
-
-                                  
-        }
+                return redirect(route('compte-user-settings-security'))->with('info', 'Veuillez changer votre mot de passe avant de continuer !!!');
+                                          
+            }
         
         return $next($request);
+        
 
         // abort(403, 'Vous ne pouvez effectuer cette operation !');
         // return $next($request);

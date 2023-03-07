@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'User Profile - Profile')
+@section('title', 'Compte - Profil')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
@@ -28,7 +28,7 @@
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light">User Profile /</span> Profile
+  <span class="text-muted fw-light">Compte /</span> Profil
 </h4>
 
 <!-- Header -->
@@ -40,27 +40,39 @@
       </div>
       <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
         <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-          <img src="{{asset('assets/img/avatars/1.png')}}" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+          <img src="{{ Auth::user()->profile_photo_url ?? asset('assets/img/avatars/1.png') }}" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
         </div>
         <div class="flex-grow-1 mt-3 mt-sm-5">
           <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
             <div class="user-profile-info">
-              <h4>John Doe</h4>
+              <h4>{{ Auth::user()->name ?? 'Mohamed Mohamed'}}</h4>
               <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
                 <li class="list-inline-item fw-semibold">
-                  <i class='bx bx-pen'></i> UX Designer
+                  <i class='bx bx-pen'></i>{{ Auth::user()->matricule ?? 'Matricule'}}
                 </li>
                 <li class="list-inline-item fw-semibold">
-                  <i class='bx bx-map'></i> Vatican City
+                  <i class='bx bx-map'></i> {{ Auth::user()->adresse ?? 'Residence'}}
                 </li>
                 <li class="list-inline-item fw-semibold">
-                  <i class='bx bx-calendar-alt'></i> Joined April 2021
+                  <i class='bx bx-signal-5'></i> {{ Auth::user()->grade->libelle ?? 'Grade'}}
                 </li>
               </ul>
             </div>
-            <a href="javascript:void(0)" class="btn btn-primary text-nowrap">
-              <i class='bx bx-user-check'></i> Connected
-            </a>
+
+            @if (Auth::user()->isActive == true)
+
+            <button class="btn btn-primary text-nowrap">
+              <i class='bx bx-user-check'></i> Votre compte est activé              
+            </button>
+
+            @else
+
+            <button  class="btn btn-danger text-nowrap">
+              <i class='bx bx-user-x'></i> Votre compte est desactivé              
+            </button>
+              
+            @endif
+
           </div>
         </div>
       </div>

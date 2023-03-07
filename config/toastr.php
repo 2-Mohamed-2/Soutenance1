@@ -51,7 +51,7 @@ return array(
         'onShown'           => null,
         'positionClass'     => 'toast-top-full-width',
         'preventDuplicates' => true,
-        'progressBar'       => true,
+        'progressBar'       => false,
         'progressClass'     => 'toast-progress',
         'rtl'               => false,
         'showDuration'      => 300,
