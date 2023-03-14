@@ -82,7 +82,7 @@
 <!--/ Header -->
 
 <!-- Navbar pills -->
-<div class="row">
+{{-- <div class="row">
   <div class="col-md-12">
     <ul class="nav nav-pills flex-column flex-sm-row mb-4">
       <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class='bx bx-user'></i> Profile</a></li>
@@ -91,7 +91,7 @@
       <li class="nav-item"><a class="nav-link" href="{{url('pages/profile-connections')}}"><i class='bx bx-link-alt'></i> Connections</a></li>
     </ul>
   </div>
-</div>
+</div> --}}
 <!--/ Navbar pills -->
 
 <!-- User Profile Content -->
@@ -102,26 +102,21 @@
       <div class="card-body">
         <small class="text-muted text-uppercase">About</small>
         <ul class="list-unstyled mb-4 mt-3">
-          <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span class="fw-semibold mx-2">Full Name:</span> <span>John Doe</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="bx bx-check"></i><span class="fw-semibold mx-2">Status:</span> <span>Active</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="bx bx-star"></i><span class="fw-semibold mx-2">Role:</span> <span>Developer</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="bx bx-flag"></i><span class="fw-semibold mx-2">Country:</span> <span>USA</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="bx bx-detail"></i><span class="fw-semibold mx-2">Languages:</span> <span>English</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span class="fw-semibold mx-2">Nom complet:</span> <span>{{ Auth::user()->name }}</span></li>
+          <li class="d-flex align-items-center mb-3"><i class="bx bx-check"></i><span class="fw-semibold mx-2">Statut:</span> <span>@if (Auth::user()->isActive == 1)
+            Actif
+          @else
+            Pas actif
+          @endif</span></li>
+          {{-- <li class="d-flex align-items-center mb-3"><i class="bx bx-star"></i><span class="fw-semibold mx-2">Role:</span> <span></span></li> --}}
+          {{-- <li class="d-flex align-items-center mb-3"><i class="bx bx-flag"></i><span class="fw-semibold mx-2">Country:</span> <span>USA</span></li> --}}
+          <li class="d-flex align-items-center mb-3"><i class="bx bx-detail"></i><span class="fw-semibold mx-2">Commissariat:</span> <span>{{ Auth::user()->commissariat->libelle ?? '' }}</span></li>
         </ul>
         <small class="text-muted text-uppercase">Contacts</small>
         <ul class="list-unstyled mb-4 mt-3">
-          <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><span class="fw-semibold mx-2">Contact:</span> <span>(123) 456-7890</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="bx bx-chat"></i><span class="fw-semibold mx-2">Skype:</span> <span>john.doe</span></li>
-          <li class="d-flex align-items-center mb-3"><i class="bx bx-envelope"></i><span class="fw-semibold mx-2">Email:</span> <span>john.doe@example.com</span></li>
-        </ul>
-        <small class="text-muted text-uppercase">Teams</small>
-        <ul class="list-unstyled mt-3 mb-0">
-          <li class="d-flex align-items-center mb-3"><i class="bx bxl-github text-primary me-2"></i>
-            <div class="d-flex flex-wrap"><span class="fw-semibold me-2">Backend Developer</span><span>(126 Members)</span></div>
-          </li>
-          <li class="d-flex align-items-center"><i class="bx bxl-react text-info me-2"></i>
-            <div class="d-flex flex-wrap"><span class="fw-semibold me-2">React Developer</span><span>(98 Members)</span></div>
-          </li>
+          <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><span class="fw-semibold mx-2">Contact:</span> <span>(223) {{ Auth::user()->telephone }}</span></li>
+          {{-- <li class="d-flex align-items-center mb-3"><i class="bx bx-chat"></i><span class="fw-semibold mx-2">Skype:</span> <span>john.doe</span></li> --}}
+          <li class="d-flex align-items-center mb-3"><i class="bx bx-envelope"></i><span class="fw-semibold mx-2">Email:</span> <span>{{ Auth::user()->email ?? '' }}</span></li>
         </ul>
       </div>
     </div>
@@ -228,7 +223,7 @@
     <!--/ Activity Timeline -->
     <div class="row">
       <!-- Connections -->
-      <div class="col-lg-12 col-xl-6">
+      {{-- <div class="col-lg-12 col-xl-6">
         <div class="card card-action mb-4">
           <div class="card-header align-items-center">
             <h5 class="card-action-title mb-0">Connections</h5>
@@ -333,10 +328,10 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> --}}
       <!--/ Connections -->
       <!-- Teams -->
-      <div class="col-lg-12 col-xl-6">
+      {{-- <div class="col-lg-12 col-xl-6">
         <div class="card card-action mb-4">
           <div class="card-header align-items-center">
             <h5 class="card-action-title mb-0">Teams</h5>
@@ -442,11 +437,11 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> --}}
       <!--/ Teams -->
     </div>
     <!-- Projects table -->
-    <div class="card mb-4">
+    {{-- <div class="card mb-4">
       <div class="card-datatable table-responsive">
         <table class="datatables-projects border-top table">
           <thead>
@@ -462,7 +457,7 @@
           </thead>
         </table>
       </div>
-    </div>
+    </div> --}}
     <!--/ Projects table -->
   </div>
 </div>

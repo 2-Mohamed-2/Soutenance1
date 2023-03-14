@@ -387,7 +387,7 @@ $navbarDetached = ($navbarDetached ?? '');
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
                 {{-- Route coupees dans le lien ci-dessous ::: || Route::has('profile.show') ? route('profile.show') : || --}}
-                <a class="dropdown-item" href="{{ url('/Paramètre/Sécurité') }}">
+                <a class="dropdown-item" href="{{ url('/Compte/Profil') }}">
                   <div class="d-flex">
                     <div class="flex-shrink-0 me-3">
                       <div class="avatar avatar-online">

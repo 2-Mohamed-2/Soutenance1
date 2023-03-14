@@ -8,23 +8,6 @@
 
     },
     {
-      "name": "Paramètre",
-      "icon": "menu-icon tf-icons bx bx-crown",
-      "slug": "icons",
-      "submenu": [
-        {
-          "url": "icons/boxicons",
-          "name": "Boxicons",
-          "slug": "icons-boxicons"
-        },
-        {
-          "url": "icons/font-awesome",
-          "name": "Fontawesome",
-          "slug": "icons-font-awesome"
-        }
-      ]
-    },
-    {
       "name": "Compte",
       "icon": "menu-icon tf-icons bx bx-collection",
       "slug": "compte",
@@ -33,6 +16,11 @@
           "url": "Compte/Profil",
           "name": "Profil",
           "slug": "compte-profil-user-view"
+        },
+        {
+          "url": "Compte/Paramètre/Gestion",
+          "name": "Gestion",
+          "slug": "compte-user-modify"
         },
         {
           "url": "Compte/Paramètre/Sécurité",

@@ -23,6 +23,7 @@ use App\Http\Controllers\CRUDS\ResidenceController;
 use App\Http\Controllers\CRUDS\VoitAffecteController;
 use App\Http\Controllers\UserCompte\UserProfilSecurity;
 use App\Http\Controllers\laravel_example\UserManagement;
+use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\UserCompte\UserProfilView;
 use App\Http\Middleware\ActiveMiddleware;
 
@@ -303,7 +304,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       Route::get('/voitaffecte', [VoitAffecteController::class, 'AvoirView'])->name('voitaffecte');
       Route::resource('/voitaffecte', VoitAffecteController::class);
   
-      
+
+
+      //Gestion du compte
+      Route::get('/Compte/Paramètre/Gestion',[AccountSettingsAccount::class, 'index'])->name('compte-user-modify');
       
     });
 

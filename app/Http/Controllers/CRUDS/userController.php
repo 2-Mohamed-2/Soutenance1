@@ -81,6 +81,7 @@ class userController extends Controller
             'email' => $request->email,
             'genre' => $request->genre,
             'telephone' => $request->telephone,
+            'isActive' => 1,
           ]);  
         }
 

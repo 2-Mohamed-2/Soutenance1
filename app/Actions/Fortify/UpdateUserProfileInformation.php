@@ -2,9 +2,11 @@
 
 namespace App\Actions\Fortify;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
@@ -25,7 +27,13 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
-            $user->updateProfilePhoto($input['photo']);
+            // $user->updateProfilePhoto($input['photo']);
+            Storage::delete($user->profile_photo_path);
+
+            $image = $input['photo']->store("Agents");
+            $docteur = User::whereId($user->id)->update([
+                'profile_photo_path' => $image,
+            ]);
         }
 
         if ($input['email'] !== $user->email &&
