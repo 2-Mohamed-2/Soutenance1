@@ -308,6 +308,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
       //Gestion du compte
       Route::get('/Compte/Paramètre/Gestion',[AccountSettingsAccount::class, 'index'])->name('compte-user-modify');
+      // Pour le modify des donnees du User par lui mm
+      Route::put('/Compte/Paramètre/Gestion/{id}', [AccountSettingsAccount::class, 'updateUser'])->name('cpgUpdate');
       
     });
 
