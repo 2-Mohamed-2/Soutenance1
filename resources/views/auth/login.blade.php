@@ -68,7 +68,7 @@ $customizerHidden = 'customizer-hide';
           <div class="mb-3">
             <label for="login-email" class="form-label">Matricule</label>
             <input type="text" autocomplete="off" class="form-control @error('matricule') is-invalid @enderror"
-               name="matricule" placeholder="Votre matricule" value="{{ old('matricule') }}">
+               name="matricule" placeholder="Votre matricule" required value="{{ old('matricule') }}">
 
             @error('matricule')
             <span class="invalid-feedback" role="alert">

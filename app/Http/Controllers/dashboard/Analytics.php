@@ -14,7 +14,7 @@ class Analytics extends Controller
     $users = User::all();
     $usernbr = $users->count();
 
-    Alert::info('Titre', 'Bienvenu a tous !!');
+    
     return view('content.dashboard.dashboards-principal', compact('usernbr'));
   }
 }

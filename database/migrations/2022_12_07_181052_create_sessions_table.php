@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+            $table->dateTime('created_at')->nullable();
+            $table->dateTime('destroy_at')->nullable();
         });
     }
 

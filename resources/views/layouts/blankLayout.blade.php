@@ -15,4 +15,6 @@ $customizerHidden = ($customizerHidden ?? '');
 @yield('content')
 <!--/ Content -->
 
+@include('sweetalert::alert')
+
 @endsection

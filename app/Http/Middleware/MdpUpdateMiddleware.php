@@ -23,7 +23,8 @@ class MdpUpdateMiddleware
        
             if (Hash::check($mdp, $password)) {          
             
-                return redirect(route('compte-user-settings-security'))->with('info', 'Veuillez changer votre mot de passe avant de continuer !!!');
+                Alert::info('Information', 'Veuillez changer votre mot de passe avant de continuer !!!');
+                return redirect(route('compte-user-settings-security'));
                                           
             }
         
