@@ -2,28 +2,41 @@
 
 namespace App\Http\Controllers\CRUDS;
 
+
 use App\Models\User;
+use App\Models\Statut;
 use App\Models\Vehicule;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Statut;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VehiculeController extends Controller
 {
 
-    public function VehiView(){
+    public function VehiView(Request $request){
         $vehicules = Vehicule::latest()->get();
         $comms = Commissariat::latest()->get();
         $users = User::latest()->get();
-        $statuts = Statut::latest()->get();
-            return view('content.CRUD.vehi-crud', compact('vehicules', 'comms', 'users','statuts'));
+            return view('content.CRUD.vehi-crud', compact('vehicules', 'comms', 'users'));
+
     }
 
-        public function index()
-        {
 
-        }
+    public function search(Request $request){
+      $query = $request->get('query');
+      $filterResult = Vehicule::where('type', 'LIKE', '%' . $query . '%')->get();
+      return response()->json($filterResult);
+    }
+
+
+
+    public function index(Request $request)
+    {
+    //
+
+    }
+
 
     public function store(Request $request)
     {
@@ -44,11 +57,11 @@ class VehiculeController extends Controller
         $vehi = Vehicule::create($data);
 
         if ($vehi) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            alert()->success('L\'enregistrement a bien été effectué !', 'Réussite');
             // return route('Vehi.index');
             return redirect('/Vehicule');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+         Alert::info('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Vehicule');
         }
     }
@@ -69,10 +82,10 @@ class VehiculeController extends Controller
         $id = decrypt($id);
         $validateData = $this->validate($request, [
 
-            'type' => 'required|max:255',
+            'type' => 'required',
             // 'identifiant' => 'required',
-            'modele' => 'required|max:255',
-            'plaque' => 'required|max:255',
+            'modele' => 'required',
+            // 'plaque' => 'max:255',
             // 'revision' => 'required|max:255',
             // 'commissariat_id' => 'max:255',
 
@@ -81,10 +94,10 @@ class VehiculeController extends Controller
         $vehi = Vehicule::whereId($id)->update($validateData);
 
         if ($vehi) {
-            toastr()->success('Le vehicule a bien été modifié !', 'Réussite');
+       Alert::info('Le vehicule a bien été modifié !', 'Réussite');
             return redirect('/Vehicule');
         } else {
-            toastr()->error('Modification non effectuée !', 'Erreur');
+      Alert::info('Modification non effectuée !', 'Erreur');
             return redirect('/Vehicule');
         }
     }
@@ -96,7 +109,7 @@ class VehiculeController extends Controller
         $vehi = Vehicule::findOrFail($id);
         $vehi->delete();
 
-        toastr()->success('Le Vehicule a bien été supprimé !', 'Réussite');
+       Alert::info('Le Vehicule a bien été supprimé !', 'Réussite');
         return redirect('/Vehicule');
     }
 }

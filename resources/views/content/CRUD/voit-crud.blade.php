@@ -19,6 +19,8 @@
   {{-- <button class="btn btn-primary col-xl-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addVoit" aria-controls="offcanvasEnd">
     Affecter.
   </button> --}}
+ <span class="alert alert-info d-none " id="myClasse">Retour a la ligne</span>
+  <a class="btn btn-primary col-xl-3" onmouseover="geeks()" onmouseout="out()" href="{{ route('vehi-view') }}">Retour</a>
   <div class="table-responsive text-nowrap">
     <table class="table table-hover">
       <thead>
@@ -34,7 +36,7 @@
         @forelse ($voitaffectes as $voitaffecte)
         <tr>
           <td>{{$voitaffecte->commissariat->libelle}}</td>
-          <td>{{$voitaffecte->vehicule->modele}}</td>
+          <td>{{$voitaffecte->vehicule->type}}</td>
           {{-- <td>{{$voitaffecte->statut->libelle}}</td> --}}
           <td>{{$voitaffecte->date_acqui}}</td>
           <td>
@@ -62,6 +64,17 @@
       </tbody>
     </table>
   </div>
+      <script type="text/javascript">
+        function geeks(){
+          $("#myClasse").removeClass("d-none");
+        }
+        function out(){
+          setInterval(() => {
+                  $("#myClasse").addClass("d-none");
+          }, 2000);
+
+        }
+      </script>
 </div>
 
 {{-- Vue du modal d'insertion --}}

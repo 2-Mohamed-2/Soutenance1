@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\CRUDS;
 
-use toastr;
+use PDF;
 use App\Models\Inconnu;
 use App\Models\Residence;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use PDF;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ResidenceController extends Controller
 {
@@ -24,9 +24,9 @@ class ResidenceController extends Controller
     }
 
     public function store(Request $request){
-     
+
          $this->validate($request,[
-            'inconnu_id' => 'required',
+            // 'inconnu_id' => 'required',
             'numero' => 'required|max:255',
             'certifions' => 'required|max:255',
             'ne' => 'required|max:255',
@@ -38,12 +38,12 @@ class ResidenceController extends Controller
             'domicile' => 'required|max:255',
             'kati' => 'required|max:255',
             'dossier' => 'required|max:255',
-            
+
          ]);
 
          $resi = Residence::create([
 
-            'inconnu_id' => $request->inconnu_id,
+            // 'inconnu_id' => $request->inconnu_id,
             'numero' => $request->numero,
             'certifions' => $request->certifions,
             'ne' => $request->ne,
@@ -51,7 +51,7 @@ class ResidenceController extends Controller
             'fils' => $request->fils,
             'et' => $request->et,
             'profession' => $request->profession,
-            'resulte' => $request->inconnu_id,
+            'resulte' => $request->resulte,
             'domicile' => $request->domicile,
             'kati' => $request->kati,
             'dossier' => $request->dossier,
@@ -59,10 +59,10 @@ class ResidenceController extends Controller
          ]);
 
          if ($resi) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::info('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Residence');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+           Alert::info('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Residence');
         }
 
@@ -73,7 +73,7 @@ class ResidenceController extends Controller
         $id = decrypt($id);
         $validateData = $this->validate($request,[
 
-            'inconnu_id' => 'required',
+            // 'inconnu_id' => 'required',
             'numero' => 'required|max:255',
             'certifions' => 'required|max:255',
             'ne' => 'required|max:255',
@@ -90,10 +90,10 @@ class ResidenceController extends Controller
 
         $resi = Residence::whereId($id)->update($validateData);
         if ($resi) {
-            toastr()->success('La residence a bien été modifié !', 'Réussite');
+            Alert::info('La residence a bien été modifié !', 'Réussite');
             return redirect('/Residence');
         } else {
-            toastr()->error('Modification non effectuée !', 'Erreur');
+           Alert::info('Modification non effectuée !', 'Erreur');
             return redirect('/Residence');
         }
 
@@ -104,14 +104,14 @@ class ResidenceController extends Controller
         $id = decrypt($id);
         $resi = Residence::findOrFail($id);
         $resi->delete();
-        toastr()->success('La residence a bien été supprimé !', 'Réussite');
+        Alert::info('La residence a bien été supprimé !', 'Réussite');
         return redirect('/Residence');
     }
-    
+
 
     public function PDF(Request $request) {
 
-    
+
         //$resi = Residence::find($request->id);
         //$pdf = App::make('dompdf.wrapper');
        // $pdf->loadView('_partials.pdfResi', compact('resi'));
@@ -125,5 +125,5 @@ class ResidenceController extends Controller
        return $pdf->stream();
     }
 
-   
+
 }

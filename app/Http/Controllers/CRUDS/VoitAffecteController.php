@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\CRUDS;
 
-use toastr;
+
 use App\Models\User;
 use App\Models\Statut;
 use App\Models\Vehicule;
@@ -10,7 +10,7 @@ use App\Models\VoitAffecte;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VoitAffecteController extends Controller
 {
@@ -69,9 +69,11 @@ class VoitAffecteController extends Controller
     }
 
     if($voitaffecte){
-      toastr()->success('Affectation reussi avec succes');
+      Alert::success('Affectation reussi avec succes');
+      return redirect('/voitaffecte');
     }else{
-      toastr()->error('Affectation non effectuer');
+      Alert::info('Affectation non effectuer');
+      return redirect('/voitaffecte');
     }
     return redirect()->back();
   }
@@ -121,10 +123,10 @@ class VoitAffecteController extends Controller
 
     $voitaffecte = VoitAffecte::whereId($id)->update($validateData);
     if ($voitaffecte) {
-      toastr()->success('Affectation a ete bien modifier !', 'Reussite');
+      Alert::success('Affectation a ete bien modifier !', 'Reussite');
       return redirect('/voitaffecte');
     } else {
-      toastr()->error('Modifier non effectue !', 'Erreur');
+      Alert::info('Modifier non effectue !', 'Erreur');
     }
   }
 
@@ -137,12 +139,12 @@ class VoitAffecteController extends Controller
   public function destroy($id)
   {
     //
-    $voitaffecte = VoitAffecte::findOrfail($id);
+    $voitaffecte = VoitAffecte::findOrFail($id);
     $voitaffecte->delete();
     if ($voitaffecte) {
-      toastr()->success('Affectation supprimer avec succes');
+      Alert::success('Affectation supprimer avec succes');
     } else {
-      toastr()->error('Affectation non supprimer');
+      Alert::error('Affectation non supprimer');
     }
     return redirect()->back();
   }
