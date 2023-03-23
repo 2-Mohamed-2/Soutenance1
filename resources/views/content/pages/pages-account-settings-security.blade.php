@@ -102,7 +102,7 @@
             <div class="mb-3 col-md-6 form-password-toggle">
               <label class="form-label" for="currentPassword">Mot de passe actuel</label>
               <div class="input-group input-group-merge">
-                <input class="form-control" required type="password" name="current_password" id="currentPassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                <input class="form-control" style="letter-spacing: 3px;" required type="password" name="current_password" id="currentPassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
               </div>
             </div>
@@ -111,7 +111,7 @@
             <div class="mb-3 col-md-6 form-password-toggle">
               <label class="form-label" for="newPassword">Nouveau mot de passe</label>
               <div class="input-group input-group-merge">
-                <input class="form-control" type="password" id="pwd" class="{{ $errors->has('password') ? 'is-invalid' : '' }}" name="password"                 
+                <input class="form-control" style="letter-spacing: 3px;" type="password" id="pwd" class="{{ $errors->has('password') ? 'is-invalid' : '' }}" name="password"                 
                 placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
               </div>
@@ -120,7 +120,7 @@
             <div class="mb-3 col-md-6 form-password-toggle">
               <label class="form-label" for="confirmPassword">Confirmation du nouveau mot de passe</label>
               <div class="input-group input-group-merge">
-                <input class="form-control" required type="password" name="password_confirmation" id="pwd2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                <input class="form-control" style="letter-spacing: 3px;" required type="password" name="password_confirmation" id="pwd2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
               </div>
               <p id="pwd2msg" class="fw-semibold mt-2"></p>

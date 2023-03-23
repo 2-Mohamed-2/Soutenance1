@@ -6,18 +6,24 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Yudhatp\ActivityLogs\ActivityLogs;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AccountSettingsAccount extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
+    ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/Compte/Paramètre/Gestion');
+
     return view('content.pages.pages-account-settings-account');
   }
 
   public function updateUser(Request $request, $id)
   {
+
+    ActivityLogs::log(auth()->user()->id, $request->ip(), 'Update', '/Compte/Paramètre/Gestion');
+
     $id = decrypt($id);
     // dd('bonjour Med '. $id);
 
@@ -36,7 +42,7 @@ class AccountSettingsAccount extends Controller
         
         $fileName = time() . '.' . $request->image->extension();
         $request->image->storeAs('public/images', $fileName);
-// dd($image);
+    // dd($image);
           $user = User::whereId($id)->update([
               'name' => $request->name,
               'adresse' => $request->adresse,
@@ -61,37 +67,37 @@ class AccountSettingsAccount extends Controller
       Alert::success('Mis a jour Reussi', $user->name.' a ete mis a jour avec succes');
       return redirect()->route('compte-user-modify');
     }
-  // } catch (\Exception $e) {
-  //     Alert::error('Echec lors de la mis ajour', 'Une erreur c\'est produite lors de la mis a jour du docteur');
-  //     return redirect()->back();
-  // }
+    // } catch (\Exception $e) {
+    //     Alert::error('Echec lors de la mis ajour', 'Une erreur c\'est produite lors de la mis a jour du docteur');
+    //     return redirect()->back();
+    // }
     // $id = decrypt($id);
     // //dd($id);
 
 
-    // $this->validate($request, [
-    //   'matricule' => 'required',
-    //   'name' => 'required|max:255',
-    //   'email' => 'required|max:255',
-    //   'telephone' => 'required|max:255',
-    //   'genre' => 'required',
-    // ]);
-    // // dd($request->all());
+      // $this->validate($request, [
+      //   'matricule' => 'required',
+      //   'name' => 'required|max:255',
+      //   'email' => 'required|max:255',
+      //   'telephone' => 'required|max:255',
+      //   'genre' => 'required',
+      // ]);
+      // // dd($request->all());
 
-    // $user = User::find($id);
-    // if ($user) {
-    //   $user->matricule = $request->matricule;
-    //   $user->name = $request->name;
-    //   $user->email = $request->email;
-    //   $user->telephone = $request->telephone;
-    //   $user->genre = $request->genre;
+      // $user = User::find($id);
+      // if ($user) {
+      //   $user->matricule = $request->matricule;
+      //   $user->name = $request->name;
+      //   $user->email = $request->email;
+      //   $user->telephone = $request->telephone;
+      //   $user->genre = $request->genre;
 
-    //   $user->save();
-    //   toastr()->success('Le membre a bien été modifié !', 'Réussite');
-    //   return redirect('/Membre');
-    // } else {
-    //   toastr()->error('Modification non effectuée !', 'Erreur');
-    //   return redirect('/Membre');
-    // }
+      //   $user->save();
+      //   toastr()->success('Le membre a bien été modifié !', 'Réussite');
+      //   return redirect('/Membre');
+      // } else {
+      //   toastr()->error('Modification non effectuée !', 'Erreur');
+      //   return redirect('/Membre');
+      // }
   }
 }

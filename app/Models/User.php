@@ -8,6 +8,7 @@ use App\Models\Grade;
 use App\Models\Tenue;
 use App\Models\Section;
 use App\Models\Armement;
+use App\Models\SessionUser;
 use App\Models\VoitAffecte;
 use App\Models\Commissariat;
 use Laravel\Sanctum\HasApiTokens;
@@ -15,10 +16,10 @@ use App\Notifications\ResetPassNotif;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\ResetPassNotif as NotificationsResetPassNotif;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class User extends Authenticatable
 {
@@ -87,10 +88,10 @@ class User extends Authenticatable
     //     return $this->belongsToMany(Role::class, 'role_users')->withTimestamps();
     // }
 
-    // public function sessions()
-    // {
-    //     return $this->hasMany(Session::class);
-    // }
+    public function sessions()
+    {
+        return $this->hasMany(SessionUser::class);
+    }
 
 
     /**

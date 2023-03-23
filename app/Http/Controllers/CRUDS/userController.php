@@ -18,6 +18,7 @@ class userController extends Controller
      */
     public function index()
     {
+      
       $users = User::latest()->where('id', '!=', '1')->get();
       //$coms = Commissariat::latest()->get();
 

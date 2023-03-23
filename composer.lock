@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b3535e0f793b5cf629c2b8690c3d2c9",
+    "content-hash": "f1fb0dda6fb2e451ba64d73ae13f7de6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6784,6 +6784,69 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "yudhatp/laravel-activity-logs",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yudhatp/laravel-activity-logs.git",
+                "reference": "29014f3a24e1bfdeea74d1e77a66b0345aea3b07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yudhatp/laravel-activity-logs/zipball/29014f3a24e1bfdeea74d1e77a66b0345aea3b07",
+                "reference": "29014f3a24e1bfdeea74d1e77a66b0345aea3b07",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3",
+                "symfony/var-dumper": "^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Yudhatp\\ActivityLogs\\ActivityLogsServiceProvider"
+                    ],
+                    "aliases": {
+                        "ActivityLogs": "Yudhatp\\ActivityLogs\\Facades\\ActivityLogs"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yudhatp\\ActivityLogs\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yudha T. Putra",
+                    "email": "yudhatp@gmail.com",
+                    "homepage": "https://yudhatp.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple Activity Log for Laravel",
+            "homepage": "https://github.com/yudhatp/laravel-activity-logs",
+            "keywords": [
+                "Activity Logs",
+                "laravel",
+                "log"
+            ],
+            "support": {
+                "issues": "https://github.com/yudhatp/laravel-activity-logs/issues",
+                "source": "https://github.com/yudhatp/laravel-activity-logs/tree/0.0.2"
+            },
+            "time": "2023-02-17T01:43:50+00:00"
         }
     ],
     "packages-dev": [
