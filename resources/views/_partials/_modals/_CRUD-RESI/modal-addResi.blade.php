@@ -8,7 +8,7 @@
     <form id="enableOTPForm" class="row g-3" action="{{route('Resi.store')}}" method="POST">
       @csrf
 
-      <div class="col-12">
+      {{-- <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">Inconnu</label>
         <div class="input-group input-group-merge">
             <select class="form-control" name="inconnu_id">
@@ -19,8 +19,8 @@
                 @endforeach
             </select>
         </div>
-      </div>
-     
+      </div> --}}
+
       <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">Numero</label>
         <div class="input-group input-group-merge">

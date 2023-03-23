@@ -5,11 +5,12 @@ namespace App\Http\Controllers\CRUDS;
 use App\Models\Inconnu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class InconnuController extends Controller
 {
-   
+
     public function IncoView()
     {
         //
@@ -23,7 +24,7 @@ class InconnuController extends Controller
     }
 
 
-   
+
     public function store(Request $request)
     {
         //
@@ -44,10 +45,10 @@ class InconnuController extends Controller
         ]);
 
         if($inco){
-            toastr()->success('L\'enregistrement a bien ete effectue !', 'Reussite');
+            Alert::info('L\'enregistrement a bien ete effectue !', 'Reussite');
             return redirect('/Inconnu');
         }else{
-            toastr()->error('L\'enregistrement a bien ete effectue !', 'Erreur');
+            Alert::info('L\'enregistrement a bien ete effectue !', 'Erreur');
         }
     }
 
@@ -67,13 +68,13 @@ class InconnuController extends Controller
 
         $inco = Inconnu::whereId($id)->update($validateData);
         if($inco){
-            toastr()->success('L\'inconnu a ete bien modifier !', 'Reussite');
+            Alert::info('L\'inconnu a ete bien modifier !', 'Reussite');
             return redirect('/Inconnu');
         }else{
-            toastr()->error('Modifier non effectue !', 'Erreur');
+            Alert::info('Modifier non effectue !', 'Erreur');
         }
     }
-    
+
 
     public function destroy($id)
     {
@@ -83,7 +84,8 @@ class InconnuController extends Controller
 
         $inco = Inconnu::findOrFail($id);
         $inco->delete();
-        toastr()->success('L\'inconnu a ete bien ete supprimer', 'Reussite');
+         Alert::info('L\'inconnu a ete bien ete supprimer', 'Reussite');
         return redirect('/Inconnu');
     }
 }
+  

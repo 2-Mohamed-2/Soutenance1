@@ -22,12 +22,12 @@ class AvoirController extends Controller
         //
 
         $avoirs = Avoir::latest()->get();
-        $users = User::latest()->get();
+        // $users = User::latest()->get();
         $comms = Commissariat::latest()->get();
         $armements = Armement::latest()->get();
-        $statuts = Statut::latest()->get();
+        // $statuts = Statut::latest()->get();
 
-        return view('content.CRUD.avoir-crud', compact('avoirs', 'users', 'comms', 'armements', 'statuts'));
+        return view('content.CRUD.avoir-crud', compact('avoirs', 'comms', 'armements'));
     }
 
     /**
@@ -52,20 +52,20 @@ class AvoirController extends Controller
 
         $this->validate($request,[
 
-        'user_id' => 'required',
+        // 'user_id' => 'required',
         'commissariat_id' => 'required',
         'armement_id' => 'required',
-        'statut_id' => 'required',
+        // 'statut_id' => 'required',
         'date_acqui' => 'required|max:255',
 
         ]);
 
         $avoir = Avoir::create([
 
-        'user_id' => $request->user_id,
+        // 'user_id' => $request->user_id,
         'commissariat_id' => $request->commissariat_id,
         'armement_id' => $request->armement_id,
-        'statut_id' => $request->statut_id,
+        // 'statut_id' => $request->statut_id,
         'date_acqui' => $request->date_acqui,
 
         ]);
@@ -114,10 +114,10 @@ class AvoirController extends Controller
         $id = decrypt($id);
         $validateData = $this->validate($request,[
 
-        'user_id' => 'required',
+        // 'user_id' => 'required',
         'commissariat_id' => 'required',
         'armement_id' => 'required',
-        'statut_id' => 'required',
+        // 'statut_id' => 'required',
         'date_acqui' => 'required|max:255',
 
         ]);

@@ -22,7 +22,7 @@ class Armement extends Model
 
 
 
-    public function avoir(){
+    public function avoir(): HasOne{
         return $this->hasOne(Avoir::class);
     }
 

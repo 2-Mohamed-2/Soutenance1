@@ -19,10 +19,10 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>Affecte a</th>
+          {{-- <th>Affecte a</th> --}}
           <th>Commissariat</th>
           <th>Armement</th>
-          <th>Statut</th>
+          {{-- <th>Statut</th> --}}
           <th>Date Acquisition</th>
           <th>Action</th>
         </tr>
@@ -30,10 +30,10 @@
        <tbody class="table-border-bottom-0">
         @forelse ($avoirs as $avoir)
         <tr>
-          <td><strong>{{$avoir->user->name}}</strong></td>
+          {{-- <td><strong>{{$avoir->user->name}}</strong></td> --}}
           <td>{{$avoir->commissariat->libelle}}</td>
           <td>{{$avoir->armement->modele}}</td>
-          <td>{{$avoir->statut->libelle}}</td>
+          {{-- <td>{{$avoir->statut->libelle}}</td> --}}
           <td>{{$avoir->date_acqui}}</td>
           <td>
             <div class="dropdown">

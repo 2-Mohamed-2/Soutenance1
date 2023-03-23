@@ -14,18 +14,31 @@
             @csrf
 
 
-             div class="col-12 mb-4">
-           <select class="form-control" name="commissariat_id">
+             {{-- <div class="col-12 mb-4">
+             <select class="form-control" name="commissariat_id">
 
                     @foreach($comms as $comm)
                      <option value="">{{ $comm->libelle }}</option>
                     <option value="{{ $comm->id }}">{{ $comm->libelle }}
                     </option>
                     @endforeach
-           </select>
+             </select>
+          </div> --}}
+      <div class="col-12">
+          <label class="form-label" for="modalEnableOTPPhone">Type</label>
+          <div class="input-group input-group-merge">
+            <input required type="text" autocomplete="off" value="{{ $vehi->type }}" maxlength="255" name="type" class="form-control phone-mask" placeholder="Modele" />
           </div>
+        </div>
 
-          <div class="col-12">
+        <div class="col-12">
+          <label class="form-label" for="modalEnableOTPPhone">Modele</label>
+          <div class="input-group input-group-merge">
+            <input required type="text" autocomplete="off" value="{{ $vehi->modele }}" maxlength="255" name="modele" class="form-control phone-mask" placeholder="Modele" />
+          </div>
+        </div>
+
+          {{-- <div class="col-12">
             <h4></h4>
             <!-- Permission table -->
             <div class="table-responsive">
@@ -57,20 +70,18 @@
                     </td>
                   </tr>
                   @empty
-                   {{-- Pas de permission enregistrée pour le moment, <a href="{{route('app-access-permission')}}">ici</a> --}}
                   @endforelse
 
                 </tbody>
               </table>
             </div>
-            <!-- Permission table -->
-          </div>
+          </div> --}}
 
 
              <div class="col-12">
               <label class="form-label" for="modalEnableOTPPhone">Plaque</label>
               <div class="input-group input-group-merge">
-                <input required type="text" autocomplete="off" maxlength="10"  value="{{$vehi->plaque}}"  name="plaque" class="form-control phone-mask" placeholder="NUmero du plaque" />
+                <input required type="text" disabled autocomplete="off" maxlength="10"  value="{{$vehi->plaque}}"  name="plaque" class="form-control phone-mask" placeholder="NUmero du plaque" />
               </div>
             </div>
 

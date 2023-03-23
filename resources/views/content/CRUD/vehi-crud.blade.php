@@ -61,17 +61,22 @@
 <div class="card">
   <h5 class="card-header">Liste des Vehicules enregistrés</h5>
 
-   <div class="d-flex justify-content-center mx-auto gap-3">
-     <button class="btn btn-primary justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addVehi" aria-controls="offcanvasEnd">
-    Créer un nouveau Vehicule.
+   <div class="d-flex justify-content-end mb-2 gap-2">
+  <a class="btn btn-outline-secondary" onmouseover="geeks()" onmouseout="out()" href="{{ route('voit') }}"><i class="bx bx-car bx-sm"></i></a>
+     <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addVehi" aria-controls="offcanvasEnd">
+     Nouveau Vehicule.
    </button>
   {{--  <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addVoit" aria-controls="offcanvasEnd">
     Affecter Un Vehicule..
   </button> --}}
-   <button data-bs-target="#addVoit" data-bs-toggle="modal" class="btn btn-primary  text-nowrap add-new-role">
-      Affecter Un Vehicule..
-    </button>
+   {{-- <button data-bs-target="#addVoit" data-bs-toggle="modal" class="btn btn-primary  text-nowrap add-new-role">
+      Affecter Vehicule..
+    </button> --}}
+    <div class="nav-item search">
+    <input type="search" class="form-control col-xs-2" id="search" style="visibility:" name="search" placeholder="Search.." aria-controls="DataTables_Table_0">
+    </div>
    </div>
+    <span class="alert alert-success d-none " id="myClasse">Liste des Vehicule Affecter</span>
   <div class="table-responsive text-nowrap">
     <table class="table table-hover">
       <thead>
@@ -89,7 +94,7 @@
         <tr>
           <td><strong>{{$vehi->type}}</strong></td>
           {{-- <td>{{$vehi->identifiant}}</span></td> --}}
-          <td>{{$vehi->modele}}</span></td>
+          <td>{{$vehi->type}}</span></td>
           <td>{{$vehi->plaque}}</span></td>
           {{-- <td>{{$vehi->revision}}</span></td> --}}
           {{-- <td>{{$vehi->commissariat->libelle}}</span></td> --}}
@@ -99,6 +104,7 @@
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#vehiUpdt{{$vehi->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#vehiDst{{$vehi->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addVoit"><i class="bx bx-car me-1"></i>Affecter</a>
               </div>
             </div>
 
@@ -117,7 +123,19 @@
 
       </tbody>
     </table>
+    <script type="text/javascript">
+        function geeks(){
+          $("#myClasse").removeClass("d-none");
+        }
+        function out(){
+          setInterval(() => {
+                  $("#myClasse").addClass("d-none");
+          }, 4000);
+
+        }
+      </script>
   </div>
+
 </div>
 
 {{-- Vue du modal d'insertion --}}
