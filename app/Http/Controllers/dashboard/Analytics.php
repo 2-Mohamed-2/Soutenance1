@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Yudhatp\ActivityLogs\ActivityLogs;
 use RealRashid\SweetAlert\Facades\Alert;
+use SebastianBergmann\Diff\Diff;
 
 class Analytics extends Controller
 {
@@ -23,12 +24,33 @@ class Analytics extends Controller
 
     ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/');
 
-    $tes = ActivityLogs::ActivityLogsLists();
     
     $es = auth()->user()->id;
-    $users = DB::select('select * from activity_logs');
-    $user = DB::select('select * from activity_logs where user_id= '.$es.' first');
-    dd($tes);
+    $users = DB::select('select created_at from activity_logs where user_id= '.$es.' order by created_at DESC limit 1');
+    $user = DB::select('select * from activity_logs where user_id= '.$es.' order by created_at DESC limit 1');
+
+    // foreach ($users as $test) {
+    //   dd($test->created_at);
+    // }
+    $now = Carbon::now()->format('Y-m-d H:i:s');
+
+    foreach ($users as $test) {
+
+            $diff = abs( strtotime($now) - strtotime($test->created_at) ); 
+            $session_exp = config('session.lifetime') * 60 ;
+
+            if ($diff <= $session_exp) {
+                
+                // dd('bjr');
+            }
+
+        }
+
+    // dd($now);
+    // $lastDayOfFeb2021 = Carbon::parse('last day of March 2021'); 
+    // $newDate = Carbon::createFromFormat('Y-m-d H:i:s', $users)->format('Y-m-d H:i:s');
+    // dd($users[0]);
+    // dd(abs($users[0] - $now));
     
     return view('content.dashboard.dashboards-principal', compact('usernbr'));
   }

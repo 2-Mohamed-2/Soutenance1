@@ -8,6 +8,7 @@ use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class userController extends Controller
 {
@@ -65,11 +66,11 @@ class userController extends Controller
 
 
       if ($test) {
-        toastr()->error('Ce matricule existe déjà !', 'Erreur');
+        Alert::error('Ce matricule existe déjà !', 'Erreur');
         return redirect('/Membre');
       }else {
         if ($test1) {
-          toastr()->error('Cet email existe déjà !', 'Erreur');
+          Alert::error('Cet email existe déjà !', 'Erreur');
           return redirect('/Membre');
         }else {
           $user = User::create([
@@ -91,10 +92,10 @@ class userController extends Controller
 
 
       if ($user) {
-          toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+          Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
           return redirect('/Membre');
       } else {
-          toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+          Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
           return redirect('/Membre');
       }
     }
@@ -153,10 +154,10 @@ class userController extends Controller
           $user->genre = $request->genre;
 
           $user->save();
-          toastr()->success('Le membre a bien été modifié !', 'Réussite');
+          Alert::success('Le membre a bien été modifié !', 'Réussite');
           return redirect('/Membre');
       } else {
-          toastr()->error('Modification non effectuée !', 'Erreur');
+          Alert::error('Modification non effectuée !', 'Erreur');
           return redirect('/Membre');
       }
     }
@@ -173,7 +174,7 @@ class userController extends Controller
 
     $user = User::findOrFail($id);
     $user->delete();
-    toastr()->success('Le membre a bien été supprimé !', 'Réussite');
+    Alert::success('Le membre a bien été supprimé !', 'Réussite');
     return redirect('/Membre');
     }
 }
