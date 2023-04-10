@@ -5,19 +5,18 @@ namespace App\Http\Controllers\dashboard;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use SebastianBergmann\Diff\Diff;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Yudhatp\ActivityLogs\ActivityLogs;
 use RealRashid\SweetAlert\Facades\Alert;
-use SebastianBergmann\Diff\Diff;
 
 class Analytics extends Controller
 {
   public function index(Request $request)
   {
-    // $now = Carbon::now();
-    // $request->session()->push('_previous', ['time' => $now]);
-    // dd($request->session()->get('_previous'));
+    
 
     $users = User::all();
     $usernbr = $users->count();
@@ -29,9 +28,6 @@ class Analytics extends Controller
     $users = DB::select('select created_at from activity_logs where user_id= '.$es.' order by created_at DESC limit 1');
     $user = DB::select('select * from activity_logs where user_id= '.$es.' order by created_at DESC limit 1');
 
-    // foreach ($users as $test) {
-    //   dd($test->created_at);
-    // }
     $now = Carbon::now()->format('Y-m-d H:i:s');
 
     foreach ($users as $test) {

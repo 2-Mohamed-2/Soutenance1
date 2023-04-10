@@ -236,6 +236,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       Route::middleware(['Mot_passe:123456'])->group(function () {
 
         //Page d'acceuil
+        // Route::get('/', function(){
+        //   return view('vendor.notifications.email');
+        // });
         Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 
         // Routes pour le crud du commissariat

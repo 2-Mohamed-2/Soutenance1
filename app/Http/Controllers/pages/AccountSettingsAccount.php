@@ -25,11 +25,9 @@ class AccountSettingsAccount extends Controller
     ActivityLogs::log(auth()->user()->id, $request->ip(), 'Update', '/Compte/Paramètre/Gestion');
 
     $id = decrypt($id);
-    // dd('bonjour Med '. $id);
-
     $user = User::findOrFail($id);
 
-    // try {
+    try {
 
       if ($request->has("image")) {
 
@@ -42,7 +40,7 @@ class AccountSettingsAccount extends Controller
         
         $fileName = time() . '.' . $request->image->extension();
         $request->image->storeAs('public/images', $fileName);
-    // dd($image);
+    
           $user = User::whereId($id)->update([
               'name' => $request->name,
               'adresse' => $request->adresse,
@@ -64,40 +62,13 @@ class AccountSettingsAccount extends Controller
     ]);
 
     if ($user) {
-      Alert::success('Mis a jour Reussi', $user->name.' a ete mis a jour avec succes');
+      Alert::success('Mise a jour Reussi', ''.$user->name.' a ete mis a jour avec succes');
       return redirect()->route('compte-user-modify');
     }
-    // } catch (\Exception $e) {
-    //     Alert::error('Echec lors de la mis ajour', 'Une erreur c\'est produite lors de la mis a jour du docteur');
-    //     return redirect()->back();
-    // }
-    // $id = decrypt($id);
-    // //dd($id);
-
-
-      // $this->validate($request, [
-      //   'matricule' => 'required',
-      //   'name' => 'required|max:255',
-      //   'email' => 'required|max:255',
-      //   'telephone' => 'required|max:255',
-      //   'genre' => 'required',
-      // ]);
-      // // dd($request->all());
-
-      // $user = User::find($id);
-      // if ($user) {
-      //   $user->matricule = $request->matricule;
-      //   $user->name = $request->name;
-      //   $user->email = $request->email;
-      //   $user->telephone = $request->telephone;
-      //   $user->genre = $request->genre;
-
-      //   $user->save();
-      //   toastr()->success('Le membre a bien été modifié !', 'Réussite');
-      //   return redirect('/Membre');
-      // } else {
-      //   toastr()->error('Modification non effectuée !', 'Erreur');
-      //   return redirect('/Membre');
-      // }
+    } catch (\Exception $e) {
+        Alert::error('Echec lors de la mise ajour', 'Une erreur c\'est produite lors de la mise a jour !');
+        return redirect()->back();
+    }
+ 
   }
 }

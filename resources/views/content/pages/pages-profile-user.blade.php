@@ -35,12 +35,12 @@
 <div class="row">
   <div class="col-12">
     <div class="card mb-4">
-      <div class="user-profile-header-banner">
-        <img src="{{asset('assets/img/pages/profile-banner.png')}}" alt="Banner image" class="rounded-top">
+      <div class="user-profile-header-banner bg-dark">
+        <img src="{{asset('assets/img/pages/police_head.png')}}" style="width: 100%; " alt="User image" class="rounded-top">
       </div>
       <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
         <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-          <img src="{{ Auth::user()->profile_photo_url ?? asset('assets/img/avatars/1.png') }}" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+          <img src="{{ asset('storage/images/'.Auth::user()->profile_photo_path) ?? asset('assets/img/avatars/1.png') }}" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
         </div>
         <div class="flex-grow-1 mt-3 mt-sm-5">
           <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
@@ -59,6 +59,11 @@
               </ul>
             </div>
 
+            {{-- button pour demander une affectation --}}
+            <button  class="btn btn-info text-nowrap cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#addArme" aria-controls="offcanvasEnd">
+              <i class='bx bx-user-x'></i> Demander une affectation              
+            </button>
+
             @if (Auth::user()->isActive == true)
 
             <button class="btn btn-primary text-nowrap">
@@ -71,7 +76,7 @@
               <i class='bx bx-user-x'></i> Votre compte est desactivé              
             </button>
               
-            @endif
+            @endif            
 
           </div>
         </div>
@@ -441,7 +446,7 @@
       <!--/ Teams -->
     </div>
     <!-- Projects table -->
-    {{-- <div class="card mb-4">
+    <div class="card mb-4">
       <div class="card-datatable table-responsive">
         <table class="datatables-projects border-top table">
           <thead>
@@ -457,9 +462,11 @@
           </thead>
         </table>
       </div>
-    </div> --}}
+    </div>
     <!--/ Projects table -->
   </div>
 </div>
 <!--/ User Profile Content -->
+
+@include('_partials._modals.dmde_affectation');
 @endsection

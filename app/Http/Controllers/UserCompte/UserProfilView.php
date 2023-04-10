@@ -2,13 +2,26 @@
 
 namespace App\Http\Controllers\UserCompte;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Commissariat;
+use Illuminate\Support\Facades\Auth;
+use Yudhatp\ActivityLogs\ActivityLogs;
 
 class UserProfilView extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    return view('content.pages.pages-profile-user');
+    ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/Compte/Profil');
+
+    if (Auth::user()->Commissariat) {
+      $comms = Commissariat::where('id', '!=', Auth::user()->Commissariat->id)->get();
+    }
+    else {
+      $comms = Commissariat::all();
+    }
+    // dd();
+    
+    return view('content.pages.pages-profile-user', compact('comms'));
   }
 }
