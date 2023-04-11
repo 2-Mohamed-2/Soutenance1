@@ -41,23 +41,19 @@
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#avoirUpdt{{$avoir->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#armeDst{{$avoir->id}}"><i class="bx bx-trash-alt me-1"></i>Supprimer</a>
+                <button class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#avoirDst{{$avoir->id}}"><i class="bx bx-trash me-1"></i> Supprimer</button>
               </div>
             </div>
-
+          </td>
             {{-- Vue du modal de modification --}}
-         @include('_partials/_modals/_CRUD-AVOIR/modal-updtAvoir')
+          @include('_partials/_modals/_CRUD-AVOIR/modal-updtAvoir')
 
             {{-- Vue du modal de suppression --}}
           @include('_partials/_modals/_CRUD-AVOIR/modal-deleteAvoir')
-
-         </td>
         </tr>
         @empty
         {{-- Le tableau sera vide s'il n'y a pas d'insertion --}}
        @endforelse
-
-
       </tbody>
     </table>
     {!! $avoirs->withQueryString()->links('pagination::bootstrap-5') !!}

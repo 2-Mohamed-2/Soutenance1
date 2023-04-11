@@ -223,7 +223,7 @@ Route::resource('/user-list', UserManagement::class);
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'], [testOk::class])->group(function () {
 
-  Route::middleware([testOk::class])->group(function () {
+  // Route::middleware([testOk::class])->group(function () {
 
     Route::middleware([ActiveMiddleware::class])->group(function () {
 
@@ -275,8 +275,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::resource('/permission', AccessPermission::class);
 
       //Route pour vehicule
-      Route::get('/Vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
-      Route::resource('/Vehi', VehiculeController::class);
+      Route::get('/vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
+      Route::resource('/vehi', VehiculeController::class);
 
       //Route pour Armement
       Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('arme-view');
@@ -326,4 +326,4 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
   });
 
-});
+// });

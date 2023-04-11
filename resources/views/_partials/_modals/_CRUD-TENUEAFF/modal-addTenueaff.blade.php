@@ -1,5 +1,5 @@
 <!-- End Offcanvas -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="addVoit" aria-labelledby="offcanvasEndLabel">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="addTenueaff" aria-labelledby="offcanvasEndLabel">
   <div class="offcanvas-header">
     <h5 id="offcanvasEndLabel" class="offcanvas-title">Insertion d'une nouvelle residence</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
