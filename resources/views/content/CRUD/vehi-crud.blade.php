@@ -1,12 +1,13 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Tables - Basic Tables')
+@section('title', 'Vehicule')
 
 @section('content')
 <?php
   use App\Models\Vehicule;
   use App\Models\VoitAffecte;
 ?>
+
 <h4 class="fw-bold py-3 mb-4">
   <span class="text-muted fw-light">Tables /</span> Vehicule
 </h4>
@@ -62,8 +63,8 @@
   <h5 class="card-header">Liste des Vehicules enregistrés</h5>
 
    <div class="d-flex justify-content-end mb-2 gap-2">
-  <a class="btn btn-outline-secondary" onmouseover="geeks()" onmouseout="out()" href="{{ route('voit') }}"><i class="bx bx-car bx-sm"></i></a>
-     <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addVehi" aria-controls="offcanvasEnd">
+  <a class="btn btn-outline-secondary" onmouseover="geeks()" onmouseout="out()" href="voitaffecte"><i class="bx bx-car bx-sm"></i></a>
+      <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addVehi" aria-controls="offcanvasEnd">
      Nouveau Vehicule.
    </button>
   {{--  <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addVoit" aria-controls="offcanvasEnd">
@@ -72,16 +73,16 @@
    {{-- <button data-bs-target="#addVoit" data-bs-toggle="modal" class="btn btn-primary  text-nowrap add-new-role">
       Affecter Vehicule..
     </button> --}}
-    <div class="nav-item search">
+    {{-- <div class="nav-item search">
     <input type="search" class="form-control col-xs-2" id="search" style="visibility:" name="search" placeholder="Search.." aria-controls="DataTables_Table_0">
-    </div>
+    </div> --}}
    </div>
     <span class="alert alert-success d-none " id="myClasse">Liste des Vehicule Affecter</span>
-  <div class="table-responsive text-nowrap">
-    <table class="table table-hover">
+  <div class="card-datatable table-responsive">
+    <table class="invoice-list-table table border-top">
       <thead>
         <tr>
-          <th>Type</th>
+          <th>Nom</th>
           {{-- <th>Identifiant</th> --}}
           <th>Modele</th>
           <th>Plaque Numero</th>
@@ -94,7 +95,7 @@
         <tr>
           <td><strong>{{$vehi->type}}</strong></td>
           {{-- <td>{{$vehi->identifiant}}</span></td> --}}
-          <td>{{$vehi->type}}</span></td>
+          <td>{{$vehi->modele}}</span></td>
           <td>{{$vehi->plaque}}</span></td>
           {{-- <td>{{$vehi->revision}}</span></td> --}}
           {{-- <td>{{$vehi->commissariat->libelle}}</span></td> --}}
@@ -134,6 +135,7 @@
 
         }
       </script>
+      {!! $vehicules->withQueryString()->links('pagination::bootstrap-5') !!}
   </div>
 
 </div>

@@ -18,12 +18,14 @@ use App\Http\Controllers\CRUDS\MaterielController;
 use App\Http\Controllers\CRUDS\MunitionController;
 use App\Http\Controllers\CRUDS\VehiculeController;
 use App\Http\Controllers\CRUDS\ResidenceController;
+use App\Http\Controllers\CRUDS\TenueAffController;
 use App\Http\Controllers\CRUDS\VoitAffecteController;
 use App\Http\Controllers\UserCompte\UserProfilSecurity;
 use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\UserCompte\UserProfilView;
 use App\Http\Middleware\ActiveMiddleware;
+use FontLib\Table\Type\name;
 
 /*
 |--------------------------------------------------------------------------
@@ -220,12 +222,6 @@ Route::resource('/user-list', UserManagement::class);
 
 
 
-
-
-
-
-
-
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
   Route::middleware([ActiveMiddleware::class])->group(function () {
@@ -275,12 +271,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       Route::resource('/permission', AccessPermission::class);
 
       //Route pour vehicule
-      Route::get('/Vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
-      Route::resource('/Vehi', VehiculeController::class);
+      Route::get('/vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
+      Route::resource('/vehi', VehiculeController::class);
+
 
       //Route pour Armement
       Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('arme-view');
       Route::resource('/Arme', ArmementController::class);
+      Route::get('search', 'ArmementController@search')->name('arme.search');
 
       //Route pour tenue
       Route::get('/Tenue', [TenueController::class, 'TenueView'])->name('tenue-view');
@@ -299,8 +297,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       Route::resource('/Avoir', AvoirController::class);
 
       //Route pour voiture affecter
-      Route::get('/voitaffecte', [VoitAffecteController::class, 'voitView'])->name('voit');
+      Route::get('/voitaffecte', [VoitAffecteController::class, 'voitView'])->name('voitafffecte');
       Route::resource('/voitaffecte', VoitAffecteController::class);
+
+      //Route pour Tenueaff
+      Route::get('/tenueaff', [TenueAffController::class, 'TenueAff'])->name('tenueaff');
+      Route::resource('/tenueaff', TenueAffController::class);
+
 
 
 

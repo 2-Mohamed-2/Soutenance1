@@ -5,11 +5,11 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
-      <form id="enableOTPForm" class="row g-3" action="{{route('Vehi.store')}}" method="POST">
+      <form id="enableOTPForm" class="row g-3" action="{{route('vehi.store')}}" method="POST">
         @csrf
 
         <div class="col-12">
-          <label class="form-label" for="modalEnableOTPPhone">Type</label>
+          <label class="form-label" for="modalEnableOTPPhone">Nom</label>
           <div class="input-group input-group-merge">
             <input required autocomplete="off" type="text" name="type" class="form-control" placeholder="Type de Vehicule" />
           </div>
@@ -43,7 +43,7 @@
             <input required type="text" autocomplete="off" maxlength="10" name="revision" class="form-control phone-mask" placeholder="" />
           </div>
         </div> --}}
-{{-- 
+{{--
         <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
             <div class="input-group input-group-merge">

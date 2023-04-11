@@ -23,13 +23,13 @@ class Analytics extends Controller
 
     ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/');
 
-    $tes = ActivityLogs::ActivityLogsLists();
-    
-    $es = auth()->user()->id;
-    $users = DB::select('select * from activity_logs');
-    $user = DB::select('select * from activity_logs where user_id= '.$es.' first');
-    dd($tes);
-    
+    // $tes = ActivityLogs::ActivityLogsLists();
+
+    // $es = auth()->user()->id;
+    // $users = DB::select('select * from activity_logs');
+    // $user = DB::select('select * from activity_logs where user_id= '.$es.' first');
+    // dd($tes);
+
     return view('content.dashboard.dashboards-principal', compact('usernbr'));
   }
 }

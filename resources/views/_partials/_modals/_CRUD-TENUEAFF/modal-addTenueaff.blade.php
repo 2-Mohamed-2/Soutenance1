@@ -1,14 +1,11 @@
 <!-- End Offcanvas -->
-<div class="modal fade" id="addAvoir" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalScrollableTitle">Affectation</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-          <form action="{{ route('Avoir.store') }}" method="post" enctype="multipart/form-data">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="addVoit" aria-labelledby="offcanvasEndLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasEndLabel" class="offcanvas-title">Insertion d'une nouvelle residence</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body mx-0 flex-grow-0">
+    <form action="{{ route('tenueaff.store') }}" method="post" enctype="multipart/form-data">
           @csrf
 
           <div class="col-12 mb-4">
@@ -39,15 +36,15 @@
                       </div>
                     </td>
                   </tr>
-                  @forelse ($armements as $armement)
+                  @forelse ($tenues as $tenue)
                   <tr>
                     <td class="text-nowrap fw-semibold">
-                      {{$armement->modele}}</td>
+                      {{$tenue->type}}</td>
                     <td>
                     <td>
                       <div class="d-inline-flex">
                         <div class="form-check me-3 me-lg-3">
-                          <input class="form-check-input selectMultiple" multiple name="armement_id[]" value="{{ $armement->id }}" type="checkbox" />
+                          <input class="form-check-input selectMultiple" multiple name="tenue_id[]" value="{{ $tenue->id }}" type="checkbox" />
                         </div>
                       </div>
                     </td>
@@ -69,8 +66,10 @@
       </div>
 
       </form>
-     </div>
   </div>
 </div>
+  </div>
+</div>
+
 
 

@@ -7,6 +7,7 @@ use App\Models\Tenue;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TenueController extends Controller
 {
@@ -14,18 +15,18 @@ class TenueController extends Controller
 
     public function TenueView()
     {
-        
+
     }
 
     public function index()
     {
         //
 
-        $tenues = Tenue::latest()->get();
+        $tenues = Tenue::paginate(5);
         $comms = Commissariat::latest()->get();
-        $users = User::latest()->get();
+        // $users = User::latest()->get();
 
-        return view('content.CRUD.tenue-crud', compact('tenues', 'comms', 'users'));
+        return view('content.CRUD.tenue-crud', compact('tenues', 'comms'));
     }
 
     public function store(Request $request)
@@ -37,10 +38,10 @@ class TenueController extends Controller
             'modele' => 'required|max:255',
             'taille' => 'required|max:255',
             'annee' => 'required|max:255',
-            'statut' => 'required|max:255',
+            // 'statut' => 'required|max:255',
             'stock' => 'required|max:255',
-            'commissariats_id' => 'required|max:255',
-            'users_id' => 'required|max:255',
+            // 'commissariats_id' => 'required|max:255',
+            // 'users_id' => 'required|max:255',
 
 
         ]);
@@ -51,18 +52,18 @@ class TenueController extends Controller
             'modele' => $request->modele,
             'taille' => $request->taille,
             'annee' => $request->annee,
-            'statut' => $request->statut,
+            // 'statut' => $request->statut,
             'stock' => $request->stock,
-            'commissariats_id' => $request->commissariats_id,
-            'users_id' => $request->users_id,
+            // 'commissariats_id' => $request->commissariats_id,
+            // 'users_id' => $request->users_id,
 
         ]);
 
         if ($tenue) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Tenue');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Tenue');
         }
     }
@@ -78,19 +79,19 @@ class TenueController extends Controller
             'modele' => 'required|max:255',
             'taille' => 'required|max:255',
             'annee' => 'required|max:255',
-            'statut' => 'required|max:255',
+            // 'statut' => 'required|max:255',
             'stock' => 'required|max:255',
-            'commissariats_id' => 'required|max:255',
-            'users_id' => 'required|max:255',
+            // 'commissariats_id' => 'required|max:255',
+            // 'users_id' => 'required|max:255',
 
         ]);
 
         $tenue = Tenue::whereId($id)->update($validateData);
         if($tenue){
-            toastr()->success('tenue a ete bien modifier !', 'Reussite');
+            Alert::success('tenue a ete bien modifier !', 'Reussite');
             return redirect('/Tenue');
         }else{
-            toastr()->error('Modifier non effectue !', 'Erreur');
+            Alert::error('Modifier non effectue !', 'Erreur');
         }
     }
 
@@ -100,7 +101,7 @@ class TenueController extends Controller
 
         $tenue = Tenue::findOrFail($id);
         $tenue->delete();
-        toastr()->success('Le tenue a ete bien ete supprimer', 'Reussite');
+        Alert::success('Le tenue a ete bien ete supprimer', 'Reussite');
         return redirect('/Tenue');
 
     }
