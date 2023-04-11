@@ -59,6 +59,7 @@
             <p class="text-muted mb-0">Seulement les images sont autorisées</p>
           </div>
         </div>
+        
       </div>
       <hr class="my-0">
       <div class="card-body">

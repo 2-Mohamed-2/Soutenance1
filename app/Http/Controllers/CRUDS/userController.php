@@ -8,6 +8,9 @@ use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\MdpNotification;
+use Yudhatp\ActivityLogs\ActivityLogs;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class userController extends Controller
 {
@@ -16,8 +19,10 @@ class userController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+      ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/Membre');
       
       $users = User::latest()->where('id', '!=', '1')->get();
       //$coms = Commissariat::latest()->get();
@@ -43,12 +48,16 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
+      
+
       $this->validate($request,[
         'matricule' => 'required',
         'name' => 'required|max:255',
         'email' => 'required|max:255',
         'telephone' => 'required|max:255',
       ]);
+      ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/Membre/Store-'.$request->name);
+
       $com=1;
       $gra=1;
       $section=1;
@@ -58,25 +67,31 @@ class userController extends Controller
                     ['matricule', '=', $request->matricule]
                   ])->exists();
 
-    $test1 = User::select('*')
+      $test1 = User::select('*')
       ->where([
         ['email', '=', $request->email]
       ])->exists();
 
 
       if ($test) {
-        toastr()->error('Ce matricule existe déjà !', 'Erreur');
+        Alert::error('Erreur', 'Ce matricule existe déjà !');
         return redirect('/Membre');
       }else {
         if ($test1) {
-          toastr()->error('Cet email existe déjà !', 'Erreur');
+          Alert::error('Erreur', 'Cet email existe déjà !');
           return redirect('/Membre');
         }else {
+
+          // Les caracteres a entré dans la combinaison
+          $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
+          // La combinaison
+          $password = substr($random, 0, 8);
+
           $user = User::create([
             'commissariat_id' => $com,
             'grade_id' => $gra,
             'section_id' => $section,
-            'password' => Hash::make(123456),
+            'password' => Hash::make($password),
             'matricule' => $request->matricule,
             'name' => $request->name,
             'email' => $request->email,
@@ -84,6 +99,8 @@ class userController extends Controller
             'telephone' => $request->telephone,
             'isActive' => 1,
           ]);  
+
+          $user->notify(new MdpNotification($password, $user->name));
         }
 
       }
@@ -91,10 +108,10 @@ class userController extends Controller
 
 
       if ($user) {
-          toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+          Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
           return redirect('/Membre');
       } else {
-          toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+          Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
           return redirect('/Membre');
       }
     }
@@ -130,6 +147,7 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
+      
 
       $id = decrypt($id);
       //dd($id);
@@ -145,6 +163,7 @@ class userController extends Controller
       // dd($request->all());
 
       $user = User::find($id);
+      ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/Membre/Update-'.$user->name);
       if ($user) {
           $user->matricule = $request->matricule;
           $user->name = $request->name;
@@ -153,10 +172,10 @@ class userController extends Controller
           $user->genre = $request->genre;
 
           $user->save();
-          toastr()->success('Le membre a bien été modifié !', 'Réussite');
+          Alert::success('Réussite', 'Le membre a bien été modifié !');
           return redirect('/Membre');
       } else {
-          toastr()->error('Modification non effectuée !', 'Erreur');
+          Alert::error('Erreur', 'Modification non effectuée !');
           return redirect('/Membre');
       }
     }
@@ -167,13 +186,17 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+
     $id = decrypt($id);
 
     $user = User::findOrFail($id);
+
+    ActivityLogs::log(auth()->user()->id, $request->ip(), 'Destroy', '/Membre/Destroy-'.$user->name);
+
     $user->delete();
-    toastr()->success('Le membre a bien été supprimé !', 'Réussite');
+    Alert::success('Le membre a bien été supprimé !', 'Réussite');
     return redirect('/Membre');
     }
 }
