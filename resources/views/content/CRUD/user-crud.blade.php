@@ -1,6 +1,9 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Tables - Membres')
+@section('title', 'Membres')
+@section('vendor-style')
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/spinkit/spinkit.css')}}" />
+@endsection
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
@@ -14,6 +17,7 @@
   <h5 class="card-header">Liste des Membres du commissariat</h5>
   <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
     Créer un nouveau membre
+    
   </button>
   <div class="table-responsive text-nowrap">
     <table class="table table-hover">
