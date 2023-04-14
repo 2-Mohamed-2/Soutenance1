@@ -63,8 +63,9 @@
 
       </tbody>
     </table>
+    {!! $voitaffectes->withQueryString()->links('pagination::bootstrap-5') !!}
   </div>
-      <script type="text/javascript">
+      {{-- <script type="text/javascript">
         function geeks(){
           $("#myClasse").removeClass("d-none");
         }
@@ -74,7 +75,7 @@
           }, 2000);
 
         }
-      </script>
+      </script> --}}
 </div>
 
 {{-- Vue du modal d'insertion --}}

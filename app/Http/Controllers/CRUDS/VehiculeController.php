@@ -15,7 +15,7 @@ class VehiculeController extends Controller
 {
 
     public function VehiView(Request $request){
-        $vehicules = Vehicule::latest()->get();
+        $vehicules = Vehicule::paginate(5);
         $comms = Commissariat::latest()->get();
         $users = User::latest()->get();
             return view('content.CRUD.vehi-crud', compact('vehicules', 'comms', 'users'));

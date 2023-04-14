@@ -22,7 +22,7 @@ class VoitAffecteController extends Controller
   public function index()
   {
     //
-    $voitaffectes = VoitAffecte::latest()->get();
+    $voitaffectes = VoitAffecte::paginate(5);
     $users = User::latest()->get();
     $comms = Commissariat::latest()->get();
     $statuts = Statut::latest()->get();

@@ -12,8 +12,8 @@
           <form id="enableOTPForm" class="row g-3" action="{{route('Arme.update', encrypt($arme->id))}}" method="POST">
             @method('PUT')
             @csrf
-             
-           
+
+
         {{-- <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
             <div class="input-group input-group-merge">
@@ -26,49 +26,30 @@
                 </select>
             </div>
           </div> --}}
-  
+
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Modele</label>
           <div class="input-group input-group-merge">
             <input required type="text" autocomplete="off" maxlength="10" value="{{$arme->modele}}" name="modele" class="form-control phone-mask" placeholder="Modele" />
           </div>
         </div>
-  
-  
+
+
       <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">N° Serie</label>
         <div class="input-group input-group-merge">
           <input required type="text" autocomplete="off" maxlength="10" value="{{$arme->n_serie}}" name="n_serie" class="form-control phone-mask" placeholder="Numero de serie" />
         </div>
       </div>
-  
-        <div class="col-12">
+
+        {{-- <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Revision</label>
           <div class="input-group input-group-merge">
             <input required type="year" autocomplete="off" maxlength="10" value="{{$arme->revision}}" name="revision" class="form-control phone-mask" placeholder="Revision" />
           </div>
-        </div>
+        </div> --}}
 
-        {{-- <div class="col-12">
-         <label class="form-label" for="modalEnableOTPPhone">Statut</label>
-        <select class="form-control" value="{{$arme->statut}}"  name="statut" >
-            <option value="Operationel">Operationel</option>
-            <option value="En pret">En pret</option>
-            <option value="Usage limite"> Usage limite</option>
-            <option value="En panne">En panne</option>
-            <option value="Autre disponibilite">Autre disponibilite</option>
-            <option value="En reparation">En reparation</option>
-            <option value="En revision">En revision</option>
-            <option value="En reforme">En reforme</option>
-            <option value="Vendu">Vendu</option>
-            <option value="Detruit">Detruit</option>
-            <option value="Vole">Vole</option>
-            <option value="Perdu">Perdu</option>
-            <option value="Rendu">Rendu</option>
-        </select>
-      </div> --}}
 
-      
             <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Lieu Stockage</label>
                 <div class="input-group input-group-merge">
@@ -76,7 +57,7 @@
                 </div>
             </div> <br>
 
-      
+
             <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Stock</label>
                 <div class="input-group input-group-merge">

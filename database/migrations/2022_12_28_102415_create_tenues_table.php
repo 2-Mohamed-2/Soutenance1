@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('type');
             $table->string('modele');
             $table->string('taille');
-            $table->string('annee');
-            $table->string('statut');
+            $table->year('annee');
+            // $table->string('statut');
             $table->string('stock');
-            $table->foreignId('commissariats_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
-            $table->foreignId('users_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
+            // $table->foreignId('commissariats_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
+            // $table->foreignId('users_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }

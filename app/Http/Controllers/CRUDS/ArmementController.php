@@ -6,16 +6,28 @@ use App\Models\Armement;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ArmementController extends Controller
 {
     //
 
-    public function ArmeView()
+    public function ArmeView(Request $request)
     {
+      $search = $request['search'] ?? "";
+      if($search != ""){
+        $armes = Armement::where('modele', 'LIKE', "%$search%")
+        ->orWhere('n_serie', 'LIKE', "%$search%")
+        ->get();
 
-        $armes = Armement::latest()->get();
-        return view('content.CRUD.arme-crud', compact('armes'));
+      }else{
+        $armes = Armement::paginate(5);
+      }
+
+
+        $comms = Commissariat::latest()->get();
+        $armements = Armement::latest()->get();
+        return view('content.CRUD.arme-crud', compact('armes', 'comms', 'armements', 'search'));
     }
 
     public function store(Request $request)
@@ -25,8 +37,8 @@ class ArmementController extends Controller
             // 'commissariats_id' => 'required',
             'modele' => 'required|max:255',
             'n_serie' => 'required|max:255',
-            'revision' => 'required|max:255',
-            // 'statut' => 'required|max:255',
+            // 'revision' => 'required|max:255',
+             // 'statut' => 'required|max:255',
             'lieu' => 'required|max:255',
             'stock' => 'required|max:255',
 
@@ -37,17 +49,17 @@ class ArmementController extends Controller
             // 'commissariats_id' => $request->commissariats_id,
             'modele' => $request->modele,
             'n_serie' => $request->n_serie,
-            'revision' => $request->revision,
+            // 'revision' => $request->revision,
             // 'statut' => $request->statut,
             'lieu' => $request->lieu,
             'stock' => $request->stock,
 
         ]);
         if ($arme) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Armement');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+           Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Armement');
         }
     }
@@ -59,7 +71,7 @@ class ArmementController extends Controller
             // 'commissariats_id' => 'required',
             'modele' => 'required|max:255',
             'n_serie' => 'required|max:255',
-            'revision' => 'required|max:255',
+            // 'revision' => 'required|max:255',
             // 'statut' => 'required|max:255',
             'lieu' => 'required|max:255',
             'stock' => 'required|max:255',
@@ -68,10 +80,10 @@ class ArmementController extends Controller
 
         $arme = Armement::whereId($id)->update($validateData);
         if ($arme) {
-            toastr()->success('Arme a bien été modifié !', 'Réussite');
+              Alert::success('Arme a bien été modifié !', 'Réussite');
             return redirect('/Armement');
         } else {
-            toastr()->error('Modification non effectuée !', 'Erreur');
+              Alert::error('Modification non effectuée !', 'Erreur');
             return redirect('/Armement');
         }
     }
@@ -82,7 +94,7 @@ class ArmementController extends Controller
 
         $arme = Armement::findOrFail($id);
         $arme->delete();
-        toastr()->success('Arme a bien été supprimé !', 'Réussite');
+         Alert::success('Arme a bien été supprimé !', 'Réussite');
         return redirect('/Armement');
 
     }

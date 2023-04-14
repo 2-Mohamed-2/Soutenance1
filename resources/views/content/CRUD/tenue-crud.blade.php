@@ -6,15 +6,68 @@
 <h4 class="fw-bold py-3 mb-4">
   <span class="text-muted fw-light">Tables /</span> Tenue
 </h4>
+<?php
+
+use App\Models\Tenue;
+  use App\Models\TenueAff;
+
+?>
 
 <hr class="my-5">
+
+
+<div class="row g-4 mb-4">
+  <div class="col-sm-6 col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-start justify-content-between">
+          <div class="content-left">
+            <span>Vehicule</span>
+            <div class="d-flex align-items-end mt-2">
+              <h3 class="mb-0 me-2">{{ count(Tenue::all()) }}</h3>
+              <small class="text-success">(100%)</small>
+            </div>
+            <small>Total Tenue</small>
+          </div>
+          <span class="badge bg-label-primary rounded p-2">
+            <i class="bx bx-car bx-sm"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-start justify-content-between">
+          <div class="content-left">
+            <span>Tenue Affecter</span>
+            <div class="d-flex align-items-end mt-2">
+              <h3 class="mb-0 me-2">{{ count(TenueAff::all()) }}</h3>
+              <small class="text-success">(+95%)</small>
+            </div>
+            <small>Total tenue affecter</small>
+          </div>
+          <span class="badge bg-label-success rounded p-2">
+            <i class="bx bx-car bx-sm"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des Tenues enregistrés</h5>
-  <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addTenue" aria-controls="offcanvasEnd">
-    Créer un nouveau Tenue.
-  </button>
+   <div class="d-flex justify-content-end mb-2 gap-2">
+  <a class="btn btn-outline-secondary" onmouseover="geeks()" onmouseout="out()" href="tenueaff.index"><i class="fa fa-shirt fa-sm"></i></a>
+      <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addTenue" aria-controls="offcanvasEnd">
+     Nouvelle Tenue.
+   </button>
+    {{-- <div class="nav-item search">
+    <input type="search" class="form-control col-xs-2" id="search" style="visibility:" name="search" placeholder="Search.." aria-controls="DataTables_Table_0">
+    </div> --}}
+   </div>
   <div class="table-responsive text-nowrap">
     <table class="table table-hover">
       <thead>
@@ -23,10 +76,7 @@
           <th>Modele</th>
           <th>Taille</th>
           <th>Annee</th>
-          <th>Statut</th>
           <th>Stock</th>
-          <th>Commissariat</th>
-          <th>Affecte a</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -37,24 +87,22 @@
           <td>{{$tenue->modele}}</span></td>
           <td>{{$tenue->taille}}</span></td>
           <td>{{$tenue->annee}}</span></td>
-          <td>{{$tenue->statut}}</span></td>
           <td>{{$tenue->stock}}</span></td>
-          <td>{{$tenue->commissariat->libelle}}</span></td>
-          <td>{{$tenue->user->name}}</span></td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueUpdt{{$tenue->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueDst{{$tenue->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
+                <button class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addTenueaff"><i class="bx bx-car me-1"></i>Affecter</button>
               </div>
             </div>
 
             {{-- Vue du modal de modification --}}
-         @include('_partials/_modals/_CRUD-TENUE/modal-updtTenue')  
+         @include('_partials/_modals/_CRUD-TENUE/modal-updtTenue')
 
             {{-- Vue du modal de suppression --}}
-          @include('_partials/_modals/_CRUD-TENUE/modal-deleteTenue') 
+          @include('_partials/_modals/_CRUD-TENUE/modal-deleteTenue')
 
          </td>
         </tr>
@@ -63,13 +111,26 @@
        @endforelse
 
 
-      </tbody> 
+      </tbody>
     </table>
+    <script type="text/javascript">
+        function geeks(){
+          $("#myClasse").removeClass("d-none");
+        }
+        function out(){
+          setInterval(() => {
+                  $("#myClasse").addClass("d-none");
+          }, 4000);
+
+        }
+      </script>
+      {!! $tenues->withQueryString()->links('pagination::bootstrap-5') !!}
   </div>
 </div>
 
 {{-- Vue du modal d'insertion --}}
   @include('_partials/_modals/_CRUD-TENUE/modal-addTenue')
+  @include('_partials/_modals/_CRUD-TENUEAFF/modal-addTenueaff')
 
 
 @endsection

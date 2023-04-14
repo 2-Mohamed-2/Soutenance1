@@ -9,7 +9,7 @@
           </div>
           <h6>Veuillez reverifier ces informations</h6>
 
-          <form id="enableOTPForm" class="row g-3" action="{{route('Vehi.update', encrypt($vehi->id))}}" method="POST">
+          <form id="enableOTPForm" class="row g-3" action="{{route('vehi.update', encrypt($vehi->id))}}" method="POST">
             @method('PUT')
             @csrf
 

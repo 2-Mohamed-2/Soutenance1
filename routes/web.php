@@ -18,13 +18,13 @@ use App\Http\Controllers\CRUDS\MaterielController;
 use App\Http\Controllers\CRUDS\MunitionController;
 use App\Http\Controllers\CRUDS\VehiculeController;
 use App\Http\Controllers\CRUDS\ResidenceController;
+use App\Http\Controllers\CRUDS\TenueAffController;
 use App\Http\Controllers\CRUDS\VoitAffecteController;
 use App\Http\Controllers\UserCompte\UserProfilSecurity;
 use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\UserCompte\UserProfilView;
 use App\Http\Middleware\ActiveMiddleware;
-use App\Http\Middleware\testOk;
 
 /*
 |--------------------------------------------------------------------------
@@ -221,16 +221,10 @@ Route::resource('/user-list', UserManagement::class);
 
 
 
-
-
-
-
-
-
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'], [testOk::class])->group(function () {
 
-  Route::middleware([testOk::class])->group(function () {
-    
+  // Route::middleware([testOk::class])->group(function () {
+
     Route::middleware([ActiveMiddleware::class])->group(function () {
 
       Route::middleware(['Mot_passe:123456'])->group(function () {
@@ -280,13 +274,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
         Route::resource('/permission', AccessPermission::class);
 
-        //Route pour vehicule
-        Route::get('/Vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
-        Route::resource('/Vehi', VehiculeController::class);
+      //Route pour vehicule
+      Route::get('/vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
+      Route::resource('/vehi', VehiculeController::class);
 
-        //Route pour Armement
-        Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('arme-view');
-        Route::resource('/Arme', ArmementController::class);
+      //Route pour Armement
+      Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('arme-view');
+      Route::resource('/Arme', ArmementController::class);
 
         //Route pour tenue
         Route::get('/Tenue', [TenueController::class, 'TenueView'])->name('tenue-view');
@@ -304,9 +298,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/Avoir', [AvoirController::class, 'AvoirView'])->name('avoir-view');
         Route::resource('/Avoir', AvoirController::class);
 
-        //Route pour voiture affecter
-        Route::get('/voitaffecte', [VoitAffecteController::class, 'voitView'])->name('voit');
-        Route::resource('/voitaffecte', VoitAffecteController::class);
+      //Route pour voiture affecter
+      Route::get('/voitaffecte', [VoitAffecteController::class, 'voitView'])->name('voit');
+      Route::resource('/voitaffecte', VoitAffecteController::class);
+
+      //Route pour Tenueaff
+      Route::get('/tenueaff', [TenueAffController::class, 'TenueAff'])->name('tenueaff');
+      Route::resource('/tenueaff', TenueAffController::class);
+
 
 
 
@@ -325,6 +324,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     // Route pour le profil du user
     Route::get('/Compte/Profil', [UserProfilView::class, 'index'])->name('compte-profil-user-view');
 
-  });   
+  });
 
-});
+// });

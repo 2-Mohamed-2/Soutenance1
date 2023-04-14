@@ -7,30 +7,30 @@
     <div class="offcanvas-body mx-0 flex-grow-0">
       <form id="enableOTPForm" class="row g-3" action="{{route('Muni.store')}}" method="POST">
         @csrf
-  
-       
-       
+
+
+
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Type</label>
           <div class="input-group input-group-merge">
             <input required autocomplete="off" type="text" name="type" class="form-control" placeholder="Type de Munition" />
           </div>
-  
+
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Libelle</label>
           <div class="input-group input-group-merge">
             <input required type="text" autocomplete="off" maxlength="10" name="libelle" class="form-control phone-mask" placeholder="Libelle" />
           </div>
         </div>
-  
-  
+
+
       <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">Stock</label>
         <div class="input-group input-group-merge">
-          <input required type="number" autocomplete="off" maxlength="10" name="stock" class="form-control phone-mask" placeholder="stock" />
+          <input required type="number" autocomplete="off" mixlength="5" name="stock" class="form-control phone-mask" placeholder="stock" />
         </div>
       </div>
-        
+
         <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
             <div class="input-group input-group-merge">
@@ -51,4 +51,3 @@
       </form>
     </div>
   </div>
-  

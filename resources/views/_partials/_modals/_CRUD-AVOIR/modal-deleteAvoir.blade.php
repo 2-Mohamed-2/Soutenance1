@@ -5,7 +5,7 @@
         <div class="modal-body">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="text-center mb-4">
-            <h3 class="mb-3">Suppression d'un affectation</h3>
+            <h3 class="mb-3">Suppression d'un vehicule</h3>
           </div>
 
           <form id="enableOTPForm" class="row g-3" action="{{route('Avoir.destroy', encrypt($avoir->id))}}" method="POST">
@@ -14,7 +14,7 @@
 
             <div class="col-12">
               <div class="text-wrap">
-                Etes-vous sûr de vouloir supprimer definitivement affectation : {{$avoir->libelle}} ?
+                Etes-vous sûr de vouloir supprimer definitivement vehicule : {{$avoir->modele}} ?
               </div>
             </div>
             <br>

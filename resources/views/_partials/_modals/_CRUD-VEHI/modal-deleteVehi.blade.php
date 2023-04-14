@@ -8,7 +8,7 @@
             <h3 class="mb-3">Suppression d'un vehicule</h3>
           </div>
 
-          <form id="enableOTPForm" class="row g-3" action="{{route('Vehi.destroy', encrypt($vehi->id))}}" method="POST">
+          <form id="enableOTPForm" class="row g-3" action="{{route('vehi.destroy', encrypt($vehi->id))}}" method="POST">
             @method('delete')
             @csrf
 
