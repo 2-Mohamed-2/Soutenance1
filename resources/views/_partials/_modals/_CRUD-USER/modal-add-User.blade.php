@@ -34,13 +34,7 @@
         </select>
       </div>
       <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Enregistrer</button>
-      @if (@isset($record)
-          
-      @endisset)
-        {{-- Test ok --}}
-      @else
-        
-      @endif
+      {{--  --}}
       <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">Annuler</button>
     </form>
   </div>

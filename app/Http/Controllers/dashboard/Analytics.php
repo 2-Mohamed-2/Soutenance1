@@ -27,7 +27,10 @@ class Analytics extends Controller
 
     $es = auth()->user()->id;
     $users = DB::select('select * from activity_logs');
-    $user = DB::select('select * from activity_logs where user_id= '.$es.' first');
+    if ($users) {
+      // $user = DB::select('select * from activity_logs where user_id= '.$es.' first');
+    }
+    
     // dd($tes);
 
     return view('content.dashboard.dashboards-principal', compact('usernbr'));

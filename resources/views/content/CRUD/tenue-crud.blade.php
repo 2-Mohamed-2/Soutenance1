@@ -64,6 +64,7 @@ use App\Models\Tenue;
       <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addTenue" aria-controls="offcanvasEnd">
      Nouvelle Tenue.
    </button>
+   
     {{-- <div class="nav-item search">
     <input type="search" class="form-control col-xs-2" id="search" style="visibility:" name="search" placeholder="Search.." aria-controls="DataTables_Table_0">
     </div> --}}
@@ -94,7 +95,8 @@ use App\Models\Tenue;
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueUpdt{{$tenue->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueDst{{$tenue->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-                <button class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addTenueaff"><i class="bx bx-car me-1"></i>Affecter</button>
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#test"><i class="bx bx-trash me-1"></i> Test</a>
+                
               </div>
             </div>
 
@@ -103,6 +105,8 @@ use App\Models\Tenue;
 
             {{-- Vue du modal de suppression --}}
           @include('_partials/_modals/_CRUD-TENUE/modal-deleteTenue')
+
+          
 
          </td>
         </tr>
@@ -129,8 +133,8 @@ use App\Models\Tenue;
 </div>
 
 {{-- Vue du modal d'insertion --}}
-  @include('_partials/_modals/_CRUD-TENUE/modal-addTenue')
   @include('_partials/_modals/_CRUD-TENUEAFF/modal-addTenueaff')
+  @include('_partials/_modals/_CRUD-TENUE/modal-addTenue')
 
 
 @endsection
