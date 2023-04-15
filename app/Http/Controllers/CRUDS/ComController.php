@@ -6,12 +6,13 @@ use toastr;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ComController extends Controller
 {
     public function ComView(){
-        $coms = Commissariat::latest()->get();
-
+        $coms = Commissariat::latest()->get();        
+        
         return view('content.CRUD.commiss-crud', compact('coms'));
     }
 
@@ -29,6 +30,8 @@ class ComController extends Controller
             'telephone' => 'required|max:255',
         ]);
 
+        // dd(url()->current());
+
         $com = Commissariat::create([
             'libelle' => $request->libelle,
             'sigle' => $request->sigle,
@@ -37,10 +40,11 @@ class ComController extends Controller
         ]);
 
         if ($com) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            
+            Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
             return redirect('/Commissariat');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Commissariat');
         }
 
@@ -69,10 +73,10 @@ class ComController extends Controller
 
     public function destroy($id) {
         $id = decrypt($id);
-
+        
         $com = Commissariat::findOrFail($id);
         $com->delete();
-        toastr()->success('Le commissariat a bien été supprimé !', 'Réussite');
+        Alert::success('Réussite' ,'Le commissariat a bien été supprimé !');
         return redirect('/Commissariat');
     }
 }

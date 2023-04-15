@@ -14,8 +14,6 @@ class AccountSettingsAccount extends Controller
 {
   public function index(Request $request)
   {
-    ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/Compte/Paramètre/Gestion');
-
     return view('content.pages.pages-account-settings-account');
   }
 

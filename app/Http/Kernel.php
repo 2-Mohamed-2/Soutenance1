@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
       \Illuminate\Routing\Middleware\SubstituteBindings::class,
       \App\Http\Middleware\LocaleMiddleware::class,
       \App\Http\Middleware\testOk::class,
+      \App\Http\Middleware\GetUrlMiddleware::class,
     ],
 
     'api' => [

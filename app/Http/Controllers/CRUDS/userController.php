@@ -22,7 +22,6 @@ class userController extends Controller
     public function index(Request $request)
     {
 
-      ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/Membre');
       
       $users = User::latest()->where('id', '!=', '1')->get();
       //$coms = Commissariat::latest()->get();
@@ -56,7 +55,6 @@ class userController extends Controller
         'email' => 'required|max:255',
         'telephone' => 'required|max:255',
       ]);
-      ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/Membre/Store-'.$request->name);
 
       $com=1;
       $gra=1;
@@ -163,7 +161,6 @@ class userController extends Controller
       // dd($request->all());
 
       $user = User::find($id);
-      ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/Membre/Update-'.$user->name);
       if ($user) {
           $user->matricule = $request->matricule;
           $user->name = $request->name;

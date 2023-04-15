@@ -12,7 +12,6 @@ class UserProfilView extends Controller
 {
   public function index(Request $request)
   {
-    ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/Compte/Profil');
 
     if (Auth::user()->Commissariat) {
       $comms = Commissariat::where('id', '!=', Auth::user()->Commissariat->id)->get();
