@@ -14,7 +14,7 @@
 
             <div class="col-12">
               <div class="text-wrap">
-                Etes-vous sûr de vouloir supprimer definitivement vehicule : {{$avoir->modele}} ?
+                Etes-vous sûr de vouloir supprimer definitivement arme : {{$avoir->armement->modele}} ?
               </div>
             </div>
             <br>

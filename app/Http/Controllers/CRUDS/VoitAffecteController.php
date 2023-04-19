@@ -138,14 +138,13 @@ class VoitAffecteController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $id = decrypt($id);
+    
     $voitaffecte = VoitAffecte::findOrFail($id);
     $voitaffecte->delete();
-    if ($voitaffecte) {
-      Alert::success('Affectation supprimer avec succes');
-    } else {
-      Alert::error('Affectation non supprimer');
-    }
-    return redirect()->back();
+
+    Alert::success('Affectation supprimer avec succes');
+    return redirect('/voitaffecte');
+
   }
 }

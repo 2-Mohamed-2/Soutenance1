@@ -10,6 +10,8 @@
 <hr class="my-5">
 
 
+
+
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des Tenue enregistrés</h5>
@@ -17,9 +19,9 @@
     Affecter.
   </button> --}}
   <span class="alert alert-info d-none " id="myClasse">Retour a la ligne</span>
-  <a class="btn btn-primary col-xl-3"  href="{{ route('tenueaff.index') }}">Retour</a>
+  <a class="btn btn-primary col-xl-3"  href="Tenue">Retour</a>
   <div class="table-responsive text-nowrap">
-    <table class="table table-hover">
+    <table id="example" class="table table-striped" style="width:100%">
       <thead>
         <tr>
           <th>Commissariat</th>
@@ -39,8 +41,8 @@
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueaffUpdt{{$tenueaff->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueaffDst{{$tenueaff->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
+                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueaffUpdt{{$tenueaff->id}}"><i class="bx bx-edit-alt me-1"></i>Modifier</a>
+                  <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueaffDst{{$tenueaff->id}}"><i class="bx bx-trash me-1"></i>Supprimer</a>
               </div>
             </div>
 
@@ -48,7 +50,7 @@
             @include('_partials/_modals/_CRUD-TENUEAFF/modal-updtTenueaff')
 
             {{-- Vue du modal de suppression --}}
-            @include('_partials/_modals/_CRUD-TENUEAFF/modal-deleteTenueaff')
+             @include('_partials/_modals/_CRUD-TENUEAFF/modal-deleteTenueaff')
 
           </td>
         </tr>
@@ -61,6 +63,11 @@
     </table>
     {!! $tenueaffs->withQueryString()->links('pagination::bootstrap-5') !!}
   </div>
+  <script>
+    $(document).ready(function () {
+    $('#example').DataTable();
+    });
+  </script>
 </div>
 
 {{-- Vue du modal d'insertion --}}

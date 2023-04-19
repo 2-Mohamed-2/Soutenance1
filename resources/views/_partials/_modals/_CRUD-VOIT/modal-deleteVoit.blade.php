@@ -1,20 +1,20 @@
 <!-- Enable OTP Modal -->
-<div class="modal fade" id="voitaffecteDst{{$voitaffecte->id}}" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="voitaffecteDst{{ $voitaffecte->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
       <div class="modal-content p-3 p-md-5">
         <div class="modal-body">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="text-center mb-4">
-            <h3 class="mb-3">Suppression d'une affectation</h3>
+            <h3 class="mb-5">Suppression affectation</h3>
           </div>
 
-          <form id="enableOTPForm" class="row g-3" action="{{route('voitaffecte.destroy', encrypt($voitaffecte->id))}}" method="POST">
+            <form id="enableOTPForm" class="row g-3" action="{{route('voitaffecte.destroy', encrypt($voitaffecte->id))}}" method="POST">
             @method('delete')
             @csrf
 
             <div class="col-12">
               <div class="text-wrap">
-                 Etes-vous sûr de vouloir supprimer definitivement affectation : {{$voitaffecte->vehicule->libelle}} ?
+                 Etes-vous sûr de vouloir supprimer definitivement affectation : {{$voitaffecte->vehicule->type}} {{ $voitaffecte->vehicule->modele }} ?
               </div>
             </div>
             <br>

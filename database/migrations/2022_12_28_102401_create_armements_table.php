@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('modele');
             $table->string('n_serie');
-            $table->string('revision');
+            // $table->string('revision');
             // $table->string('statut');
             $table->string('lieu');
             $table->integer('stock');

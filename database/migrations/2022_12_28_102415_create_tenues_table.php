@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('modele');
             $table->string('taille');
-            $table->year('annee');
+            // $table->year('annee');
             // $table->string('statut');
             $table->string('stock');
             // $table->foreignId('commissariats_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
