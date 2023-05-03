@@ -58,11 +58,10 @@ class VehiculeController extends Controller
 
         if ($vehi) {
             alert()->success('L\'enregistrement a bien été effectué !', 'Réussite');
-            // return route('Vehi.index');
-            return redirect('/Vehicule');
+            return redirect('/vehicule');
         } else {
          Alert::info('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
-            return redirect('/Vehicule');
+            return redirect('/vehicule');
         }
     }
 
@@ -95,10 +94,10 @@ class VehiculeController extends Controller
 
         if ($vehi) {
        Alert::info('Le vehicule a bien été modifié !', 'Réussite');
-            return redirect('/Vehicule');
+            return redirect('/vehicule');
         } else {
       Alert::info('Modification non effectuée !', 'Erreur');
-            return redirect('/Vehicule');
+            return redirect('/vehicule');
         }
     }
 
@@ -110,6 +109,6 @@ class VehiculeController extends Controller
         $vehi->delete();
 
        Alert::info('Le Vehicule a bien été supprimé !', 'Réussite');
-        return redirect('/Vehicule');
+        return redirect('/vehicule');
     }
 }

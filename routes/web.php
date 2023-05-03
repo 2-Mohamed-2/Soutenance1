@@ -269,7 +269,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::resource('/permission', AccessPermission::class);
 
       //Route pour vehicule
-      Route::get('/vehicule', [VehiculeController::class, 'VehiView'])->name('vehi-view');
+      Route::get('/vehicule', [VehiculeController::class, 'VehiView'])->name('vehi');
       Route::resource('/vehi', VehiculeController::class);
 
       //Route pour Armement

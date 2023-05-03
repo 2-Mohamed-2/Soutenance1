@@ -68,7 +68,7 @@
                   <div class="col-12">
                     <label class="form-label" for="modalEnableOTPPhone">Date acquisition</label>
                     <div class="input-group input-group-merge">
-                      <input required autocomplete="off" type="Date" value="{{$avoir->date_acqui}}" name="date_acqui" class="form-control" placeholder="Acquisition " />
+                      <input required autocomplete="off" disabled type="Date" value="{{$avoir->date_acqui}}" name="date_acqui" class="form-control" placeholder="Acquisition " />
                     </div> <br>
 
 

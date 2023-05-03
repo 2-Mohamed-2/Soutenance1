@@ -31,14 +31,6 @@
         </div>
       </div>
 
-      <div class="col-12">
-
-          <label class="form-label" for="modalEnableOTPPhone">Annee</label>
-          <div class="input-group input-group-merge">
-            <input required type="text" autocomplete="off" name="annee" class="form-control phone-mask" placeholder="" />
-          </div>
-        </div>
-
 
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Stock</label>

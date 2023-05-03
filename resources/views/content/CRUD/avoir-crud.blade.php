@@ -9,6 +9,8 @@
 
 <hr class="my-5">
 
+
+
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des Armes affecter</h5>
@@ -45,11 +47,13 @@
               </div>
             </div>
           </td>
+          {{-- Vue du modal de suppression --}}
+          @include('_partials/_modals/_CRUD-AVOIR/modal-deleteAvoir')
+
             {{-- Vue du modal de modification --}}
           @include('_partials/_modals/_CRUD-AVOIR/modal-updtAvoir')
 
-            {{-- Vue du modal de suppression --}}
-          @include('_partials/_modals/_CRUD-AVOIR/modal-deleteAvoir')
+
         </tr>
         @empty
         {{-- Le tableau sera vide s'il n'y a pas d'insertion --}}
