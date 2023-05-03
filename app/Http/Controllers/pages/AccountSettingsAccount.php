@@ -47,7 +47,7 @@ class AccountSettingsAccount extends Controller
               'profile_photo_path' => $fileName,
           ]);
           if ($user) {
-              Alert::success('Mis a jour Reussi', '.$user->name. a ete mis a jour avec succes');
+              Alert::success('Mis a jour Reussi', 'L\'utilisateur a ete mis a jour avec succes');
               return redirect()->back();
           }
       }
@@ -57,13 +57,15 @@ class AccountSettingsAccount extends Controller
         'adresse' => $request->adresse,
         'email' => $request->email,
         'telephone' => $request->telephone,
-    ]);
+      ]);
 
-    if ($user) {
-      Alert::success('Mise a jour Reussi', ''.$user->name.' a ete mis a jour avec succes');
-      return redirect()->route('compte-user-modify');
-    }
-    } catch (\Exception $e) {
+      if ($user) {
+        Alert::success('Mise a jour Reussi', 'L\'utilisateur a ete mis a jour avec succes');
+        return redirect()->route('compte-user-modify');
+      }
+
+    } 
+    catch (\Exception $e) {
         Alert::error('Echec lors de la mise ajour', 'Une erreur c\'est produite lors de la mise a jour !');
         return redirect()->back();
     }

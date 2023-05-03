@@ -11,6 +11,7 @@ use App\Models\Armement;
 use App\Models\SessionUser;
 use App\Models\VoitAffecte;
 use App\Models\Commissariat;
+use App\Models\AffectationUser;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\ResetPassNotif;
 use Spatie\Permission\Traits\HasRoles;
@@ -93,6 +94,10 @@ class User extends Authenticatable
         return $this->hasMany(SessionUser::class);
     }
 
+    public function affect_users()
+    {
+        return $this->hasMany(AffectationUser::class);
+    }
 
     /**
      * Send the password reset notification.
