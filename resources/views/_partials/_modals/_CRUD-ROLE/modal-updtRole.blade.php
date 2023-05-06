@@ -20,41 +20,10 @@
           <div class="col-12">
             <h4>Role Permissions</h4>
             <!-- Permission table -->
-            <div class="table-responsive">
-              <table class="table table-flush-spacing">
-                <tbody>
-                  <tr>
-                    <td class="text-nowrap fw-semibold">Reservé à l'administrateur <i class="bx bx-info-circle bx-xs"
-                        data-bs-toggle="tooltip" data-bs-placement="top" title="Acces total sur la plateforme"></i></td>
-                    <td>
-                      <div class="form-check">
-                        <input class="form-check-input" name="" type="checkbox" id="selectAll" />
-                        <label class="form-check-label" for="selectAll">
-                          Tout selectionné
-                        </label>
-                      </div>
-                    </td>
-                  </tr>
-                  @forelse ($permissions as $permission)
-                  <tr>
-                    <td class="text-nowrap fw-semibold">
-                      {{$permission->desc}}</td>
-                    <td>
-                    <td>
-                      <div class="d-inline-flex">
-                        <div class="form-check me-3 me-lg-3">
-                          <input class="form-check-input selectOne" name="permission[]" value="{{$permission->id}}" type="checkbox" />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  @empty
-                  Pas de permission enregistrée pour le moment, <a href="{{route('app-access-permission')}}">ici</a>
-                  @endforelse
-
-                </tbody>
-              </table>
-            </div>
+            @foreach($permissions as $value)
+                <label class="fs-4">{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
+                {{ $value->name }} __| </label>                    
+            @endforeach
             <!-- Permission table -->
           </div>
       </div>

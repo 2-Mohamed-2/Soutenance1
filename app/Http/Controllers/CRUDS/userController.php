@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Section;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\MdpNotification;
@@ -25,8 +26,9 @@ class userController extends Controller
       
       $users = User::latest()->where('id', '!=', '1')->get();
       //$coms = Commissariat::latest()->get();
+      $roles = Role::all();
 
-      return view('content.CRUD.user-crud', compact('users'));
+      return view('content.CRUD.user-crud', compact('users','roles'));
     }
 
     /**

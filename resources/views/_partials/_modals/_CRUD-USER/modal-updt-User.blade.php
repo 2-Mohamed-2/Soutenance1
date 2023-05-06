@@ -1,7 +1,7 @@
 <!-- Offcanvas to add new user -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="userUpdt{{$user->id}}" aria-labelledby="offcanvasAddUserLabel">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="userRole{{$user->id}}" aria-labelledby="offcanvasAddUserLabel">
   <div class="offcanvas-header">
-    <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Modification d'un membre</h5>
+    <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Roles d'un membre</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body mx-0 flex-grow-0">

@@ -263,6 +263,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         //Pour le crud de
         Route::get('/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
         Route::resource('/role', AccessRoles::class);
+        Route::post('/access-roles-user', [AccessRoles::class, 'roleUser'])->name('roles-user');
 
         //Pour le crud de la permission
         Route::get('/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');

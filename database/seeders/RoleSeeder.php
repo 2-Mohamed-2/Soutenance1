@@ -16,21 +16,21 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('roles')->insert([
-        $role1 = [
-          'name' => 'Supreme',
-        ],
-        $role2 = [
-          'name' => 'Administrateur',
-        ],
-        $role3 = [
-          'name' => 'Administrateur_2',
-        ],
-        $role4 = [
-          'name' => 'Utilisateur',
-        ]
+      // DB::table('roles')->insert([
+      //   $role1 = [
+      //     'name' => 'Supreme',
+      //   ],
+      //   $role2 = [
+      //     'name' => 'Administrateur',
+      //   ],
+      //   $role3 = [
+      //     'name' => 'Administrateur_2',
+      //   ],
+      //   $role4 = [
+      //     'name' => 'Utilisateur',
+      //   ]
 
-      ]);
+      // ]);
       // $role1->syncPermissions([1,2,3,4,5]);
     }
 }
