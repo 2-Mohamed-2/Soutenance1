@@ -10,6 +10,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 class GradeController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('permission:grade-list|grade-create|grade-edit|grade-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:grade-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:grade-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:grade-delete', ['only' => ['destroy']]);
+    }
+
     public function index() {
         //
         $grades = Grade::latest()->get();

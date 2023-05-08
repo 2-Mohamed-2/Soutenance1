@@ -12,9 +12,10 @@
         @php
           $role = Spatie\Permission\Models\Role::find($role->id);
           $permission = Spatie\Permission\Models\Permission::get();
-          $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $role->id)
-            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
-            ->all();
+
+            $rolePermissions = Spatie\Permission\Models\Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
+            ->where("role_has_permissions.role_id",$role->id)
+            ->get();
         @endphp
 
 
@@ -23,22 +24,18 @@
           <table class="table table-flush-spacing">
             <tbody>
 
-              @forelse ($rolePermissions as $rolePermission)
-                @php
-                  $permission = Spatie\Permission\Models\Permission::find($rolePermission);
-                @endphp
-
-                <tr>
-                  <td class="text-nowrap fw-semibold">
-                    {{$permission->desc}}</td>
-                  <td>
-                  <td>
-                  </td>
-                </tr>
-
-              @empty
-              Pas de permission affectée à ce role pour le moment
-              @endforelse
+               
+                @if(!empty($rolePermissions))
+                  
+                    @foreach($rolePermissions as $v)
+                      <tr>
+                        <td class="text-nowrap fw-semibold">
+                          {{ $v->name }}
+                        </td>
+                      </tr>
+                    @endforeach 
+                  
+                @endif
 
             </tbody>
           </table>

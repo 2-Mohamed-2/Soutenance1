@@ -33,7 +33,6 @@
     <ul class="nav nav-pills flex-column flex-md-row mb-3">
       <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Gestion</a></li>
       <li class="nav-item"><a class="nav-link" href="{{url('/Compte/Paramètre/Sécurité')}}"><i class="bx bx-lock-alt me-1"></i> Sécurité</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{url('pages/account-settings-connections')}}"><i class="bx bx-link-alt me-1"></i> Connections</a></li>
     </ul>
     <div class="card mb-4">
       <h5 class="card-header">Profile Details</h5>
@@ -71,17 +70,17 @@
             </div>
             <div class="mb-3 col-md-6">
               <label for="lastName" class="form-label">Adresse</label>
-              <input class="form-control" type="text" required name="adresse" value="{{Auth::user()->adresse}}" />
+              <input class="form-control" autocomplete="off" type="text" required name="adresse" value="{{Auth::user()->adresse}}" />
             </div>
             <div class="mb-3 col-md-6">
               <label for="email" class="form-label">E-mail</label>
-              <input class="form-control" required type="text" id="email" name="email" value="{{Auth::user()->email}}" placeholder="Mohamed@example.com" />
+              <input class="form-control" autocomplete="off" required type="text" id="email" name="email" value="{{Auth::user()->email}}" placeholder="Mohamed@example.com" />
             </div>
             <div class="mb-3 col-md-6">
               <label class="form-label" for="phoneNumber">Telephone</label>
               <div class="input-group input-group-merge">
                 <span class="input-group-text">(223)</span>
-                <input type="text" required name="telephone" class="form-control" value="{{Auth::user()->telephone}}" />
+                <input type="text" inputmode="numeric" id="space" required autocomplete="off" name="telephone" class="form-control" value="{{Auth::user()->telephone}}" />
               </div>
             </div>
           </div>
@@ -101,4 +100,11 @@
     
   </div>
 </div>
+
+<script>
+  document.getElementById('space').addEventListener('input', function (e) {
+  e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{2})/g, '$1 ').trim();
+});
+</script>
+
 @endsection

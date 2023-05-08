@@ -39,10 +39,14 @@
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
               <div class="dropdown-menu">
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userRole{{$user->id}}"><i class="bx bx-edit-alt me-1"></i> Roles</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userUpdt{{$user->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userDst{{$user->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
               </div>
             </div>
+
+            {{-- Vue du modal de modification --}}
+            @include('_partials._modals._CRUD-USER.modal-role-User')
 
             {{-- Vue du modal de modification --}}
             @include('_partials._modals._CRUD-USER.modal-updt-User')

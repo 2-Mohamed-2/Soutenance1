@@ -8,6 +8,7 @@ use App\Models\Section;
 use App\Models\Munition;
 use App\Models\Vehicule;
 use App\Models\VoitAffecte;
+use App\Models\AffectationUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -29,6 +30,11 @@ class Commissariat extends Model
     public function sections()
     {
         return $this->hasMany(Section::class);
+    }
+
+    public function affect_users()
+    {
+        return $this->hasMany(AffectationUser::class);
     }
 
     // public function armements()

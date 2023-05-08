@@ -5,7 +5,7 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
-      <form id="enableOTPForm" class="row g-3" action="" method="POST">
+      <form id="enableOTPForm" class="row g-3" action="{{ route('user_affect') }}" method="POST">
         @csrf        
       
         <div class="col-12">
@@ -23,7 +23,7 @@
   
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Motif</label> <br>
-          <textarea name="motif" id="" cols="47" rows="12"></textarea>
+          <textarea name="motif" required cols="37" class="" rows="5" style="resize:none; padding:10px;"></textarea>
         </div>
    
   
