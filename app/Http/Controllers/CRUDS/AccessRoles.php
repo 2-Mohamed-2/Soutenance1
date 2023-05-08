@@ -44,7 +44,7 @@ class AccessRoles extends Controller
     $test=Role::where('name', $request->RoleName)->exists();
     //dd($test);
     if ($test) {
-      toastr()->error('Ce nom de role existe déjà !', 'Erreur');
+      Alert::error('Ce nom de role existe déjà !', 'Erreur');
       return redirect('/access-roles');
     }else {
       $role = Role::create([
@@ -76,12 +76,12 @@ class AccessRoles extends Controller
 
     if ($role) {
       $role->syncPermissions($permissions);
-        //$permissions->assignRole($role);
+      //$permissions->assignRole($role);
 
-      toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+      Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
       return redirect('/access-roles');
     } else {
-        toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+        Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
         return redirect('/access-roles');
     }
 
@@ -110,7 +110,7 @@ class AccessRoles extends Controller
                   ])->exists();
     //dd($test);
     if ($test) {
-      toastr()->error('Ce nom de role existe déjà !', 'Erreur');
+      Alert::error('Ce nom de role existe déjà !', 'Erreur');
       return redirect('/access-roles');
     }else {
       $role->name = $request->input('RoleName');
@@ -122,10 +122,10 @@ class AccessRoles extends Controller
         $role->syncPermissions($request->input('permission'));
           //$permissions->assignRole($role);
 
-        toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+        Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
         return redirect('/access-roles');
       } else {
-          toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+          Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
           return redirect('/access-roles');
       }
     } else {
@@ -141,7 +141,7 @@ class AccessRoles extends Controller
 
     $role = Role::findOrFail($id);
     $role->delete();
-    toastr()->success('Le role a bien été supprimé !', 'Réussite');
+    Alert::success('Le role a bien été supprimé !', 'Réussite');
     return redirect('/access-roles');
   }
 
