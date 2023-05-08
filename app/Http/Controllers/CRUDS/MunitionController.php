@@ -6,6 +6,7 @@ use App\Models\Munition;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MunitionController extends Controller
 {
@@ -38,10 +39,10 @@ class MunitionController extends Controller
 
         ]);
         if ($muni) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Munition');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Munition');
         }
     }
@@ -63,10 +64,10 @@ class MunitionController extends Controller
         $muni = Munition::whereId($id)->update($validateData);
 
         if($muni){
-            toastr()->success('Munition a ete bien modifier !', 'Reussite');
+            Alert::success('Munition a ete bien modifier !', 'Reussite');
             return redirect('/Munition');
         }else{
-            toastr()->error('Modifier non effectue !', 'Erreur');
+            Alert::error('Modifier non effectue !', 'Erreur');
         }
 
     }
@@ -79,7 +80,7 @@ class MunitionController extends Controller
         $muni = Munition::findOrFail($id);
 
         $muni->delete($id);
-        toastr()->success('La munition a bien été supprimé !', 'Réussite');
+        Alert::success('La munition a bien été supprimé !', 'Réussite');
         return redirect('/Munition');
 
     }

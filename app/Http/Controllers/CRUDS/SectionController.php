@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\CRUDS;
 
-use toastr;
+
 use App\Models\Section;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SectionController extends Controller
 {
@@ -43,10 +44,10 @@ class SectionController extends Controller
         ]);
 
         if ($sect) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Section');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Section');
         }
 
@@ -67,10 +68,10 @@ class SectionController extends Controller
 
         $sect = Section::whereId($id)->update($validateData);
         if ($sect) {
-            toastr()->success('La section a bien été modifié !', 'Réussite');
+            Alert::success('La section a bien été modifié !', 'Réussite');
             return redirect('/Section');
         } else {
-            toastr()->error('Modification non effectuée !', 'Erreur');
+            Alert::error('Modification non effectuée !', 'Erreur');
             return redirect('/Section');
         }
     }
@@ -83,7 +84,7 @@ class SectionController extends Controller
 
         $sect = Section::findOrFail($id);
         $sect->delete();
-        toastr()->success('La section a bien été supprimé !', 'Réussite');
+        Alert::success('La section a bien été supprimé !', 'Réussite');
         return redirect('/Section');
     }
 }

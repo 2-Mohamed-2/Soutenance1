@@ -25,7 +25,7 @@ class AccessRoles extends Controller
     $roles = Role::all();
     $permissions = Permission::all();
 
-    
+
     return view('content.CRUD.role-crud', compact('roles','permissions'));
   }
 
@@ -40,7 +40,7 @@ class AccessRoles extends Controller
     $test=Role::where('name', $request->RoleName)->exists();
     //dd($test);
     if ($test) {
-      toastr()->error('Ce nom de role existe déjà !', 'Erreur');
+      Alert::error('Ce nom de role existe déjà !', 'Erreur');
       return redirect('/access-roles');
     }else {
       $role = Role::create([
@@ -53,10 +53,10 @@ class AccessRoles extends Controller
       $role->syncPermissions($permissions);
         //$permissions->assignRole($role);
 
-      toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+      Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
       return redirect('/access-roles');
     } else {
-        toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+        Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
         return redirect('/access-roles');
     }
 
@@ -84,7 +84,7 @@ class AccessRoles extends Controller
                   ])->exists();
     //dd($test);
     if ($test) {
-      toastr()->error('Ce nom de role existe déjà !', 'Erreur');
+      Alert::error('Ce nom de role existe déjà !', 'Erreur');
       return redirect('/access-roles');
     }else {
       $role->name = $request->input('RoleName');
@@ -96,14 +96,14 @@ class AccessRoles extends Controller
         $role->syncPermissions($permissions);
           //$permissions->assignRole($role);
 
-        toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+        Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
         return redirect('/access-roles');
       } else {
-          toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+          Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
           return redirect('/access-roles');
       }
     } else {
-      toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+      Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
         return redirect('/access-roles');
     }
 
@@ -115,7 +115,7 @@ class AccessRoles extends Controller
 
     $role = Role::findOrFail($id);
     $role->delete();
-    toastr()->success('Le role a bien été supprimé !', 'Réussite');
+    Alert::success('Le role a bien été supprimé !', 'Réussite');
     return redirect('/access-roles');
   }
 

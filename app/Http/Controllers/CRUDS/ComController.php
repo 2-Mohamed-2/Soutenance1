@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\CRUDS;
 
-use toastr;
+
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,8 +11,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 class ComController extends Controller
 {
     public function ComView(){
-        $coms = Commissariat::latest()->get();        
-        
+        $coms = Commissariat::latest()->get();
+
         return view('content.CRUD.commiss-crud', compact('coms'));
     }
 
@@ -40,7 +40,7 @@ class ComController extends Controller
         ]);
 
         if ($com) {
-            
+
             Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
             return redirect('/Commissariat');
         } else {
@@ -63,17 +63,17 @@ class ComController extends Controller
 
         $com = Commissariat::whereId($id)->update($validateData);
         if ($com) {
-            toastr()->success('Le commissariat a bien été modifié !', 'Réussite');
+            Alert::success('Le commissariat a bien été modifié !', 'Réussite');
             return redirect('/Commissariat');
         } else {
-            toastr()->error('Modification non effectuée !', 'Erreur');
+            Alert::error('Modification non effectuée !', 'Erreur');
             return redirect('/Commissariat');
         }
     }
 
     public function destroy($id) {
         $id = decrypt($id);
-        
+
         $com = Commissariat::findOrFail($id);
         $com->delete();
         Alert::success('Réussite' ,'Le commissariat a bien été supprimé !');

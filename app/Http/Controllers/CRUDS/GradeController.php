@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CRUDS;
 use App\Models\Grade;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GradeController extends Controller
 {
@@ -29,10 +30,10 @@ class GradeController extends Controller
         ]);
 
         if ($grade) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Grade');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Grade');
         }
 
@@ -47,10 +48,10 @@ class GradeController extends Controller
 
         $grade = Grade::whereId($id)->update($validateData);
         if ($grade) {
-            toastr()->success('Le grade a bien été modifié !', 'Réussite');
+            Alert::success('Le grade a bien été modifié !', 'Réussite');
             return redirect('/Grade');
         } else {
-            toastr()->error('Modification non effectuée !', 'Erreur');
+            Alert::error('Modification non effectuée !', 'Erreur');
             return redirect('/Grade');
         }
     }
@@ -60,7 +61,7 @@ class GradeController extends Controller
 
         $grade = Grade::findOrFail($id);
         $grade->delete();
-        toastr()->success('Le Grade a bien été supprimé !', 'Réussite');
+        Alert::success('Le Grade a bien été supprimé !', 'Réussite');
         return redirect('/Grade');
     }
 

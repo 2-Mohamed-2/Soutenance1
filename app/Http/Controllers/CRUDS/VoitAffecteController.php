@@ -25,9 +25,9 @@ class VoitAffecteController extends Controller
     $voitaffectes = VoitAffecte::paginate(5);
     $users = User::latest()->get();
     $comms = Commissariat::latest()->get();
-    $statuts = Statut::latest()->get();
+    // $statuts = Statut::latest()->get();
     $vehicules = Vehicule::latest()->get();
-    return view('content.CRUD.voit-crud', compact('voitaffectes', 'users', 'comms', 'statuts', 'vehicules'));
+    return view('content.CRUD.voit-crud', compact('voitaffectes', 'users', 'comms', 'vehicules'));
   }
 
   /**
@@ -139,7 +139,7 @@ class VoitAffecteController extends Controller
   public function destroy($id)
   {
     $id = decrypt($id);
-    
+
     $voitaffecte = VoitAffecte::findOrFail($id);
     $voitaffecte->delete();
 

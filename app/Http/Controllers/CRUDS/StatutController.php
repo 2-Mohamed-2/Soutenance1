@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CRUDS;
 use App\Models\Statut;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class StatutController extends Controller
 {
@@ -57,10 +58,10 @@ class StatutController extends Controller
 
         ]);
         if ($statut) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Statut');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Statut');
         }
     }
@@ -105,10 +106,10 @@ class StatutController extends Controller
 
         $statut = Statut::whereId($id)->update($validateData);
         if ($statut) {
-            toastr()->success('Le statut a bien été modifié !', 'Réussite');
+            Alert::success('Le statut a bien été modifié !', 'Réussite');
             return redirect('/Statut');
         } else {
-            toastr()->error('Modification non effectuée !', 'Erreur');
+            Alert::error('Modification non effectuée !', 'Erreur');
             return redirect('/Statut');
         }
     }
@@ -126,7 +127,7 @@ class StatutController extends Controller
         $id = decrypt($id);
         $statut = Statut::findOrFail($id);
         $statut->delete();
-        toastr()->success('Ls statut a bien été supprimé !', 'Réussite');
+        Alert::success('Ls statut a bien été supprimé !', 'Réussite');
         return redirect('/Statut');
 
     }
