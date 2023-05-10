@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('statuts', function (Blueprint $table) {
+        Schema::create('muni_affs', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
+            $table->foreignId('commissariat_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
+            $table->foreignId('munition_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
+            $table->date('date_acqui');
             $table->timestamps();
         });
-
-        
     }
 
     /**
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuts');
+        Schema::dropIfExists('muni_affs');
     }
 };

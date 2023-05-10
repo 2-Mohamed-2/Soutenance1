@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\CRUDS;
 
-use App\Models\Statut;
+use App\Models\LieuStock;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class StatutController extends Controller
+class LieuStockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +16,8 @@ class StatutController extends Controller
      */
     public function index()
     {
-        //
-        $statuts = Statut::latest()->get();
-
-        return view('content.CRUD.statut-crud', compact('statuts'));
-    }
-
-    public function StatutView(){
-        //
+        $lieustock = LieuStock::get();
+        return view('content.CRUD.lieustock-crud', compact('lieustock'));
     }
 
     /**
@@ -44,35 +38,31 @@ class StatutController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-        $this->validate($request,[
-
-            'libelle' => 'required|max:255',
-
+        $data = $this->validate($request,[
+            'entrepot' => 'required',
+            'ville' => 'required'
         ]);
 
-        $statut = Statut::create([
-
-            'libelle' => $request->libelle,
-
-        ]);
-        if ($statut) {
+        $lieustock = new LieuStock();
+        $lieustock->entrepot = $request->entrepot;
+        $lieustock->ville = $request->ville;
+        $lieustock->save();
+        if ($lieustock) {
             Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
-            return redirect('/Statut');
+            return redirect('/lieustock');
         } else {
             Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
-            return redirect('/Statut');
+            return redirect('/lieustock');
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Statut  $statut
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Statut $statut)
+    public function show($id)
     {
         //
     }
@@ -80,10 +70,10 @@ class StatutController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Statut  $statut
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Statut $statut)
+    public function edit($id)
     {
         //
     }
@@ -92,43 +82,37 @@ class StatutController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Statut  $statut
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-
+    public function update(Request $request, $id)
+    {
         $id = decrypt($id);
-        // dd($id);
-
-        $validateData = $this->validate($request, [
-            'libelle' => 'required|max:255',
-        ]);
-
-        $statut = Statut::whereId($id)->update($validateData);
-        if ($statut) {
-            Alert::success('Le statut a bien été modifié !', 'Réussite');
-            return redirect('/Statut');
-        } else {
-            Alert::error('Modification non effectuée !', 'Erreur');
-            return redirect('/Statut');
-        }
+        $lieustock = LieuStock::find($id);
+        $lieustock->entrepot = $request->entrepot;
+        $lieustock->ville = $request->ville;
+        $lieustock->save();
+    if ($lieustock) {
+      Alert::success('Lieu a ete bien modifier !', 'Reussite');
+      return redirect('/lieustock');
+    } else {
+      Alert::info('Modifier non effectue !', 'Erreur');
+      return redirect('/lieustock');
     }
-
+    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Statut  $statut
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
         $id = decrypt($id);
-        $statut = Statut::findOrFail($id);
-        $statut->delete();
-        Alert::success('Ls statut a bien été supprimé !', 'Réussite');
-        return redirect('/Statut');
-
+        $lieustock = LieuStock::findOrFail($id);
+        $lieustock->delete();
+        Alert::success('Affectation supprimer avec succes');
+        return redirect('/lieustock');
     }
 }

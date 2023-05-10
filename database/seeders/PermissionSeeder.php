@@ -33,9 +33,21 @@ class PermissionSeeder extends Seeder
         'comm-list',    //14
         'comm-create',  //15
         'comm-edit',    //16
-        'comm-delete'   //17
+        'comm-delete',   //17
+        'role-list',
+        'role-create',
+        'role-edit',
+        'role-delete',
+        'grade-list',
+        'grade-create',
+        'grade-edit',
+        'grade-delete',
+        'arme-list',
+        'arme-create',
+        'arme-edit',
+        'arme-delete'
      ];
-     
+
      foreach ($permissions as $permission) {
           Permission::create(['name' => $permission]);
      }

@@ -8,8 +8,6 @@
       <form id="enableOTPForm" class="row g-3" action="{{route('Muni.store')}}" method="POST">
         @csrf
 
-
-
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Type</label>
           <div class="input-group input-group-merge">
@@ -19,7 +17,7 @@
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Libelle</label>
           <div class="input-group input-group-merge">
-            <input required type="text" autocomplete="off" maxlength="10" name="libelle" class="form-control phone-mask" placeholder="Libelle" />
+            <input required type="text" autocomplete="off" name="libelle" class="form-control phone-mask" placeholder="Libelle" />
           </div>
         </div>
 
@@ -27,22 +25,23 @@
       <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">Stock</label>
         <div class="input-group input-group-merge">
-          <input required type="number" autocomplete="off" mixlength="5" name="stock" class="form-control phone-mask" placeholder="stock" />
+          <input required type="number" autocomplete="off" name="stock" class="form-control phone-mask" placeholder="stock" />
         </div>
       </div>
+        <br>
 
-        <div class="col-12">
-            <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
+       <div class="col-12">
+            <label class="form-label" for="modalEnableOTPPhone">Lieu de Stockage</label>
             <div class="input-group input-group-merge">
-                <select class="form-control" name="commissariats_id">
-                    <option value=""> -- Choisissez un Commissariat --</option>
-                    @foreach($comms as $comm)
-                    <option value="{{ $comm->id }}">{{ $comm->libelle }}
+                <select class="form-control" name="lieustock_id">
+                    <option value=""> -- Choisissez un Lieustock --</option>
+                    @foreach($lieustock as $lieustock)
+                    <option value="{{ $lieustock->id }}">{{ $lieustock->entrepot }}
                     </option>
                     @endforeach
                 </select>
             </div>
-          </div>      <br>
+          </div> <br>
 
         <div class="col-12">
           <button type="submit" class="btn btn-primary me-sm-3 me-1">Enregistrer</button>

@@ -6,6 +6,8 @@ use App\Models\Munition;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\LieuStock;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MunitionController extends Controller
 {
@@ -15,8 +17,10 @@ class MunitionController extends Controller
     {
         $munis = Munition::latest()->get();
         $comms = Commissariat::latest()->get();
+        $munition = Munition::all();
+        $lieustock = LieuStock::get();
 
-        return view('content.CRUD.muni-crud', compact('munis', 'comms'));
+        return view('content.CRUD.muni-crud', compact('munis', 'comms', 'munition', 'lieustock'));
     }
 
     public function store(Request $request){
@@ -26,7 +30,7 @@ class MunitionController extends Controller
             'type' => 'required|max:255',
             'libelle' => 'required|max:255',
             'stock' => 'required|max:255',
-            'commissariats_id' => 'required|',
+            'lieustock_id' => 'required',
         ]);
 
         $muni = Munition::create([
@@ -34,14 +38,14 @@ class MunitionController extends Controller
             'type' => $request->type,
             'libelle' => $request->libelle,
             'stock' => $request->stock,
-            'commissariats_id' => $request->commissariats_id,
+            'lieustock_id' => $request->lieustock_id,
 
         ]);
         if ($muni) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Munition');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Munition');
         }
     }
@@ -51,22 +55,18 @@ class MunitionController extends Controller
 
         $id = decrypt($id);
 
-        $validateData = $this->validate($request,[
-
-            'type' => 'required|max:255',
-            'libelle' => 'required|max:255',
-            'stock' => 'required|max:255',
-            'commissariats_id' => 'required|',
-
-        ]);
-
-        $muni = Munition::whereId($id)->update($validateData);
+        $muni = Munition::find($id);
+        $muni->type = $request->type;
+        $muni->libelle = $request->libelle;
+        $muni->stock = $request->stock;
+        $muni->lieustock_id = $request->lieustock_id;
+        $muni->save();
 
         if($muni){
-            toastr()->success('Munition a ete bien modifier !', 'Reussite');
+            Alert::success('Munition a ete bien modifier !', 'Reussite');
             return redirect('/Munition');
         }else{
-            toastr()->error('Modifier non effectue !', 'Erreur');
+            Alert::error('Modifier non effectue !', 'Erreur');
         }
 
     }
@@ -79,7 +79,7 @@ class MunitionController extends Controller
         $muni = Munition::findOrFail($id);
 
         $muni->delete($id);
-        toastr()->success('La munition a bien été supprimé !', 'Réussite');
+        Alert::success('La munition a bien été supprimé !', 'Réussite');
         return redirect('/Munition');
 
     }

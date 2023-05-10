@@ -6,13 +6,14 @@ use PDF;
 use App\Models\Carte;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\CRUDS\CarteController;
 
 class CarteController extends Controller
 {
     public function CarteView(){
-       
-       
+
+
     }
 
     public function index(){
@@ -26,9 +27,9 @@ class CarteController extends Controller
     public function store(Request $request)
     {
         // dd($this->validate);
-       
+
         $this->validate($request,[
-            
+
             'n_delivrance' => 'required|max:255',
             'lieu' => 'required|max:255',
             'village_de' => 'required|max:255',
@@ -46,7 +47,7 @@ class CarteController extends Controller
             'teint' => 'required|max:255',
             'cheveux' => 'required|max:255',
             'signes' => 'required|max:255',
-            'carte_n' => 'required|max:255', 
+            'carte_n' => 'required|max:255',
         ]);
        //  dd($request);
        // $photo = $request->file('photo');
@@ -74,14 +75,14 @@ class CarteController extends Controller
             'teint' => $request->teint,
             'cheveux' => $request->cheveux,
             'signes' => $request->signes,
-            'carte_n' => $request->carte_n, 
+            'carte_n' => $request->carte_n,
         ]);
 
         if ($carte) {
-            toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Carte');
         } else {
-            toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Carte');
         }
 
@@ -113,10 +114,10 @@ class CarteController extends Controller
 
         $carte = Carte::whereId($id)->update($validateData);
         if ($carte) {
-            toastr()->success('La carte a bien été modifié !', 'Réussite');
+            Alert::success('La carte a bien été modifié !', 'Réussite');
             return redirect('/Carte');
         } else {
-            toastr()->error('Modification non effectuée !', 'Erreur');
+            Alert::error('Modification non effectuée !', 'Erreur');
             return redirect('/Carte');
         }
     }
@@ -126,14 +127,14 @@ class CarteController extends Controller
 
         $carte = Carte::findOrFail($id);
         $carte->delete();
-        toastr()->success('La carte a bien été supprimé !', 'Réussite');
+        Alert::success('La carte a bien été supprimé !', 'Réussite');
         return redirect('/Carte');
 
     }
 
     public function PDF(Request $request) {
 
-    
+
         //$resi = Residence::find($request->id);
         //$pdf = App::make('dompdf.wrapper');
        // $pdf->loadView('_partials.pdfResi', compact('resi'));
@@ -147,5 +148,5 @@ class CarteController extends Controller
        return $pdf->stream();
     }
 
- 
+
 }

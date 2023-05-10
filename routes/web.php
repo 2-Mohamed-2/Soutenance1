@@ -14,7 +14,9 @@ use App\Http\Controllers\CRUDS\StatutController;
 use App\Http\Controllers\CRUDS\InconnuController;
 use App\Http\Controllers\CRUDS\SectionController;
 use App\Http\Controllers\CRUDS\ArmementController;
+use App\Http\Controllers\CRUDS\LieuStockController;
 use App\Http\Controllers\CRUDS\MaterielController;
+use App\Http\Controllers\CRUDS\MuniAffController;
 use App\Http\Controllers\CRUDS\MunitionController;
 use App\Http\Controllers\CRUDS\VehiculeController;
 use App\Http\Controllers\CRUDS\ResidenceController;
@@ -300,6 +302,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       //Route pour Tenueaff
       Route::get('/tenueaff', [TenueAffController::class, 'TenueAff'])->name('tenueaff');
       Route::resource('/tenueaff', TenueAffController::class);
+      // Route pour munition affecter
+      Route::get('/muniaff', [MuniAffController::class, 'index'])->name('muniaff');
+      Route::resource('/muniaff', MuniAffController::class);
+
 
 
 
@@ -322,6 +328,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     // Route pour le profil du user
     Route::get('/Compte/Profil', [UserProfilView::class, 'index'])->name('compte-profil-user-view');
 
+    //Lieu de stockage
+    Route::get('/lieu/stockage', [LieuStockController::class, 'index'])->name('lieustock');
+    Route::resource('/lieustock', LieuStockController::class);
+
   });
 
-// });

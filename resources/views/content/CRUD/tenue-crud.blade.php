@@ -22,7 +22,7 @@ use App\Models\Tenue;
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Vehicule</span>
+            <span>Tenue</span>
             <div class="d-flex align-items-end mt-2">
               <h3 class="mb-0 me-2">{{ count(Tenue::all()) }}</h3>
               <small class="text-success">(100%)</small>
@@ -30,7 +30,7 @@ use App\Models\Tenue;
             <small>Total Tenue</small>
           </div>
           <span class="badge bg-label-primary rounded p-2">
-            <i class="bx bx-car bx-sm"></i>
+            <i class="fa fa-shirt bx-sm"></i>
           </span>
         </div>
       </div>
@@ -49,7 +49,7 @@ use App\Models\Tenue;
             <small>Total tenue affecter</small>
           </div>
           <span class="badge bg-label-success rounded p-2">
-            <i class="bx bx-car bx-sm"></i>
+            <i class="fa fa-shirt bx-sm"></i>
           </span>
         </div>
       </div>

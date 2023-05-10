@@ -27,7 +27,9 @@ class AccessRoles extends Controller
   public function index()
   {
     $roles = Role::all();
-    $permissions = Permission::get();
+    $permissions = Permission::all();
+
+
     return view('content.CRUD.role-crud', compact('roles','permissions'));
   }
 
@@ -38,19 +40,18 @@ class AccessRoles extends Controller
       'role_id' => 'required',
     ]);
 
-    $user = User::find($request->input('model_id'));
-    // dd($user);
-
-    $rols = DB::table('model_has_roles')->where('model_id', $user->id)->exists();
-
-    if ($rols) {
-      DB::table('model_has_roles')->where('model_id',$user->id)->delete();
-      $test = $user->assignRole($request->input('role_id'));
+    $permissions = $request->permission;
+    $test=Role::where('name', $request->RoleName)->exists();
+    //dd($test);
+    if ($test) {
+      Alert::error('Ce nom de role existe déjà !', 'Erreur');
+      return redirect('/access-roles');
+    }else {
+      $role = Role::create([
+        'name' => $request->RoleName,
+      ]);
     }
-    else {
-      $test = $user->assignRole($request->input('role_id'));
-    }
-   
+
 
     if ($test) {
       Alert::success('Réussite', 'Les roles sont bien assignes !');
@@ -64,6 +65,7 @@ class AccessRoles extends Controller
 
   public function store(Request $request)
   {
+    $permissions = $request->permission;
 
     $this->validate($request, [
       'RoleName' => 'required|unique:roles,name',
@@ -74,13 +76,16 @@ class AccessRoles extends Controller
     $role->syncPermissions($request->input('permission'));
 
     if ($role) {
-      Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
+      $role->syncPermissions($permissions);
+      $permissions->assignRole($role);
+
+      Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
       return redirect('/access-roles');
     } else {
-        Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+        Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
         return redirect('/access-roles');
     }
-    
+
 
   }
 
@@ -106,7 +111,7 @@ class AccessRoles extends Controller
                   ])->exists();
     //dd($test);
     if ($test) {
-      Alert::error('Erreur', 'Ce nom de role existe déjà !');
+      Alert::error('Ce nom de role existe déjà !', 'Erreur');
       return redirect('/access-roles');
     }else {
       $role->name = $request->input('RoleName');
@@ -116,12 +121,12 @@ class AccessRoles extends Controller
     if ($request->has('permission')) {
       if ($role) {
         $role->syncPermissions($request->input('permission'));
-          //$permissions->assignRole($role);
+          $permissions->assignRole($role);
 
-        Alert::success('Erreur', 'L\'enregistrement a bien été effectué !');
+        Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
         return redirect('/access-roles');
       } else {
-          Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+          Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
           return redirect('/access-roles');
       }
     } else {
@@ -137,7 +142,7 @@ class AccessRoles extends Controller
 
     $role = Role::findOrFail($id);
     $role->delete();
-    Alert::success('Réussite', 'Le role a bien été supprimé !');
+    Alert::success('Le role a bien été supprimé !', 'Réussite');
     return redirect('/access-roles');
   }
 

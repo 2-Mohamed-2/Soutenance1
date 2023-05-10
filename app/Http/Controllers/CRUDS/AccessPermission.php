@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\CRUDS;
 
-use App\Http\Controllers\Controller;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 
 class AccessPermission extends Controller
@@ -40,10 +41,10 @@ class AccessPermission extends Controller
     ]);
 
     if ($permission) {
-        toastr()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+      Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
         return redirect('/access-permission');
     } else {
-        toastr()->error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+      Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
         return redirect('/access-permission');
     }
 
@@ -59,10 +60,10 @@ class AccessPermission extends Controller
 
         $grade = Permission::whereId($id)->update($validateData);
         if ($grade) {
-            toastr()->success('La permission a bien été modifié !', 'Réussite');
+            Alert::success('La permission a bien été modifié !', 'Réussite');
             return redirect('/access-permission');
         } else {
-            toastr()->error('Modification non effectuée !', 'Erreur');
+            Alert::error('Modification non effectuée !', 'Erreur');
             return redirect('/access-permission');
         }
   }
@@ -72,7 +73,7 @@ class AccessPermission extends Controller
 
     $grade = Permission::findOrFail($id);
     $grade->delete();
-    toastr()->success('La permission a bien été supprimé !', 'Réussite');
+    Alert::success('La permission a bien été supprimé !', 'Réussite');
     return redirect('/access-permission');
   }
 
