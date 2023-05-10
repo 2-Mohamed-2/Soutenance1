@@ -13,6 +13,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class VehiculeController extends Controller
 {
+  function __construct()
+  {
+    $this->middleware('permission:vehicule-list|vehicule-create|vehicule-edit|vehicule-delete', ['only' => ['VehiView', 'store']]);
+    $this->middleware('permission:vehicule-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:vehicule-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:vehicule-delete', ['only' => ['destroy']]);
+  }
 
     public function VehiView(Request $request){
         $vehicules = Vehicule::paginate(5);

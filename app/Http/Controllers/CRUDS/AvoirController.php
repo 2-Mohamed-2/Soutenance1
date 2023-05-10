@@ -13,6 +13,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AvoirController extends Controller
 {
+
+  function __construct()
+  {
+    $this->middleware('permission:arme-affecte-list|arme-affecte-create|arme-affecte-edit|arme-affecte-delete', ['only' => ['index', 'store']]);
+    $this->middleware('permission:arme-affecte-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:arme-affecte-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:arme-affecte-delete', ['only' => ['destroy']]);
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +29,7 @@ class AvoirController extends Controller
      */
     public function index()
     {
-        //
+
 
         $avoirs = Avoir::paginate(5);
         $comms = Commissariat::latest()->get();

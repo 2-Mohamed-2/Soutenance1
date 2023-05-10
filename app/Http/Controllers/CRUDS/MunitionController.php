@@ -11,6 +11,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class MunitionController extends Controller
 {
+  function __construct()
+  {
+    $this->middleware('permission:muni-list|muni-create|muni-edit|muni-delete', ['only' => ['MuniView', 'store']]);
+    $this->middleware('permission:muni-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:muni-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:muni-delete', ['only' => ['destroy']]);
+  }
+
     //
 
     public function MuniView()

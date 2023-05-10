@@ -26,7 +26,7 @@
           <th>Type</th>
           <th>Libelle</th>
           <th>Stock</th>
-          {{-- <th>Commissariat</th> --}}
+          <th>Lieu Stockage</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -36,7 +36,7 @@
           <td><strong>{{$muni->type}}</strong></td>
           <td>{{$muni->libelle}}</span></td>
           <td>{{$muni->stock}}</span></td>
-          {{-- <td>{{$muni->commissariat->libelle}}</span></td> --}}
+          <td>{{$muni->lieu_stock_id->entrepot}}</span></td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
@@ -51,9 +51,9 @@
             {{-- Vue du modal de suppression --}}
           @include('_partials/_modals/_CRUD-MUNI/modal-deleteMuni')
             {{-- Vue du modal de modification --}}
-         @include('_partials/_modals/_CRUD-MUNI/modal-updtMuni')  
+         @include('_partials/_modals/_CRUD-MUNI/modal-updtMuni')
 
-          
+
 
          </td>
         </tr>
@@ -62,7 +62,7 @@
        @endforelse
 
 
-      </tbody> 
+      </tbody>
     </table>
   </div>
 </div>
@@ -70,7 +70,7 @@
 {{-- Vue du modal d'insertion --}}
 @include('_partials/_modals/_CRUD-MUNIAFF/modal-addMuniaff')
   @include('_partials/_modals/_CRUD-MUNI/modal-addMuni')
-  
+
 
 
 @endsection

@@ -11,7 +11,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class TenueController extends Controller
 {
-    //
+  //
+  function __construct()
+  {
+    $this->middleware('permission:tenue-list|tenue-create|tenue-edit|tenue-delete', ['only' => ['index', 'store']]);
+    $this->middleware('permission:tenue-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:tenue-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:tenue-delete', ['only' => ['destroy']]);
+  }
+
 
     public function TenueView()
     {

@@ -1,4 +1,4 @@
-<!-- Enable OTP Modal -->
+.<!-- Enable OTP Modal -->
 <div class="modal fade" id="gradeUpdt{{$grade->id}}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
       <div class="modal-content p-3 p-md-5">
@@ -12,7 +12,7 @@
           <form id="enableOTPForm" class="row g-3" action="{{route('Grade.update', encrypt($grade->id))}}" method="POST">
             @method('PUT')
             @csrf
-    
+
             </div>
             <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Libelle</label>

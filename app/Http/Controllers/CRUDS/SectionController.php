@@ -11,6 +11,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class SectionController extends Controller
 {
+  function __construct()
+  {
+    $this->middleware('permission:sect-list|sect-create|sect-edit|sect-delete', ['only' => ['SectView', 'store']]);
+    $this->middleware('permission:sect-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:sect-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:sect-delete', ['only' => ['destroy']]);
+  }
+
     public function SectView(){
 
         $sects = Section::latest()->get();

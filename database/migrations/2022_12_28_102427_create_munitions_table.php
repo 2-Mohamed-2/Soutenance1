@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('libelle');
             $table->string('stock');
-            $table->foreignId('commissariats_id')->constrained()->OnUpdate('cascade')->OnDelete('Cascade');
+             $table->foreignId('lieu_stock_id')->constrained()->OnUpdate('Cascade')->OnDelete('Cascade');
             $table->timestamps();
         });
     }

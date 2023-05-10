@@ -11,6 +11,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class TenueAffController extends Controller
 {
+
+  function __construct()
+  {
+    $this->middleware('permission:tenueaff-list|tenueaff-create|tenueaff-edit|tenueaff-delete', ['only' => ['index', 'store']]);
+    $this->middleware('permission:tenueaff-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:tenueaff-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:tenueaff-delete', ['only' => ['destroy']]);
+  }
+
   /**
    * Display a listing of the resource.
    *

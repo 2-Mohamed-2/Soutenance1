@@ -11,6 +11,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class MuniAffController extends Controller
 {
+  function __construct()
+  {
+    $this->middleware('permission:muniaff-list|muniaff-create|muniaff-edit|muniaff-delete', ['only' => ['index', 'store']]);
+    $this->middleware('permission:muniaff-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:muniaff-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:muniaff-delete', ['only' => ['destroy']]);
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -55,11 +63,11 @@ class MuniAffController extends Controller
           $muniaff->date_acqui = now();
           $muniaff->save();
         }
-         if ($muniaff) 
+         if ($muniaff)
          {
           Alert::success('Affectation reussi avec succes');
           return redirect('/muniaff');
-         } else 
+         } else
          {
           Alert::info('Affectation non effectuer');
           return redirect('/muniaff');
@@ -103,11 +111,11 @@ class MuniAffController extends Controller
       $muniaff->commissariat_id = $request->commissariat_id;
       $muniaff->munition_id = $request->munition_id;
       $muniaff->save();
-      if ($muniaff) 
+      if ($muniaff)
       {
       Alert::success('Affectation a ete bien modifier !', 'Reussite');
         return redirect('/muniaff');
-      } else 
+      } else
       {
        Alert::info('Modifier non effectue !', 'Erreur');
         return redirect('/muniaff');

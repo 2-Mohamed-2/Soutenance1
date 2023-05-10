@@ -11,7 +11,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ResidenceController extends Controller
 {
-    //
+  //
+  function __construct()
+  {
+    $this->middleware('permission:resi-list|resi-create|resi-edit|resi-delete', ['only' => ['ResiView', 'store']]);
+    $this->middleware('permission:resi-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:resi-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:resi-delete', ['only' => ['destroy']]);
+  }
+
     public function ResiView(){
 
         $resis = Residence::latest()->get();

@@ -14,6 +14,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class VoitAffecteController extends Controller
 {
+  function __construct()
+  {
+    $this->middleware('permission:voitaffecte-list|voitaffecte-create|voitaffecte-edit|voitaffecte-delete', ['only' => ['index', 'store']]);
+    $this->middleware('permission:voitaffecte-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:voitaffecte-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:voitaffecte-delete', ['only' => ['destroy']]);
+  }
+
   /**
    * Display a listing of the resource.
    *

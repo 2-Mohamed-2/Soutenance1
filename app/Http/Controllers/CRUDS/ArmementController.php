@@ -16,9 +16,6 @@ class ArmementController extends Controller
     $this->middleware('permission:arme-create', ['only' => ['create', 'store']]);
     $this->middleware('permission:arme-edit', ['only' => ['edit', 'update']]);
     $this->middleware('permission:arme-delete', ['only' => ['destroy']]);
-
-
-    // $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
   }
 
     public function ArmeView(Request $request)
