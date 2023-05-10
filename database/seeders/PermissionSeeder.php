@@ -34,14 +34,6 @@ class PermissionSeeder extends Seeder
         'comm-create',  //15
         'comm-edit',    //16
         'comm-delete',   //17
-        'role-list',
-        'role-create',
-        'role-edit',
-        'role-delete',
-        'grade-list',
-        'grade-create',
-        'grade-edit',
-        'grade-delete',
         'arme-list',
         'arme-create',
         'arme-edit',
