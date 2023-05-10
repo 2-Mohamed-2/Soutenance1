@@ -19,15 +19,15 @@ class RoleSeeder extends Seeder
     {
       DB::table('roles')->insert([
         $role1 = [
-          'name' => 'Supreme',
-        ],
-        $role2 = [
+          'guard_name' => 'web',
           'name' => 'Administrateur',
         ],
-        $role3 = [
+        $role2 = [
+          'guard_name' => 'web',
           'name' => 'Administrateur_2',
         ],
-        $role4 = [
+        $role3 = [
+          'guard_name' => 'web',
           'name' => 'Utilisateur',
         ]
 
