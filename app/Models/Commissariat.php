@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Avoir;
+use App\Models\MuniAff;
 use App\Models\Section;
 use App\Models\Munition;
 use App\Models\Vehicule;
@@ -66,4 +67,10 @@ class Commissariat extends Model
   {
     return $this->hasMany(VoitAffecte::class);
   }
+
+  public function muniaff()
+  {
+    return $this->hasMany(MuniAff::class);
+  }
+ 
 }

@@ -15,7 +15,7 @@
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des Membres du commissariat</h5>
-  <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
+  <button class="btn btn-primary col-5 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
     Créer un nouveau membre
     
   </button>

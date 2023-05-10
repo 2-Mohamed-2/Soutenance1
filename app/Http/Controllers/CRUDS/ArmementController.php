@@ -10,7 +10,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ArmementController extends Controller
 {
-    //
+  function __construct()
+  {
+    $this->middleware('permission:arme-list|arme-create|arme-edit|arme-delete', ['only' => ['ArmeView', 'store']]);
+    $this->middleware('permission:arme-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:arme-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:arme-delete', ['only' => ['destroy']]);
+
+
+    // $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
+  }
 
     public function ArmeView(Request $request)
     {
@@ -21,7 +30,7 @@ class ArmementController extends Controller
         ->get();
 
       }else{
-        $armes = Armement::paginate(5);
+      $armes = Armement::paginate(5);
       }
 
 

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\CRUDS;
 
-use App\Http\Controllers\Controller;
+use App\Models\MuniAff;
+use App\Models\Munition;
+use App\Models\Commissariat;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MuniAffController extends Controller
 {
@@ -15,6 +19,10 @@ class MuniAffController extends Controller
     public function index()
     {
         //
+        $muniaff = MuniAff::paginate(5);
+        $comms = Commissariat::all();
+        $munition = Munition::get();
+        return view('content.CRUD.muniaff-crud', compact('muniaff', 'comms', 'munition'));
     }
 
     /**
@@ -35,7 +43,28 @@ class MuniAffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data =  $this->validate($request,[
+          'commissariat_id' => 'required',
+          'munition_id' => 'required'
+        ]);
+        for($i= 0; $i < count($request->munition_id); $i++)
+        {
+          $muniaff = new MuniAff();
+          $muniaff->commissariat_id = $request->commissariat_id;
+          $muniaff->munition_id = $request->commissariat_id[$i];
+          $muniaff->date_acqui = now();
+          $muniaff->save();
+        }
+         if ($muniaff) 
+         {
+          Alert::success('Affectation reussi avec succes');
+          return redirect('/muniaff');
+         } else 
+         {
+          Alert::info('Affectation non effectuer');
+          return redirect('/muniaff');
+         }
+         return redirect()->back();
     }
 
     /**
@@ -69,7 +98,20 @@ class MuniAffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $id = decrypt($id);
+      $muniaff = MuniAff::find($id);
+      $muniaff->commissariat_id = $request->commissariat_id;
+      $muniaff->munition_id = $request->munition_id;
+      $muniaff->save();
+      if ($muniaff) 
+      {
+      Alert::success('Affectation a ete bien modifier !', 'Reussite');
+        return redirect('/muniaff');
+      } else 
+      {
+       Alert::info('Modifier non effectue !', 'Erreur');
+        return redirect('/muniaff');
+      }
     }
 
     /**
@@ -80,6 +122,11 @@ class MuniAffController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id = decrypt($id);
+        $muniaff = MuniAff::findOrFail($id);
+        $muniaff->delete();
+        Alert::success('Affectation supprimer avec succes');
+        return redirect('/muniaff');
+
     }
 }

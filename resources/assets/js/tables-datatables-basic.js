@@ -348,30 +348,30 @@ $(function () {
                 }
               }
             },
-            {
-              extend: 'pdf',
-              text: '<i class="bx bxs-file-pdf me-2"></i>Pdf',
-              className: 'dropdown-item',
-              exportOptions: {
-                columns: [3, 4, 5, 6, 7],
-                // prevent avatar to be display
-                format: {
-                  body: function (inner, coldex, rowdex) {
-                    if (inner.length <= 0) return inner;
-                    var el = $.parseHTML(inner);
-                    var result = '';
-                    $.each(el, function (index, item) {
-                      if (item.classList !== undefined && item.classList.contains('user-name')) {
-                        result = result + item.lastChild.firstChild.textContent;
-                      } else if (item.innerText === undefined) {
-                        result = result + item.textContent;
-                      } else result = result + item.innerText;
-                    });
-                    return result;
-                  }
-                }
-              }
-            },
+            // {
+            //   extend: 'pdf',
+            //   text: '<i class="bx bxs-file-pdf me-2"></i>Pdf',
+            //   className: 'dropdown-item',
+            //   exportOptions: {
+            //     columns: [3, 4, 5, 6, 7],
+            //     // prevent avatar to be display
+            //     format: {
+            //       body: function (inner, coldex, rowdex) {
+            //         if (inner.length <= 0) return inner;
+            //         var el = $.parseHTML(inner);
+            //         var result = '';
+            //         $.each(el, function (index, item) {
+            //           if (item.classList !== undefined && item.classList.contains('user-name')) {
+            //             result = result + item.lastChild.firstChild.textContent;
+            //           } else if (item.innerText === undefined) {
+            //             result = result + item.textContent;
+            //           } else result = result + item.innerText;
+            //         });
+            //         return result;
+            //       }
+            //     }
+            //   }
+            // },
             {
               extend: 'copy',
               text: '<i class="bx bx-copy me-2" ></i>Copy',

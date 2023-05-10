@@ -24,9 +24,13 @@ class PermissionSeeder extends Seeder
         'grade-list',
         'grade-create',
         'grade-edit',
-        'grade-delete'
+        'grade-delete',
+        'arme-list',
+        'arme-create',
+        'arme-edit',
+       'arme-delete'
      ];
-     
+
      foreach ($permissions as $permission) {
           Permission::create(['name' => $permission]);
      }

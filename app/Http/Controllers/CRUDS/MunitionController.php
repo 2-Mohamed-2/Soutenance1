@@ -6,6 +6,7 @@ use App\Models\Munition;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\LieuStock;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MunitionController extends Controller
@@ -16,8 +17,10 @@ class MunitionController extends Controller
     {
         $munis = Munition::latest()->get();
         $comms = Commissariat::latest()->get();
+        $munition = Munition::all();
+        $lieustock = LieuStock::get();
 
-        return view('content.CRUD.muni-crud', compact('munis', 'comms'));
+        return view('content.CRUD.muni-crud', compact('munis', 'comms', 'munition', 'lieustock'));
     }
 
     public function store(Request $request){
@@ -27,7 +30,7 @@ class MunitionController extends Controller
             'type' => 'required|max:255',
             'libelle' => 'required|max:255',
             'stock' => 'required|max:255',
-            'commissariats_id' => 'required|',
+            'lieustock_id' => 'required',
         ]);
 
         $muni = Munition::create([
@@ -35,7 +38,7 @@ class MunitionController extends Controller
             'type' => $request->type,
             'libelle' => $request->libelle,
             'stock' => $request->stock,
-            'commissariats_id' => $request->commissariats_id,
+            'lieustock_id' => $request->lieustock_id,
 
         ]);
         if ($muni) {
@@ -52,16 +55,12 @@ class MunitionController extends Controller
 
         $id = decrypt($id);
 
-        $validateData = $this->validate($request,[
-
-            'type' => 'required|max:255',
-            'libelle' => 'required|max:255',
-            'stock' => 'required|max:255',
-            'commissariats_id' => 'required|',
-
-        ]);
-
-        $muni = Munition::whereId($id)->update($validateData);
+        $muni = Munition::find($id);
+        $muni->type = $request->type;
+        $muni->libelle = $request->libelle;
+        $muni->stock = $request->stock;
+        $muni->lieustock_id = $request->lieustock_id;
+        $muni->save();
 
         if($muni){
             Alert::success('Munition a ete bien modifier !', 'Reussite');

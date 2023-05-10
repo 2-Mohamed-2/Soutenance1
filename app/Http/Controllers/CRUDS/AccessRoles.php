@@ -65,6 +65,7 @@ class AccessRoles extends Controller
 
   public function store(Request $request)
   {
+    $permissions = $request->permission;
 
     $this->validate($request, [
       'RoleName' => 'required|unique:roles,name',
@@ -76,7 +77,7 @@ class AccessRoles extends Controller
 
     if ($role) {
       $role->syncPermissions($permissions);
-      //$permissions->assignRole($role);
+      $permissions->assignRole($role);
 
       Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
       return redirect('/access-roles');
@@ -120,7 +121,7 @@ class AccessRoles extends Controller
     if ($request->has('permission')) {
       if ($role) {
         $role->syncPermissions($request->input('permission'));
-          //$permissions->assignRole($role);
+          $permissions->assignRole($role);
 
         Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
         return redirect('/access-roles');
