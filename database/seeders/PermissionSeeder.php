@@ -17,14 +17,23 @@ class PermissionSeeder extends Seeder
     public function run()
     {
       $permissions = [
-        'role-list',
-        'role-create',
-        'role-edit',
-        'role-delete',
-        'grade-list',
-        'grade-create',
-        'grade-edit',
-        'grade-delete'
+        'role-list',      //1
+        'role-create',    //2
+        'role-edit',      //3
+        'role-delete',    //4
+        'grade-list',     //5
+        'grade-create',   //6
+        'grade-edit',     //7
+        'grade-delete',   //8
+        'role-to-user',   //9
+        'membre-list',    //10
+        'membre-create',  //11
+        'membre-edit',    //12
+        'membre-delete',   //13
+        'comm-list',    //14
+        'comm-create',  //15
+        'comm-edit',    //16
+        'comm-delete'   //17
      ];
      
      foreach ($permissions as $permission) {

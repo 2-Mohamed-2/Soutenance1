@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\CRUDS;
 
-use DB;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
 
@@ -21,7 +21,7 @@ class AccessRoles extends Controller
     $this->middleware('permission:role-delete', ['only' => ['destroy']]);
 
 
-    $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:role-to-user', ['only' => ['roleUser']]);
   }
 
   public function index()

@@ -10,6 +10,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ComController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('permission:comm-list|comm-create|comm-edit|comm-delete', ['only' => ['ComView', 'store']]);
+        $this->middleware('permission:comm-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:comm-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:comm-delete', ['only' => ['destroy']]);
+    }
+
     public function ComView(){
         $coms = Commissariat::latest()->get();        
         

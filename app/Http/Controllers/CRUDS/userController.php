@@ -15,6 +15,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class userController extends Controller
 {
+
+  // function __construct()
+  // {
+  //   $this->middleware('permission:membre-list|membre-create|membre-edit|membre-delete', ['only' => ['index', 'store']]);
+  //   $this->middleware('permission:membre-create', ['only' => ['create', 'store']]);
+  //   $this->middleware('permission:membre-edit', ['only' => ['edit', 'update']]);
+  //   $this->middleware('permission:membre-delete', ['only' => ['destroy']]);
+  // }
+
     /**
      * Display a listing of the resource.
      *
@@ -191,8 +200,6 @@ class userController extends Controller
     $id = decrypt($id);
 
     $user = User::findOrFail($id);
-
-    ActivityLogs::log(auth()->user()->id, $request->ip(), 'Destroy', '/Membre/Destroy-'.$user->name);
 
     $user->delete();
     Alert::success('Le membre a bien été supprimé !', 'Réussite');
