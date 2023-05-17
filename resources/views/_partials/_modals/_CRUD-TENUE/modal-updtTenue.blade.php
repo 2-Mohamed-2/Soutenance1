@@ -34,21 +34,24 @@
               </div>
             </div>
 
-            <div class="col-12">
-
-                <label class="form-label" for="modalEnableOTPPhone">Annee</label>
-                <div class="input-group input-group-merge">
-                  <input required type="year" autocomplete="off" minlength="5" name="annee" value="{{$tenue->annee}}" class="form-control phone-mask" placeholder="" />
-                </div>
-              </div>
-
-
                 <div class="col-12">
                   <label class="form-label" for="modalEnableOTPPhone">Stock</label>
                   <div class="input-group input-group-merge">
                     <input required type="number" autocomplete="off" minlength="5" name="stock" value="{{$tenue->stock}}" class="form-control phone-mask" placeholder="" />
                   </div>
                 </div>
+
+                <div class="col-12">
+                  <label class="form-label" for="modalEnableOTPPhone">Lieu de Stockage</label>
+                  <div class="input-group input-group-merge">
+                    <select class="form-control" name="lieu_stock_id">
+                      @foreach($lieustock as $lieustock)
+                      <option value="{{ $lieustock->id }}">{{ $lieustock->entrepot }}
+                      </option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div> <br>
 
             <div class="col-12">
               <button type="submit" class="btn btn-primary me-sm-3 me-1">Modifier</button>

@@ -73,11 +73,11 @@ use App\Models\Tenue;
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>Type</th>
+          <th>Nom</th>
           <th>Modele</th>
           <th>Taille</th>
-          {{-- <th>Annee</th> --}}
-          <th>Stock</th>
+          <th>Quantite</th>
+          <th>Lieu Stockage</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -87,8 +87,8 @@ use App\Models\Tenue;
           <td><strong>{{$tenue->type}}</strong></td>
           <td>{{$tenue->modele}}</span></td>
           <td>{{$tenue->taille}}</span></td>
-          {{-- <td>{{$tenue->annee}}</span></td> --}}
           <td>{{$tenue->stock}}</span></td>
+          <td>{{$tenue->lieu_stock->entrepot}}</span></td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>

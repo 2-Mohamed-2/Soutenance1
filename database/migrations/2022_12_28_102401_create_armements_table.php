@@ -21,6 +21,7 @@ return new class extends Migration
             // $table->string('statut');
             $table->string('lieu');
             $table->integer('stock');
+            $table->foreignId('lieu_stock_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
             $table->timestamps();
         });
     }

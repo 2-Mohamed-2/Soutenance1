@@ -88,8 +88,8 @@
           <th>Modele</th>
           {{-- <th>Identifiant</th> --}}
           <th>Numero serie</th>
-          <th>Stock</th>
-          {{-- <th>Revision</th> --}}
+          <th>Quantite</th>
+          <th>Lieu Stockage</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -101,7 +101,7 @@
           <td>{{$arme->n_serie}}</span></td>
           <td>{{$arme->stock}}</span></td>
           {{-- <td>{{$vehi->revision}}</span></td> --}}
-          {{-- <td>{{$vehi->commissariat->libelle}}</span></td> --}}
+          <td>{{$arme->lieu_stock->entrepot}}</span></td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>

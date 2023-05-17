@@ -14,18 +14,6 @@
             @csrf
 
 
-        {{-- <div class="col-12">
-            <label class="form-label" for="modalEnableOTPPhone">Commissariat</label>
-            <div class="input-group input-group-merge">
-                <select class="form-control" name="commissariats_id">
-                    <option value="{{$arme->commissariat->id}}">{{$arme->commissariat->libelle}}</option>
-                    @foreach($comms as $comm)
-                    <option value="{{ $comm->id }}">{{ $comm->libelle }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-          </div> --}}
 
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Modele</label>
@@ -42,21 +30,6 @@
         </div>
       </div>
 
-        {{-- <div class="col-12">
-          <label class="form-label" for="modalEnableOTPPhone">Revision</label>
-          <div class="input-group input-group-merge">
-            <input required type="year" autocomplete="off" maxlength="10" value="{{$arme->revision}}" name="revision" class="form-control phone-mask" placeholder="Revision" />
-          </div>
-        </div> --}}
-
-
-            <div class="col-12">
-                <label class="form-label" for="modalEnableOTPPhone">Lieu Stockage</label>
-                <div class="input-group input-group-merge">
-                <input required type="year" autocomplete="off" maxlength="10" value="{{$arme->lieu}}" name="lieu" class="form-control phone-mask" placeholder="Lieu" />
-                </div>
-            </div> <br>
-
 
             <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Stock</label>
@@ -64,6 +37,18 @@
                 <input required type="number" autocomplete="off" maxlength="10" value="{{$arme->stock}}" name="stock" class="form-control phone-mask" placeholder="Stock" />
                 </div>
             </div>
+
+            <div class="col-12">
+              <label class="form-label" for="modalEnableOTPPhone">Lieu Stockage</label>
+              <div class="input-group input-group-merge">
+                <select class="form-control" name="lieu_stock_id">
+                  @foreach($lieustock as $lieustock)
+                  <option value="{{ $lieustock->id }}">{{ $lieustock->entrepot }}
+                  </option>
+                  @endforeach
+                </select>
+              </div>
+            </div><br>
 
             <div class="col-12">
               <button type="submit" class="btn btn-primary me-sm-3 me-1">Modifier</button>

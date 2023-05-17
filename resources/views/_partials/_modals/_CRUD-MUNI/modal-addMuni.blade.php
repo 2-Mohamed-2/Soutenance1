@@ -33,7 +33,7 @@
        <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Lieu de Stockage</label>
             <div class="input-group input-group-merge">
-                <select class="form-control" name="lieustock_id">
+                <select class="form-control" name="lieu_stock_id">
                     <option value=""> -- Choisissez un Lieustock --</option>
                     @foreach($lieustock as $lieustock)
                     <option value="{{ $lieustock->id }}">{{ $lieustock->entrepot }}

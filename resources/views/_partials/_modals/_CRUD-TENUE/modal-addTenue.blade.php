@@ -37,7 +37,20 @@
             <div class="input-group input-group-merge">
               <input required type="number" autocomplete="off" minlength="5" name="stock" class="form-control phone-mask" placeholder="" />
             </div>
-          </div><br>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label" for="modalEnableOTPPhone">Lieu de Stockage</label>
+            <div class="input-group input-group-merge">
+              <select class="form-control" name="lieu_stock_id">
+                <option value=""> -- Choisissez un Lieustock --</option>
+                @foreach($lieustock as $lieustock)
+                <option value="{{ $lieustock->id }}">{{ $lieustock->entrepot }}
+                </option>
+                @endforeach
+              </select>
+            </div>
+          </div> <br>
 
         <div class="col-12">
           <button type="submit" class="btn btn-primary me-sm-3 me-1">Enregistrer</button>

@@ -7,6 +7,7 @@ use App\Models\Tenue;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\LieuStock;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TenueController extends Controller
@@ -33,8 +34,9 @@ class TenueController extends Controller
         $tenues = Tenue::paginate(5);
         $comms = Commissariat::latest()->get();
         // $users = User::latest()->get();
+        $lieustock =LieuStock::get();
 
-        return view('content.CRUD.tenue-crud', compact('tenues', 'comms'));
+        return view('content.CRUD.tenue-crud', compact('tenues', 'comms','lieustock'));
     }
 
     public function store(Request $request)
@@ -45,10 +47,10 @@ class TenueController extends Controller
             'type' => 'required|max:255',
             'modele' => 'required|max:255',
             'taille' => 'required|max:255',
-            'annee' => 'required|max:255',
+            // 'annee' => 'required|max:255',
             // 'statut' => 'required|max:255',
             'stock' => 'required|max:255',
-            // 'commissariats_id' => 'required|max:255',
+             'lieu_stock_id' => 'required',
             // 'users_id' => 'required|max:255',
 
 
@@ -59,10 +61,10 @@ class TenueController extends Controller
             'type' => $request->type,
             'modele' => $request->modele,
             'taille' => $request->taille,
-            'annee' => $request->annee,
+            // 'annee' => $request->annee,
             // 'statut' => $request->statut,
             'stock' => $request->stock,
-            // 'commissariats_id' => $request->commissariats_id,
+            'lieu_stock_id' => $request->lieu_stock_id,
             // 'users_id' => $request->users_id,
 
         ]);
@@ -80,26 +82,20 @@ class TenueController extends Controller
     {
 
         $id = decrypt($id);
-
-        $validateData = $this->validate($request, [
-
-            'type' => 'required|max:255',
-            'modele' => 'required|max:255',
-            'taille' => 'required|max:255',
-            'annee' => 'required|max:255',
-            // 'statut' => 'required|max:255',
-            'stock' => 'required|max:255',
-            // 'commissariats_id' => 'required|max:255',
-            // 'users_id' => 'required|max:255',
-
-        ]);
-
-        $tenue = Tenue::whereId($id)->update($validateData);
+        $tenue = Tenue::find($id);
+        $tenue->type = $request->type;
+        $tenue->modele = $request->modele;
+        $tenue->taille = $request->taille;
+        // $tenue->annee = $request->annee;
+        $tenue->stock = $request->stock;
+        $tenue->lieu_stock_id = $request->lieu_stock_id;
+        $tenue->save();
         if($tenue){
             Alert::success('tenue a ete bien modifier !', 'Reussite');
             return redirect('/Tenue');
         }else{
             Alert::error('Modifier non effectue !', 'Erreur');
+            return redirect('/Tenue');
         }
     }
 

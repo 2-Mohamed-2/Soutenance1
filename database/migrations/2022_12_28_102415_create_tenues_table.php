@@ -21,7 +21,7 @@ return new class extends Migration
             // $table->year('annee');
             // $table->string('statut');
             $table->string('stock');
-            $table->foreignId('lieustock_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
+            $table->foreignId('lieu_stock_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
             // $table->foreignId('commissariats_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
             // $table->foreignId('users_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
             $table->timestamps();

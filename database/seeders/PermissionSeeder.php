@@ -50,10 +50,10 @@ class PermissionSeeder extends Seeder
         'muniaff-create',   //31
         'muniaff-edit',     //32
         'muniaff-delete',    //33
-        'residence-list',     //34
-        'residence-create',   //35
-        'residence-edit',     //36
-        'residence-delete',    //37
+        'resi-list',     //34
+        'resi-create',   //35
+        'resi-edit',     //36
+        'resi-delete',    //37
         'section-list',     //38
         'section-create',   //39
         'section-edit',     //40

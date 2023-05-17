@@ -6,6 +6,7 @@ use App\Models\Armement;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\LieuStock;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ArmementController extends Controller
@@ -33,20 +34,22 @@ class ArmementController extends Controller
 
         $comms = Commissariat::latest()->get();
         $armements = Armement::latest()->get();
-        return view('content.CRUD.arme-crud', compact('armes', 'comms', 'armements', 'search'));
+        $lieustock = LieuStock::get();
+        return view('content.CRUD.arme-crud', compact('armes', 'comms', 'armements', 'search','lieustock'));
     }
 
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
 
             // 'commissariats_id' => 'required',
             'modele' => 'required|max:255',
             'n_serie' => 'required|max:255',
             // 'revision' => 'required|max:255',
              // 'statut' => 'required|max:255',
-            'lieu' => 'required|max:255',
+            // 'lieu' => 'required|max:255',
             'stock' => 'required|max:255',
+            'lieu_stock_id' => 'required'
 
         ]);
 
@@ -57,8 +60,9 @@ class ArmementController extends Controller
             'n_serie' => $request->n_serie,
             // 'revision' => $request->revision,
             // 'statut' => $request->statut,
-            'lieu' => $request->lieu,
+            // 'lieu' => $request->lieu,
             'stock' => $request->stock,
+            'lieu_stock_id' => $request->lieu_stock_id,
 
         ]);
         if ($arme) {
@@ -72,19 +76,14 @@ class ArmementController extends Controller
 
     public function update(Request $request, $id){
         $id = decrypt($id);
-        $validateData = $this->validate($request,[
 
-            // 'commissariats_id' => 'required',
-            'modele' => 'required|max:255',
-            'n_serie' => 'required|max:255',
-            // 'revision' => 'required|max:255',
-            // 'statut' => 'required|max:255',
-            'lieu' => 'required|max:255',
-            'stock' => 'required|max:255',
+        $arme = Armement::find($id);
+        $arme->modele = $request->modele;
+        $arme->n_serie = $request->n_serie;
+        $arme->stock = $request->stock;
+        $arme->lieu_stock_id = $request->lieu_stock_id;
+        $arme->save();
 
-        ]);
-
-        $arme = Armement::whereId($id)->update($validateData);
         if ($arme) {
               Alert::success('Arme a bien été modifié !', 'Réussite');
             return redirect('/Armement');

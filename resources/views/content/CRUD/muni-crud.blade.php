@@ -36,7 +36,7 @@
           <td><strong>{{$muni->type}}</strong></td>
           <td>{{$muni->libelle}}</span></td>
           <td>{{$muni->stock}}</span></td>
-          <td>{{$muni->lieu_stock_id->entrepot}}</span></td>
+          <td>{{$muni->lieu_stock->entrepot}}</span></td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>

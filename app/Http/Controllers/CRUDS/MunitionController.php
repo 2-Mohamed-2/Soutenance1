@@ -38,7 +38,7 @@ class MunitionController extends Controller
             'type' => 'required|max:255',
             'libelle' => 'required|max:255',
             'stock' => 'required|max:255',
-            'lieustock_id' => 'required',
+            'lieu_stock_id' => 'required',
         ]);
 
         $muni = Munition::create([
@@ -46,7 +46,7 @@ class MunitionController extends Controller
             'type' => $request->type,
             'libelle' => $request->libelle,
             'stock' => $request->stock,
-            'lieustock_id' => $request->lieustock_id,
+            'lieu_stock_id' => $request->lieu_stock_id,
 
         ]);
         if ($muni) {
@@ -67,7 +67,7 @@ class MunitionController extends Controller
         $muni->type = $request->type;
         $muni->libelle = $request->libelle;
         $muni->stock = $request->stock;
-        $muni->lieustock_id = $request->lieustock_id;
+        $muni->lieu_stock_id = $request->lieu_stock_id;
         $muni->save();
 
         if($muni){

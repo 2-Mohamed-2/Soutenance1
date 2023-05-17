@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Tenue;
+use App\Models\Armement;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class LieuStock extends Model
 {
@@ -14,4 +18,14 @@ class LieuStock extends Model
     {
       return $this->hasMany(Munition::class);
     }
+
+    public function tenue(): HasMany
+    {
+      return $this->hasmany(Tenue::class);
+    }
+
+  public function armement(): HasMany
+  {
+    return $this->hasMany(Armement::class);
+  }
 }

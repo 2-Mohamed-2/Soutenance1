@@ -79,24 +79,19 @@ class ResidenceController extends Controller
     public function update(Request $request, $id){
 
         $id = decrypt($id);
-        $validateData = $this->validate($request,[
+        $resi = Residence::find($id);
 
-            // 'inconnu_id' => 'required',
-            'numero' => 'required|max:255',
-            'certifions' => 'required|max:255',
-            'ne' => 'required|max:255',
-            'a' => 'required|max:255',
-            'fils' => 'required|max:255',
-            'et' => 'required|max:255',
-            'profession' => 'required|max:255',
-            'resulte' => 'required|max:255',
-            'domicile' => 'required|max:255',
-            'kati' => 'required|max:255',
-            'dossier' => 'required|max:255',
-
-        ]);
-
-        $resi = Residence::whereId($id)->update($validateData);
+            // 'numero' => $require->$
+            $resi->certifions = $request->certifions;
+            $resi-> ne = $request->ne;
+            $resi-> a = $request->a;
+            $resi-> fils = $request->fils;
+            $resi-> profession =$request->profession;
+            $resi-> resulte = $request->resulte;
+            $resi-> domicile = $request->domicile;
+            $resi-> kati = $request->kati;
+            $resi->save();
+            
         if ($resi) {
             Alert::info('La residence a bien été modifié !', 'Réussite');
             return redirect('/Residence');

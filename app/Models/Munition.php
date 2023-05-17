@@ -23,7 +23,7 @@ class Munition extends Model
       return $this->hasOne(MuniAff::class);
     }
 
-    public function lieustock()
+    public function lieu_stock(): BelongsTo
     {
       return $this->belongsTo(LieuStock::class);
     }

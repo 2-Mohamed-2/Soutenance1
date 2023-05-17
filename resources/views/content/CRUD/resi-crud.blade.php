@@ -12,7 +12,7 @@
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des Residences enregistrés</h5>
-  <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addResi" aria-controls="offcanvasEnd">
+  <button class="btn btn-primary col-sm-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addResi" aria-controls="offcanvasEnd">
     Créer une nouvelle Residence.
   </button>
   <div class="table-responsive text-nowrap">
@@ -37,8 +37,8 @@
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#resiUpdt{{$resi->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#resiDst{{$resi->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-              <!--  <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#resiPdf{{$resi->id}}"><i class="bx bx-trash me-1"></i>PDF</a> -->
-              <a class="dropdown-item" href="{{ route('residencePDF', $resi->id    ) }};" data-bs-toggle="modal" data-bs-target="#{{$resi->id}}"><i class="fa fa-file-pdf me-1"></i>PDF</a> 
+              
+              <a class="dropdown-item" target="blank" href="{{ route('residencePDF', $resi->id    ) }};" data-bs-toggle="modal" data-bs-target="#{{$resi->id}}"><i class="fa fa-file-pdf me-1"></i>PDF</a>
             </div>
 
             {{-- Vue du modal de modification --}}
