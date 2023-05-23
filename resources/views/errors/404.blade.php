@@ -5,7 +5,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Error - Pages')
+@section('title', 'Introuvable')
 
 @section('page-style')
 <!-- Page -->

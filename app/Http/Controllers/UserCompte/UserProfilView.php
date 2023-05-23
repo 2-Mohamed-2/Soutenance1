@@ -73,7 +73,8 @@ class UserProfilView extends Controller
 
 
     } catch (\Throwable $th) {
-      //throw $th;
+      Alert::error('Erreur', 'L\operation a rencontre une erreur !');
+      return redirect('/Compte/Profil');
     }
 
   }

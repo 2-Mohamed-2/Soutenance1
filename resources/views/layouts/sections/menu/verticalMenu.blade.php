@@ -77,5 +77,26 @@ $configData = Helper::appClasses();
     @endif
     @endforeach
   </ul>
-
+  <div class="menu-divider mb-0"></div>
+  <ul class="m-0 p-0">
+    <li class="menu-block my-1 d-flex flex-row justify-content-between">
+      <a class="fold-show"title="Settings" data-bs-placement="top" data-bs-toggle="tooltip" href="javascript:%20void(0);">
+        <span aria-hidden="true" class="text-body bx bx-cog"></span>
+      </a> 
+      <a title="Lock" data-bs-placement="top" data-bs-toggle="tooltip" href="javascript:%20void(0);">
+        <span aria-hidden="true" class="text-body bx bx-hide"></span>
+      </a> 
+      <a title="Logout" data-bs-placement="top" data-bs-toggle="tooltip" href="javascript:%20void(0);">
+        <span aria-hidden="true" class="text-body bx bx-power-off"></span>
+      </a>
+    </li>
+  </ul>
+  <script>
+    const menus9List = document.querySelectorAll('.menus-9');
+    if (menus9List) {
+      menus9List.forEach(e => {
+        new Menu(e);
+      });
+    }
+  </script>
 </aside>

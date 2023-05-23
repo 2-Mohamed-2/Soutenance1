@@ -11,15 +11,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Yudhatp\ActivityLogs\ActivityLogs;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Permission;
 
 class Analytics extends Controller
 {
+  function __construct()
+  {
+    $this->middleware('permission:dashboard-view', ['only' => ['index']]);
+  }
+
   public function index(Request $request)
   {
 
     $users = User::all();
     $usernbr = $users->count();
-    
 
     return view('content.dashboard.dashboards-principal', compact('usernbr'));
   }

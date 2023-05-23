@@ -21,11 +21,11 @@ class PermissionSeeder extends Seeder
         'role-create',    //2
         'role-edit',      //3
         'role-delete',    //4
-        'grade-list',     //5
-        'grade-create',   //6
-        'grade-edit',     //7
-        'grade-delete',   //8
-        'role-to-user',   //9
+        'role-to-user',   //5 
+        'grade-list',     //6
+        'grade-create',   //7
+        'grade-edit',     //8
+        'grade-delete',   //9
         'membre-list',    //10
         'membre-create',  //11
         'membre-edit',    //12
@@ -73,7 +73,9 @@ class PermissionSeeder extends Seeder
         'vehicule-affecte-list',     //54
         'vehicule-affecte-create',   //55
         'vehicule-affecte-edit',     //56
-        'vehicule-affecte-delete'    //57
+        'vehicule-affecte-delete',    //57
+        
+        'dashboard-view'      //58
      ];
 
      foreach ($permissions as $permission) {

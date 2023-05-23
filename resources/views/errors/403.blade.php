@@ -5,7 +5,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Not Authorized - Pages')
+@section('title', 'Accès Interdit ! ')
 
 @section('page-style')
 <!-- Page -->
@@ -18,7 +18,7 @@ $configData = Helper::appClasses();
 <div class="container-xxl container-p-y">
   <div class="misc-wrapper">
     <h2 class="mb-2 mx-2">Vous n'êtes pas authorisé !</h2>
-    <p class="mb-4 mx-2">Vous n'avez pas les permissions necéssaires pour effectuer cette acion.<br> Veuillez contacter la hiérarchie.</p>
+    <p class="mb-4 mx-2">Vous n'avez pas les permissions necéssaires pour effectuer cette action.<br> Veuillez contacter la hiérarchie.</p>
     <a href="{{url('/')}}" class="btn btn-primary">Retour</a>
     <div class="mt-5">
       <img src="{{asset('assets/img/illustrations/girl-with-laptop-'.$configData['style'].'.png')}}" alt="page-misc-not-authorized-light" width="450" class="img-fluid" data-app-dark-img="illustrations/girl-with-laptop-dark.png" data-app-light-img="illustrations/girl-with-laptop-light.png">

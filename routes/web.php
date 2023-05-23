@@ -28,309 +28,187 @@ use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\UserCompte\UserProfilView;
 use App\Http\Middleware\ActiveMiddleware;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-$controller_path = 'App\Http\Controllers';
-// debut
-  // // Main Page Route
-  // //Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
-  // Route::get('/dashboard/analytics', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
-  // Route::get('/dashboard/crm', $controller_path . '\dashboard\Crm@index')->name('dashboard-crm');
-  // Route::get('/dashboard/ecommerce', $controller_path . '\dashboard\Ecommerce@index')->name('dashboard-ecommerce');
+//Route de redirection quand le mdp est 123456
+// Route::middleware(['Mot_passe:123456'])->group(function () {
 
-  // // locale
-  // Route::get('lang/{locale}', $controller_path . '\language\LanguageController@swap');
-
-  // // layout
-  // Route::get('/layouts/collapsed-menu', $controller_path . '\layouts\CollapsedMenu@index')->name('layouts-collapsed-menu');
-  // Route::get('/layouts/content-navbar', $controller_path . '\layouts\ContentNavbar@index')->name('layouts-content-navbar');
-  // Route::get('/layouts/content-nav-sidebar', $controller_path . '\layouts\ContentNavSidebar@index')->name('layouts-content-nav-sidebar');
-  // Route::get('/layouts/navbar-full', $controller_path . '\layouts\NavbarFull@index')->name('layouts-navbar-full');
-  // Route::get('/layouts/navbar-full-sidebar', $controller_path . '\layouts\NavbarFullSidebar@index')->name('layouts-navbar-full-sidebar');
-  // Route::get('/layouts/horizontal', $controller_path . '\layouts\Horizontal@index')->name('dashboard-analytics');
-  // Route::get('/layouts/vertical', $controller_path . '\layouts\Vertical@index')->name('dashboard-analytics');
-  // Route::get('/layouts/without-menu', $controller_path . '\layouts\WithoutMenu@index')->name('layouts-without-menu');
-  // Route::get('/layouts/without-navbar', $controller_path . '\layouts\WithoutNavbar@index')->name('layouts-without-navbar');
-  // Route::get('/layouts/fluid', $controller_path . '\layouts\Fluid@index')->name('layouts-fluid');
-  // Route::get('/layouts/container', $controller_path . '\layouts\Container@index')->name('layouts-container');
-  // Route::get('/layouts/blank', $controller_path . '\layouts\Blank@index')->name('layouts-blank');
-
-  // // apps
-  // Route::get('/app/calendar', $controller_path . '\apps\Calendar@index')->name('app-calendar');
-  // Route::get('/app/invoice/list', $controller_path . '\apps\InvoiceList@index')->name('app-invoice-list');
-  // Route::get('/app/invoice/preview', $controller_path . '\apps\InvoicePreview@index')->name('app-invoice-preview');
-  // Route::get('/app/invoice/print', $controller_path . '\apps\InvoicePrint@index')->name('app-invoice-print');
-  // Route::get('/app/invoice/edit', $controller_path . '\apps\InvoiceEdit@index')->name('app-invoice-edit');
-  // Route::get('/app/invoice/add', $controller_path . '\apps\InvoiceAdd@index')->name('app-invoice-add');
-
-  // Route::get('/app/user/view/account', $controller_path . '\apps\UserViewAccount@index')->name('app-user-view-account');
-  // Route::get('/app/user/view/security', $controller_path . '\apps\UserViewSecurity@index')->name('app-user-view-security');
-  // Route::get('/app/user/view/billing', $controller_path . '\apps\UserViewBilling@index')->name('app-user-view-billing');
-  // Route::get('/app/user/view/notifications', $controller_path . '\apps\UserViewNotifications@index')->name('app-user-view-notifications');
-  // Route::get('/app/user/view/connections', $controller_path . '\apps\UserViewConnections@index')->name('app-user-view-connections');
-  // // Route::get('/app/access-roles', $controller_path . '\apps\AccessRoles@index')->name('app-access-roles');
-  // // Route::get('/app/access-permission', $controller_path . '\apps\AccessPermission@index')->name('app-access-permission');
-
-  // // pages
-  // // Route::get('/pages/profile-user', $controller_path . '\pages\UserProfile@index')->name('pages-profile-user');
-  // Route::get('/pages/profile-teams', $controller_path . '\pages\UserTeams@index')->name('pages-profile-teams');
-  // Route::get('/pages/profile-projects', $controller_path . '\pages\UserProjects@index')->name('pages-profile-projects');
-  // Route::get('/pages/profile-connections', $controller_path . '\pages\UserConnections@index')->name('pages-profile-connections');
-  // Route::get('/pages/account-settings-account', $controller_path . '\pages\AccountSettingsAccount@index')->name('pages-account-settings-account');
-  // // Route::get('/pages/account-settings-security', $controller_path . '\pages\AccountSettingsSecurity@index')->name('pages-account-settings-security');
-  // Route::get('/pages/account-settings-billing', $controller_path . '\pages\AccountSettingsBilling@index')->name('pages-account-settings-billing');
-  // Route::get('/pages/account-settings-notifications', $controller_path . '\pages\AccountSettingsNotifications@index')->name('pages-account-settings-notifications');
-  // Route::get('/pages/account-settings-connections', $controller_path . '\pages\AccountSettingsConnections@index')->name('pages-account-settings-connections');
-  // Route::get('/pages/faq', $controller_path . '\pages\Faq@index')->name('pages-faq');
-  // Route::get('/pages/help-center-landing', $controller_path . '\pages\HelpCenterLanding@index')->name('pages-help-center-landing');
-  // Route::get('/pages/help-center-categories', $controller_path . '\pages\HelpCenterCategories@index')->name('pages-help-center-categories');
-  // Route::get('/pages/help-center-article', $controller_path . '\pages\HelpCenterArticle@index')->name('pages-help-center-article');
-  // Route::get('/pages/pricing', $controller_path . '\pages\Pricing@index')->name('pages-pricing');
-  // Route::get('/pages/pricing-front', $controller_path . '\pages\Pricing@index')->name('pages-pricing-front');
-  // Route::get('/pages/misc-error', $controller_path . '\pages\MiscError@index')->name('pages-misc-error');
-  // Route::get('/pages/misc-under-maintenance', $controller_path . '\pages\MiscUnderMaintenance@index')->name('pages-misc-under-maintenance');
-  // Route::get('/pages/misc-comingsoon', $controller_path . '\pages\MiscComingSoon@index')->name('pages-misc-comingsoon');
-  // Route::get('/pages/misc-not-authorized', $controller_path . '\pages\MiscNotAuthorized@index')->name('pages-misc-not-authorized');
-
-  // // authentication
-  // // Route::get('/auth/login-front', $controller_path . '\authentications\LoginFront@index')->name('auth-login-front');
-  // // Route::get('/auth/login-basic', $controller_path . '\authentications\LoginBasic@index')->name('auth-login-basic');
-  // // Route::get('/auth/login-cover', $controller_path . '\authentications\LoginCover@index')->name('auth-login-cover');
-  // // Route::get('/auth/register-front', $controller_path . '\authentications\RegisterFront@index')->name('auth-register-front');
-  // // Route::get('/auth/register-basic', $controller_path . '\authentications\RegisterBasic@index')->name('auth-register-basic');
-  // // Route::get('/auth/register-cover', $controller_path . '\authentications\RegisterCover@index')->name('auth-register-cover');
-  // // Route::get('/auth/register-multisteps', $controller_path . '\authentications\RegisterMultiSteps@index')->name('auth-register-multisteps');
-  // // Route::get('/auth/verify-email-front', $controller_path . '\authentications\VerifyEmailFront@index')->name('auth-verify-email-front');
-  // // Route::get('/auth/verify-email-basic', $controller_path . '\authentications\VerifyEmailBasic@index')->name('auth-verify-email-basic');
-  // // Route::get('/auth/verify-email-cover', $controller_path . '\authentications\VerifyEmailCover@index')->name('auth-verify-email-cover');
-  // // Route::get('/auth/reset-password-front', $controller_path . '\authentications\ResetPasswordFront@index')->name('auth-reset-password-front');
-  // // Route::get('/auth/reset-password-basic', $controller_path . '\authentications\ResetPasswordBasic@index')->name('auth-reset-password-basic');
-  // // Route::get('/auth/reset-password-cover', $controller_path . '\authentications\ResetPasswordCover@index')->name('auth-reset-password-cover');
-  // // Route::get('/auth/forgot-password-front', $controller_path . '\authentications\ForgotPasswordFront@index')->name('auth-forgot-password-front');
-  // // Route::get('/auth/forgot-password-basic', $controller_path . '\authentications\ForgotPasswordBasic@index')->name('auth-reset-password-basic');
-  // // Route::get('/auth/forgot-password-cover', $controller_path . '\authentications\ForgotPasswordCover@index')->name('auth-forgot-password-cover');
-  // // Route::get('/auth/two-steps-front', $controller_path . '\authentications\TwoStepsFront@index')->name('auth-two-steps-front');
-  // // Route::get('/auth/two-steps-basic', $controller_path . '\authentications\TwoStepsBasic@index')->name('auth-two-steps-basic');
-  // // Route::get('/auth/two-steps-cover', $controller_path . '\authentications\TwoStepsCover@index')->name('auth-two-steps-cover');
-
-  // // wizard example
-  // Route::get('/wizard/ex-checkout', $controller_path . '\wizard_example\Checkout@index')->name('wizard-ex-checkout');
-  // Route::get('/wizard/ex-property-listing', $controller_path . '\wizard_example\PropertyListing@index')->name('wizard-ex-property-listing');
-  // Route::get('/wizard/ex-create-deal', $controller_path . '\wizard_example\CreateDeal@index')->name('wizard-ex-create-deal');
-
-  // // modal
-  // Route::get('/modal-examples', $controller_path . '\modal\ModalExample@index')->name('modal-examples');
-
-  // // cards
-  // Route::get('/cards/basic', $controller_path . '\cards\CardBasic@index')->name('cards-basic');
-  // Route::get('/cards/advance', $controller_path . '\cards\CardAdvance@index')->name('cards-advance');
-  // Route::get('/cards/statistics', $controller_path . '\cards\CardStatistics@index')->name('cards-statistics');
-  // Route::get('/cards/analytics', $controller_path . '\cards\CardAnalytics@index')->name('cards-analytics');
-  // Route::get('/cards/gamifications', $controller_path . '\cards\CardGamifications@index')->name('cards-gamifications');
-  // Route::get('/cards/actions', $controller_path . '\cards\CardActions@index')->name('cards-actions');
-
-  // // User Interface
-  // Route::get('/ui/accordion', $controller_path . '\user_interface\Accordion@index')->name('ui-accordion');
-  // Route::get('/ui/alerts', $controller_path . '\user_interface\Alerts@index')->name('ui-alerts');
-  // Route::get('/ui/badges', $controller_path . '\user_interface\Badges@index')->name('ui-badges');
-  // Route::get('/ui/buttons', $controller_path . '\user_interface\Buttons@index')->name('ui-buttons');
-  // Route::get('/ui/carousel', $controller_path . '\user_interface\Carousel@index')->name('ui-carousel');
-  // Route::get('/ui/collapse', $controller_path . '\user_interface\Collapse@index')->name('ui-collapse');
-  // Route::get('/ui/dropdowns', $controller_path . '\user_interface\Dropdowns@index')->name('ui-dropdowns');
-  // Route::get('/ui/footer', $controller_path . '\user_interface\Footer@index')->name('ui-footer');
-  // Route::get('/ui/list-groups', $controller_path . '\user_interface\ListGroups@index')->name('ui-list-groups');
-  // Route::get('/ui/modals', $controller_path . '\user_interface\Modals@index')->name('ui-modals');
-  // Route::get('/ui/navbar', $controller_path . '\user_interface\Navbar@index')->name('ui-navbar');
-  // Route::get('/ui/offcanvas', $controller_path . '\user_interface\Offcanvas@index')->name('ui-offcanvas');
-  // Route::get('/ui/pagination-breadcrumbs', $controller_path . '\user_interface\PaginationBreadcrumbs@index')->name('ui-pagination-breadcrumbs');
-  // Route::get('/ui/progress', $controller_path . '\user_interface\Progress@index')->name('ui-progress');
-  // Route::get('/ui/spinners', $controller_path . '\user_interface\Spinners@index')->name('ui-spinners');
-  // Route::get('/ui/tabs-pills', $controller_path . '\user_interface\TabsPills@index')->name('ui-tabs-pills');
-  // Route::get('/ui/toasts', $controller_path . '\user_interface\Toasts@index')->name('ui-toasts');
-  // Route::get('/ui/tooltips-popovers', $controller_path . '\user_interface\TooltipsPopovers@index')->name('ui-tooltips-popovers');
-  // Route::get('/ui/typography', $controller_path . '\user_interface\Typography@index')->name('ui-typography');
-
-  // // extended ui
-  // Route::get('/extended/ui-avatar', $controller_path . '\extended_ui\Avatar@index')->name('extended-ui-avatar');
-  // Route::get('/extended/ui-blockui', $controller_path . '\extended_ui\BlockUI@index')->name('extended-ui-blockui');
-  // Route::get('/extended/ui-drag-and-drop', $controller_path . '\extended_ui\DragAndDrop@index')->name('extended-ui-drag-and-drop');
-  // Route::get('/extended/ui-media-player', $controller_path . '\extended_ui\MediaPlayer@index')->name('extended-ui-media-player');
-  // Route::get('/extended/ui-perfect-scrollbar', $controller_path . '\extended_ui\PerfectScrollbar@index')->name('extended-ui-perfect-scrollbar');
-  // Route::get('/extended/ui-star-ratings', $controller_path . '\extended_ui\StarRatings@index')->name('extended-ui-star-ratings');
-  // Route::get('/extended/ui-sweetalert2', $controller_path . '\extended_ui\SweetAlert@index')->name('extended-ui-sweetalert2');
-  // Route::get('/extended/ui-text-divider', $controller_path . '\extended_ui\TextDivider@index')->name('extended-ui-text-divider');
-  // Route::get('/extended/ui-timeline-basic', $controller_path . '\extended_ui\TimelineBasic@index')->name('extended-ui-timeline-basic');
-  // Route::get('/extended/ui-timeline-fullscreen', $controller_path . '\extended_ui\TimelineFullscreen@index')->name('extended-ui-timeline-fullscreen');
-  // Route::get('/extended/ui-tour', $controller_path . '\extended_ui\Tour@index')->name('extended-ui-tour');
-  // Route::get('/extended/ui-treeview', $controller_path . '\extended_ui\Treeview@index')->name('extended-ui-treeview');
-  // Route::get('/extended/ui-misc', $controller_path . '\extended_ui\Misc@index')->name('extended-ui-misc');
-
-  // // icons
-  // Route::get('/icons/boxicons', $controller_path . '\icons\Boxicons@index')->name('icons-boxicons');
-  // Route::get('/icons/font-awesome', $controller_path . '\icons\FontAwesome@index')->name('icons-font-awesome');
-
-  // // form elements
-  // Route::get('/forms/basic-inputs', $controller_path . '\form_elements\BasicInput@index')->name('forms-basic-inputs');
-  // Route::get('/forms/input-groups', $controller_path . '\form_elements\InputGroups@index')->name('forms-input-groups');
-  // Route::get('/forms/custom-options', $controller_path . '\form_elements\CustomOptions@index')->name('forms-custom-options');
-  // Route::get('/forms/editors', $controller_path . '\form_elements\Editors@index')->name('forms-editors');
-  // Route::get('/forms/file-upload', $controller_path . '\form_elements\FileUpload@index')->name('forms-file-upload');
-  // Route::get('/forms/pickers', $controller_path . '\form_elements\Picker@index')->name('forms-pickers');
-  // Route::get('/forms/selects', $controller_path . '\form_elements\Selects@index')->name('forms-selects');
-  // Route::get('/forms/sliders', $controller_path . '\form_elements\Sliders@index')->name('forms-sliders');
-  // Route::get('/forms/switches', $controller_path . '\form_elements\Switches@index')->name('forms-switches');
-  // Route::get('/forms/extras', $controller_path . '\form_elements\Extras@index')->name('forms-extras');
-
-  // // form layouts
-  // Route::get('/form/layouts-vertical', $controller_path . '\form_layouts\VerticalForm@index')->name('form-layouts-vertical');
-  // Route::get('/form/layouts-horizontal', $controller_path . '\form_layouts\HorizontalForm@index')->name('form-layouts-horizontal');
-  // Route::get('/form/layouts-sticky', $controller_path . '\form_layouts\StickyActions@index')->name('form-layouts-sticky');
-
-  // // form wizards
-  // Route::get('/form/wizard-numbered', $controller_path . '\form_wizard\Numbered@index')->name('form-wizard-numbered');
-  // Route::get('/form/wizard-icons', $controller_path . '\form_wizard\Icons@index')->name('form-wizard-icons');
-  // Route::get('/form/validation', $controller_path . '\form_validation\Validation@index')->name('form-validation');
-
-  // // tables
-  //     Route::get('/tables/basic', $controller_path . '\tables\Basic@index')->name('tables-basic');
-  //     Route::get('/tables/datatables-basic', $controller_path . '\tables\DatatableBasic@index')->name('tables-datatables-basic');
-  //     Route::get('/tables/datatables-advanced', $controller_path . '\tables\DatatableAdvanced@index')->name('tables-datatables-advanced');
-  //     Route::get('/tables/datatables-extensions', $controller_path . '\tables\DatatableExtensions@index')->name('tables-datatables-extensions');
-
-  // // charts
-  // Route::get('/charts/apex', $controller_path . '\charts\ApexCharts@index')->name('charts-apex');
-  // Route::get('/charts/chartjs', $controller_path . '\charts\ChartJs@index')->name('charts-chartjs');
-
-  // // maps
-  // Route::get('/maps/leaflet', $controller_path . '\maps\Leaflet@index')->name('maps-leaflet');
-
-  // // laravel example
-  // Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
-  // Route::resource('/user-list', UserManagement::class);
-
-// Fin
-
-
+// });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'], [testOk::class])->group(function () {
+  
+  //Gestion du compte
+  Route::get('/Compte/Paramètre/Gestion',[AccountSettingsAccount::class, 'index'])->name('compte-user-modify');
+  // Route pour le profil du user
+  Route::get('/Compte/Profil', [UserProfilView::class, 'index'])->name('compte-profil-user-view');
+  //Routes pour l'acces au compte du user
+  Route::get('/Compte/Paramètre/Sécurité', [UserProfilSecurity::class, 'index'])->name('compte-user-settings-security');
 
-  // Route::middleware([testOk::class])->group(function () {
+  
 
-    Route::middleware([ActiveMiddleware::class])->group(function () {
+  Route::middleware([ActiveMiddleware::class])->group(function () {
 
-      Route::middleware(['Mot_passe:123456'])->group(function () {
-
-        Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
-
-        // Routes pour le crud du commissariat
-        Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view');
-        Route::resource('/Commiss', ComController::class);
-
-        //Routes pour le crud Inconnu
-        Route::get('/Inconnu', [InconnuController::class, 'IncoView'])->name('inco-view');
-        Route::resource('/Inco', InconnuController::class);
-
-        //Routes pour crud du residence
-        Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
-        Route::resource('/Resi', ResidenceController::class);
-        Route::get('/residencePDF/{id}', [ResidenceController::class, 'PDF'])->name('residencePDF');
+    // Pour le modify des donnees du User par lui mm
+    Route::put('/Compte/Paramètre/Gestion/{id}', [AccountSettingsAccount::class, 'updateUser'])->name('cpgUpdate');
 
 
-        //Routes pour crud du section
-        Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view');
-        Route::resource('/Sect', SectionController::class);
+    // Debut des routes uniquement dedies au role : Informaticien
 
-        //Routes pour crud du grade
-        Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view');
-        Route::resource('/Grade', GradeController::class);
+      //Pour le crud du role
+      Route::get('/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles')
+              ->middleware('role:Informaticien');
+      Route::resource('/role', AccessRoles::class)
+              ->middleware('role:Informaticien');
 
-        //Routes pour crud du carte
-        Route::get('/Carte', [CarteController::class, 'CarteView'])->name('carte-view');
-        Route::resource('/Carte', CarteController::class);
-        Route::get('/cartePDF/{id}', [CarteController::class, 'PDF'])->name('cartePDF');
+      //Pour le crud de la permission
+      Route::get('/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission')
+              ->middleware('role:Informaticien');
+      Route::resource('/permission', AccessPermission::class)
+              ->middleware('role:Informaticien');
 
-        //routes pour le crud du user
-        Route::get('/Membre', [userController::class, 'index'])->name('user-view');
-        Route::resource('/Mbr', userController::class);
+    //Fin 
 
-        //Pour le crud de
-        Route::get('/access-roles', [AccessRoles::class, 'index'])->name('app-access-roles');
-        Route::resource('/role', AccessRoles::class);
-        Route::post('/access-roles-user', [AccessRoles::class, 'roleUser'])->name('roles-user');
 
-        //Pour le crud de la permission
-        Route::get('/access-permission', [AccessPermission::class, 'index'])->name('app-access-permission');
-        Route::resource('/permission', AccessPermission::class);
+    // Debut des routes dedies a l'Informaticien et a l'Administrateur
+
+      // Routes pour le crud du commissariat
+      Route::get('/Commissariat', [ComController::class, 'ComView'])->name('comm-view')
+              ->middleware('role:Informaticien|Administrateur');
+      Route::resource('/Commiss', ComController::class)
+              ->middleware('role:Informaticien|Administrateur');
+
+      //Routes pour crud du section
+      Route::resource('/Sect', SectionController::class)
+              ->middleware('role:Informaticien|Administrateur');
+
+      //Routes pour crud du grade
+      Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view')
+              ->middleware('role:Informaticien|Administrateur');
+      Route::resource('/Grade', GradeController::class)
+              ->middleware('role:Informaticien|Administrateur');
 
       //Route pour vehicule
-      Route::get('/vehicule', [VehiculeController::class, 'VehiView'])->name('vehi');
-      Route::resource('/vehi', VehiculeController::class);
+      Route::get('/vehicule', [VehiculeController::class, 'VehiView'])->name('vehi')
+              ->middleware('role:Informaticien|Administrateur');
+      Route::resource('/vehi', VehiculeController::class)
+              ->middleware('role:Informaticien|Administrateur');
 
+      // Route pour armement
+      Route::resource('/Arme', ArmementController::class)
+              ->middleware('role:Informaticien|Administrateur');
+
+      // Route pour les tenues 
+      Route::resource('/Tenue', TenueController::class)
+              ->middleware('role:Informaticien|Administrateur');
+
+      // Route pour les minutions 
+      Route::resource('/Muni', MunitionController::class)
+              ->middleware('role:Informaticien|Administrateur');
+
+      // Route pour le crud du user
+      Route::resource('/Mbr', userController::class)
+              ->middleware('role:Informaticien|Administrateur');
+
+    // Fin
+
+
+    // Debut des routes dedies a l'Informaticien, a l'Administrateur et au Commissaire
+
+      // Attribuer un role a un membre          
+      Route::post('/access-roles-user', [AccessRoles::class, 'roleUser'])->name('roles-user')
+              ->middleware('role:Informaticien|Administrateur|Commissaire');
+
+    // Fin
+
+
+    // Debut des routes dedies a l'Informaticien, a l'Administrateur, au Commissaire et au Commissaire Adjoint
+
+      // Tableau de board
+      Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              
       //Route pour Armement
-      Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('arme-view');
-      Route::resource('/Arme', ArmementController::class);
+      Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('arme-view')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
-        //Route pour tenue
-        Route::get('/Tenue', [TenueController::class, 'TenueView'])->name('tenue-view');
-        Route::resource('/Tenue', TenueController::class);
+      //Route pour tenue
+      Route::get('/Tenue', [TenueController::class, 'TenueView'])->name('tenue-view')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
-        //Route pour Munition
-        Route::get('/Munition', [MunitionController::class, 'MuniView'])->name('muni-view');
-        Route::resource('/Muni', MunitionController::class);
+      //Route pour Munition
+      Route::get('/Munition', [MunitionController::class, 'MuniView'])->name('muni-view')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
-        //Route pour statut
-        Route::get('/Statut', [StatutController::class, 'StatutView'])->name('statut-view');
-        Route::resource('/Statut', StatutController::class);
+      // Route pour la section 
+      Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
-        //Route pour Avoir
-        Route::get('/Avoir', [AvoirController::class, 'AvoirView'])->name('avoir-view');
-        Route::resource('/Avoir', AvoirController::class);
+      //routes pour la vue du user
+      Route::get('/Membre', [userController::class, 'index'])->name('user-view')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+
+      // Route pour la dmde d'affectation
+      Route::post('/Compte/Profil', [UserProfilView::class, 'affectationUser'])->name('user_affect')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+
+
+      // Madouba, après tu m'expliques tes routes là
+
+      //Route pour statut
+      Route::get('/Statut', [StatutController::class, 'StatutView'])->name('statut-view')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::resource('/Statut', StatutController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+
+      //Route pour Avoir
+      Route::get('/Avoir', [AvoirController::class, 'AvoirView'])->name('avoir-view')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::resource('/Avoir', AvoirController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Route pour voiture affecter
-      Route::get('/voitaffecte', [VoitAffecteController::class, 'voitView'])->name('voit');
-      Route::resource('/voitaffecte', VoitAffecteController::class);
+      Route::get('/voitaffecte', [VoitAffecteController::class, 'voitView'])->name('voit')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::resource('/voitaffecte', VoitAffecteController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Route pour Tenueaff
-      Route::get('/tenueaff', [TenueAffController::class, 'TenueAff'])->name('tenueaff');
-      Route::resource('/tenueaff', TenueAffController::class);
+      Route::get('/tenueaff', [TenueAffController::class, 'TenueAff'])->name('tenueaff')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::resource('/tenueaff', TenueAffController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+
       // Route pour munition affecter
-      Route::get('/muniaff', [MuniAffController::class, 'index'])->name('muniaff');
-      Route::resource('/muniaff', MuniAffController::class);
+      Route::get('/muniaff', [MuniAffController::class, 'index'])->name('muniaff')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::resource('/muniaff', MuniAffController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
+      //Routes pour le crud Inconnu
+      Route::get('/Inconnu', [InconnuController::class, 'IncoView'])->name('inco-view')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
+      Route::resource('/Inco', InconnuController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              
+      //Routes pour crud du carte
+      Route::get('/Carte', [CarteController::class, 'CarteView'])->name('carte-view')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::resource('/Carte', CarteController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::get('/cartePDF/{id}', [CarteController::class, 'PDF'])->name('cartePDF')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
-
-
-        //Gestion du compte
-        Route::get('/Compte/Paramètre/Gestion',[AccountSettingsAccount::class, 'index'])->name('compte-user-modify');
-        // Pour le modify des donnees du User par lui mm
-        Route::put('/Compte/Paramètre/Gestion/{id}', [AccountSettingsAccount::class, 'updateUser'])->name('cpgUpdate');
-
-        // Route pour la dmde d'affectation
-        Route::post('/Compte/Profil', [UserProfilView::class, 'affectationUser'])->name('user_affect');
-
-      });
-
-      //Routes pour l'acces au compte du user
-      Route::get('/Compte/Paramètre/Sécurité', [UserProfilSecurity::class, 'index'])->name('compte-user-settings-security');
-
-    });
-
-    // Route pour le profil du user
-    Route::get('/Compte/Profil', [UserProfilView::class, 'index'])->name('compte-profil-user-view');
-
-    //Lieu de stockage
-    Route::get('/lieu/stockage', [LieuStockController::class, 'index'])->name('lieustock');
-    Route::resource('/lieustock', LieuStockController::class);
+      //Lieu de stockage 
+      Route::get('/lieu/stockage', [LieuStockController::class, 'index'])->name('lieustock')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::resource('/lieustock', LieuStockController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+            
+    // Fin
+ 
+    
 
   });
 
+
+});

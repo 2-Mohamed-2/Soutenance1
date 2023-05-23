@@ -64,70 +64,89 @@ class AccessRoles extends Controller
 
   public function store(Request $request)
   {
-
-    $this->validate($request, [
-      'RoleName' => 'required|unique:roles,name',
-      'permission' => 'required',
-    ]);
-
-    $role = Role::create(['guard_name' => 'web', 'name' => $request->input('RoleName')]);
-    $role->syncPermissions($request->input('permission'));
-
-    if ($role) {
-      Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
-      return redirect('/access-roles');
-    } else {
-        Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+    try
+    {
+      $this->validate($request, [
+        'RoleName' => 'required|unique:roles,name',
+        'permission' => 'required',
+      ]);
+  
+      $role = Role::create(['guard_name' => 'web', 'name' => $request->input('RoleName')]);
+      $role->syncPermissions($request->input('permission'));
+  
+      if ($role) {
+        Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
         return redirect('/access-roles');
+      } else {
+          Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+          return redirect('/access-roles');
+      }
     }
+    catch (\Throwable $th)
+    {
+      Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+      return redirect('/access-roles');
+    }
+
+    
     
 
   }
 
   public function update(Request $request, $id)
   {
-    $id = decrypt($id);
+    try 
+    {
+      
+      $id = decrypt($id);
 
-    $te = $this->validate($request,[
-      'RoleName' => 'required|max:255',
+      $te = $this->validate($request,[
+        'RoleName' => 'required|max:255',
 
-    ]);
-    // dd($te);
+      ]);
+      // dd($te);
 
-    $role = Role::find($id);
+      $role = Role::find($id);
 
 
-    $permissions = $request->permission;
+      $permissions = $request->permission;
 
-    $test = Role::select('*')
-                  ->where([
-                    ['id', '!=', $id],
-                    ['name', '=', $request->RoleName]
-                  ])->exists();
-    //dd($test);
-    if ($test) {
-      Alert::error('Erreur', 'Ce nom de role existe déjà !');
-      return redirect('/access-roles');
-    }else {
-      $role->name = $request->input('RoleName');
-      $role->save();
-    }
-
-    if ($request->has('permission')) {
-      if ($role) {
-        $role->syncPermissions($request->input('permission'));
-          //$permissions->assignRole($role);
-
-        Alert::success('Succès', 'L\'enregistrement a bien été effectué !');
+      $test = Role::select('*')
+                    ->where([
+                      ['id', '!=', $id],
+                      ['name', '=', $request->RoleName]
+                    ])->exists();
+      //dd($test);
+      if ($test) {
+        Alert::error('Erreur', 'Ce nom de role existe déjà !');
         return redirect('/access-roles');
+      }else {
+        $role->name = $request->input('RoleName');
+        $role->save();
+      }
+
+      if ($request->has('permission')) {
+        if ($role) {
+          $role->syncPermissions($request->input('permission'));
+            //$permissions->assignRole($role);
+
+          Alert::success('Succès', 'L\'enregistrement a bien été effectué !');
+          return redirect('/access-roles');
+        } else {
+            Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+            return redirect('/access-roles');
+        }
       } else {
-          Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+        Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
           return redirect('/access-roles');
       }
-    } else {
-      Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
-        return redirect('/access-roles');
+
+    } 
+    catch (\Throwable $th) {
+      Alert::error('Echec', 'L\'operation a rencontré un problème !');
+      return redirect('/access-roles');
     }
+    
 
 
   }

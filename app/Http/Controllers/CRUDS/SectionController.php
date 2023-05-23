@@ -13,10 +13,10 @@ class SectionController extends Controller
 {
   function __construct()
   {
-    $this->middleware('permission:sect-list|sect-create|sect-edit|sect-delete', ['only' => ['SectView', 'store']]);
-    $this->middleware('permission:sect-create', ['only' => ['create', 'store']]);
-    $this->middleware('permission:sect-edit', ['only' => ['edit', 'update']]);
-    $this->middleware('permission:sect-delete', ['only' => ['destroy']]);
+    $this->middleware('permission:section-list|section-create|section-edit|section-delete', ['only' => ['SectView', 'store']]);
+    $this->middleware('permission:section-create', ['only' => ['create', 'store']]);
+    $this->middleware('permission:section-edit', ['only' => ['edit', 'update']]);
+    $this->middleware('permission:section-delete', ['only' => ['destroy']]);
   }
 
     public function SectView(){
@@ -36,63 +36,92 @@ class SectionController extends Controller
 
     public function store(Request $request)
     {
+        try 
+        {
+            
+            $this->validate($request,[
+                'commissariat_id' => 'required',
+                'libelle' => 'required|max:255',
+                'sigle' => 'required|max:255',
+                'fonction' => 'required|max:255',
+            ]);
+    
+            $sect = Section::create([
+                'commissariat_id' => $request->commissariat_id,
+                'libelle' => $request->libelle,
+                'sigle' => $request->sigle,
+                'fonction' => $request->fonction,
+            ]);
+    
+            if ($sect) {
+                Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
+                return redirect('/Section');
+            } else {
+                Alert::error('Echec', 'L\'enregistrement n\'a pas bien été effectué !');
+                return redirect('/Section');
+            }
 
-        $this->validate($request,[
-            'commissariat_id' => 'required',
-            'libelle' => 'required|max:255',
-            'sigle' => 'required|max:255',
-            'fonction' => 'required|max:255',
-        ]);
-
-        $sect = Section::create([
-            'commissariat_id' => $request->commissariat_id,
-            'libelle' => $request->libelle,
-            'sigle' => $request->sigle,
-            'fonction' => $request->fonction,
-        ]);
-
-        if ($sect) {
-            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
-            return redirect('/Section');
-        } else {
-            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+        } 
+        catch (\Throwable $th) {
+            Alert::error('Erreur', 'L\'opération a rencontré un problème !');
             return redirect('/Section');
         }
+
+        
 
     }
 
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id) 
+    {
 
-        $id = decrypt($id);
-        // dd($id);
+        try 
+        {
+            
+            $id = decrypt($id);
 
-        $validateData = $this->validate($request, [
-            'commissariat_id' => 'required',
-            'libelle' => 'required|max:255',
-            'sigle' => 'required|max:255',
-            'fonction' => 'required|max:255',
-        ]);
+            $validateData = $this->validate($request, [
+                'commissariat_id' => 'required',
+                'libelle' => 'required|max:255',
+                'sigle' => 'required|max:255',
+                'fonction' => 'required|max:255',
+            ]);
 
-        $sect = Section::whereId($id)->update($validateData);
-        if ($sect) {
-            Alert::success('La section a bien été modifié !', 'Réussite');
-            return redirect('/Section');
-        } else {
-            Alert::error('Modification non effectuée !', 'Erreur');
+            $sect = Section::whereId($id)->update($validateData);
+            if ($sect) {
+                Alert::success('Réussite', 'La section a bien été modifié !');
+                return redirect('/Section');
+            } else {
+                Alert::error('Echec', 'Modification non effectuée !');
+                return redirect('/Section');
+            }
+
+        } 
+        catch (\Throwable $th) {
+            Alert::error('Erreur', 'L\'opération a rencontré un problème !');
             return redirect('/Section');
         }
+        
     }
 
 
 
-    public function destroy($id){
+    public function destroy($id)
+    {
 
-        $id = decrypt($id);
+        try {
+            
+            $id = decrypt($id);
 
-        $sect = Section::findOrFail($id);
-        $sect->delete();
-        Alert::success('La section a bien été supprimé !', 'Réussite');
-        return redirect('/Section');
+            $sect = Section::findOrFail($id);
+            $sect->delete();
+            Alert::success('La section a bien été supprimé !', 'Réussite');
+            return redirect('/Section');
+
+        } catch (\Throwable $th) {
+            Alert::error('Erreur', 'L\'opération a rencontré un problème !');
+            return redirect('/Section');
+        }
+        
     }
 }

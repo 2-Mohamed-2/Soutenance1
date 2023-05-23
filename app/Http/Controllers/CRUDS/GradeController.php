@@ -27,50 +27,73 @@ class GradeController extends Controller
 
     public function store(Request $request){
 
-        $this->validate($request,[
+        try {
+            $this->validate($request,[
 
-            'libelle' => 'required|max:255',
-        ]);
-
-        $grade = Grade::create([
-
-            'libelle' => $request->libelle,
-        ]);
-
-        if ($grade) {
-            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
-            return redirect('/Grade');
-        } else {
-            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+                'libelle' => 'required|max:255',
+            ]);
+    
+            $grade = Grade::create([
+    
+                'libelle' => $request->libelle,
+            ]);
+    
+            if ($grade) {
+                Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
+                return redirect('/Grade');
+            } else {
+                Alert::error('Echec', 'L\'enregistrement n\'a pas bien été effectué !');
+                return redirect('/Grade');
+            }
+        } catch (\Throwable $th) {
+            Alert::error('Erreur', 'L\'opération a rencontré un problème !');
             return redirect('/Grade');
         }
+        
 
     }
 
     public function update(Request $request, $id) {
 
-        $id = decrypt($id);
-        $validateData = $this->validate($request, [
-            'libelle' => 'required|max:255',
-        ]);
+        try 
+        {
+            $id = decrypt($id);
+            $validateData = $this->validate($request, [
+                'libelle' => 'required|max:255',
+            ]);
 
-        $grade = Grade::whereId($id)->update($validateData);
-        if ($grade) {
-            Alert::success('Le grade a bien été modifié !', 'Réussite');
-            return redirect('/Grade');
-        } else {
-            Alert::error('Modification non effectuée !', 'Erreur');
+            $grade = Grade::whereId($id)->update($validateData);
+            if ($grade) {
+                Alert::success('Le grade a bien été modifié !', 'Réussite');
+                return redirect('/Grade');
+            } else {
+                Alert::error('Modification non effectuée !', 'Erreur');
+                return redirect('/Grade');
+            }
+        } 
+        catch (\Throwable $th) {
+            Alert::error('Erreur', 'L\'opération a rencontré un problème !');
             return redirect('/Grade');
         }
+        
     }
 
     public function destroy($id) {
-        $id = decrypt($id);
+        try 
+        {
+            $id = decrypt($id);
 
-        $grade = Grade::findOrFail($id);
-        $grade->delete();
-        Alert::success('Le Grade a bien été supprimé !', 'Réussite');
-        return redirect('/Grade');
+            $grade = Grade::findOrFail($id);
+            $grade->delete();
+            Alert::success('Le Grade a bien été supprimé !', 'Réussite');
+            return redirect('/Grade');
+
+        } 
+        catch (\Throwable $th) {
+            Alert::error('Erreur', 'L\'opération a rencontré un problème !');
+            return redirect('/Grade');
+        }
+        
     }
 
 }

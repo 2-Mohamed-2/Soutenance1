@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         'matricule' => '0',
         'name' => 'Informaticien',
         'email' => 'user1@user1.com',
-        'password' => Hash::make('123456'),
+        'password' => Hash::make('password'),
         'created_at' => now(),
         'updated_at' => now()
       ]);
