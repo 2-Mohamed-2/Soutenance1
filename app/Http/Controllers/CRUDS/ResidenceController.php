@@ -7,6 +7,7 @@ use App\Models\Inconnu;
 use App\Models\Residence;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Commissariat;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ResidenceController extends Controller
@@ -24,18 +25,20 @@ class ResidenceController extends Controller
 
         $resis = Residence::latest()->get();
         $inconnus = Inconnu::latest()->get();
-        return view('content.CRUD.resi-crud', compact('resis', 'inconnus'));
+        $comms = Commissariat::latest()->get();
+        return view('content.CRUD.resi-crud', compact('resis', 'inconnus','comms'));
     }
 
     public function index(){
         //
     }
 
-    public function store(Request $request){
-
-         $this->validate($request,[
+    public function store(Request $request)
+    {
+      // try{
+          $this->validate($request, [
             // 'inconnu_id' => 'required',
-            'numero' => 'required|max:255',
+            // 'numero' => 'required|max:255',
             'certifions' => 'required|max:255',
             'ne' => 'required|max:255',
             'a' => 'required|max:255',
@@ -44,15 +47,15 @@ class ResidenceController extends Controller
             'profession' => 'required|max:255',
             'resulte' => 'required|max:255',
             'domicile' => 'required|max:255',
-            'kati' => 'required|max:255',
-            'dossier' => 'required|max:255',
+            // 'kati' => 'required|max:255',
+            'commissariat_id' =>'required'
 
-         ]);
+          ]);
 
-         $resi = Residence::create([
+          $resi = Residence::create([
 
             // 'inconnu_id' => $request->inconnu_id,
-            'numero' => $request->numero,
+            // 'numero' => $request->numero,
             'certifions' => $request->certifions,
             'ne' => $request->ne,
             'a' => $request->a,
@@ -61,54 +64,71 @@ class ResidenceController extends Controller
             'profession' => $request->profession,
             'resulte' => $request->resulte,
             'domicile' => $request->domicile,
-            'kati' => $request->kati,
-            'dossier' => $request->dossier,
+            // 'kati' => $request->kati,
+            'commissariat_id' => $request->commissariat_id,
 
-         ]);
+          ]);
 
-         if ($resi) {
-            Alert::info('L\'enregistrement a bien été effectué !', 'Réussite');
+          if ($resi) {
+            Alert::info('Réussite', 'L\'enregistrement a bien été effectué !');
             return redirect('/Residence');
-        } else {
-           Alert::info('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+          } else {
+            Alert::info('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
             return redirect('/Residence');
-        }
+          }
+      // }catch(\Throwable $th){
+      // Alert::info('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+      // return redirect('/Residence');
+      // }
+
 
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
+      try{
+          $id = decrypt($id);
+          $resi = Residence::find($id);
 
-        $id = decrypt($id);
-        $resi = Residence::find($id);
+          // 'numero' => $require->$
+          $resi->certifions = $request->certifions;
+          $resi->ne = $request->ne;
+          $resi->a = $request->a;
+          $resi->fils = $request->fils;
+          $resi->profession = $request->profession;
+          $resi->resulte = $request->resulte;
+          $resi->domicile = $request->domicile;
+          $resi->kati = $request->kati;
+          $resi->save();
 
-            // 'numero' => $require->$
-            $resi->certifions = $request->certifions;
-            $resi-> ne = $request->ne;
-            $resi-> a = $request->a;
-            $resi-> fils = $request->fils;
-            $resi-> profession =$request->profession;
-            $resi-> resulte = $request->resulte;
-            $resi-> domicile = $request->domicile;
-            $resi-> kati = $request->kati;
-            $resi->save();
-            
-        if ($resi) {
-            Alert::info('La residence a bien été modifié !', 'Réussite');
+          if ($resi) {
+            Alert::info('Réussite', 'La residence a bien été modifié !');
             return redirect('/Residence');
-        } else {
-           Alert::info('Modification non effectuée !', 'Erreur');
+          } else {
+            Alert::info('Erreur', 'Modification non effectuée');
             return redirect('/Residence');
-        }
+          }
+      }catch(\Throwable $th){
+      Alert::info('Erreur', 'Modification non effectuée !');
+      return redirect('/Residence');
+      }
+
 
     }
 
-    public function destroy($id){
-
+    public function destroy($id)
+    {
+      try{
         $id = decrypt($id);
         $resi = Residence::findOrFail($id);
         $resi->delete();
-        Alert::info('La residence a bien été supprimé !', 'Réussite');
+        Alert::info('Réussite', 'La residence a bien été supprimé !');
         return redirect('/Residence');
+      }catch(\Throwable $th){
+      Alert::info('Erreur', 'Suppression non effectuée !');
+      return redirect('/Residence');
+      }
+
     }
 
 

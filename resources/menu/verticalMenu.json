@@ -69,13 +69,6 @@
        "icon": "menu-icon tf-icons fa fa-section",
        "slug": "sect-view"
     },
-    {
-
-      "url": "/Carte",
-       "name": "Carte",
-       "icon": "menu-icon tf-icons fa fa-address-card",
-       "slug": "carte-view"
-    },
 
     {
 
@@ -87,32 +80,38 @@
 
     {
       "name": "Logistique",
-      "icon": "menu-icon tf-icons bx bxl-php",
+      "icon": "menu-icon tf-icons fa fa-warehouse",
       "slug": "logistique",
       "submenu": [
         {
           "url": "/vehicule",
           "name": "vehicule",
           "icon": "menu-icon tf-icons fa fa-car",
-          "slug": "vehi-view"
+          "slug": "logistique-vehi-view"
         },
         {
           "url": "/Armement",
           "name": "Armement",
           "icon": "menu-icon tf-icons fa fa-gun",
-          "slug": "arme-view"
+          "slug": "logistique-arme-view"
         },
         {
           "url": "/Tenue",
           "name": "Tenue",
           "icon": "menu-icon tf-icons fa fa-shirt",
-          "slug": "tenue-view"
+          "slug": "logistique-tenue-view"
         },
         {
           "url": "/Munition",
           "name": "Munition",
           "icon": "menu-icon tf-icons fa fa-car",
-          "slug": "muni-view"
+          "slug": "logistique-muni-view"
+        },
+        {
+          "url": "/lieustock",
+          "name": "LieuStockage",
+          "icon": "menu-icon tf-icons  fa fa-warehouse",
+          "slug": "logistique-lieustock"
         }
 
       ]

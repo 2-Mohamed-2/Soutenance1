@@ -20,7 +20,7 @@
     Affecter.
   </button> --}}
   <span class="alert alert-info d-none " id="myClasse">Retour a la ligne</span>
-  <a class="btn btn-primary col-xl-3" href="{{ route('muni-view') }}">Retour</a>
+  <a class="btn btn-primary col-xl-3" href="{{ route('logistique-muni-view') }}">Retour</a>
   <div class="table-responsive text-nowrap">
     <table id="example" class="table table-striped" style="width:100%">
       <thead>

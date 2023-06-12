@@ -52,28 +52,33 @@ class TenueAffController extends Controller
    */
   public function store(Request $request)
   {
-    //
-    $data = $this->validate($request, [
-      'commissariat_id' => 'required',
-      'tenue_id' => 'required',
+    try{
+        $data = $this->validate($request, [
+          'commissariat_id' => 'required',
+          'tenue_id' => 'required',
 
-    ]);
-    for ($i = 0; $i < count($request->tenue_id); $i++) {
+        ]);
+        for ($i = 0; $i < count($request->tenue_id); $i++) {
 
-      $tenueaff = new TenueAff();
-      $tenueaff->commissariat_id = $request->commissariat_id;
-      $tenueaff->tenue_id = $request->tenue_id[$i];
-      $tenueaff->date_acqui = now();
-      $tenueaff->save();
-    }
-    if ($tenueaff) {
-      Alert::success('Affectation reussi avec succes');
-      return redirect('/tenueaff');
-    } else {
+          $tenueaff = new TenueAff();
+          $tenueaff->commissariat_id = $request->commissariat_id;
+          $tenueaff->tenue_id = $request->tenue_id[$i];
+          $tenueaff->date_acqui = now();
+          $tenueaff->save();
+        }
+        if ($tenueaff) {
+          Alert::success('Affectation reussi avec succes');
+          return redirect('/tenueaff');
+        } else {
+          Alert::info('Affectation non effectuer');
+          return redirect('/tenueaff');
+        }
+        return redirect()->back();
+    }catch(\Throwable $th){
       Alert::info('Affectation non effectuer');
       return redirect('/tenueaff');
     }
-    return redirect()->back();
+
   }
 
   /**
@@ -107,19 +112,25 @@ class TenueAffController extends Controller
    */
   public function update(Request $request,$id)
   {
-    $id = decrypt($id);
+    try{
+      $id = decrypt($id);
 
-    $tenueaff = TenueAff::find($id);
-    $tenueaff->commissariat_id = $request->commissariat_id;
-    $tenueaff->tenue_id = $request->tenue_id;
-    $tenueaff->save();
-    if ($tenueaff) {
-      Alert::success('Affectation a ete bien modifier !', 'Reussite');
-      return redirect('/tenueaff');
-    } else {
-      Alert::info('Modifier non effectue !', 'Erreur');
+      $tenueaff = TenueAff::find($id);
+      $tenueaff->commissariat_id = $request->commissariat_id;
+      $tenueaff->tenue_id = $request->tenue_id;
+      $tenueaff->save();
+      if ($tenueaff) {
+        Alert::success('Affectation a ete bien modifier !', 'Reussite');
+        return redirect('/tenueaff');
+      } else {
+        Alert::info('Modifier non effectue !', 'Erreur');
+        return redirect('/tenueaff');
+      }
+    }catch(\Throwable $th){
+      Alert::info( 'Erreur', 'Modifier non effectue !');
       return redirect('/tenueaff');
     }
+
   }
 
   /**
@@ -130,12 +141,18 @@ class TenueAffController extends Controller
    */
   public function destroy($id)
   {
-    $id = decrypt($id);
+    try{
+      $id = decrypt($id);
 
-    $tenueaff = TenueAff::findOrFail($id);
-    $tenueaff->delete();
+      $tenueaff = TenueAff::findOrFail($id);
+      $tenueaff->delete();
       Alert::success('Affectation supprimer avec succes');
       return redirect('/tenueaff');
+    }catch(\Throwable $th){
+      Alert::info('Erreur', 'Suppression non effectue !');
+      return redirect('/tenueaff');
+    }
+
 
   }
 }

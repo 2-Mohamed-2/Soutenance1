@@ -47,14 +47,15 @@ class VehiculeController extends Controller
 
     public function store(Request $request)
     {
-       $data = $this->validate($request, [
+      try{
+        $data = $this->validate($request, [
 
-            'type' => 'required|max:255',
-            // 'identifiant' => 'required',
-            'modele' => 'required|max:255',
-            'plaque' => 'required|max:255',
-            // 'revision' => 'required|max:255',
-            // 'commissariat_id' => 'max:255',
+          'type' => 'required|max:255',
+          // 'identifiant' => 'required',
+          'modele' => 'required|max:255',
+          'plaque' => 'required|max:255',
+          // 'revision' => 'required|max:255',
+          // 'commissariat_id' => 'max:255',
 
         ]);
         //  $vehi = Vehicule::create($data);
@@ -64,12 +65,17 @@ class VehiculeController extends Controller
         $vehi = Vehicule::create($data);
 
         if ($vehi) {
-            alert()->success('L\'enregistrement a bien été effectué !', 'Réussite');
-            return redirect('/vehicule');
+          alert()->success('L\'enregistrement a bien été effectué !', 'Réussite');
+          return redirect('/vehicule');
         } else {
-         Alert::info('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
-            return redirect('/vehicule');
+          Alert::info('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+          return redirect('/vehicule');
         }
+      }catch(\Throwable $th){
+      Alert::info('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+      return redirect('/vehicule');
+      }
+
     }
 
     /**
@@ -85,8 +91,10 @@ class VehiculeController extends Controller
 
     public function update(Request $request, $id)
     {
-        $id = decrypt($id);
-        $validateData = $this->validate($request, [
+       try
+       {
+          $id = decrypt($id);
+          $validateData = $this->validate($request, [
 
             'type' => 'required',
             // 'identifiant' => 'required',
@@ -95,27 +103,38 @@ class VehiculeController extends Controller
             // 'revision' => 'required|max:255',
             // 'commissariat_id' => 'max:255',
 
-        ]);
+          ]);
 
-        $vehi = Vehicule::whereId($id)->update($validateData);
+          $vehi = Vehicule::whereId($id)->update($validateData);
 
-        if ($vehi) {
-       Alert::info('Le vehicule a bien été modifié !', 'Réussite');
+          if ($vehi) {
+            Alert::info('Le vehicule a bien été modifié !', 'Réussite');
             return redirect('/vehicule');
-        } else {
-      Alert::info('Modification non effectuée !', 'Erreur');
+          } else {
+            Alert::info('Modification non effectuée !', 'Erreur');
             return redirect('/vehicule');
-        }
+          }
+       }catch(\Throwable $th){
+        Alert::info('Erreur', 'Modification non effectuée !');
+        return redirect('/vehicule');
+       }
+
     }
 
     public function destroy($id)
     {
+      try{
         $id = decrypt($id);
 
         $vehi = Vehicule::findOrFail($id);
         $vehi->delete();
 
-       Alert::info('Le Vehicule a bien été supprimé !', 'Réussite');
+        Alert::info('Réussite', 'Le Vehicule a bien été supprimé');
         return redirect('/vehicule');
+      }catch(\Throwable $th){
+      Alert::info('Erreur', 'Suppression non effectuée !');
+      return redirect('/vehicule');
+      }
+
     }
 }

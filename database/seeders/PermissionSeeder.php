@@ -21,7 +21,7 @@ class PermissionSeeder extends Seeder
         'role-create',    //2
         'role-edit',      //3
         'role-delete',    //4
-        'role-to-user',   //5 
+        'role-to-user',   //5
         'grade-list',     //6
         'grade-create',   //7
         'grade-edit',     //8
@@ -58,10 +58,10 @@ class PermissionSeeder extends Seeder
         'section-create',   //39
         'section-edit',     //40
         'section-delete',    //41
-        'tenue-affecte-list',     //42
-        'tenue-affecte-create',   //43
-        'tenue-affecte-edit',     //44
-        'tenue-affectedelete',    //45
+        'tenueaff-list',     //42
+        'tenueaff-create',   //43
+        'tenueaff-edit',     //44
+        'tenueaff-delete',    //45
         'tenue-list',     //46
         'tenue-create',   //47
         'tenue-edit',     //48
@@ -70,11 +70,11 @@ class PermissionSeeder extends Seeder
         'vehicule-create',   //51
         'vehicule-edit',     //52
         'vehicule-delete',    //53
-        'vehicule-affecte-list',     //54
-        'vehicule-affecte-create',   //55
-        'vehicule-affecte-edit',     //56
-        'vehicule-affecte-delete',    //57
-        
+        'voitaffecte-list',     //54
+        'voitaffecte-create',   //55
+        'voitaffecte-edit',     //56
+        'voitaffecte-delete',    //57
+
         'dashboard-view'      //58
      ];
 

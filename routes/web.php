@@ -35,7 +35,7 @@ use App\Http\Middleware\ActiveMiddleware;
 // });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'], [testOk::class])->group(function () {
-  
+
   //Gestion du compte
   Route::get('/Compte/Paramètre/Gestion',[AccountSettingsAccount::class, 'index'])->name('compte-user-modify');
   // Route pour le profil du user
@@ -43,7 +43,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
   //Routes pour l'acces au compte du user
   Route::get('/Compte/Paramètre/Sécurité', [UserProfilSecurity::class, 'index'])->name('compte-user-settings-security');
 
-  
+
 
   Route::middleware([ActiveMiddleware::class])->group(function () {
 
@@ -65,7 +65,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       Route::resource('/permission', AccessPermission::class)
               ->middleware('role:Informaticien');
 
-    //Fin 
+    //Fin
 
 
     // Debut des routes dedies a l'Informaticien et a l'Administrateur
@@ -87,7 +87,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
               ->middleware('role:Informaticien|Administrateur');
 
       //Route pour vehicule
-      Route::get('/vehicule', [VehiculeController::class, 'VehiView'])->name('vehi')
+      Route::get('/vehicule', [VehiculeController::class, 'VehiView'])->name('logistique-vehi-view')
               ->middleware('role:Informaticien|Administrateur');
       Route::resource('/vehi', VehiculeController::class)
               ->middleware('role:Informaticien|Administrateur');
@@ -96,11 +96,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       Route::resource('/Arme', ArmementController::class)
               ->middleware('role:Informaticien|Administrateur');
 
-      // Route pour les tenues 
+      // Route pour les tenues
       Route::resource('/Tenue', TenueController::class)
               ->middleware('role:Informaticien|Administrateur');
 
-      // Route pour les minutions 
+      // Route pour les minutions
       Route::resource('/Muni', MunitionController::class)
               ->middleware('role:Informaticien|Administrateur');
 
@@ -113,7 +113,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     // Debut des routes dedies a l'Informaticien, a l'Administrateur et au Commissaire
 
-      // Attribuer un role a un membre          
+      // Attribuer un role a un membre
       Route::post('/access-roles-user', [AccessRoles::class, 'roleUser'])->name('roles-user')
               ->middleware('role:Informaticien|Administrateur|Commissaire');
 
@@ -125,20 +125,20 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       // Tableau de board
       Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
-              
+
       //Route pour Armement
-      Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('arme-view')
+      Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('logistique-arme-view')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Route pour tenue
-      Route::get('/Tenue', [TenueController::class, 'TenueView'])->name('tenue-view')
+      Route::get('/Tenue', [TenueController::class, 'TenueView'])->name('logistique-tenue-view')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Route pour Munition
-      Route::get('/Munition', [MunitionController::class, 'MuniView'])->name('muni-view')
+      Route::get('/Munition', [MunitionController::class, 'MuniView'])->name('logistique-muni-view')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
-      // Route pour la section 
+      // Route pour la section
       Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
@@ -189,24 +189,21 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
       Route::resource('/Inco', InconnuController::class)
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
-              
-      //Routes pour crud du carte
-      Route::get('/Carte', [CarteController::class, 'CarteView'])->name('carte-view')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
-      Route::resource('/Carte', CarteController::class)
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
-      Route::get('/cartePDF/{id}', [CarteController::class, 'PDF'])->name('cartePDF')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
-      //Lieu de stockage 
-      Route::get('/lieu/stockage', [LieuStockController::class, 'index'])->name('lieustock')
+    //Routes pour crud du residence
+    Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
+    Route::resource('/Resi', ResidenceController::class);
+    Route::get('/residencePDF/{id}', [ResidenceController::class, 'PDF'])->name('residencePDF');
+
+      //Lieu de stockage
+      Route::get('/lieu/stockage', [LieuStockController::class, 'index'])->name('logistique-lieustock')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
       Route::resource('/lieustock', LieuStockController::class)
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
-            
+
     // Fin
- 
-    
+
+
 
   });
 

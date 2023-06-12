@@ -38,9 +38,10 @@ class LieuStockController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->validate($request,[
-            'entrepot' => 'required',
-            'ville' => 'required'
+      try{
+        $data = $this->validate($request, [
+          'entrepot' => 'required',
+          'ville' => 'required'
         ]);
 
         $lieustock = new LieuStock();
@@ -48,12 +49,17 @@ class LieuStockController extends Controller
         $lieustock->ville = $request->ville;
         $lieustock->save();
         if ($lieustock) {
-            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
-            return redirect('/lieustock');
+          Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
+          return redirect('/lieustock');
         } else {
-            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
-            return redirect('/lieustock');
+          Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+          return redirect('/lieustock');
         }
+      } catch (\Throwable $th){
+       Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+      return redirect('/lieustock');
+      }
+
     }
 
     /**
@@ -87,18 +93,24 @@ class LieuStockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $id = decrypt($id);
-        $lieustock = LieuStock::find($id);
-        $lieustock->entrepot = $request->entrepot;
-        $lieustock->ville = $request->ville;
-        $lieustock->save();
-    if ($lieustock) {
-      Alert::success('Lieu a ete bien modifier !', 'Reussite');
+      try{
+          $id = decrypt($id);
+          $lieustock = LieuStock::find($id);
+          $lieustock->entrepot = $request->entrepot;
+          $lieustock->ville = $request->ville;
+          $lieustock->save();
+          if ($lieustock) {
+            Alert::success('Lieu a ete bien modifier !', 'Reussite');
+            return redirect('/lieustock');
+          } else {
+            Alert::info('Modifier non effectue !', 'Erreur');
+            return redirect('/lieustock');
+          }
+      }catch (\Throwable $th) {
+       Alert::info('Modifier non effectue !', 'Erreur');
       return redirect('/lieustock');
-    } else {
-      Alert::info('Modifier non effectue !', 'Erreur');
-      return redirect('/lieustock');
-    }
+      }
+
     }
 
     /**
@@ -109,10 +121,15 @@ class LieuStockController extends Controller
      */
     public function destroy($id)
     {
+      try{
         $id = decrypt($id);
         $lieustock = LieuStock::findOrFail($id);
         $lieustock->delete();
         Alert::success('Affectation supprimer avec succes');
         return redirect('/lieustock');
-    }
+      }catch (\Throwable $th){
+      Alert::error('Affectation non supprimer');
+      return redirect('/lieustock');
+     }
+   }
 }

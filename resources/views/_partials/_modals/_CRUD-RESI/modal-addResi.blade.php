@@ -8,26 +8,7 @@
     <form id="enableOTPForm" class="row g-3" action="{{route('Resi.store')}}" method="POST">
       @csrf
 
-      {{-- <div class="col-12">
-        <label class="form-label" for="modalEnableOTPPhone">Inconnu</label>
-        <div class="input-group input-group-merge">
-            <select class="form-control" name="inconnu_id">
-                <option value=""> --  --</option>
-                @foreach($inconnus as $inconnu)
-                <option value="{{ $inconnu->id }}">{{ $inconnu->nomcomplet }}
-                </option>
-                @endforeach
-            </select>
-        </div>
-      </div> --}}
 
-      {{-- <div class="col-12">
-        <label class="form-label" for="modalEnableOTPPhone">Numero</label>
-        <div class="input-group input-group-merge">
-          <input required autocomplete="off" type="number" name="numero" class="form-control" placeholder="Numero " />
-        </div> --}}
-
-      </div>
       <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">Nom et Prenom</label>
         <div class="input-group input-group-merge">
@@ -48,9 +29,9 @@
       <div class="input-group input-group-merge">
         <input required type="text" autocomplete="off" minlength="3" name="a" class="form-control phone-mask" placeholder="Lieu de Naissance " />
       </div>
-    </div>
+     </div>
 
-    <div class="col-12">
+      <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">Nom  pere</label>
         <div class="input-group input-group-merge">
           <input required type="text" autocomplete="off" minlength="3" name="fils" class="form-control phone-mask" placeholder="Nom du pere" />
@@ -85,19 +66,22 @@
         </div>
       </div>
 
-      <div class="col-12">
+      {{-- <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">Date de creation</label>
         <div class="input-group input-group-merge">
           <input required type="date" autocomplete="off" minlength="3" name="kati" class="form-control phone-mask" placeholder="Date de creation" />
         </div>
-      </div>
-
-      {{-- <div class="col-12">
-        <label class="form-label" for="modalEnableOTPPhone">Dossier</label>
-        <div class="input-group input-group-merge">
-          <input required type="text" autocomplete="off" maxlength="10" name="dossier" class="form-control phone-mask" placeholder="Dossier" />
-        </div>
       </div> --}}
+
+      <div class="col-12 mb-4">
+        <select class="form-control" name="commissariat_id">
+          <option value=""> -- Veuillez choisir un commissariat --</option>
+          @foreach($comms as $comm)
+          <option value="{{ $comm->id }}">{{ $comm->libelle }}
+          </option>
+          @endforeach
+        </select>
+      </div>
 
 
       <div class="col-12">
