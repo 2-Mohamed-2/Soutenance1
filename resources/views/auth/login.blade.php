@@ -27,11 +27,14 @@ $customizerHidden = 'customizer-hide';
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
       <div class="w-px-400 mx-auto">
         <!-- Logo -->
-        <div class="app-brand mb-5">
-          <a href="{{url('/')}}" class="app-brand-link gap-2">
-            <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#696cff'])</span>
-            <span class="app-brand-text demo text-body fw-bolder">{{config('variables.templateName')}}</span>
-          </a>
+        <div class="app-brand mb-5 text-center">   
+          <div class="text-center">
+            <a href="{{url('/')}}" class="app-brand-link gap-2">
+              <span class="app-brand-logo demo">
+                <img src="{{ asset('Coms_Ml_logo.png') }}" class="d-block mx-auto" width="30%" alt="">
+              </span>
+            </a>
+          </div> 
         </div>
         <!-- /Logo -->
         <h4 class="mb-2">Bonjour 👋 et Bienvenu sur {{config('variables.templateName')}}!</h4>
