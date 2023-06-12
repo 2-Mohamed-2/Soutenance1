@@ -5,7 +5,7 @@ $customizerHidden = 'customizer-hide';
 
 @extends('layouts/blankLayout')
 
-@section('title', 'Forgot Password')
+@section('title', 'Réinitialisation')
 
 @section('page-style')
 <!-- Page -->
@@ -34,8 +34,8 @@ $customizerHidden = 'customizer-hide';
           </a>
         </div>
         <!-- /Logo -->
-        <h4 class="mb-2">Forgot Password? 🔒</h4>
-        <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
+        <h4 class="mb-2">Mot de passe oublié ? 🔒</h4>
+        <p class="mb-4">Donnez votre email pour recevoir les instructions de réinitialisation</p>
 
         @if (session('status'))
         <div class="mb-1 text-success">
@@ -47,20 +47,20 @@ $customizerHidden = 'customizer-hide';
           @csrf
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" autofocus>
+            <input type="text" autocomplete="off" required class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="test@test.com" autofocus>
             @error('email')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
             @enderror
           </div>
-          <button type="submit" class="btn btn-primary d-grid w-100">Send Reset Link</button>
+          <button type="submit" class="btn btn-primary d-grid w-100">Envoie du lien</button>
         </form>
         <div class="text-center">
           @if (Route::has('login'))
           <a href="{{ route('login') }}" class="d-flex align-items-center justify-content-center">
             <i class="bx bx-chevron-left scaleX-n1-rtl"></i>
-            Back to login
+            Retour à l'écran de connexion
           </a>
           @endif
         </div>

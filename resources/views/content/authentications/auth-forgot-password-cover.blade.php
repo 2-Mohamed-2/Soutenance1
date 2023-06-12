@@ -50,7 +50,7 @@ $customizerHidden = 'customizer-hide';
           </a>
         </div>
         <!-- /Logo -->
-        <h4 class="mb-2">Forgot Password? 🔒</h4>
+        <h4 class="mb-2">Forgot testt? 🔒</h4>
         <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
         <form id="formAuthentication" class="mb-3" action="{{url('auth/reset-password-cover')}}" method="GET">
           <div class="mb-3">

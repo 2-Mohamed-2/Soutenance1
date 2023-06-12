@@ -1,6 +1,15 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Tables - Basic Tables')
+@section('title', 'Section ')
+
+@section('vendor-style')
+<link href="{{ asset('assets/datatables.min.css') }}" rel="stylesheet"/>
+@endsection
+
+@section('vendor-script')
+<script src="{{ asset('assets/datatables.min.js') }}"></script>
+@endsection
+
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
@@ -16,7 +25,7 @@
     Créer une nouvelle Section.
   </button>
   <div class="table-responsive text-nowrap">
-    <table class="table table-hover">
+    <table class="table table-hover datatable">
       <thead>
         <tr>
           <th>Libelle</th>
