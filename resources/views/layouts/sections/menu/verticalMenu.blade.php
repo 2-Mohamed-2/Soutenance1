@@ -25,7 +25,11 @@ $configData = Helper::appClasses();
   <ul class="menu-inner py-1">
     @foreach ($menuData[0]->menu as $menu)
 
-    {{-- adding active and open class if child is active --}}
+    
+
+    @if (isset($menu->role))
+
+    @hasanyrole($menu->role)
 
     {{-- menu headers --}}
     @if (isset($menu->menuHeader))
@@ -60,6 +64,7 @@ $configData = Helper::appClasses();
     }
     @endphp
 
+
     {{-- main menu --}}
     <li class="menu-item {{$activeClass}}">
       <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0);' }}" class="{{ isset($menu->submenu) ? 'menu-link menu-toggle' : 'menu-link' }}" @if (isset($menu->target) and !empty($menu->target)) target="_blank" @endif>
@@ -75,6 +80,11 @@ $configData = Helper::appClasses();
       @endisset
     </li>
     @endif
+    @else
+      
+    @endhasanyrole
+    
+    @endif
     @endforeach
   </ul>
   <div class="menu-divider mb-0"></div>
@@ -86,7 +96,7 @@ $configData = Helper::appClasses();
       <a title="Lock" data-bs-placement="top" data-bs-toggle="tooltip" href="javascript:%20void(0);">
         <span aria-hidden="true" class="text-body bx bx-hide"></span>
       </a> 
-      <a title="Logout" data-bs-placement="top" data-bs-toggle="tooltip" href="javascript:%20void(0);">
+      <a title="Deconnexion" data-bs-placement="top" data-bs-toggle="tooltip" href="javascript:%20void(0);">
         <span aria-hidden="true" class="text-body bx bx-power-off"></span>
       </a>
     </li>

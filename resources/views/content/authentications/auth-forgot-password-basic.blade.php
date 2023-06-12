@@ -3,7 +3,7 @@ $customizerHidden = 'customizer-hide';
 @endphp
 @extends('layouts/layoutMaster')
 
-@section('title', 'Forgot Password Basic - Pages')
+@section('title', 'Réinitialisation |')
 
 @section('vendor-style')
 <!-- Vendor -->
@@ -41,19 +41,19 @@ $customizerHidden = 'customizer-hide';
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-2">Forgot Password? 🔒</h4>
-          <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
+          <h4 class="mb-2">Mot de passe oublié ? 🔒</h4>
+          <p class="mb-4">Entrez votre e-mail pour réinitialiser votre mot de passe</p>
           <form id="formAuthentication" class="mb-3" action="{{url('auth/reset-password-basic')}}" method="GET">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus>
+              <input type="text" class="form-control" id="email" name="email" placeholder="Votre email ..." autofocus>
             </div>
             <button class="btn btn-primary d-grid w-100">Send Reset Link</button>
           </form>
           <div class="text-center">
             <a href="{{url('auth/login-basic')}}" class="d-flex align-items-center justify-content-center">
               <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
-              Back to login
+              Page de connexion
             </a>
           </div>
         </div>
