@@ -1,4 +1,4 @@
-{ 
+{
   "menu": [
     {
       "url": "/",
@@ -39,6 +39,15 @@
     },
 
     {
+
+      "url": "/Section",
+       "name": "Section",
+       "icon": "menu-icon tf-icons fa fa-section",
+       "slug": "sect-view"
+    },
+
+    {
+
       "url": "/Grade",
       "name": "Grade",
       "icon": "menu-icon tf-icons fa fa-medal",
@@ -56,7 +65,7 @@
 
     {
       "name": "Logistique",
-      "icon": "menu-icon tf-icons bx bxl-php",
+      "icon": "menu-icon tf-icons fa fa-warehouse",
       "slug": "logistique",
       "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint",
       "submenu": [
@@ -64,28 +73,54 @@
           "url": "/vehicule",
           "name": "vehicule",
           "icon": "menu-icon tf-icons fa fa-car",
-          "slug": "vehi-view",
+          "slug": "logistique-vehi-view",
           "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
         },
         {
           "url": "/Armement",
           "name": "Armement",
           "icon": "menu-icon tf-icons fa fa-gun",
-          "slug": "arme-view",
+          "slug": "logistique-arme-view",
           "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
         },
         {
           "url": "/Tenue",
           "name": "Tenue",
           "icon": "menu-icon tf-icons fa fa-shirt",
-          "slug": "tenue-view",
+          "slug": "logistique-tenue-view",
           "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
         },
         {
           "url": "/Munition",
           "name": "Munition",
           "icon": "menu-icon tf-icons fa fa-car",
-          "slug": "muni-view",
+          "slug": "muni-view"
+        }
+
+      ]
+    },
+
+    {
+      "url": "app/calendar",
+      "name": "Calendar",
+      "icon": "menu-icon tf-icons bx bx-calendar",
+      "slug": "app-calendar"
+    },
+    {
+      "name": "Invoice",
+      "icon": "menu-icon tf-icons bx bx-food-menu",
+      "slug": "app-invoice",
+      "submenu": [
+        {
+          "url": "/app/invoice/list",
+          "name": "List",
+          "slug": "app-invoice-list"
+        },
+        {
+          "url": "/lieustock",
+          "name": "LieuStockage",
+          "icon": "menu-icon tf-icons  fa fa-warehouse",
+          "slug": "logistique-lieustock",
           "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
         }
       ]

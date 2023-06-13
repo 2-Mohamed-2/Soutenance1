@@ -12,6 +12,7 @@ use App\Models\VoitAffecte;
 use App\Models\AffectationUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Commissariat extends Model
 {
@@ -72,5 +73,10 @@ class Commissariat extends Model
   {
     return $this->hasMany(MuniAff::class);
   }
- 
+
+  public function residence(): HasMany
+  {
+    return $this->hasMany(Residence::class);
+  }
+
 }

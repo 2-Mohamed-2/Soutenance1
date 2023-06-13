@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('genre');
             $table->string('motif');
+            $table->string('n_carte')->unique();
+            $table->string('password');
             $table->timestamps();
         });
     }

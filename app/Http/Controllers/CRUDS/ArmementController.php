@@ -40,20 +40,22 @@ class ArmementController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+      try
+      {
+          $this->validate($request, [
 
             // 'commissariats_id' => 'required',
             'modele' => 'required|max:255',
             'n_serie' => 'required|max:255',
             // 'revision' => 'required|max:255',
-             // 'statut' => 'required|max:255',
+            // 'statut' => 'required|max:255',
             // 'lieu' => 'required|max:255',
             'stock' => 'required|max:255',
             'lieu_stock_id' => 'required'
 
-        ]);
+          ]);
 
-        $arme = Armement::create([
+          $arme = Armement::create([
 
             // 'commissariats_id' => $request->commissariats_id,
             'modele' => $request->modele,
@@ -64,43 +66,62 @@ class ArmementController extends Controller
             'stock' => $request->stock,
             'lieu_stock_id' => $request->lieu_stock_id,
 
-        ]);
-        if ($arme) {
+          ]);
+          if ($arme) {
             Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
             return redirect('/Armement');
-        } else {
-           Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+          } else {
+            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Armement');
-        }
+            }
+      }catch (\Throwable $th){
+        Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            return redirect('/Armement');
+
+      }
+
     }
 
     public function update(Request $request, $id){
-        $id = decrypt($id);
+      try{
 
-        $arme = Armement::find($id);
-        $arme->modele = $request->modele;
-        $arme->n_serie = $request->n_serie;
-        $arme->stock = $request->stock;
-        $arme->lieu_stock_id = $request->lieu_stock_id;
-        $arme->save();
+          $id = decrypt($id);
 
-        if ($arme) {
-              Alert::success('Arme a bien été modifié !', 'Réussite');
+          $arme = Armement::find($id);
+          $arme->modele = $request->modele;
+          $arme->n_serie = $request->n_serie;
+          $arme->stock = $request->stock;
+          $arme->lieu_stock_id = $request->lieu_stock_id;
+          $arme->save();
+
+          if ($arme) {
+            Alert::success('Arme a bien été modifié !', 'Réussite');
             return redirect('/Armement');
-        } else {
-              Alert::error('Modification non effectuée !', 'Erreur');
+          } else {
+            Alert::error('Modification non effectuée !', 'Erreur');
             return redirect('/Armement');
-        }
+          }
+      } catch (\Throwable $th){
+        Alert::error('Modification non effectuée !', 'Erreur');
+        return redirect('/Armement');
+      }
+
     }
 
     public function destroy($id)
     {
+      try{
         $id = decrypt($id);
 
         $arme = Armement::findOrFail($id);
         $arme->delete();
-         Alert::success('Arme a bien été supprimé !', 'Réussite');
+        Alert::success('Arme a bien été supprimé !', 'Réussite');
         return redirect('/Armement');
+      }catch (\Throwable $th){
+      Alert::error('Suppression non effectuée !', 'Erreur');
+      return redirect('/Armement');
+      }
+
 
     }
 }

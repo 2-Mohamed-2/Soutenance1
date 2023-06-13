@@ -56,34 +56,38 @@ class VoitAffecteController extends Controller
    */
   public function store(Request $request)
   {
-    //
-
-
-    $data = $this->validate($request, [
+    try{
+      $data = $this->validate($request, [
 
         // 'user_id' => 'required',
         'commissariat_id' => 'required',
         'vehicule_id' => 'required',
         // 'statut_id' => 'required',
-    ]);
-    for($i = 0; $i < count($request->vehicule_id); $i++ )
-    {
+      ]);
+      for ($i = 0; $i < count($request->vehicule_id); $i++) {
 
-      $voitaffecte = new VoitAffecte;
-      $voitaffecte->commissariat_id = $request->commissariat_id;
-      $voitaffecte->vehicule_id = $request->vehicule_id[$i];
-      $voitaffecte->date_acqui = now();
-      $voitaffecte->save();
+        $voitaffecte = new VoitAffecte;
+        $voitaffecte->commissariat_id = $request->commissariat_id;
+        $voitaffecte->vehicule_id = $request->vehicule_id[$i];
+        $voitaffecte->date_acqui = now();
+        $voitaffecte->save();
+      }
+
+      if ($voitaffecte) {
+        Alert::success('Affectation reussi avec succes');
+        return redirect('/voitaffecte');
+      } else {
+        Alert::error('Erreur', 'Affectation non effectuer');
+        return redirect('/voitaffecte');
+      }
+      return redirect()->back();
+    }catch(\Throwable $th){
+      Alert::error('Erreur', 'Affectation non effectuer');
+      return redirect('/voitaffecte');
     }
 
-    if($voitaffecte){
-      Alert::success('Affectation reussi avec succes');
-      return redirect('/voitaffecte');
-    }else{
-      Alert::info('Affectation non effectuer');
-      return redirect('/voitaffecte');
-    }
-    return redirect()->back();
+
+
   }
 
   /**
@@ -117,25 +121,31 @@ class VoitAffecteController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
-    $id = decrypt($id);
-    $validateData = $this->validate($request, [
+    try{
+      $id = decrypt($id);
+      $validateData = $this->validate($request, [
 
-      // 'user_id' => 'required',
-      'commissariat_id' => 'required',
-      'vehicule_id' => 'required',
-      // 'statut_id' => 'required',
-      // 'date_acqui' => 'required|max:255',
+        // 'user_id' => 'required',
+        'commissariat_id' => 'required',
+        'vehicule_id' => 'required',
+        // 'statut_id' => 'required',
+        // 'date_acqui' => 'required|max:255',
 
-    ]);
+      ]);
 
-    $voitaffecte = VoitAffecte::whereId($id)->update($validateData);
-    if ($voitaffecte) {
-      Alert::success('Affectation a ete bien modifier !', 'Reussite');
+      $voitaffecte = VoitAffecte::whereId($id)->update($validateData);
+      if ($voitaffecte) {
+        Alert::success('Affectation a ete bien modifier !', 'Reussite');
+        return redirect('/voitaffecte');
+      } else {
+        Alert::error('Modifier non effectue !', 'Erreur');
+        return redirect('/voitaffecte');
+      }
+    }catch(\Throwable $th){
+      Alert::error('Modifier non effectue !', 'Erreur');
       return redirect('/voitaffecte');
-    } else {
-      Alert::info('Modifier non effectue !', 'Erreur');
     }
+
   }
 
   /**
@@ -146,13 +156,19 @@ class VoitAffecteController extends Controller
    */
   public function destroy($id)
   {
-    $id = decrypt($id);
+    try{
+      $id = decrypt($id);
 
-    $voitaffecte = VoitAffecte::findOrFail($id);
-    $voitaffecte->delete();
+      $voitaffecte = VoitAffecte::findOrFail($id);
+      $voitaffecte->delete();
 
-    Alert::success('Affectation supprimer avec succes');
-    return redirect('/voitaffecte');
+      Alert::success('Affectation supprimer avec succes');
+      return redirect('/voitaffecte');
+    }catch(\Throwable $th){
+      Alert::error('Erreur', 'Modifier non effectue !');
+      return redirect('/voitaffecte');
+    }
+
 
   }
 }

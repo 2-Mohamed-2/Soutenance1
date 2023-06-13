@@ -59,34 +59,39 @@ class AvoirController extends Controller
     public function store(Request $request)
     {
         //
+        try{
+            $data = $this->validate($request, [
 
-       $data = $this->validate($request,[
+              // 'user_id' => 'required',
+              'commissariat_id' => 'required',
+              'armement_id' => 'required',
+              // 'statut_id' => 'required',
+              // 'date_acqui' => 'required|max:255',
 
-        // 'user_id' => 'required',
-        'commissariat_id' => 'required',
-        'armement_id' => 'required',
-        // 'statut_id' => 'required',
-        // 'date_acqui' => 'required|max:255',
+            ]);
 
-        ]);
+            for ($i = 0; $i < count($request->armement_id); $i++) {
+              $avoir = new Avoir;
+              $avoir->commissariat_id = $request->commissariat_id;
+              $avoir->armement_id = $request->armement_id[$i];
+              $avoir->date_acqui = now();
+              $avoir->save();
+            }
 
-        for($i = 0; $i < count($request->armement_id); $i++)
-        {
-          $avoir = new Avoir;
-          $avoir->commissariat_id = $request->commissariat_id;
-          $avoir->armement_id = $request->armement_id[$i];
-          $avoir->date_acqui = now();
-          $avoir->save();
+
+            if ($avoir) {
+              Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
+              return redirect('/Avoir');
+            } else {
+              Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+              return redirect('/Avoir');
+            }
+        }catch (\Throwable $th){
+          Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+          return redirect('/Avoir');
         }
 
 
-        if ($avoir) {
-            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
-            return redirect('/Avoir');
-        } else {
-            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
-            return redirect('/Avoir');
-        }
     }
 
     /**
@@ -120,26 +125,33 @@ class AvoirController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $id = decrypt($id);
-        $validateData = $this->validate($request,[
+      try{
 
-        // 'user_id' => 'required',
-        'commissariat_id' => 'required',
-        'armement_id' => 'required',
-        // 'statut_id' => 'required',
-        'date_acqui' => 'required|max:255',
+          $id = decrypt($id);
+          $validateData = $this->validate($request, [
 
-        ]);
+            // 'user_id' => 'required',
+            'commissariat_id' => 'required',
+            'armement_id' => 'required',
+            // 'statut_id' => 'required',
+            'date_acqui' => 'required|max:255',
 
-        $avoir = Avoir::whereId($id)->update($validateData);
-        if($avoir)
-        {
-          Alert::success('avoir a ete bien modifier !', 'Reussite');
+          ]);
+
+          $avoir = Avoir::whereId($id)->update($validateData);
+          if ($avoir) {
+            Alert::success('avoir a ete bien modifier !', 'Reussite');
             return redirect('/Avoir');
-        }else{
-          Alert::error('Modifier non effectue !', 'Erreur');
-        }
+          } else {
+            Alert::error('Modifier non effectue !', 'Erreur');
+            return redirect('/Avoir');
+          }
+
+      }catch (\Throwable $th){
+      Alert::error('Suppression non effectue !', 'Erreur');
+      return redirect('/Avoir');
+      }
+
     }
 
     /**
@@ -150,12 +162,17 @@ class AvoirController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $id = decrypt($id);
+      try{
+          $id = decrypt($id);
 
-        $avoir = Avoir::findOrFail($id);
-        $avoir->delete($id);
-        Alert::success('L\'avoir a ete bien ete supprimer', 'Reussite');
-        return redirect('/Avoir');
+          $avoir = Avoir::findOrFail($id);
+          $avoir->delete($id);
+          Alert::success('L\'avoir a ete bien ete supprimer', 'Reussite');
+          return redirect('/Avoir');
+      }catch (\Throwable $th){
+      Alert::error('Suppression non effectue !', 'Erreur');
+      return redirect('/Avoir');
+      }
+
     }
 }

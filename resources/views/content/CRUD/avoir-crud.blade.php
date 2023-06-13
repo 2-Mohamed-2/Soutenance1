@@ -17,7 +17,7 @@
    {{-- <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addAvoir" aria-controls="offcanvasEnd">
     Affecter..
   </button> --}}
-  <a class="btn btn-primary col-xl-3" onmouseover="geeks()" onmouseout="out()" href="{{ route('arme-view') }}">Retour</a>
+  <a class="btn btn-primary col-xl-3" onmouseover="geeks()" onmouseout="out()" href="{{ route('logistique-arme-view') }}">Retour</a>
   <div class="card-datatable table-responsive">
     <table class="invoice-list-table table border-top">
       <thead>

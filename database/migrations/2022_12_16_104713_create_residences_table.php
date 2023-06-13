@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('residences', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('inconnu_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('inconnu_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             // $table->integer('numero');
             $table->string('certifions');
             $table->date('ne');
@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('profession');
             $table->string('resulte');
             $table->string('domicile');
-            $table->date('kati');
-            // $table->string('dossier');
+            // $table->date('kati');
             $table->timestamps();
+            $table->foreignId('commissariat_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

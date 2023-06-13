@@ -27,65 +27,81 @@ class InconnuController extends Controller
 
     public function store(Request $request)
     {
-        //
-        $this->validate($request, [
-           'nomcomplet' => 'required|max:255',
-           'adresse' => 'required|max:255',
-           'telephone' => 'required|max:255',
-           'genre' => 'required|max:255',
-           'motif' => 'required|max:255',
-        ]);
+      try{
+            $this->validate($request, [
+              'nomcomplet' => 'required|max:255',
+              'adresse' => 'required|max:255',
+              'telephone' => 'required|max:255',
+              'genre' => 'required|max:255',
+              'motif' => 'required|max:255',
+            ]);
 
-        $inco = Inconnu::create([
-            'nomcomplet' => $request->nomcomplet,
-            'adresse' => $request->adresse,
-            'telephone' =>  $request->telephone,
-            'genre' =>  $request->genre,
-            'motif' =>  $request->motif,
-        ]);
+            $inco = Inconnu::create([
+              'nomcomplet' => $request->nomcomplet,
+              'adresse' => $request->adresse,
+              'telephone' =>  $request->telephone,
+              'genre' =>  $request->genre,
+              'motif' =>  $request->motif,
+            ]);
 
-        if($inco){
-            Alert::info('L\'enregistrement a bien ete effectue !', 'Reussite');
-            return redirect('/Inconnu');
-        }else{
-            Alert::info('L\'enregistrement a bien ete effectue !', 'Erreur');
-        }
+            if ($inco) {
+              Alert::info('L\'enregistrement a bien ete effectue !', 'Reussite');
+              return redirect('/Inconnu');
+            } else {
+              Alert::info('L\'enregistrement a bien ete effectue !', 'Erreur');
+              return redirect('/Inconnu');
+            }
+      }catch (\Throwable $th){
+        Alert::info('L\'enregistrement a bien ete effectue !', 'Erreur');
+        return redirect('/Inconnu');
+      }
+
+
     }
 
 
 
     public function update(Request $request, $id)
     {
-        //
-        $id = decrypt($id);
-        $validateData = $this->validate($request,[
+      try{
+          $id = decrypt($id);
+          $validateData = $this->validate($request, [
             'nomcomplet' => 'required|max:255',
             'adresse' => 'required|max:255',
             'telephone' => 'required|max:255',
             'genre' => 'required|max:255',
             'motif' => 'required|max:255',
-        ]);
+          ]);
 
-        $inco = Inconnu::whereId($id)->update($validateData);
-        if($inco){
+          $inco = Inconnu::whereId($id)->update($validateData);
+          if ($inco) {
             Alert::info('L\'inconnu a ete bien modifier !', 'Reussite');
             return redirect('/Inconnu');
-        }else{
+          } else {
             Alert::info('Modifier non effectue !', 'Erreur');
-        }
+          }
+      }catch (\Throwable $th){
+        Alert::info('Modifier non effectue !', 'Erreur');
+        return redirect('/Inconnu');
+      }
+
     }
 
 
     public function destroy($id)
     {
-        //
+      try{
+          $id = decrypt($id);
 
-        $id = decrypt($id);
+          $inco = Inconnu::findOrFail($id);
+          $inco->delete();
+          Alert::info('L\'inconnu a ete bien ete supprimer', 'Reussite');
+          return redirect('/Inconnu');
+      }catch(\Throwable $th){
+      Alert::info('Suppression non effectue !', 'Erreur');
+      return redirect('/Inconnu');
+      }
 
-        $inco = Inconnu::findOrFail($id);
-        $inco->delete();
-         Alert::info('L\'inconnu a ete bien ete supprimer', 'Reussite');
-        return redirect('/Inconnu');
+
     }
 }
-  

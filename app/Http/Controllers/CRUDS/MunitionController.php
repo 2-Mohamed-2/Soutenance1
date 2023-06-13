@@ -31,57 +31,74 @@ class MunitionController extends Controller
         return view('content.CRUD.muni-crud', compact('munis', 'comms', 'munition', 'lieustock'));
     }
 
-    public function store(Request $request){
-
-        $this->validate($request,[
+    public function store(Request $request)
+    {
+      try
+      {
+          $this->validate($request, [
 
             'type' => 'required|max:255',
             'libelle' => 'required|max:255',
             'stock' => 'required|max:255',
             'lieu_stock_id' => 'required',
-        ]);
+          ]);
 
-        $muni = Munition::create([
+          $muni = Munition::create([
 
             'type' => $request->type,
             'libelle' => $request->libelle,
             'stock' => $request->stock,
             'lieu_stock_id' => $request->lieu_stock_id,
 
-        ]);
-        if ($muni) {
-            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
+          ]);
+          if ($muni) {
+            Alert::success( 'Reussite','L\'enregistrement a bien été effectué !');
             return redirect('/Munition');
-        } else {
+          } else {
             Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
             return redirect('/Munition');
-        }
+          }
+      }catch(\Throwable $th){
+      Alert::error('Erreur','L\'enregistrement n\'a pas bien été effectué !');
+      return redirect('/Munition');
+      }
+
     }
 
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
+      try
+      {
+          $id = decrypt($id);
 
-        $id = decrypt($id);
+          $muni = Munition::find($id);
+          $muni->type = $request->type;
+          $muni->libelle = $request->libelle;
+          $muni->stock = $request->stock;
+          $muni->lieu_stock_id = $request->lieu_stock_id;
+          $muni->save();
 
-        $muni = Munition::find($id);
-        $muni->type = $request->type;
-        $muni->libelle = $request->libelle;
-        $muni->stock = $request->stock;
-        $muni->lieu_stock_id = $request->lieu_stock_id;
-        $muni->save();
-
-        if($muni){
+          if ($muni) {
             Alert::success('Munition a ete bien modifier !', 'Reussite');
             return redirect('/Munition');
-        }else{
+          } else {
             Alert::error('Modifier non effectue !', 'Erreur');
-        }
+            return redirect('/Munition');
+          }
+      }catch(\Throwable $th){
+      Alert::error('Modifier non effectue !', 'Erreur');
+      return redirect('/Munition');
+      }
+
 
     }
 
 
-    public function destroy($id){
-
+    public function destroy($id)
+    {
+      try
+      {
         $id = decrypt($id);
 
         $muni = Munition::findOrFail($id);
@@ -89,6 +106,11 @@ class MunitionController extends Controller
         $muni->delete($id);
         Alert::success('La munition a bien été supprimé !', 'Réussite');
         return redirect('/Munition');
+      }catch(\Throwable $th){
+      Alert::error( 'Erreur', 'Suppression non effectue !');
+      return redirect('/Munition');
+      }
+
 
     }
 }

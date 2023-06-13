@@ -19,7 +19,7 @@
     Affecter.
   </button> --}}
  <span class="alert alert-info d-none " id="myClasse">Retour a la ligne</span>
-  <a class="btn btn-primary col-xl-3" onmouseover="geeks()" onmouseout="out()" href="{{ route('vehi-view') }}">Retour</a>
+  <a class="btn btn-primary col-xl-3" onmouseover="geeks()" onmouseout="out()" href="{{ route('logistique-vehi-view') }}">Retour</a>
   <div class="table-responsive text-nowrap">
     <table class="table table-hover">
       <thead>
