@@ -24,10 +24,13 @@ $customizerHidden = 'customizer-hide';
     <!-- /Left Text -->
 
     <!-- Login -->
-    <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
-      <div class="w-px-400 mx-auto">
+    <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-start authentication-bg p-sm-3 p-3">      
+      <div class="w-px-400 mx-auto mt-2">
+        <a href="{{ route('Accueil') }}" class="btn btn-info d-grid w-100">
+          Revenir a l'accueil
+        </a>
         <!-- Logo -->
-        <div class="app-brand mb-5 text-center">   
+        <div class="app-brand mb-3 text-center mt-2">   
           <div class="text-center">
             <a href="{{url('/')}}" class="app-brand-link gap-2">
               <span class="app-brand-logo demo">
@@ -109,6 +112,7 @@ $customizerHidden = 'customizer-hide';
           </div>
           <button class="btn btn-primary d-grid w-100" type="submit">Se connecter</button>
         </form>
+        
 
         {{-- <p class="text-center">
           <span>New on our platform?</span>

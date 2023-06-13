@@ -7,18 +7,21 @@
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light">Tables /</span> Membres
+  <span class="text-muted fw-light">Coms_Ml /</span> Membres
 </h4>
 
 <hr class="my-5">
 
 <!-- Hoverable Table rows -->
 <div class="card">
-  <h5 class="card-header">Liste des Membres du commissariat</h5>
-  <button class="btn btn-primary col-5 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
-    Créer un nouveau membre
-    
-  </button>
+  <h5 class="card-header">Efectif total</h5>
+  <div class="p-2">
+    <button class="btn btn-primary col-3 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
+      Créer un nouveau membre    
+    </button>
+  </div>
+  
+
   <div class="table-responsive text-nowrap">
     <table class="table table-hover">
       <thead>

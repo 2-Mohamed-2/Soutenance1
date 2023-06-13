@@ -7,36 +7,7 @@
       "slug": "dashboard-analytics",
       "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
     },
-    {
-      "name": "Compte",
-      "icon": "menu-icon tf-icons bx bx-collection",
-      "slug": "compte",
-      "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint",
-
-      "submenu": [
-        {
-          "url": "Compte/Profil",
-          "name": "Profil",
-          "slug": "compte-profil-user-view"
-        },
-        {
-          "url": "Compte/Paramètre/Gestion",
-          "name": "Gestion",
-          "slug": "compte-user-modify"
-        },
-        {
-          "url": "Compte/Paramètre/Sécurité",
-          "name": "Sécurité",
-          "slug": "compte-user-settings-security"
-        }
-      ]
-    },
-
-    {
-      "menuHeader": "Apps & Pages",
-      "role": "Informaticien|Administrateur"
-    },
-
+    
     {
       "url": "/Membre",
       "name": "Membre",
@@ -81,13 +52,6 @@
       "icon": "menu-icon tf-icons fa fa-section",
       "slug": "sect-view",
       "role": "Informaticien|Administrateur"
-    },
-    {
-      "url": "/Carte",
-      "name": "Carte",
-      "icon": "menu-icon tf-icons fa fa-address-card",
-      "slug": "carte-view",
-      "role": "Informaticien"
     },
 
     {
@@ -146,6 +110,32 @@
           "role": "Informaticien"
         }
       ]
+    },
+
+    {
+      "name": "Compte",
+      "icon": "menu-icon tf-icons bx bx-collection",
+      "slug": "compte",
+      "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint",
+
+      "submenu": [
+        {
+          "url": "Compte/Profil",
+          "name": "Profil",
+          "slug": "compte-profil-user-view"
+        },
+        {
+          "url": "Compte/Paramètre/Gestion",
+          "name": "Gestion",
+          "slug": "compte-user-modify"
+        },
+        {
+          "url": "Compte/Paramètre/Sécurité",
+          "name": "Sécurité",
+          "slug": "compte-user-settings-security"
+        }
+      ]
     }
+
   ]
 }
