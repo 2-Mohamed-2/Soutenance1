@@ -26,15 +26,15 @@ $customizerHidden = 'customizer-hide';
     <!-- Login -->
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-start authentication-bg p-sm-3 p-3">      
       <div class="w-px-400 mx-auto mt-2">
-        <a href="{{ route('Accueil') }}" class="btn btn-info d-grid w-100">
-          Revenir a l'accueil
-        </a>
+        {{-- <a href="{{ route('Accueil') }}" class="btn d-grid w-100">
+          <span class="bg-dark mx-auto"><i class="bx bx-home-circle"></i></span>
+        </a> --}}
         <!-- Logo -->
         <div class="app-brand mb-3 text-center mt-2">   
           <div class="text-center">
             <a href="{{url('/')}}" class="app-brand-link gap-2">
-              <span class="app-brand-logo demo">
-                <img src="{{ asset('Coms_Ml_logo.png') }}" class="d-block mx-auto" width="30%" alt="">
+              <span class="app-brand-logo demo d-block">
+                <img src="{{ asset('Coms_Ml_logo.png') }}" class="mx-auto" width="30%" alt="">
               </span>
             </a>
           </div> 

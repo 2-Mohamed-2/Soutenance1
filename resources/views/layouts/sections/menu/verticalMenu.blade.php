@@ -9,7 +9,7 @@ $configData = Helper::appClasses();
   <div class="app-brand demo mb-2">
     <a href="{{url('/')}}" class="app-brand-link">
       <span class="app-brand-logo demo col-4">
-        <img src="{{ asset('Coms_Ml_logo.png') }}" class="" width="95%" alt="">
+        <img src="{{ asset('Coms_Ml_logo.png') }}" class="w-px-50 h-auto" alt="">
       </span>
       <span class="app-brand-text demo menu-text fw-bold ms-2">{{config('variables.templateName')}}</span>
     </a>
@@ -87,7 +87,7 @@ $configData = Helper::appClasses();
     @endif
     @endforeach
   </ul>
-  @if (Auth::check())
+  {{-- @if (Auth::check())
   
     <div class="menu-divider mb-0"></div>
     <ul class="m-0 p-0 bg-danger">
@@ -102,7 +102,7 @@ $configData = Helper::appClasses();
       </li>
     </ul>
 
-  @endif
+  @endif --}}
   <script>
     const menus9List = document.querySelectorAll('.menus-9');
     if (menus9List) {

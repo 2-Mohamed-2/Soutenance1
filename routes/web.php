@@ -26,8 +26,10 @@ use App\Http\Controllers\UserCompte\UserProfilSecurity;
 use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\UserCompte\UserProfilView;
+use App\Http\Controllers\Visitors\Accueil;
+use App\Http\Controllers\Visitors\Inconnu as VisitorsInconnu;
 use App\Http\Middleware\ActiveMiddleware;
-
+use App\Models\Inconnu;
 
 //Route de redirection quand le mdp est 123456
 // Route::middleware(['Mot_passe:123456'])->group(function () {
@@ -35,9 +37,13 @@ use App\Http\Middleware\ActiveMiddleware;
 
 
 // Route pour les visiteurs
-Route::get('/Accueil', function () {
-        return ("Bonjour");
-})->name('Accueil');
+
+Route::get('/Accueil', [Accueil::class, 'index'])->name('Accueil');
+//Pour la creation d'un compte visiteur
+Route::post('/Citoyen/Create', [VisitorsInconnu::class, 'store'])->name('citcreate');
+
+
+
 
 
 // laravel example

@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('adresse');
             $table->string('telephone');
             $table->string('genre');
-            $table->string('motif');
-            $table->string('n_carte')->unique();
+            $table->string('n_ci')->unique();
             $table->string('password');
             $table->timestamps();
         });

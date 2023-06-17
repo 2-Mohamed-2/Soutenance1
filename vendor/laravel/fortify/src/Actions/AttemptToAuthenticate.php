@@ -3,6 +3,7 @@
 namespace Laravel\Fortify\Actions;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\SessionUser;
 use Laravel\Fortify\Fortify;
 use Illuminate\Auth\Events\Failed;
@@ -69,7 +70,10 @@ class AttemptToAuthenticate
             $request->session()->put('session_id', $session_user->id);             
             
             Alert::info('Bonjour '.$request->user()->name, 'Coms_Ml vous souhaite la bienvenue !');
-            return $next($request);
+            $users = User::all();
+            $usernbr = $users->count();
+
+            return view('content.dashboard.dashboards-principal', compact('usernbr'));
         }
 
         $this->throwFailedAuthenticationException($request);
