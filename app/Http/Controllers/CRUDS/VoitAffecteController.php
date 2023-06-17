@@ -83,7 +83,7 @@ class VoitAffecteController extends Controller
       return redirect()->back();
     }catch(\Throwable $th){
       Alert::error('Erreur', 'Affectation non effectuer');
-      return redirect('/voitaffecte');
+      return redirect('/vehicule');
     }
 
 

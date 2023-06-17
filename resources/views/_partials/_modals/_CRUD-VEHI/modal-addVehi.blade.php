@@ -40,7 +40,7 @@
        <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Quantite</label>
           <div class="input-group input-group-merge">
-            <input required type="text" autocomplete="off"  name="quantite" class="form-control phone-mask" placeholder="" />
+            <input required type="text" autocomplete="off"  name="quantite" class="form-control phone-mask" placeholder="Quantite" />
           </div>
         </div>
 

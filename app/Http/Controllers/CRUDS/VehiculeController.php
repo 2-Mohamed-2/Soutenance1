@@ -9,6 +9,7 @@ use App\Models\Vehicule;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\VoitAffecte;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class VehiculeController extends Controller
@@ -24,6 +25,7 @@ class VehiculeController extends Controller
     public function VehiView(Request $request){
         $vehicules = Vehicule::paginate(5);
         $comms = Commissariat::latest()->get();
+        // $voitaffectes = VoitAffecte::latest()->get();
         $users = User::latest()->get();
             return view('content.CRUD.vehi-crud', compact('vehicules', 'comms', 'users'));
 

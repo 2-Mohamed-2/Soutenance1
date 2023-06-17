@@ -1,5 +1,5 @@
 <!-- End Offcanvas -->
-<div class="modal fade" id="addVoit" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="addVoit{{ $vehi->id }}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -19,6 +19,16 @@
                     </option>
                     @endforeach
            </select>
+          </div>
+
+          <div class="col-12 mb-4">
+            <select class="form-control" name="vehicule_id">
+              <option value=""> -- --</option>
+              @foreach($vehicules as $vehicule)
+              <option value="{{ $vehicule->id }}">{{ $vehicule->type }}
+              </option>
+              @endforeach
+            </select>
           </div>
 
           <div class="col-12">
