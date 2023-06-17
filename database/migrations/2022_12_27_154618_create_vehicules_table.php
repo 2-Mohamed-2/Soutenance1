@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('modele');
             $table->string('plaque');
+            $table->integer('quantite');
             // $table->string('revision');
             $table->timestamps();
         });

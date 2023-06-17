@@ -35,7 +35,7 @@ class ResidenceController extends Controller
 
     public function store(Request $request)
     {
-      // try{
+       try{
           $this->validate($request, [
             // 'inconnu_id' => 'required',
             // 'numero' => 'required|max:255',
@@ -70,16 +70,16 @@ class ResidenceController extends Controller
           ]);
 
           if ($resi) {
-            Alert::info('Réussite', 'L\'enregistrement a bien été effectué !');
+            Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
             return redirect('/Residence');
           } else {
-            Alert::info('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+            Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
             return redirect('/Residence');
           }
-      // }catch(\Throwable $th){
-      // Alert::info('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
-      // return redirect('/Residence');
-      // }
+       }catch(\Throwable $th){
+       Alert::error( 'Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+       return redirect('/Residence');
+       }
 
 
     }
@@ -102,14 +102,14 @@ class ResidenceController extends Controller
           $resi->save();
 
           if ($resi) {
-            Alert::info('Réussite', 'La residence a bien été modifié !');
+            Alert::success('Réussite', 'La residence a bien été modifié !');
             return redirect('/Residence');
           } else {
-            Alert::info('Erreur', 'Modification non effectuée');
+            Alert::error('Erreur', 'Modification non effectuée');
             return redirect('/Residence');
           }
       }catch(\Throwable $th){
-      Alert::info('Erreur', 'Modification non effectuée !');
+      Alert::error('Erreur', 'Modification non effectuée !');
       return redirect('/Residence');
       }
 
@@ -122,10 +122,10 @@ class ResidenceController extends Controller
         $id = decrypt($id);
         $resi = Residence::findOrFail($id);
         $resi->delete();
-        Alert::info('Réussite', 'La residence a bien été supprimé !');
+        Alert::success('Réussite', 'La residence a bien été supprimé !');
         return redirect('/Residence');
       }catch(\Throwable $th){
-      Alert::info('Erreur', 'Suppression non effectuée !');
+      Alert::error('Erreur', 'Suppression non effectuée !');
       return redirect('/Residence');
       }
 
@@ -133,15 +133,7 @@ class ResidenceController extends Controller
 
 
     public function PDF(Request $request) {
-
-
-        //$resi = Residence::find($request->id);
-        //$pdf = App::make('dompdf.wrapper');
-       // $pdf->loadView('_partials.pdfResi', compact('resi'));
-       // $pdf->setPaper('A4', 'landscape');
-       //$pdf->loadView('layouts.carte', compact('cart'));
-
-       // return $pdf->stream();
+      // $id = decrypt($id);
        $resi = Residence::find($request->id);
        $pdf = PDF::loadView('_partials.pdfResi',  compact('resi'));
        $pdf->setPaper('A4');

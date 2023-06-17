@@ -32,7 +32,7 @@
 
 
             <div class="col-12">
-                <label class="form-label" for="modalEnableOTPPhone">Stock</label>
+                <label class="form-label" for="modalEnableOTPPhone">Quantite</label>
                 <div class="input-group input-group-merge">
                 <input required type="number" autocomplete="off" maxlength="10" value="{{$arme->stock}}" name="stock" class="form-control phone-mask" placeholder="Stock" />
                 </div>

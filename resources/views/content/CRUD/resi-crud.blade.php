@@ -40,7 +40,7 @@
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#resiUpdt{{$resi->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#resiDst{{$resi->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
 
-              <a class="dropdown-item" target="blank" href="{{ route('residencePDF', $resi->id    ) }};" data-bs-toggle="modal" data-bs-target="#{{$resi->id}}"><i class="fa fa-file-pdf me-1"></i>PDF</a>
+              <a class="dropdown-item" target="blank" href="{{ route('residencePDF', encrypt($resi->id)) }};" data-bs-toggle="modal" data-bs-target="#{{$resi->id}}"><i class="fa fa-file-pdf me-1"></i>PDF</a>
             </div>
 
             {{-- Vue du modal de modification --}}

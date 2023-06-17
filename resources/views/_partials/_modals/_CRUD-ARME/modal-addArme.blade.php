@@ -12,7 +12,7 @@
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Modele</label>
           <div class="input-group input-group-merge">
-            <input required type="text" autocomplete="off"  name="modele" class="form-control phone-mask" placeholder="Modele" />
+            <input required type="text" autocomplete="off" minlength="4"  name="modele" class="form-control phone-mask" placeholder="Modele" />
           </div>
         </div>
 
@@ -20,7 +20,7 @@
       <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">N° Serie</label>
         <div class="input-group input-group-merge">
-          <input required type="text" autocomplete="off"  name="n_serie" class="form-control phone-mask" placeholder="Numero de serie" />
+          <input required type="text" autocomplete="off" minlength="4"  name="n_serie" class="form-control phone-mask" placeholder="Numero de serie" />
         </div>
       </div>
 

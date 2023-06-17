@@ -207,9 +207,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
     //Routes pour crud du residence
-    Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view');
-    Route::resource('/Resi', ResidenceController::class);
-    Route::get('/residencePDF/{id}', [ResidenceController::class, 'PDF'])->name('residencePDF');
+    Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+    Route::resource('/Resi', ResidenceController::class)->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+    Route::get('/residencePDF/{id}', [ResidenceController::class, 'PDF'])->name('residencePDF')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Lieu de stockage
       Route::get('/lieu/stockage', [LieuStockController::class, 'index'])->name('logistique-lieustock')
