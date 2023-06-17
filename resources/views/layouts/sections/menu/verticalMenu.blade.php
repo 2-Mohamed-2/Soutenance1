@@ -6,10 +6,10 @@ $configData = Helper::appClasses();
 
   <!-- ! Hide app brand if navbar-full -->
   @if(!isset($navbarFull))
-  <div class="app-brand demo">
+  <div class="app-brand demo mb-2">
     <a href="{{url('/')}}" class="app-brand-link">
-      <span class="app-brand-logo demo">
-        @include('_partials.macros',["width"=>25,"withbg"=>'#696cff'])
+      <span class="app-brand-logo demo col-4">
+        <img src="{{ asset('Coms_Ml_logo.png') }}" class="" width="95%" alt="">
       </span>
       <span class="app-brand-text demo menu-text fw-bold ms-2">{{config('variables.templateName')}}</span>
     </a>
@@ -87,20 +87,22 @@ $configData = Helper::appClasses();
     @endif
     @endforeach
   </ul>
-  <div class="menu-divider mb-0"></div>
-  <ul class="m-0 p-0">
-    <li class="menu-block my-1 d-flex flex-row justify-content-between">
-      <a class="fold-show"title="Settings" data-bs-placement="top" data-bs-toggle="tooltip" href="javascript:%20void(0);">
-        <span aria-hidden="true" class="text-body bx bx-cog"></span>
-      </a> 
-      <a title="Lock" data-bs-placement="top" data-bs-toggle="tooltip" href="javascript:%20void(0);">
-        <span aria-hidden="true" class="text-body bx bx-hide"></span>
-      </a> 
-      <a title="Deconnexion" data-bs-placement="top" data-bs-toggle="tooltip" href="javascript:%20void(0);">
-        <span aria-hidden="true" class="text-body bx bx-power-off"></span>
-      </a>
-    </li>
-  </ul>
+  @if (Auth::check())
+  
+    <div class="menu-divider mb-0"></div>
+    <ul class="m-0 p-0 bg-danger">
+      <li class="menu-block my-1 d-flex flex-row justify-content-center">      
+        <a title="Deconnexion" class="text-white fs-5" data-bs-placement="top" data-bs-toggle="tooltip" 
+        href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          <span aria-hidden="true" class="bx bx-power-off"> Deconnexion</span>
+        </a>
+        <form method="POST" id="logout-form" action="{{ route('logout') }}">
+          @csrf
+        </form>
+      </li>
+    </ul>
+
+  @endif
   <script>
     const menus9List = document.querySelectorAll('.menus-9');
     if (menus9List) {

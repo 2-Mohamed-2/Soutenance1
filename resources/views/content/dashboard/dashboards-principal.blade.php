@@ -4,7 +4,7 @@ $configData = Helper::appClasses();
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Dashboard - Analytics')
+@section('title', 'Tableau de bord')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}">
@@ -28,7 +28,7 @@ $configData = Helper::appClasses();
             <h5 class="card-title text-primary">Bienvenue {{Auth::user()->name}} sur {{config('variables.templateName')}} ! 🎉</h5>
             <p class="mb-4">Vous êtes sur l'application web de la police nationale du Mali</p>
 
-            <a href="javascript:;" class="btn btn-sm btn-label-primary">Voir profil</a>
+            <a href="{{ route('compte-profil-user-view') }}" class="btn btn-sm btn-label-primary">Voir profil</a>
           </div>
         </div>
         <div class="col-sm-5 text-center text-sm-left">

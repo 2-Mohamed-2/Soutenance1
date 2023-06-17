@@ -31,8 +31,18 @@ use App\Http\Middleware\ActiveMiddleware;
 
 //Route de redirection quand le mdp est 123456
 // Route::middleware(['Mot_passe:123456'])->group(function () {
-
 // });
+
+
+// Route pour les visiteurs
+Route::get('/Accueil', function () {
+        return ("Bonjour");
+})->name('Accueil');
+
+
+// laravel example
+Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
+Route::resource('/user-list', UserManagement::class);
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'], [testOk::class])->group(function () {
 
@@ -212,3 +222,4 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
 
 });
+
