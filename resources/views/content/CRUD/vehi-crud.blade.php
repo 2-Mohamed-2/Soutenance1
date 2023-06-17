@@ -104,7 +104,7 @@
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#vehiUpdt{{$vehi->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#vehiDst{{$vehi->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addVoit"><i class="bx bx-car me-1"></i>Affecter</a>
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addVoit{{ $vehi->id }}"><i class="bx bx-car me-1"></i>Affecter</a>
               </div>
             </div>
 
