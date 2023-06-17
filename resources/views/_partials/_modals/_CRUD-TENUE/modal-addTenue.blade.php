@@ -13,7 +13,7 @@
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Type</label>
           <div class="input-group input-group-merge">
-            <input required autocomplete="off" type="text" name="type" class="form-control" placeholder="Type de Vehicule" />
+            <input required autocomplete="off" type="text" minlength="5" name="type" class="form-control" placeholder="Type de Vehicule" />
           </div>
 
         <div class="col-12">
@@ -33,7 +33,7 @@
 
 
           <div class="col-12">
-            <label class="form-label" for="modalEnableOTPPhone">Stock</label>
+            <label class="form-label" for="modalEnableOTPPhone">Quantite</label>
             <div class="input-group input-group-merge">
               <input required type="number" autocomplete="off" minlength="5" name="stock" class="form-control phone-mask" placeholder="" />
             </div>

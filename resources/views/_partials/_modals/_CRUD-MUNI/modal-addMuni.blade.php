@@ -11,19 +11,19 @@
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Type</label>
           <div class="input-group input-group-merge">
-            <input required autocomplete="off" type="text" name="type" class="form-control" placeholder="Type de Munition" />
+            <input required autocomplete="off" type="text" minlength="4" name="type" class="form-control" placeholder="Type de Munition" />
           </div>
 
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Libelle</label>
           <div class="input-group input-group-merge">
-            <input required type="text" autocomplete="off" name="libelle" class="form-control phone-mask" placeholder="Libelle" />
+            <input required type="text" autocomplete="off" minlength="4" name="libelle" class="form-control phone-mask" placeholder="Libelle" />
           </div>
         </div>
 
 
       <div class="col-12">
-        <label class="form-label" for="modalEnableOTPPhone">Stock</label>
+        <label class="form-label" for="modalEnableOTPPhone">Quantite</label>
         <div class="input-group input-group-merge">
           <input required type="number" autocomplete="off" name="stock" class="form-control phone-mask" placeholder="stock" />
         </div>

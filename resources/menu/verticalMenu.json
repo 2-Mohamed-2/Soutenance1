@@ -91,13 +91,6 @@
       "slug": "sect-view",
       "role": "Informaticien|Administrateur"
     },
-    {
-      "url": "/Carte",
-      "name": "Carte",
-      "icon": "menu-icon tf-icons fa fa-address-card",
-      "slug": "carte-view",
-      "role": "Informaticien"
-    },
 
     {
       "name": "Logistique",
@@ -130,7 +123,15 @@
           "url": "/Munition",
           "name": "Munition",
           "icon": "menu-icon tf-icons fa fa-car",
-          "slug": "muni-view"
+          "slug": "logistique-muni-view",
+          "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
+        },
+        {
+          "url": "/lieustock",
+          "name": "Entrepot",
+          "icon": "menu-icon tf-icons fa fa-warehouse",
+          "slug": "logistique-lieustock",
+          "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
         }
 
       ]
@@ -151,13 +152,6 @@
           "url": "/app/invoice/list",
           "name": "List",
           "slug": "app-invoice-list"
-        },
-        {
-          "url": "/lieustock",
-          "name": "LieuStockage",
-          "icon": "menu-icon tf-icons  fa fa-warehouse",
-          "slug": "logistique-lieustock",
-          "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
         }
       ]
     },

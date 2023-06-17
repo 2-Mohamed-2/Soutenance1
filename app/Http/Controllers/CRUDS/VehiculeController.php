@@ -27,6 +27,7 @@ class VehiculeController extends Controller
         $users = User::latest()->get();
             return view('content.CRUD.vehi-crud', compact('vehicules', 'comms', 'users'));
 
+
     }
 
 
@@ -54,6 +55,7 @@ class VehiculeController extends Controller
           // 'identifiant' => 'required',
           'modele' => 'required|max:255',
           'plaque' => 'required|max:255',
+          'quantite' => 'required',
           // 'revision' => 'required|max:255',
           // 'commissariat_id' => 'max:255',
 
@@ -99,6 +101,7 @@ class VehiculeController extends Controller
             'type' => 'required',
             // 'identifiant' => 'required',
             'modele' => 'required',
+            'quantite' => 'required',
             // 'plaque' => 'max:255',
             // 'revision' => 'required|max:255',
             // 'commissariat_id' => 'max:255',

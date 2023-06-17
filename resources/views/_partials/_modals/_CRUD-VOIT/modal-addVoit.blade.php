@@ -22,6 +22,13 @@
           </div>
 
           <div class="col-12">
+            <label class="form-label" for="modalEnableOTPPhone">Quantite</label>
+            <div class="input-group input-group-merge">
+              <input required type="text" autocomplete="off" name="quantite" class="form-control phone-mask" placeholder="Quantite" />
+            </div>
+          </div>
+
+          {{-- <div class="col-12">
             <h4></h4>
             <!-- Permission table -->
             <div class="table-responsive">
@@ -54,13 +61,13 @@
                   </tr>
                   @empty
                    {{-- Pas de permission enregistrée pour le moment, <a href="{{route('app-access-permission')}}">ici</a> --}}
-                  @endforelse
+                  {{-- @endforelse --}}
 
-                </tbody>
+                {{-- </tbody>
               </table>
-            </div>
+            </div> --}}
             <!-- Permission table -->
-          </div>
+          {{-- </div> --}}
       </div>
 
       <div class="modal-footer">

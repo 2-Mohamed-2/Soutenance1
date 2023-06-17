@@ -16,20 +16,20 @@
             <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Type</label>
                 <div class="input-group input-group-merge">
-                  <input required autocomplete="off" type="text" value="{{$muni->type}}" name="type" class="form-control" placeholder="Type de Vehicule" />
+                  <input required autocomplete="off" type="text" minlength="4" value="{{$muni->type}}" name="type" class="form-control" placeholder="Type de Vehicule" />
                 </div>
 
               <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">libelle</label>
                 <div class="input-group input-group-merge">
-                  <input required type="text" autocomplete="off" maxlength="10" name="libelle" value="{{$muni->libelle}}" class="form-control phone-mask" />
+                  <input required type="text" autocomplete="off" minlength="4"  name="libelle" value="{{$muni->libelle}}" class="form-control phone-mask" />
                 </div>
               </div>
 
               <div class="col-12">
-                <label class="form-label" for="modalEnableOTPPhone">Stock</label>
+                <label class="form-label" for="modalEnableOTPPhone">Quantite</label>
                 <div class="input-group input-group-merge">
-                  <input required type="number" autocomplete="off" maxlength="10" name="stock" value="{{$muni->stock}}" class="form-control phone-mask" placeholder="" />
+                  <input required type="number" autocomplete="off" minlength="4" name="stock" value="{{$muni->stock}}" class="form-control phone-mask" placeholder="" />
                 </div>
               </div>
 
