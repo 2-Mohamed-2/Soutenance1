@@ -365,10 +365,16 @@ $navbarDetached = ($navbarDetached ?? '');
                 @csrf
               </form>
               @else
-              <li>
+              {{-- <li>
                 <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addCitoyen">
                   <i class='bx bx-user-plus'></i>
                   <span class="align-middle">Creer un compte</span>
+                </a>
+              </li> --}}
+              <li>
+                <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#actionscreatelogin">
+                  <i class='bx bx-user-plus'></i>
+                  <span class="align-middle">Actions</span>
                 </a>
               </li>
               <li>

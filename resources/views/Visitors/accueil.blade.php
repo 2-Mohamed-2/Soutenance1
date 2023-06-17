@@ -8,6 +8,7 @@ $configData = Helper::appClasses();
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/apex-charts/apex-charts.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/css/pages/page-auth.css')}}">
 @endsection
 
 @section('vendor-script')
@@ -880,5 +881,7 @@ $configData = Helper::appClasses();
   </div>
   <!--/ Customer Table -->
 </div>
+
+@include('Visitors.Modals.login-createAccount')
 
 @endsection
