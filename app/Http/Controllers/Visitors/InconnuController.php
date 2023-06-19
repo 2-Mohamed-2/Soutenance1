@@ -81,8 +81,7 @@ class InconnuController extends Controller {
                         'password' => Hash::make($request['password']),
             ]);
             if ($inconnu) {
-                Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
-                
+                Alert::success('Réussite', 'Bonjour et bienvenue sur Coms_Ml. Merci d\'avoir creer un compte sur la plateforme.');                
                 Auth::guard('inconnu')->login($inconnu);
                 return redirect('Accueil');
             }

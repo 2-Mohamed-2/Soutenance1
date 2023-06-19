@@ -78,7 +78,7 @@ class InconnuConnexionController extends Controller
         $password = $request->password;
 
         if (Auth::guard('inconnu')->attempt(['n_ci' => $n_ci, 'password' => $password])) {
-            Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
+            Alert::info('Réussite', 'Bonjour et bienvenue sur Coms_Ml.');
             return redirect()->back();
         }
         else{
@@ -95,13 +95,14 @@ class InconnuConnexionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Laravel\Fortify\Contracts\LogoutResponse
      */
-    public function destroy2(Request $request): LogoutResponse {
+    public function destroy2(Request $request) {
         $this->guard->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return app(LogoutResponse::class);
+        Alert::info('Réussite', 'Coms_Ml vous remercie, veuillez passer une bonne suite de journée.');
+        return redirect()->back();
     }
 }
