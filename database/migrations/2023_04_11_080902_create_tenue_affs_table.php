@@ -19,7 +19,8 @@ return new class extends Migration
          $table->foreignId('commissariat_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
          $table->foreignId('tenue_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
          $table->date('date_acqui')->default(now());
-            $table->timestamps();
+         $table->integer('quantite');
+         $table->timestamps();
         });
     }
 

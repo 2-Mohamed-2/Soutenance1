@@ -180,11 +180,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
       Route::resource('/Avoir', AvoirController::class)
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::post('/affectearme/{arme_id}', [AvoirController::class, 'affecterArme'])->name('affectearme')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Route pour voiture affecter
       Route::get('/voitaffecte', [VoitAffecteController::class, 'voitView'])->name('voit')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
       Route::resource('/voitaffecte', VoitAffecteController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      //Route affectation voiture
+      Route::post('/affectevoiture/{voiture_id}', [VoitAffecteController::class, 'affecterVoiture'])->name('voit')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Route pour Tenueaff
@@ -192,11 +197,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
       Route::resource('/tenueaff', TenueAffController::class)
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::post('/affectetenue/{tenueaff_id}', [TenueAffController::class, 'affecterTenue'])->name('affectetenue')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+
 
       // Route pour munition affecter
       Route::get('/muniaff', [MuniAffController::class, 'index'])->name('muniaff')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
       Route::resource('/muniaff', MuniAffController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::post('/affectemuni/{muniaff_id}', [MuniAffController::class, 'affecterMuni'])->name('affectemuni')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Routes pour le crud Inconnu

@@ -149,4 +149,38 @@ class MuniAffController extends Controller
 
 
     }
+
+    public function affecterMuni(Request $req, $muniaff_id){
+      try
+      {
+        $muniaffInfos = Munition::where('id', $muniaff_id)->first();
+
+        $data =  $this->validate($req, [
+          'commissariat_id' => 'required',
+          'quantite' => 'required'
+        ]);
+        if($req->quantite > $muniaffInfos->quantite || $req->quantite == 0){
+          Alert::error('Erreur', 'Quantite insuffisante !');
+          return redirect('/Munition');
+        }
+        else{
+          $affectemuni = new MuniAff;
+          $affectemuni->commissariat_id = $req->commissariat_id;
+          $affectemuni->munition_id = $muniaff_id;
+          $affectemuni->quantite = $req->quantite;
+          $affectemuni->date_acqui = now();
+          $affectemuni->save();
+          if($affectemuni){
+            $updateMuni = Munition::find($muniaffInfos->id);
+            $updateMuni->quantite -= $req->quantite;
+            $updateMuni->update();
+          }
+          Alert::success('Success', 'Affectation réussite');
+          return redirect('/muniaff');
+        }
+      }catch(\Throwable $th){
+        Alert::error('Erreur', 'Affectation non réussite');
+        return redirect('/Munition');
+      }
+  }
 }

@@ -42,45 +42,36 @@ class TenueController extends Controller
 
     public function store(Request $request)
     {
-      try{
+       try{
           $this->validate($request, [
 
-            'type' => 'required|max:255',
-            'modele' => 'required|max:255',
+            'type' => 'required|max:255|min:3',
+            'modele' => 'required|max:255|min:3',
             'taille' => 'required|max:255',
-            // 'annee' => 'required|max:255',
-            // 'statut' => 'required|max:255',
-            'stock' => 'required|max:255',
+            'quantite' => 'required|max:255',
             'lieu_stock_id' => 'required',
-            // 'users_id' => 'required|max:255',
-
-
           ]);
 
-          $tenue = Tenue::create([
+          $tenue = new Tenue;
 
-            'type' => $request->type,
-            'modele' => $request->modele,
-            'taille' => $request->taille,
-            // 'annee' => $request->annee,
-            // 'statut' => $request->statut,
-            'stock' => $request->stock,
-            'lieu_stock_id' => $request->lieu_stock_id,
-            // 'users_id' => $request->users_id,
-
-          ]);
+          $tenue->type = $request->type;
+          $tenue->modele = $request->modele;
+          $tenue->taille = $request->taille;
+          $tenue->quantite = $request->quantite;
+          $tenue->lieu_stock_id = $request->lieu_stock_id;
+           $tenue->save();
 
           if ($tenue) {
-            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
             return redirect('/Tenue');
           } else {
-            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
             return redirect('/Tenue');
           }
-      }catch(\Throwable $th){
-        Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
-            return redirect('/Tenue');
-      }
+       }catch(\Throwable $th){
+         Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+             return redirect('/Tenue');
+       }
 
     }
 
@@ -92,15 +83,14 @@ class TenueController extends Controller
         $tenue->type = $request->type;
         $tenue->modele = $request->modele;
         $tenue->taille = $request->taille;
-        // $tenue->annee = $request->annee;
-        $tenue->stock = $request->stock;
+        $tenue->quantite = $request->quantite;
         $tenue->lieu_stock_id = $request->lieu_stock_id;
         $tenue->save();
         if ($tenue) {
-          Alert::success('tenue a ete bien modifier !', 'Reussite');
+          Alert::success('Reussite', 'tenue a ete bien modifier !');
           return redirect('/Tenue');
         } else {
-          Alert::error('Modifier non effectue !', 'Erreur');
+          Alert::error('Erreur', 'Modifier non effectue !');
           return redirect('/Tenue');
         }
       }catch(\Throwable $th){
@@ -117,7 +107,7 @@ class TenueController extends Controller
 
         $tenue = Tenue::findOrFail($id);
         $tenue->delete();
-        Alert::success('Le tenue a ete bien ete supprimer', 'Reussite');
+        Alert::success('Reussite', 'Le tenue a ete bien ete supprimer');
         return redirect('/Tenue');
 
       }catch(\Throwable $th){

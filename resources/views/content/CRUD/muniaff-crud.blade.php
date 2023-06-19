@@ -28,6 +28,7 @@
           <th>Commissariat</th>
           <th>Munition</th>
           <th>Date Acquisition</th>
+          <th>Quantite</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -38,6 +39,7 @@
           <td>{{$muniaff->munition->type}}</td>
           {{-- <td>{{$voitaffecte->statut->libelle}}</td> --}}
           <td>{{$muniaff->date_acqui}}</td>
+          <td>{{$muniaff->quantite}}</td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i
@@ -74,7 +76,5 @@
   </script>
 </div>
 
-{{-- Vue du modal d'insertion --}}
-{{-- @include('_partials/_modals/_CRUD-TENUEAFF/modal-addTenueaff') --}}
 
 @endsection

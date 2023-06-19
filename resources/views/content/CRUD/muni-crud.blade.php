@@ -30,7 +30,7 @@ use App\Models\Munition;
             <small>Total Munition</small>
           </div>
         {{--  <span class="badge bg-label-primary rounded p-2">
-             <i class="fa fa-shirt bx-sm"></i> 
+             <i class="fa fa-shirt bx-sm"></i>
           </span> --}}
         </div>
       </div>
@@ -60,7 +60,7 @@ use App\Models\Munition;
 <div class="card">
   <h5 class="card-header">Liste des Munitions enregistrés</h5>
   <div class="d-flex justify-content-end mb-3 gap-3">
-    <a class="btn btn-outline-secondary" onmouseover="geeks()" onmouseout="out()" href="muniaff"><i
+    <a class="btn btn-outline-secondary" onmouseover="geeks()" onmouseout="out()" href="{{ url('muniaff') }}"><i
         class="fa fa-gun fa-xl"></i></a>
   <button class="btn btn-primary " data-bs-toggle="offcanvas" data-bs-target="#addMuni" aria-controls="offcanvasEnd">
     Ajouter Munition.
@@ -72,7 +72,7 @@ use App\Models\Munition;
         <tr>
           <th>Type</th>
           <th>Libelle</th>
-          <th>Stock</th>
+          <th>Quantite</th>
           <th>Lieu Stockage</th>
           <th>Action</th>
         </tr>
@@ -82,7 +82,7 @@ use App\Models\Munition;
         <tr>
           <td><strong>{{$muni->type}}</strong></td>
           <td>{{$muni->libelle}}</span></td>
-          <td>{{$muni->stock}}</span></td>
+          <td>{{$muni->quantite}}</span></td>
           <td>{{$muni->lieu_stock->entrepot}}</span></td>
           <td>
             <div class="dropdown">
@@ -90,7 +90,7 @@ use App\Models\Munition;
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#muniUpdt{{$muni->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#muniDst{{$muni->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#Muniaff"><i
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#muniaff"><i
                     class="fa fa-gun me-1"></i>AffecterMunition</a>
               </div>
             </div>
@@ -116,7 +116,7 @@ use App\Models\Munition;
 
 {{-- Vue du modal d'insertion --}}
 @include('_partials/_modals/_CRUD-MUNIAFF/modal-addMuniaff')
-  @include('_partials/_modals/_CRUD-MUNI/modal-addMuni')
+@include('_partials/_modals/_CRUD-MUNI/modal-addMuni')
 
 
 

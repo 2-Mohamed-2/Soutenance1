@@ -23,7 +23,7 @@
            </select>
           </div>
 
-        <div class="col-12 mb-4">
+        {{-- <div class="col-12 mb-4">
            <select class="form-control" name="tenue_id">
                     @foreach($tenues as $tenue)
                     <option value="">{{ $tenue->type }}</option>
@@ -31,7 +31,7 @@
                     </option>
                     @endforeach
            </select>
-          </div>
+          </div> --}}
 
 
         <div class="col-12">

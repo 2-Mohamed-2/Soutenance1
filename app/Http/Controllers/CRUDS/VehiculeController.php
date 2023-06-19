@@ -27,7 +27,7 @@ class VehiculeController extends Controller
         $comms = Commissariat::latest()->get();
         // $voitaffectes = VoitAffecte::latest()->get();
         $users = User::latest()->get();
-            return view('content.CRUD.vehi-crud', compact('vehicules', 'comms', 'users'));
+        return view('content.CRUD.vehi-crud', compact('vehicules', 'comms', 'users'));
 
 
     }

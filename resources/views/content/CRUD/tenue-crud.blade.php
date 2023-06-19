@@ -60,7 +60,7 @@ use App\Models\Tenue;
 <div class="card">
   <h5 class="card-header">Liste des Tenues enregistrés</h5>
    <div class="d-flex justify-content-end mb-2 gap-2">
-  <a class="btn btn-outline-secondary" onmouseover="geeks()" onmouseout="out()" href="tenueaff"><i class="fa fa-shirt fa-sm"></i></a>
+  <a class="btn btn-outline-secondary" onmouseover="geeks()" onmouseout="out()" href="{{ url('tenueaff') }}"><i class="fa fa-shirt fa-sm"></i></a>
       <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addTenue" aria-controls="offcanvasEnd">
      Nouvelle Tenue.
    </button>
@@ -87,7 +87,7 @@ use App\Models\Tenue;
           <td><strong>{{$tenue->type}}</strong></td>
           <td>{{$tenue->modele}}</span></td>
           <td>{{$tenue->taille}}</span></td>
-          <td>{{$tenue->stock}}</span></td>
+          <td>{{$tenue->quantite}}</span></td>
           <td>{{$tenue->lieu_stock->entrepot}}</span></td>
           <td>
             <div class="dropdown">
@@ -95,7 +95,7 @@ use App\Models\Tenue;
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueUpdt{{$tenue->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueDst{{ $tenue->id }}"><i class="bx bx-trash me-1"></i>Supprimer</a>
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#Tenueaff"><i class="fa fa-shirt me-1"></i>AffecterTenue</a>
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueaff"><i class="fa fa-shirt me-1"></i>AffecterTenue</a>
 
               </div>
             </div>

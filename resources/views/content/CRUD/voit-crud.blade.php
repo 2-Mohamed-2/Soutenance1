@@ -26,8 +26,8 @@
         <tr>
           <th>Commissariat</th>
           <th>Vehicule</th>
-          {{-- <th>Statut</th> --}}
           <th>Date Acquisition</th>
+          <th>Quantite</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -36,8 +36,8 @@
         <tr>
           <td>{{$voitaffecte->commissariat->libelle}}</td>
           <td>{{$voitaffecte->vehicule->type}}</td>
-          {{-- <td>{{$voitaffecte->statut->libelle}}</td> --}}
           <td>{{$voitaffecte->date_acqui}}</td>
+          <td>{{$voitaffecte->quantite}}</td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>

@@ -11,9 +11,9 @@
 
 
         <div class="col-12">
-          <label class="form-label" for="modalEnableOTPPhone">Type</label>
+          <label class="form-label" for="modalEnableOTPPhone">Nom Tenue</label>
           <div class="input-group input-group-merge">
-            <input required autocomplete="off" type="text" minlength="5" name="type" class="form-control" placeholder="Type de Vehicule" />
+            <input required autocomplete="off" type="text" minlength="5" name="type" class="form-control" placeholder="nom tenue" />
           </div>
 
         <div class="col-12">
@@ -35,7 +35,7 @@
           <div class="col-12">
             <label class="form-label" for="modalEnableOTPPhone">Quantite</label>
             <div class="input-group input-group-merge">
-              <input required type="number" autocomplete="off" minlength="5" name="stock" class="form-control phone-mask" placeholder="" />
+              <input required type="number" autocomplete="off" minlength="5" name="quantite" class="form-control phone-mask" placeholder="" />
             </div>
           </div>
 

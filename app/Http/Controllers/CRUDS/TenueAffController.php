@@ -30,8 +30,8 @@ class TenueAffController extends Controller
     //
     $tenueaffs = TenueAff::paginate(5);
     $comms = Commissariat::all();
-    $tenues = Tenue::latest()->get();
-    return view('content.CRUD.tenueaff-crud', compact('tenueaffs', 'comms', 'tenues'));
+    $tenue = Tenue::all();
+    return view('content.CRUD.tenueaff-crud', compact('tenueaffs', 'comms', 'tenue'));
   }
 
   /**
@@ -53,19 +53,22 @@ class TenueAffController extends Controller
   public function store(Request $request)
   {
     try{
+
         $data = $this->validate($request, [
           'commissariat_id' => 'required',
           'tenue_id' => 'required',
+          'quantite' => 'required',
 
         ]);
-        for ($i = 0; $i < count($request->tenue_id); $i++) {
+        // for ($i = 0; $i < count($request->tenue_id); $i++) {
 
           $tenueaff = new TenueAff();
           $tenueaff->commissariat_id = $request->commissariat_id;
-          $tenueaff->tenue_id = $request->tenue_id[$i];
+          $tenueaff->tenue_id = $request->tenue_id;
           $tenueaff->date_acqui = now();
+          $tenueaff->quantite = $request->quantite;
           $tenueaff->save();
-        }
+        // }
         if ($tenueaff) {
           Alert::success('Affectation reussi avec succes');
           return redirect('/tenueaff');
@@ -155,4 +158,40 @@ class TenueAffController extends Controller
 
 
   }
+
+  public function affecterTenue(Request $req, $tenueaff_id)
+  {
+    // $id = decrypt($tenueaff_id);
+     $tenueaffInfos = Tenue::where('id',$tenueaff_id)->first();
+
+     $data = $this->validate($req, [
+       'commissariat_id' => 'required',
+       'quantite' => 'required',
+
+     ]);
+
+     if($req->quantite > $tenueaffInfos->quantite || $req->quantite == 0) {
+       Alert::error('Erreur', 'Quantite insuffisante !');
+       return redirect('/Tenue');
+     }
+     else
+     {
+       $affecteTenue = new TenueAff;
+       $affecteTenue->commissariat_id = $req->commissariat_id;
+       $affecteTenue->tenue_id = $tenueaff_id;
+       $affecteTenue->quantite = $req->quantite;
+       $affecteTenue->date_acqui = now();
+       $affecteTenue->save();
+       if($affecteTenue)
+       {
+         $updateaffTenue = Tenue::find($tenueaffInfos->id);
+         $updateaffTenue->quantite -= $req->quantite;
+         $updateaffTenue->update();
+       }
+      Alert::success('Success', 'Affectation réussite');
+       return redirect('/tenueaff');
+     }
+
+  }
+
 }

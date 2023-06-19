@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('commissariat_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
             $table->foreignId('munition_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
             $table->date('date_acqui');
+            $table->integer('quantite');
             $table->timestamps();
         });
     }

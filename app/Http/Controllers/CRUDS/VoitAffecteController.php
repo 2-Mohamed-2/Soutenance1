@@ -10,6 +10,7 @@ use App\Models\VoitAffecte;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Tenue;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class VoitAffecteController extends Controller
@@ -33,7 +34,6 @@ class VoitAffecteController extends Controller
     $voitaffectes = VoitAffecte::paginate(5);
     $users = User::latest()->get();
     $comms = Commissariat::latest()->get();
-    // $statuts = Statut::latest()->get();
     $vehicules = Vehicule::latest()->get();
     return view('content.CRUD.voit-crud', compact('voitaffectes', 'users', 'comms', 'vehicules'));
   }
@@ -64,17 +64,17 @@ class VoitAffecteController extends Controller
         'vehicule_id' => 'required',
         // 'statut_id' => 'required',
       ]);
-      for ($i = 0; $i < count($request->vehicule_id); $i++) {
+      //for ($i = 0; $i < count($request->vehicule_id); $i++) {
 
         $voitaffecte = new VoitAffecte;
         $voitaffecte->commissariat_id = $request->commissariat_id;
-        $voitaffecte->vehicule_id = $request->vehicule_id[$i];
+        $voitaffecte->vehicule_id = $request->vehicule_id;//[$i];
         $voitaffecte->date_acqui = now();
         $voitaffecte->save();
-      }
+      // }
 
       if ($voitaffecte) {
-        Alert::success('Affectation reussi avec succes');
+        Alert::success('Success', 'Affectation reussi avec succes');
         return redirect('/voitaffecte');
       } else {
         Alert::error('Erreur', 'Affectation non effectuer');
@@ -135,14 +135,14 @@ class VoitAffecteController extends Controller
 
       $voitaffecte = VoitAffecte::whereId($id)->update($validateData);
       if ($voitaffecte) {
-        Alert::success('Affectation a ete bien modifier !', 'Reussite');
+        Alert::success('Reussite', 'Affectation a ete bien modifier !');
         return redirect('/voitaffecte');
       } else {
-        Alert::error('Modifier non effectue !', 'Erreur');
+        Alert::error('Erreur', 'Modifier non effectue !');
         return redirect('/voitaffecte');
       }
     }catch(\Throwable $th){
-      Alert::error('Modifier non effectue !', 'Erreur');
+      Alert::error('Erreur', 'Modifier non effectue !');
       return redirect('/voitaffecte');
     }
 
@@ -162,7 +162,7 @@ class VoitAffecteController extends Controller
       $voitaffecte = VoitAffecte::findOrFail($id);
       $voitaffecte->delete();
 
-      Alert::success('Affectation supprimer avec succes');
+      Alert::success('Success', 'Affectation supprimer avec succes');
       return redirect('/voitaffecte');
     }catch(\Throwable $th){
       Alert::error('Erreur', 'Modifier non effectue !');
@@ -171,4 +171,41 @@ class VoitAffecteController extends Controller
 
 
   }
+
+  public function affecterVoiture(Request $req, $voiture_id)
+  {
+    // $id = decrypt($voiture_id);
+    $voitureInfos = Vehicule::where('id',$voiture_id)->first();
+    // return view('content.CRUD.voit-crud',compact('voitureInfos'));
+    $validateData = $this->validate($req, [
+      'commissariat_id' => 'required',
+      'quantite' => 'required',
+    ]);
+    if($req->quantite > $voitureInfos->quantite || $req->quantite == 0){
+      Alert::error('Erreur', 'Quantite insuffisante !');
+      return redirect('/vehicule');
+    }
+    else
+    {
+      $affecteVoiture = new VoitAffecte;
+      $affecteVoiture->commissariat_id = $req->commissariat_id;
+      $affecteVoiture->vehicule_id = $voiture_id;
+      $affecteVoiture->quantite = $req->quantite;
+      $affecteVoiture->date_acqui = now();
+      $affecteVoiture->save();
+      if($affecteVoiture)
+      {
+        $updateVoiture = Vehicule::find($voitureInfos->id);
+        $updateVoiture->quantite -= $req->quantite;
+        $updateVoiture->update();
+      }
+      Alert::success('Success', 'Affectation réussite');
+      return redirect('/vehicule');
+
+    }
+
+  }
 }
+
+
+

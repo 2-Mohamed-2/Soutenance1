@@ -1,4 +1,4 @@
-<!-- Enable OTP Modal -->
+resources/views/_partials/_modals/_CRUD-VEHI/modal-updtVehi.blade.php<!-- Enable OTP Modal -->
 <div class="modal fade" id="vehiUpdt{{$vehi->id}}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
       <div class="modal-content p-3 p-md-5">

@@ -27,6 +27,7 @@
           <th>Commissariat</th>
           <th>Tenue</th>
           <th>Date Acquisition</th>
+          <th>Quantite</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -34,9 +35,9 @@
         @forelse ($tenueaffs as $tenueaff)
         <tr>
           <td>{{$tenueaff->commissariat->libelle}}</td>
-          <td>{{$tenueaff->tenue->type}}</td>
-          {{-- <td>{{$voitaffecte->statut->libelle}}</td> --}}
+          <td>{{$tenueaff->tenue->type}} {{$tenueaff->tenue->modele}}</td>
           <td>{{$tenueaff->date_acqui}}</td>
+          <td>{{$tenueaff->quantite}}</td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
@@ -71,6 +72,5 @@
 </div>
 
 {{-- Vue du modal d'insertion --}}
-@include('_partials/_modals/_CRUD-TENUEAFF/modal-addTenueaff')
 
 @endsection
