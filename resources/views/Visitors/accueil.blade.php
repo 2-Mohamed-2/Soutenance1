@@ -20,6 +20,9 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('content')
+  {{-- @if (Auth::guard('inconnu')->user())
+      @dd("Bonjour ". Auth::guard('inconnu')->user()->nomcomplet)
+  @endif --}}
 <div class="row">
   <!-- Customer Ratings -->
   <div class="col-md-6 col-lg-4 mb-4">

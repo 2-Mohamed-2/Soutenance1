@@ -70,7 +70,7 @@ return [
             'model' => App\Models\User::class,
         ],
         'inconnus' => [
-            'driver' => 'session',
+            'driver' => 'eloquent',
             'model' => App\Models\Inconnu::class,
         ],
 
@@ -102,12 +102,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'inconnus' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-           ],
+        // 'inconnus' => [
+        //     'provider' => 'users',
+        //     'table' => 'password_resets',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        //    ],
     ],
 
     /*

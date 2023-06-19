@@ -20,23 +20,26 @@
                     <h4 class="onboarding-title text-body">Creation de compte</h4>                    
                     <p>Veuillez renseigner les differents champs ci-dessous.</p>
                 </div>
-                <form id="editUserForm" class="row g-3" action="{{ route('citcreate') }}">
+                <form id="" class="row g-3" action="{{ route('citcreate') }}" method="POST">
                     @csrf
                     <div class="col-12 col-md-12">
                       <label class="form-label" for="">Nom complet</label>
-                      <input type="text" oninput="filtrerCaracteresSpeciaux(event)" minlength="5" autocomplete="off" required id="" name="name" class="form-control" placeholder="Prenom et nom" />
+                      <input type="text" oninput="filtrerCaracteresSpeciaux(event)" minlength="5" autocomplete="off" value="{{ old('name') }}" required id="" name="name" class="form-control" placeholder="Prenom et nom" />
                     </div>
+
                     <div class="col-12 col-md-6">
                       <label class="form-label" for="modalEditUserLastName">Adresse</label>
-                      <input type="text" oninput="filtrerCaracteresSpeciaux(event)" autocomplete="off" name="adresse" required class="form-control" placeholder="Bamako" />
+                      <input type="text" oninput="filtrerCaracteresSpeciaux(event)" autocomplete="off" name="adresse" required value="{{ old('adresse') }}" class="form-control" placeholder="Adresse" />
                     </div>
+
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="add-user-contact">Contact</label>
                         <div class="input-group input-group-merge">
                             <span class="input-group-text">+223</span>
-                            <input type="tel" oninput="filtrerCaracteresSpeciaux(event)" id="space" inputmode="numeric" class="form-control" placeholder="00 00 00 00"  autocomplete="off" required maxlength="11" name="telephone"/>
+                            <input type="tel" oninput="filtrerCaracteresSpeciaux(event)" id="space" inputmode="numeric" class="form-control" placeholder="00 00 00 00"  autocomplete="off" value="{{ old('telephone') }}" required maxlength="11" name="telephone"/>
                         </div>
                     </div>
+
                     <div class="col-12 col-md-6">
                         <label label class="form-label" for="">Genre</label>
                         <select name="genre" required class="form-select">
@@ -47,12 +50,12 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="modalEditUserLastName">Numero CI</label>
-                        <input type="text" id="test" minlength="11" maxlength="11" oninput="convertToUppercase()" required autocomplete="off" name="n_ci" class="form-control" placeholder="Numero de la carte d'identite" />
+                        <input type="text" value="{{ old('n_ci') }}" id="test" minlength="11" maxlength="11" oninput="convertToUppercase()" required autocomplete="off" name="n_ci" class="form-control" placeholder="Numero de la carte d'identite" />
                     </div>
                     <div class="col-12 col-md-6 form-password-toggle">
                       <label class="form-label" for="modalEditUserLastName">Mot de passe</label>
                       <div class="col-12 col-md-6 input-group input-group-merge">
-                        <input type="password" required id="login-password" minlength="8" maxlength="8" autocomplete="off" name="password" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
+                        <input type="password" required id="login-password" minlength="8" maxlength="8" autocomplete="off" value="{{ old('password') }}" name="password" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                       </div>
                     </div>
@@ -60,7 +63,7 @@
                     <div class="col-12 col-md-6 form-password-toggle">
                       <label class="form-label" for="modalEditUserLastName">Confirmation</label>
                       <div class="col-12 col-md-6 input-group input-group-merge">
-                        <input type="password" id="login-password" minlength="8" maxlength="8" autocomplete="off" required name="password_confirmation" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
+                        <input type="password" id="login-password" minlength="8" maxlength="8" autocomplete="off" value="{{ old('password_confirmation') }}" required name="password_confirmation" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                       </div>
                     </div>
@@ -88,7 +91,10 @@
                 <!-- /Logo -->
                 <p class="mb-4">Veuillez remplir ces informations</p>
 
-                <form id="formAuthentication" class="mb-3" action="" method="GET">
+                <form id="" class="mb-3" method="POST" action="{{ route('vlogin') }}">
+                    
+                  @csrf
+
                     <div class="mb-3">
                         <label class="form-label" for="">Numero CI</label>
                         <input type="text" id="test2" minlength="11" maxlength="11" oninput="convertToUppercase2()" required autocomplete="off" autofocus name="n_ci" class="form-control" placeholder="Numero de la carte d'identite" />

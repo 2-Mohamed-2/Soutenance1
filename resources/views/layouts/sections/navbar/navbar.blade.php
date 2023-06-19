@@ -364,6 +364,16 @@ $navbarDetached = ($navbarDetached ?? '');
               <form method="POST" id="logout-form" action="{{ route('logout') }}">
                 @csrf
               </form>
+              @elseif (Auth::guard('inconnu')->user())
+              <li>
+                <a class="dropdown-item" href="{{ route('vdestroy') }}" onclick="event.preventDefault(); document.getElementById('logout-form2').submit();">
+                  <i class='bx bx-power-off me-2'></i>
+                  <span class="align-middle">Deconnexion_Cit</span>
+                </a>
+              </li>
+              <form method="POST" id="logout-form2" action="{{ route('vdestroy') }}">
+                @csrf
+              </form>
               @else
               {{-- <li>
                 <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addCitoyen">
