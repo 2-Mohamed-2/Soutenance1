@@ -298,11 +298,16 @@ $navbarDetached = ($navbarDetached ?? '');
           <!-- User -->
           <li class="nav-item navbar-dropdown dropdown-user dropdown">
             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-              <div class="avatar avatar-online">
-                @if (Auth::check())    
-                  <img src="{{ asset('storage/images/'.Auth::user()->profile_photo_path)}}" alt class="w-px-40 h-auto rounded-circle">
-                @endif
-              </div>
+              @if (Auth::guard('inconnu')->user())
+                <div class="avatar avatar-online">
+                  <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
+                </div>
+              @else
+                <div class="avatar avatar">
+                  <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
+                </div>
+              @endif
+              
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
@@ -324,6 +329,15 @@ $navbarDetached = ($navbarDetached ?? '');
                       </div>
                     </div>
                   </a>
+                @elseif (Auth::guard('inconnu')->user())
+                <div class="d-flex py-0 me-4 m-2 text-wrap">
+                  <a href="javascript:void(0)" class="app-brand gap-2">
+                    <span class="app-brand-logo demo">
+                      <img src="{{ asset('Coms_Ml_logo.png') }}" class="w-px-40 h-auto" alt="">
+                    </span>
+                    <span class="text-dark demo text-wrap">{{ Auth::guard('inconnu')->user()->nomcomplet }}</span>
+                  </a>
+                </div>       
                 @else
                   <a class="dropdown-item" href="javascript:void(0)">
                     <div class="d-flex">
@@ -338,7 +352,7 @@ $navbarDetached = ($navbarDetached ?? '');
                         </span>
                       </div>
                     </div>
-                  </a>                  
+                  </a>  
                 @endif
                 
               </li>
@@ -346,46 +360,59 @@ $navbarDetached = ($navbarDetached ?? '');
                 <div class="dropdown-divider"></div>
               </li>
               @if (Auth::check())
-              <li>
-                <a class="dropdown-item" href="{{ url('/Compte/Profil') }}">
-                  <i class="bx bx-user me-2"></i>
-                  <span class="align-middle">Profil</span>
-                </a>
-              </li>
-              <li>
-                <div class="dropdown-divider"></div>
-              </li>              
-              <li>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                  <i class='bx bx-power-off me-2'></i>
-                  <span class="align-middle">Deconnexion</span>
-                </a>
-              </li>
-              <form method="POST" id="logout-form" action="{{ route('logout') }}">
-                @csrf
-              </form>
+                <li>
+                  <a class="dropdown-item" href="{{ url('/Compte/Profil') }}">
+                    <i class="bx bx-user me-2"></i>
+                    <span class="align-middle">Profil</span>
+                  </a>
+                </li>
+                <li>
+                  <div class="dropdown-divider"></div>
+                </li>              
+                <li>
+                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class='bx bx-power-off me-2'></i>
+                    <span class="align-middle">Deconnexion</span>
+                  </a>
+                </li>
+                <form method="POST" id="logout-form" action="{{ route('logout') }}">
+                  @csrf
+                </form>
+              @elseif (Auth::guard('inconnu')->user())
+                <li>
+                  <a class="dropdown-item" href="">
+                    <i class="bx bx-user me-2"></i>
+                    <span class="align-middle">Profil</span>
+                  </a>
+                </li>
+                <li>
+                  <div class="dropdown-divider"></div>
+                </li> 
+                <li>
+                  <a class="dropdown-item" href="{{ route('vdestroy') }}" onclick="event.preventDefault(); document.getElementById('logout-form2').submit();">
+                    <i class='bx bx-power-off me-2'></i>
+                    <span class="align-middle">Deconnexion</span>
+                  </a>
+                </li>
+                <form method="POST" id="logout-form2" action="{{ route('vdestroy') }}">
+                  @csrf
+                </form>
               @else
-              {{-- <li>
-                <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addCitoyen">
-                  <i class='bx bx-user-plus'></i>
-                  <span class="align-middle">Creer un compte</span>
-                </a>
-              </li> --}}
-              <li>
-                <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#actionscreatelogin">
-                  <i class='bx bx-user-plus'></i>
-                  <span class="align-middle">Actions</span>
-                </a>
-              </li>
-              <li>
-                <div class="dropdown-divider"></div>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{{ Route::has('login') ? route('login') : 'javascript:void(0)' }}">
-                  <i class='bx bx-log-in me-2'></i>
-                  <span class="align-middle">Connexion</span>
-                </a>
-              </li>
+                <li>
+                  <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#actionscreatelogin">
+                    <i class='bx bx-user-plus'></i>
+                    <span class="align-middle">Actions</span>
+                  </a>
+                </li>
+                <li>
+                  <div class="dropdown-divider"></div>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{{ Route::has('login') ? route('login') : 'javascript:void(0)' }}">
+                    <i class='bx bx-log-in me-2'></i>
+                    <span class="align-middle">Connexion</span>
+                  </a>
+                </li>
               @endif
             </ul>
           </li>

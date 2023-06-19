@@ -15,14 +15,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Inconnu extends Authenticatable
 {
-    protected $guarded = [];
-    
+        
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    protected $guarded = [];
 
     public function residences(): HasMany
     {

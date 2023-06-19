@@ -27,7 +27,10 @@ use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\UserCompte\UserProfilView;
 use App\Http\Controllers\Visitors\Accueil;
+use App\Http\Controllers\Visitors\AuthenticatedSessionController;
 use App\Http\Controllers\Visitors\Inconnu as VisitorsInconnu;
+use App\Http\Controllers\Visitors\InconnuConnexionController;
+use App\Http\Controllers\Visitors\InconnuController as VisitorsInconnuController;
 use App\Http\Middleware\ActiveMiddleware;
 use App\Models\Inconnu;
 
@@ -39,9 +42,11 @@ use App\Models\Inconnu;
 // Route pour les visiteurs
 
 Route::get('/Accueil', [Accueil::class, 'index'])->name('Accueil');
-//Pour la creation d'un compte visiteur
-Route::post('/Citoyen/Create', [VisitorsInconnu::class, 'store'])->name('citcreate');
-
+//Pour la creation d'un compte visiteur method="POST" action="{{ route('admin-login')
+Route::post('/Citoyen/Create', [VisitorsInconnuController::class, 'store'])->name('citcreate');
+//Pour la connexion du citoyen
+Route::post('/vlogin', [InconnuConnexionController::class, 'test'])->name('vlogin');
+Route::post('/vdestroy', [InconnuConnexionController::class, 'destroy2'])->name('vdestroy');
 
 
 
