@@ -45,12 +45,12 @@ class ArmementController extends Controller
           $this->validate($request, [
 
             // 'commissariats_id' => 'required',
-            'modele' => 'required|max:255',
+            'modele' => 'required|max:255|min:4',
             'n_serie' => 'required|max:255',
             // 'revision' => 'required|max:255',
             // 'statut' => 'required|max:255',
             // 'lieu' => 'required|max:255',
-            'stock' => 'required|max:255',
+            'quantite' => 'required|max:255',
             'lieu_stock_id' => 'required'
 
           ]);
@@ -63,7 +63,7 @@ class ArmementController extends Controller
             // 'revision' => $request->revision,
             // 'statut' => $request->statut,
             // 'lieu' => $request->lieu,
-            'stock' => $request->stock,
+            'quantite' => $request->stock,
             'lieu_stock_id' => $request->lieu_stock_id,
 
           ]);
@@ -90,7 +90,7 @@ class ArmementController extends Controller
           $arme = Armement::find($id);
           $arme->modele = $request->modele;
           $arme->n_serie = $request->n_serie;
-          $arme->stock = $request->stock;
+          $arme->quantite = $request->quantite;
           $arme->lieu_stock_id = $request->lieu_stock_id;
           $arme->save();
 

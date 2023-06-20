@@ -8,7 +8,7 @@
           <h3 class="mb-3">Affectation du munition {{ $muni->type }} {{ $muni->libelle }}</h3>
         </div>
 
-        <form action="{{ route('affectemuni', $muni->id) }}" method="POST">
+        <form action="{{ route('affectemuni',$muni->id) }}" method="POST">
           @csrf
 
           <div class="col-12 mb-4">

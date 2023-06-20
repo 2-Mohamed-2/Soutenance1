@@ -174,6 +174,8 @@ class VoitAffecteController extends Controller
 
   public function affecterVoiture(Request $req, $voiture_id)
   {
+    try
+    {
     // $id = decrypt($voiture_id);
     $voitureInfos = Vehicule::where('id',$voiture_id)->first();
     // return view('content.CRUD.voit-crud',compact('voitureInfos'));
@@ -200,8 +202,12 @@ class VoitAffecteController extends Controller
         $updateVoiture->update();
       }
       Alert::success('Success', 'Affectation réussite');
-      return redirect('/vehicule');
+      return redirect('/voitaffecte');
 
+    }
+    }catch(\Throwable $th){
+      Alert::error('Erreur', 'Affectation non réussite');
+      return redirect('/vehicule');
     }
 
   }

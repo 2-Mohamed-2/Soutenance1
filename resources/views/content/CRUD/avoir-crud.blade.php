@@ -25,8 +25,8 @@
           {{-- <th>Affecte a</th> --}}
           <th>Commissariat</th>
           <th>Armement</th>
-          {{-- <th>Statut</th> --}}
           <th>Date Acquisition</th>
+           <th>Quantite</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -36,8 +36,8 @@
           {{-- <td><strong>{{$avoir->user->name}}</strong></td> --}}
           <td>{{$avoir->commissariat->libelle}}</td>
           <td>{{$avoir->armement->modele}}</td>
-          {{-- <td>{{$avoir->statut->libelle}}</td> --}}
           <td>{{$avoir->date_acqui}}</td>
+          <td>{{$avoir->quantite}}</td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
@@ -65,7 +65,7 @@
 </div>
 
 {{-- Vue du modal d'insertion --}}
-   @include('_partials/_modals/_CRUD-AVOIR/modal-addAvoir')
+   {{-- @include('_partials/_modals/_CRUD-AVOIR/modal-addAvoir') --}}
 
 
 @endsection

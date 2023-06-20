@@ -99,7 +99,7 @@
           <td><strong>{{$arme->modele}}</strong></td>
           {{-- <td>{{$vehi->identifiant}}</span></td> --}}
           <td>{{$arme->n_serie}}</span></td>
-          <td>{{$arme->stock}}</span></td>
+          <td>{{$arme->quantite}}</span></td>
           {{-- <td>{{$vehi->revision}}</span></td> --}}
           <td>{{$arme->lieu_stock->entrepot}}</span></td>
           <td>

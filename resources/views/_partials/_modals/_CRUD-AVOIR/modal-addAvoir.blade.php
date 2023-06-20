@@ -3,17 +3,17 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalScrollableTitle">Affectation</h5>
+        <h5 class="modal-title" id="modalScrollableTitle">Affectation du arme {{ $arme->modele }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
-          <form action="{{ route('Avoir.store') }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('affectearme', $arme->id) }}" method="post">
           @csrf
 
           <div class="col-12 mb-4">
            <select class="form-control" name="commissariat_id">
-                    <option value=""> --  --</option>
+                    <option value=""> -- Choisissez un Commissariat --</option>
                     @foreach($comms as $comm)
                     <option value="{{ $comm->id }}">{{ $comm->libelle }}
                     </option>
@@ -22,6 +22,14 @@
           </div>
 
           <div class="col-12">
+            <label class="form-label" for="modalEnableOTPPhone">Quantite</label>
+            <div class="input-group input-group-merge">
+              <input required type="number" autocomplete="off" name="quantite" class="form-control phone-mask"
+                placeholder="Quantite" />
+            </div>
+          </div>
+
+          {{-- <div class="col-12">
             <h4></h4>
             <!-- Affectation -->
             <div class="table-responsive">
@@ -60,7 +68,7 @@
               </table>
             </div>
             <!-- Affectation -->
-          </div>
+          </div> --}}
       </div>
 
       <div class="modal-footer">

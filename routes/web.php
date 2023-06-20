@@ -185,7 +185,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
       Route::resource('/Avoir', AvoirController::class)
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
-      Route::post('/affectearme/{arme_id}', [AvoirController::class, 'affecterArme'])->name('affectearme')
+      Route::post('/affectearme/{armeaff_id}', [AvoirController::class, 'affecterArme'])->name('affectearme')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Route pour voiture affecter

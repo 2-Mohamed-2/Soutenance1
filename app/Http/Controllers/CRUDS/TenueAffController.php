@@ -161,6 +161,9 @@ class TenueAffController extends Controller
 
   public function affecterTenue(Request $req, $tenueaff_id)
   {
+    try{
+
+
     // $id = decrypt($tenueaff_id);
      $tenueaffInfos = Tenue::where('id',$tenueaff_id)->first();
 
@@ -191,6 +194,11 @@ class TenueAffController extends Controller
       Alert::success('Success', 'Affectation réussite');
        return redirect('/tenueaff');
      }
+    }catch(\Throwable $th)
+    {
+      Alert::error('Erreur', 'Affectation non réussite');
+      return redirect('/Tenue');
+    }
 
   }
 

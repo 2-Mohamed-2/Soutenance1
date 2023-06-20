@@ -65,18 +65,20 @@ class AvoirController extends Controller
               // 'user_id' => 'required',
               'commissariat_id' => 'required',
               'armement_id' => 'required',
+              'quantite' => 'required',
               // 'statut_id' => 'required',
               // 'date_acqui' => 'required|max:255',
 
             ]);
 
-            for ($i = 0; $i < count($request->armement_id); $i++) {
+            // for ($i = 0; $i < count($request->armement_id); $i++) {
               $avoir = new Avoir;
               $avoir->commissariat_id = $request->commissariat_id;
-              $avoir->armement_id = $request->armement_id[$i];
+              $avoir->armement_id = $request->armement_id; //[$i];
+              $avoir->quantite = $request->quantite;//[$i];
               $avoir->date_acqui = now();
               $avoir->save();
-            }
+            // }
 
 
             if ($avoir) {
@@ -133,6 +135,7 @@ class AvoirController extends Controller
             // 'user_id' => 'required',
             'commissariat_id' => 'required',
             'armement_id' => 'required',
+            'quantite' => 'required',
             // 'statut_id' => 'required',
             'date_acqui' => 'required|max:255',
 
@@ -175,4 +178,44 @@ class AvoirController extends Controller
       }
 
     }
+
+    public function affecterArme(Request $req,$id)
+    {
+      try{
+
+
+      $armeaffInfos = Armement::where('id', $id)->first();
+      $data = $this->validate($req, [
+        'commissariat_id' => 'required',
+        'quantite' => 'required',
+      ]);
+      if($req->quantite > $armeaffInfos->quantite || $req->quantite == 0)
+      {
+        Alert::error('Erreur', 'Quantite insuffisante !');
+        return redirect('/Armement');
+      }
+      else
+      {
+        $armeAff = new Avoir;
+        $armeAff->commissariat_id = $req->commissariat_id;
+        $armeAff->armement_id = $id;
+        $armeAff->quantite = $req->quantite;
+        $armeAff->date_acqui = now();
+        $armeAff->save();
+      }
+      if($armeAff)
+      {
+        $updatearmeAff = Armement::find($armeaffInfos->id);
+        $updatearmeAff->quantite -= $req->quantite;
+        $updatearmeAff->update();
+      }
+        Alert::success('Success', 'Affectation réussite');
+        return redirect('/Avoir');
+    }catch(\Throwable $th){
+      Alert::error('Erreur', 'Affectation non réussite');
+      return redirect('/Armement');
+    }
+
+    }
+
 }
