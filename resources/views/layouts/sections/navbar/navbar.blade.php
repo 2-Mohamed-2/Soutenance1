@@ -380,7 +380,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 </form>
               @elseif (Auth::guard('inconnu')->user())
                 <li>
-                  <a class="dropdown-item" href="">
+                  <a class="dropdown-item" href="javascript:void(0)">
                     <i class="bx bx-user me-2"></i>
                     <span class="align-middle">Profil</span>
                   </a>

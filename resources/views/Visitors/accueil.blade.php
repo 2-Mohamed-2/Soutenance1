@@ -20,870 +20,281 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('content')
-  {{-- @if (Auth::guard('inconnu')->user())
-      @dd("Bonjour ". Auth::guard('inconnu')->user()->nomcomplet)
-  @endif --}}
-<div class="row">
-  <!-- Customer Ratings -->
-  <div class="col-md-6 col-lg-4 mb-4">
-    <div class="card h-100">
-      <div class="card-header d-flex align-items-center justify-content-between">
-        <h5 class="card-title m-0 me-2">Customer Ratings</h5>
-        <div class="dropdown">
-          <button class="btn p-0" type="button" id="customerRatings" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="bx bx-dots-vertical-rounded"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="customerRatings">
-            <a class="dropdown-item" href="javascript:void(0);">Featured Ratings</a>
-            <a class="dropdown-item" href="javascript:void(0);">Based on Task</a>
-            <a class="dropdown-item" href="javascript:void(0);">See All</a>
+  
+  <!-- Cards -->
+  <div class="row mb-5">
+    <div class="col-md">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img class="card-img card-img-left" style="height: 100%;" src="{{asset('Imgs_Accueil/drapeau.webp')}}" alt="Card image" />
           </div>
-        </div>
-      </div>
-      <div class="card-body pb-0">
-        <div class="d-flex align-items-center gap-3 mb-3">
-          <h1 class="display-3 mb-0">4.0</h1>
-          <div class="ratings">
-            <i class="bx bxs-star bx-sm text-warning"></i>
-            <i class="bx bxs-star bx-sm text-warning"></i>
-            <i class="bx bxs-star bx-sm text-warning"></i>
-            <i class="bx bxs-star bx-sm text-warning"></i>
-            <i class="bx bxs-star bx-sm text-lighter"></i>
-          </div>
-        </div>
-        <div class="d-flex align-items-center">
-          <span class="badge bg-label-primary me-3">+5.0</span>
-          <span>Points from last month</span>
-        </div>
-      </div>
-      <div id="customerRatingsChart"></div>
-    </div>
-  </div>
-  <!--/ Customer Ratings -->
-  <!-- Overview & Sales Activity -->
-  <div class="col-md-6 col-lg-4 mb-4">
-    <div class="card h-100">
-      <div class="card-header">
-        <h5 class="card-title mb-0">Overview & Sales Activity</h5>
-        <small class="card-subtitle">Check out each column for more details</small>
-      </div>
-      <div id="salesActivityChart"></div>
-    </div>
-  </div>
-  <!--/ Overview & Sales Activity -->
-  <div class="col-12 col-md-12 col-lg-4">
-    <div class="row">
-      <div class="col-sm-6 col-md-3 col-lg-6 mb-4">
-        <div class="card">
-          <div class="card-body pb-0">
-            <span class="d-block fw-semibold mb-1">Sessions</span>
-            <h3 class="card-title mb-2">2,845</h3>
-          </div>
-          <div id="sessionsChart" class="mb-3"></div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-3 col-lg-6 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title d-flex align-items-start justify-content-between mb-4">
-              <div class="avatar flex-shrink-0">
-                <img src="{{asset('assets/img/icons/unicons/cube-secondary.png')}}" alt="cube" class="rounded">
-              </div>
-              <div class="dropdown">
-                <button class="btn p-0" type="button" id="cardOpt2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="bx bx-dots-vertical-rounded"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt2">
-                  <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                  <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                </div>
-              </div>
-            </div>
-            <span class="fw-semibold d-block mb-1">Order</span>
-            <h4 class="card-title mb-2">$1,286</h4>
-            <small class="text-danger fw-semibold"><i class='bx bx-down-arrow-alt'></i> -13.24%</small>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-12 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between">
-              <div class="d-flex flex-column">
-                <div class="card-title mb-auto">
-                  <h5 class="mb-0">Generated Leads</h5>
-                  <small>Monthly Report</small>
-                </div>
-                <div class="chart-statistics">
-                  <h3 class="card-title mb-1">4,230</h3>
-                  <small class="text-success text-nowrap fw-semibold"><i class='bx bx-up-arrow-alt'></i> +12.8%</small>
-                </div>
-              </div>
-              <div id="leadsReportChart"></div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title">Présentation de la police</h4>
+              <p class="card-text">
+                La Direction Générale de la Police Nationale a été créée par l’ordonnance n° 04-26/PRM du 16 septembre 2004 ratifiée par la Loi n° 05-020 du 30 mai 2005. C’est un Service Central qui a pour mission d’élaborer et d’assurer la mise en œuvre des éléments de la politique nationale dans le domaine du maintien de l’ordre et de la sécurité publique et de porter son concours, L’exécution des lois et des règlements. <br>
+                À cet effet, elle est chargée de : <br>                
+                • Assurer la protection des personnes et des biens ; <br>
+                • Maintenir l’ordre, la sécurité et la tranquillité publics ; <br>
+                • Veiller au respect des lois et règlements par l’exécution des missions de police administrative et de police judiciaire ; <br>
+                • Assurer le contrôle de la réglementation sur les armes et munitions ; <br>
+                • Contrôler les activités des services privés de sécurité ; <br>
+                • Contrôler les établissements classés de jeu ; <br>
+                • Assurer la police de l’air et des frontières ; <br>
+                • Participer à la protection des Institutions de l’Etat et des Hautes personnalités ; <br>
+                • Participer à la mission d’information du Gouvernement ; <br>
+                • Participer aux actions de maintien de la paix et d’assistance humanitaire ; <br>
+                • Participer à la protection et à la défense civile. <br>
+                Elle est dirigée par un Directeur Général nommé par décret pris en Conseil des ministres, assisté par un Directeur Général Adjoint nommé dans les mêmes conditions.
+              </p>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="row mb-5 justify-content-arround">
+
+    {{--  Mot de bienvenu du dgpol --}}
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h4>DG de la police</h4>
+          <h6 class="card-subtitle text-muted">Mots de bienvenue</h6>
+        </div>
+        <img class="img-fluid" src="{{asset('Imgs_Accueil/d-g_police.jpg')}}" alt="Card image cap" />
+        <div class="card-body">
+          <p class="card-text" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#dg_mots_plus" aria-controls="accordionIcon-1">
+            En ma qualité de Directeur Général de la Police Nationale,
+            <div id="dg_mots_plus" class="accordion-collapse collapse" data-bs-parent="#accordionIcon">
+              <div class="accordion-body">
+                je félicite les femmes et les hommes de la Police qui réalisent un travail important jour et nuit, parfois dans des conditions difficiles et au péril de leur vie.
+                Chaque jour, notre police monte en puissance, accroît ses effectifs et ses équipements grâce à la détermination de nos plus hautes autorités et se modernise afin de relever les défis sécuritaires actuels et à venir auxquels nous avons à faire face.
+                Je tiens ici à remercier chaleureusement nos policières et nos policiers pour le dévouement et la loyauté dont ils font preuve et je les encourage à persévérer dans cette voie afin de garantir la quiétude et la tranquillité publique. Je félicite particulièrement les patrouilles pédestres qui sillonnent depuis le début de l’année nos rues et nos quartiers afin de sécuriser au plus près nos compatriotes et leurs biens.
+              </div>
+            </div>
+          </p>          
+        </div>
+        
+      </div>
+    </div>
+
+    {{--  Structuration --}}
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h4>Structuration</h4>
+          <h6 class="card-subtitle text-muted">Structuration de la police</h6>
+        </div>
+        <img class="img-fluid" src="{{asset('Imgs_Accueil/elmt_2.jpg')}}" alt="Card image cap" />
+        <div class="card-body">
+          <p class="card-text" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#mots_plus" aria-controls="accordionIcon-1">
+            La Direction Générale de la Police comprend :
+            <div id="mots_plus" class="accordion-collapse collapse" data-bs-parent="#accordionIcon">
+              <div class="accordion-body">
+                Au niveau national : l’Inspection Générale ; Les Directions de Service qui sont : <br>
+                • La Direction de la Sécurité Publique dont dépendent les unités spéciales d’intervention ;<br>
+                • La Direction de la Police Judiciaire avec ses unités spéciales ;<br>
+                • La Direction des Renseignements Généraux et de la Surveillance du Territoire ;<br>
+                • La Direction du Personnel des Finances et du Matériel ;<br>
+                • La Direction de la Police des Frontières et ses unités spécialisées ;<br>
+                • La Direction de la Formation dont dépend l’école Nationale de Police.<br>
+                Les Services Rattachés qui sont :<br>
+                • Le Bureau des études de la Coopération et de l’Informatique ;<br>
+                • Le Service de Transmission et des Télécommunications ;<br>
+                • Le Service de Santé et des Affaires Sociales.<br>
+                Au niveau régional : Les Directions Régionales de la Police Nationale.<br>
+                Au niveau local : les Services Territoriaux de sécurité publique dans les agglomérations urbaines. Ils sont chargés des missions de police administrative et/ou de police judiciaire dans les limites de leur compétence territoriale. Ils comprennent : les Commissariats de Police et des Postes de sécurité publique.
+              </div>
+            </div>
+          </p>          
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Quelques imgs des elements-->
+    <div class="col-md-6 col-lg-4 mb-3">
+      <div class="card-body">
+        <h4>Quelques clichés des éléments</h4>
+      </div>     
+      <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></li>
+          <li data-bs-target="#carouselExample" data-bs-slide-to="1"></li>
+          <li data-bs-target="#carouselExample" data-bs-slide-to="2"></li>
+          <li data-bs-target="#carouselExample" data-bs-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="{{asset('Imgs_Accueil/Elmt_1.jpg')}}" alt="First slide" />
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Les officiels</h3>
+              <p>Rencontre de certains officiés hauts placés de la DGP.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{{asset('Imgs_Accueil/Elmt_5.jpg')}}" alt="Second slide" />
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Patrouille</h3>
+              <p>Une petite descente en ville</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{{asset('Imgs_Accueil/Elmt_3.jpg')}}" alt="Third slide" />
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Demostration</h3>
+              <p>Une petite demo des capacités de nos hommes</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{{asset('Imgs_Accueil/Elmt_4.jpg')}}" alt="Third slide" />
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Defilé</h3>
+              <p>Le passage de nos hommes durant un defilé militaire</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExample" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExample" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
+
+      <br>
+      <hr>
+      <hr>
+      <hr>
+      <br>
+
+      <div class="card-body">
+        <h4>Fonctionnement</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text" class="accordion-button collapsed">
+          Le Directeur Générale de la Police Nationale dirige, coordonne et contrôle l’action de l’ensemble des services de la Police. L’Inspecteur en Chef, les Directeurs de Services, les Chefs des Services Rattachés la Direction Générale et les Directeurs Régionaux de la Police Nationale coordonnent et contrôlent les activités de leurs services et rendent compte au Directeur Général de la Police Nationale. Les Commissaires de Police de Sécurité Publique organisent et contrôlent le travail de leurs unités et rendent compte au Directeur Régional de la Police Nationale.
+        </p>          
+      </div>
+
+    </div>
+
+
+  </div>
+  <!-- Fin -->
+
+  <!-- Text alignment -->
+<h5 class="pb-1 mb-4 fw-bolder text-center">Partenaires</h5>
+<div class="row mb-5">
+  <div class="col-md-3 col-lg-4">
+    <div class="card mb-3">
+      <img class="card-img card-img-left" src="{{asset('Imgs_Accueil/partenaire1.png')}}" alt="Card image" />
+    </div>
+  </div>
+  <div class="col-md-3 col-lg-4">
+    <div class="card mb-3">
+      <img class="card-img card-img-left" src="{{asset('Imgs_Accueil/partenaire2.png')}}" alt="Card image" />
+    </div>
+  </div>
+  <div class="col-md-3 col-lg-4">
+    <div class="card mb-3">
+      <img class="card-img card-img-left" src="{{asset('Imgs_Accueil/partenaire3.png')}}" alt="Card image" />
     </div>
   </div>
 </div>
-<div class="row">
+<!--/ Text alignment -->
 
-  <!-- Top Products by -->
-  <div class="col-12 col-lg-8 mb-4">
-    <div class="card">
-      <div class="row row-bordered g-0">
-        <div class="col-md-6">
-          <div class="card-header d-flex align-items-center justify-content-between mb-4">
-            <h5 class="card-title m-0 me-2">Top Products by <span class="text-primary">Sales</span></h5>
-            <div class="dropdown">
-              <button class="btn p-0" type="button" id="topSales" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="topSales">
-                <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
-                <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
-                <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
-              </div>
-            </div>
+
+<!-- Advanced footer -->
+<section id="adv-footer">
+
+  <footer class="footer bg-light">
+    <div class="container-fluid container-p-x pt-5 pb-4">
+      <div class="row">
+        
+        <div class="container-fluid d-flex flex-md-row flex-column justify-content-between align-items-md-center gap-1 container-p-x py-3">
+          <div>
+            <h4 class="fw-bolder mb-3"><a href="{{ config('variables.livePreview') }}" target="_blank" class="footer-text">{{ config('variables.templateName') }} </a></h4>
+            <span>Plateforme à la portée de tous !</span>
           </div>
-          <div class="card-body">
-            <ul class="p-0 m-0">
-              <li class="d-flex mb-4 pb-1">
-                <div class="avatar flex-shrink-0 me-3">
-                  <img src="{{asset('assets/img/icons/unicons/oneplus.png')}}" alt="oneplus">
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                  <div class="me-2">
-                    <h6 class="mb-0">Oneplus Nord</h6>
-                    <small class="text-muted d-block mb-1">Oneplus</small>
-                  </div>
-                  <div class="user-progress d-flex align-items-center gap-1">
-                    <span class="fw-bold">$98,348</span>
-                  </div>
-                </div>
+
+          <div>
+            <h4 class="fw-bolder mb-3"><a href="javascript:void(0)" class="footer-text">
+              Contact </a></h4>
+            <span>Plateforme à la portée de tous !</span>
+            <div class="social-icon my-3">
+              <a href="https://www.facebook.com/ccpndgpn" class="btn btn-icon btn-sm btn-facebook me-2"><i class='bx bxl-facebook'></i></a>
+              <a href="https://twitter.com/CellulePolice?t=-Fx05Cfoj1aywYrA_Nq5mw&s=09" class="btn btn-icon btn-sm btn-twitter me-2"><i class='bx bxl-twitter'></i></a>
+            </div>
+            <ul class="list-unstyled">
+              <li>
+                <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
+                  <i class="fa-solid fa-phone"> </i>
+                   80 333
+                </a>
               </li>
-              <li class="d-flex mb-4 pb-1">
-                <div class="avatar flex-shrink-0 me-3">
-                  <img src="{{asset('assets/img/icons/unicons/watch-primary.png')}}" alt="smart band">
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                  <div class="me-2">
-                    <h6 class="mb-0">Smart Band 4</h6>
-                    <small class="text-muted d-block mb-1">Xiaomi</small>
-                  </div>
-                  <div class="user-progress d-flex align-items-center gap-1">
-                    <span class="fw-bold">$15,459</span>
-                  </div>
-                </div>
+              <li>
+                <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
+                  <i class="fa-solid fa-phone"> </i> 
+                   80 00 11 11
+                </a>
               </li>
-              <li class="d-flex mb-4 pb-1">
-                <div class="avatar flex-shrink-0 me-3">
-                  <img src="{{asset('assets/img/icons/unicons/surface.png')}}" alt="Surface">
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                  <div class="me-2">
-                    <h6 class="mb-0">Surface Pro X</h6>
-                    <small class="text-muted d-block mb-1">Miscrosoft</small>
-                  </div>
-                  <div class="user-progress d-flex align-items-center gap-1">
-                    <span class="fw-bold">$4,589</span>
-                  </div>
-                </div>
+              <li>
+                <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
+                  <i class="fa-solid fa-phone"> </i>
+                   80 00 11 15
+                </a>
               </li>
-              <li class="d-flex mb-4 pb-1">
-                <div class="avatar flex-shrink-0 me-3">
-                  <img src="{{asset('assets/img/icons/unicons/iphone.png')}}" alt="iphone">
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                  <div class="me-2">
-                    <h6 class="mb-0">iphone 13</h6>
-                    <small class="text-muted d-block mb-1">Apple</small>
-                  </div>
-                  <div class="user-progress d-flex align-items-center gap-1">
-                    <span class="fw-bold">$84,345</span>
-                  </div>
-                </div>
-              </li>
-              <li class="d-flex">
-                <div class="avatar flex-shrink-0 me-3">
-                  <img src="{{asset('assets/img/icons/unicons/earphone.png')}}" alt="Bluetooth Earphone">
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                  <div class="me-2">
-                    <h6 class="mb-0">Bluetooth Earphone</h6>
-                    <small class="text-muted d-block mb-1">Beats</small>
-                  </div>
-                  <div class="user-progress d-flex align-items-center gap-1">
-                    <span class="fw-bold">$10,374</span>
-                  </div>
-                </div>
+              <li>
+                <a href="mailto:dgpn@police.gouv.ml" class="footer-link d-block pb-2"> 
+                  <i class="fa-sharp fa-solid fa-envelope"></i>
+                   dgpn@police.gouv.ml
+                </a>
               </li>
             </ul>
           </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card-header d-flex align-items-center justify-content-between mb-4">
-            <h5 class="card-title m-0 me-2">Top Products by <span class="text-primary">Volume</span></h5>
-            <div class="dropdown">
-              <button class="btn p-0" type="button" id="topVolume" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="topVolume">
-                <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
-                <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
-                <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <ul class="p-0 m-0">
-              <li class="d-flex mb-4 pb-1">
-                <div class="avatar flex-shrink-0 me-3">
-                  <img src="{{asset('assets/img/icons/unicons/laptop-secondary.png')}}" alt="ENVY Laptop" class="rounded">
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                  <div class="me-2">
-                    <h6 class="mb-0">ENVY Laptop</h6>
-                    <small class="text-muted d-block mb-1">HP</small>
-                  </div>
-                  <div class="user-progress d-flex align-items-center gap-3">
-                    <span class="fw-semibold">124k</span>
-                    <span class="badge bg-label-success">+12.4%</span>
-                  </div>
-                </div>
+
+          <div>
+            <h5>Annexes</h5>
+            <ul class="list-unstyled"> 
+              <hr>             
+              <li>
+                <a href="javascript:void(0)" class="footer-link d-block pb-2"> 
+                  <i class="fa-solid fa-location-dot">  </i>
+                    Hamdallaye ACI 2000, Bamako (Direction Generale)
+                </a>
               </li>
-              <li class="d-flex mb-4 pb-1">
-                <div class="avatar flex-shrink-0 me-3">
-                  <img src="{{asset('assets/img/icons/unicons/computer.png')}}" alt="Apple" class="rounded">
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                  <div class="me-2">
-                    <h6 class="mb-0">Apple</h6>
-                    <small class="text-muted d-block mb-1">iMac Pro</small>
-                  </div>
-                  <div class="user-progress d-flex align-items-center gap-3">
-                    <span class="fw-semibold">74.9k</span>
-                    <span class="badge bg-label-danger">-8.5%</span>
-                  </div>
-                </div>
+              <hr>
+              <li>
+                <a href="javascript:void(0)" class="footer-link d-block pb-2"> 
+                  <i class="fa-sharp fa-solid fa-clock"></i>
+                  24h/24
+                </a>
               </li>
-              <li class="d-flex mb-4 pb-1">
-                <div class="avatar flex-shrink-0 me-3">
-                  <img src="{{asset('assets/img/icons/unicons/watch.png')}}" alt="Smart Watch" class="rounded">
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                  <div class="me-2">
-                    <h6 class="mb-0">Smart Watch</h6>
-                    <small class="text-muted d-block mb-1">Fitbit</small>
-                  </div>
-                  <div class="user-progress d-flex align-items-center gap-3">
-                    <span class="fw-semibold">4.4k</span>
-                    <span class="badge bg-label-success">+62.6%</span>
-                  </div>
-                </div>
+              <hr>
+              <li class="text-center fw-bolder">
+                DIRECTION GENERALE DE LA POLICE DU MALI
               </li>
-              <li class="d-flex mb-4 pb-1">
-                <div class="avatar flex-shrink-0 me-3">
-                  <img src="{{asset('assets/img/icons/unicons/oneplus-success.png')}}" alt="Oneplus RT" class="rounded">
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                  <div class="me-2">
-                    <h6 class="mb-0">Oneplus RT</h6>
-                    <small class="text-muted d-block mb-1">Oneplus</small>
-                  </div>
-                  <div class="user-progress d-flex align-items-center gap-3">
-                    <span class="fw-semibold">12,3k.71</span>
-                    <span class="badge bg-label-success">+16.7%</span>
-                  </div>
-                </div>
-              </li>
-              <li class="d-flex">
-                <div class="avatar flex-shrink-0 me-3">
-                  <img src="{{asset('assets/img/icons/unicons/pixel.png')}}" alt="Pixel 4a" class="rounded">
-                </div>
-                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                  <div class="me-2">
-                    <h6 class="mb-0">Pixel 4a</h6>
-                    <small class="text-muted d-block mb-1">Google</small>
-                  </div>
-                  <div class="user-progress d-flex align-items-center gap-3">
-                    <span class="fw-semibold">834k</span>
-                    <span class="badge bg-label-danger">-12.9%</span>
-                  </div>
-                </div>
+              <li class="text-center">
+                <i>Loyauté - Honneur - Dignité</i>                
               </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Top Products by -->
+  </footer>
+</section>
+<!--/ Advanced footer -->
 
-  <!-- Earning Reports -->
-  <div class="col-md-6 col-lg-4 col-xl-4 mb-4">
-    <div class="card h-100">
-      <div class="card-header d-flex justify-content-between">
-        <div class="card-title mb-0">
-          <h5 class="m-0 me-2">Earning Reports</h5>
-          <small class="text-muted">Weekly Earnings Overview</small>
-        </div>
-        <div class="dropdown">
-          <button class="btn p-0" type="button" id="earningReports" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="bx bx-dots-vertical-rounded"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="earningReports">
-            <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-body pb-0">
-        <ul class="p-0 m-0">
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <span class="avatar-initial rounded bg-label-primary"><i class='bx bx-trending-up'></i></span>
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <h6 class="mb-0">Net Profit</h6>
-                <small class="text-muted">12.4k Sales</small>
-              </div>
-              <div class="user-progress">
-                <small class="fw-semibold">$1,619</small><i class='bx bx-chevron-up text-success ms-1'></i> <small class="text-muted">18.6%</small>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <span class="avatar-initial rounded bg-label-success"><i class='bx bx-dollar'></i></span>
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <h6 class="mb-0">Total Income</h6>
-                <small class="text-muted">Sales, Affiliation</small>
-              </div>
-              <div class="user-progress">
-                <small class="fw-semibold">$3,571</small><i class='bx bx-chevron-up text-success ms-1'></i> <small class="text-muted">39.6%</small>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <span class="avatar-initial rounded bg-label-secondary"><i class='bx bx-credit-card'></i></span>
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <h6 class="mb-0">Total Expenses</h6>
-                <small class="text-muted">ADVT, Marketing</small>
-              </div>
-              <div class="user-progress">
-                <small class="fw-semibold">$430</small><i class='bx bx-chevron-up text-success ms-1'></i> <small class="text-muted">52.8%</small>
-              </div>
-            </div>
-          </li>
-        </ul>
-        <div id="reportBarChart"></div>
-      </div>
-    </div>
-  </div>
-  <!--/ Earning Reports -->
 
-  <!-- Sales Analytics -->
-  <div class="col-md-6 col-lg-4 mb-4">
-    <div class="card h-100">
-      <div class="card-header d-flex align-items-start justify-content-between">
-        <div>
-          <h5 class="card-title m-0 me-2 mb-2">Sales Analytics</h5>
-          <span class="badge bg-label-success me-1">+42.6%</span> <span>Than last year</span>
-        </div>
-        <div class="dropdown">
-          <button class="btn btn-sm btn-label-primary dropdown-toggle" type="button" id="salesAnalyticsId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            2022
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="salesAnalyticsId">
-            <a class="dropdown-item" href="javascript:void(0);">2021</a>
-            <a class="dropdown-item" href="javascript:void(0);">2020</a>
-            <a class="dropdown-item" href="javascript:void(0);">2019</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-body pb-0">
-        <div id="salesAnalyticsChart"></div>
-      </div>
-    </div>
-  </div>
-  <!--/ Sales Analytics -->
 
-  <!-- Sales By Country -->
-  <div class="col-md-6 col-lg-4 col-xl-4 mb-4">
-    <div class="card h-100">
-      <div class="card-header d-flex justify-content-between mb-3">
-        <div class="card-title mb-0">
-          <h5 class="m-0 me-2">Sales by Countries</h5>
-          <small class="text-muted">Monthly Sales Overview</small>
-        </div>
-        <div class="dropdown">
-          <button class="btn p-0" type="button" id="salesByCountry" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="bx bx-dots-vertical-rounded"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="salesByCountry">
-            <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <ul class="p-0 m-0">
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/svg/flags/us.svg')}}" alt="User" class="rounded-circle">
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <div class="d-flex align-items-center">
-                  <h6 class="mb-0 me-1">$8,567k</h6>
-                  <small class="text-success fw-semibold">
-                    <i class='bx bx-chevron-up'></i>
-                    25.8%
-                  </small>
-                </div>
-                <small class="text-muted">United states of america</small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">884k</h6>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/svg/flags/br.svg')}}" alt="User" class="rounded-circle">
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <div class="d-flex align-items-center">
-                  <h6 class="mb-0 me-1">$2,415k</h6>
-                  <small class="text-danger fw-semibold">
-                    <i class='bx bx-chevron-down'></i>
-                    6.2%
-                  </small>
-                </div>
-                <small class="text-muted">Brazil</small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">645k</h6>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/svg/flags/in.svg')}}" alt="User" class="rounded-circle">
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <div class="d-flex align-items-center">
-                  <h6 class="mb-0 me-1">$865k</h6>
-                  <small class="text-success fw-semibold">
-                    <i class='bx bx-chevron-up'></i>
-                    12.4%
-                  </small>
-                </div>
-                <small class="text-muted">India</small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">148k</h6>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex mb-4 pb-1">
-            <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/svg/flags/au.svg')}}" alt="User" class="rounded-circle">
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <div class="d-flex align-items-center">
-                  <h6 class="mb-0 me-1">$745k</h6>
-                  <small class="text-danger fw-semibold">
-                    <i class='bx bx-chevron-down'></i>
-                    11.9%
-                  </small>
-                </div>
-                <small class="text-muted">Australia</small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">86k</h6>
-              </div>
-            </div>
-          </li>
-          <li class="d-flex">
-            <div class="avatar flex-shrink-0 me-3">
-              <img src="{{asset('assets/svg/flags/fr.svg')}}" alt="User" class="rounded-circle">
-            </div>
-            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-              <div class="me-2">
-                <div class="d-flex align-items-center">
-                  <h6 class="mb-0 me-1">$45</h6>
-                  <small class="text-success fw-semibold">
-                    <i class='bx bx-chevron-up'></i>
-                    16.2%
-                  </small>
-                </div>
-                <small class="text-muted">France</small>
-              </div>
-              <div class="user-progress">
-                <h6 class="mb-0">42k</h6>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <!--/ Sales By Country -->
-
-  <!-- Sales Stats -->
-  <div class="col-md-6 col-lg-4 mb-4">
-    <div class="card h-100">
-      <div class="card-header d-flex align-items-center justify-content-between mb-30">
-        <h5 class="card-title m-0 me-2">Sales Stats</h5>
-        <div class="dropdown">
-          <button class="btn p-0" type="button" id="salesStatsID" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="bx bx-dots-vertical-rounded"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="salesStatsID">
-            <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
-            <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
-            <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
-          </div>
-        </div>
-      </div>
-      <div id="salesStats"></div>
-      <div class="card-body">
-        <div class="d-flex justify-content-around">
-          <div class="d-flex align-items-center lh-1 mb-3 mb-sm-0">
-            <span class="badge badge-dot bg-success me-2"></span> Conversion Ratio
-          </div>
-          <div class="d-flex align-items-center lh-1 mb-3 mb-sm-0">
-            <span class="badge badge-dot bg-label-secondary me-2"></span> Total requirements
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--/ Sales Stats -->
-
-  <!-- Team Members -->
-  <div class="col-md-6 col-lg-5 mb-md-0 mb-4">
-    <div class="card h-100">
-      <div class="card-header d-flex align-items-center justify-content-between">
-        <h5 class="card-title m-0 me-2">Team Members</h5>
-        <div class="dropdown">
-          <button class="btn p-0" type="button" id="teamMemberList" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="bx bx-dots-vertical-rounded"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="teamMemberList">
-            <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-            <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-          </div>
-        </div>
-      </div>
-      <div class="table-responsive">
-        <table class="table table-borderless">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Project</th>
-              <th>Task</th>
-              <th>Progress</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar me-2">
-                    <img src="{{asset('assets/img/avatars/17.png')}}" alt="Avatar" class="rounded-circle">
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-0 text-truncate">Nathan Wagner</h6><small class="text-truncate text-muted">iOS Developer</small>
-                  </div>
-                </div>
-              </td>
-              <td><span class="badge bg-label-primary rounded-pill text-uppercase">Zipcar</span></td>
-              <td><small class="fw-semibold">87/135</small></td>
-              <td>
-                <div class="chart-progress" data-color="primary" data-series="65"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar me-2">
-                    <img src="{{asset('assets/img/avatars/8.png')}}" alt="Avatar" class="rounded-circle">
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-0 text-truncate">Emma Bowen</h6><small class="text-truncate text-muted">UI/UX Designer</small>
-                  </div>
-                </div>
-              </td>
-              <td><span class="badge bg-label-danger rounded-pill text-uppercase">Bitbank</span></td>
-              <td><small class="fw-semibold">320/440</small></td>
-              <td>
-                <div class="chart-progress" data-color="danger" data-series="85"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar me-2">
-                    <span class="avatar-initial rounded-circle bg-label-warning">AM</span>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-0 text-truncate">Adrian McGuire</h6><small class="text-truncate text-muted">PHP Developer</small>
-                  </div>
-                </div>
-              </td>
-              <td><span class="badge bg-label-warning rounded-pill text-uppercase">Payers</span></td>
-              <td><small class="fw-semibold">50/82</small></td>
-              <td>
-                <div class="chart-progress" data-color="warning" data-series="73"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar me-2">
-                    <img src="{{asset('assets/img/avatars/2.png')}}" alt="Avatar" class="rounded-circle">
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-0 text-truncate">Alma Gonzalez</h6><small class="text-truncate text-muted">Product Manager</small>
-                  </div>
-                </div>
-              </td>
-              <td><span class="badge bg-label-info rounded-pill text-uppercase">Brandi</span></td>
-              <td><small class="fw-semibold">98/260</small></td>
-              <td>
-                <div class="chart-progress" data-color="info" data-series="61"></div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar me-2">
-                    <img src="{{asset('assets/img/avatars/11.png')}}" alt="Avatar" class="rounded-circle">
-                  </div>
-                  <div class="d-flex flex-column">
-                    <h6 class="mb-0 text-truncate">Allan kristian</h6><small class="text-truncate text-muted">Frontend Designer</small>
-                  </div>
-                </div>
-              </td>
-              <td><span class="badge bg-label-success rounded-pill text-uppercase">Crypter</span></td>
-              <td><small class="fw-semibold">690/760</small></td>
-              <td>
-                <div class="chart-progress" data-color="success" data-series="77"></div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <!--/ Team Members -->
-
-  <!-- Customer Table -->
-  <div class="col-md-6 col-lg-7 mb-0">
-    <div class="card">
-      <div class="card-datatable table-responsive">
-        <table class="invoice-list-table table border-top">
-          <thead>
-            <tr>
-              <th>Customer</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th class="cell-fit">Paid By</th>
-              <th class="cell-fit">Actions</th>
-            </tr>
-          </thead>
-          <tbody class="table-border-bottom-0">
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar-wrapper">
-                    <div class="avatar avatar-sm me-2"><img src="{{asset('assets/img/avatars/7.png')}}" alt="Avatar" class="rounded-circle"></div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <a href="pages-profile-user.html" class="text-body text-truncate fw-semibold">Henry Barnes</a>
-                    <small class="text-truncate text-muted">jok@puc.co.uk</small>
-                  </div>
-                </div>
-              </td>
-              <td>$459.65</td>
-              <td><span class="badge bg-label-success"> Paid </span></td>
-              <td><img src="{{asset('assets/img/icons/payments/master-'.$configData['style'].'.png')}}" class="img-fluid" width="50" alt="masterCard" data-app-light-img="icons/payments/master-light.png" data-app-dark-img="icons/payments/master-dark.png"></td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <div class="dropdown"><a href="javascript:;" class="btn dropdown-toggle hide-arrow text-body p-0" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a href="javascript:void(0);" class="dropdown-item">Edit</a>
-                      <a href="javascript:;" class="dropdown-item">Duplicate</a>
-                      <div class="dropdown-divider"></div>
-                      <a href="javascript:;" class="dropdown-item delete-record text-danger">Delete</a>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar-wrapper">
-                    <div class="avatar avatar-sm me-2"><img src="{{asset('assets/img/avatars/20.png')}}" alt="Avatar" class="rounded-circle"></div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <a href="pages-profile-user.html" class="text-body text-truncate fw-semibold">Hallie Warner</a>
-                    <small class="text-truncate text-muted">hellie@war.co.uk</small>
-                  </div>
-                </div>
-              </td>
-              <td>$93.81</td>
-              <td><span class="badge bg-label-warning"> Pending </span></td>
-              <td><img src="{{asset('assets/img/icons/payments/visa-'.$configData['style'].'.png')}}" class="img-fluid" width="50" alt="visaCard" data-app-light-img="icons/payments/visa-light.png" data-app-dark-img="icons/payments/visa-dark.png"></td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <div class="dropdown"><a href="javascript:;" class="btn dropdown-toggle hide-arrow text-body p-0" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a href="javascript:void(0);" class="dropdown-item">Edit</a>
-                      <a href="javascript:;" class="dropdown-item">Duplicate</a>
-                      <div class="dropdown-divider"></div>
-                      <a href="javascript:;" class="dropdown-item delete-record text-danger">Delete</a>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar-wrapper">
-                    <div class="avatar avatar-sm me-2"><img src="{{asset('assets/img/avatars/9.png')}}" alt="Avatar" class="rounded-circle"></div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <a href="pages-profile-user.html" class="text-body text-truncate fw-semibold">Gerald Flowers</a>
-                    <small class="text-truncate text-muted">initus@odemi.com</small>
-                  </div>
-                </div>
-              </td>
-              <td>$934.35</td>
-              <td><span class="badge bg-label-warning"> Pending </span></td>
-              <td><img src="{{asset('assets/img/icons/payments/visa-'.$configData['style'].'.png')}}" class="img-fluid" width="50" alt="visaCard" data-app-light-img="icons/payments/visa-light.png" data-app-dark-img="icons/payments/visa-dark.png"></td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <div class="dropdown"><a href="javascript:;" class="btn dropdown-toggle hide-arrow text-body p-0" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a href="javascript:void(0);" class="dropdown-item">Edit</a>
-                      <a href="javascript:;" class="dropdown-item">Duplicate</a>
-                      <div class="dropdown-divider"></div>
-                      <a href="javascript:;" class="dropdown-item delete-record text-danger">Delete</a>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar-wrapper">
-                    <div class="avatar avatar-sm me-2"><img src="{{asset('assets/img/avatars/14.png')}}" alt="Avatar" class="rounded-circle"></div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <a href="pages-profile-user.html" class="text-body text-truncate fw-semibold">John Davidson</a>
-                    <small class="text-truncate text-muted">jtum@upkesja.gov</small>
-                  </div>
-                </div>
-              </td>
-              <td>$794.97</td>
-              <td><span class="badge bg-label-success"> Paid </span></td>
-              <td><img src="{{asset('assets/img/icons/payments/paypal-'.$configData['style'].'.png')}}" class="img-fluid" width="50" alt="paypalCard" data-app-light-img="icons/payments/paypal-light.png" data-app-dark-img="icons/payments/paypal-dark.png"></td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <div class="dropdown"><a href="javascript:;" class="btn dropdown-toggle hide-arrow text-body p-0" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a href="javascript:void(0);" class="dropdown-item">Edit</a>
-                      <a href="javascript:;" class="dropdown-item">Duplicate</a>
-                      <div class="dropdown-divider"></div>
-                      <a href="javascript:;" class="dropdown-item delete-record text-danger">Delete</a>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar-wrapper">
-                    <div class="avatar avatar-sm me-2"><span class="avatar-initial rounded-circle bg-label-warning">JH</span></div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <a href="pages-profile-user.html" class="text-body text-truncate fw-semibold">Jayden Harris</a>
-                    <small class="text-truncate text-muted">wipare@tin.com</small>
-                  </div>
-                </div>
-              </td>
-              <td>$19.49</td>
-              <td><span class="badge bg-label-success"> Paid </span></td>
-              <td><img src="{{asset('assets/img/icons/payments/master-'.$configData['style'].'.png')}}" class="img-fluid" width="50" alt="masterCard" data-app-light-img="icons/payments/master-light.png" data-app-dark-img="icons/payments/master-dark.png"></td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <div class="dropdown"><a href="javascript:;" class="btn dropdown-toggle hide-arrow text-body p-0" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a href="javascript:void(0);" class="dropdown-item">Edit</a>
-                      <a href="javascript:;" class="dropdown-item">Duplicate</a>
-                      <div class="dropdown-divider"></div>
-                      <a href="javascript:;" class="dropdown-item delete-record text-danger">Delete</a>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex justify-content-start align-items-center">
-                  <div class="avatar-wrapper">
-                    <div class="avatar avatar-sm me-2"><img src="{{asset('assets/img/avatars/8.png')}}" alt="Avatar" class="rounded-circle"></div>
-                  </div>
-                  <div class="d-flex flex-column">
-                    <a href="pages-profile-user.html" class="text-body text-truncate fw-semibold">Rena Ferguson</a>
-                    <small class="text-truncate text-muted">nur@kaomor.edu</small>
-                  </div>
-                </div>
-              </td>
-              <td>$636.27</td>
-              <td><span class="badge bg-label-danger"> Failed </span></td>
-              <td><img src="{{asset('assets/img/icons/payments/paypal-'.$configData['style'].'.png')}}" class="img-fluid" width="50" alt="paypalCard" data-app-light-img="icons/payments/paypal-light.png" data-app-dark-img="icons/payments/paypal-dark.png"></td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <div class="dropdown"><a href="javascript:;" class="btn dropdown-toggle hide-arrow text-body p-0" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                      <a href="javascript:void(0);" class="dropdown-item">Edit</a>
-                      <a href="javascript:;" class="dropdown-item">Duplicate</a>
-                      <div class="dropdown-divider"></div>
-                      <a href="javascript:;" class="dropdown-item delete-record text-danger">Delete</a>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-  <!--/ Customer Table -->
-</div>
 
 @include('Visitors.Modals.login-createAccount')
 

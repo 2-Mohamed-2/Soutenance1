@@ -417,7 +417,7 @@
                        
                         © {{ date('Y') }} {{ config('app.name') }}. @lang('Tout droit reservé.')
                         
-                    </td>
+                    </td> <br>
                 </tr><!-- end tr -->
                 
             </table>

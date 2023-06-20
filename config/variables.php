@@ -1,7 +1,7 @@
 <?php
   // Variables
   return [
-    "creatorName" => "²Mohamed²",
+    "creatorName" => "Geeks_Ml",
     "creatorUrl" => "",
     "templateName" => "Coms_ML",
     "templateSuffix" => "Mali",

@@ -54,6 +54,7 @@ class PasswordResetLinkController extends Controller
         catch (\Throwable $th) 
         {
             Alert::error('Erreur', 'Une erreur innattendue est survenue veuillez re-essayer plus tard');
+            return redirect()->back();
         }
        
     }

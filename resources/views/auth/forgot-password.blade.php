@@ -27,12 +27,13 @@ $customizerHidden = 'customizer-hide';
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-center authentication-bg p-sm-5 p-4">
       <div class="w-px-400 mx-auto">
         <!-- Logo -->
-        <div class="app-brand mb-5">
-          <a href="{{url('/')}}" class="app-brand-link gap-2">
-            <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#696cff'])</span>
-            <span class="app-brand-text demo demo text-body fw-bolder">{{config('variables.templateName')}}</span>
+        <div class="app-brand mb-3 text-center">
+          <a href="{{url('/login')}}" class="app-brand-link gap-2">
+            <span class="app-brand-logo demo d-block">
+              <img src="{{ asset('Coms_Ml_logo.png') }}" class="mx-auto" width="30%" alt="">
+            </span>
           </a>
-        </div>
+        </div> 
         <!-- /Logo -->
         <h4 class="mb-2">Mot de passe oublié ? 🔒</h4>
         <p class="mb-4">Donnez votre email pour recevoir les instructions de réinitialisation</p>

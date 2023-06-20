@@ -68,7 +68,7 @@ return [
     | for particular modal just use the width() helper method.
     */
 
-    'width' => env('SWEET_ALERT_WIDTH', '32rem'),
+    'width' => env('SWEET_ALERT_WIDTH', '30rem'),
 
     /*
     |--------------------------------------------------------------------------
@@ -123,7 +123,7 @@ return [
     |
     */
 
-    'show_confirm_button' => env('SWEET_ALERT_CONFIRM_BUTTON', true),
+    'show_confirm_button' => env('SWEET_ALERT_CONFIRM_BUTTON', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -136,7 +136,7 @@ return [
     |
     */
 
-    'show_close_button' => env('SWEET_ALERT_CLOSE_BUTTON', true),
+    'show_close_button' => env('SWEET_ALERT_CLOSE_BUTTON', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -149,7 +149,7 @@ return [
     |
     */
 
-    'toast_position' => env('SWEET_ALERT_TOAST_POSITION', 'top-end'),
+    'toast_position' => env('SWEET_ALERT_TOAST_POSITION', 'top-start'),
 
     /*
     |--------------------------------------------------------------------------
