@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ActiveMiddleware
 {
@@ -23,7 +24,7 @@ class ActiveMiddleware
         {
             return $next($request);
         }
-        toastr()->info('Votre compte est desactivé !', 'Information');
+        Alert::info('Information', 'Votre compte est desactivé !');
         return redirect(route('compte-profil-user-view'));
         
         

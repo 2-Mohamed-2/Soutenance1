@@ -1,6 +1,11 @@
 <?php
 
+use App\Models\Inconnu;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Middleware\ActiveMiddleware;
+use App\Http\Controllers\Visitors\Accueil;
 use App\Http\Controllers\CRUDS\AccessRoles;
 use App\Http\Controllers\CRUDS\ComController;
 use App\Http\Controllers\dashboard\Analytics;
@@ -12,36 +17,32 @@ use App\Http\Controllers\CRUDS\TenueController;
 use App\Http\Controllers\CRUDS\AccessPermission;
 use App\Http\Controllers\CRUDS\StatutController;
 use App\Http\Controllers\CRUDS\InconnuController;
+use App\Http\Controllers\CRUDS\MuniAffController;
 use App\Http\Controllers\CRUDS\SectionController;
 use App\Http\Controllers\CRUDS\ArmementController;
-use App\Http\Controllers\CRUDS\LieuStockController;
 use App\Http\Controllers\CRUDS\MaterielController;
-use App\Http\Controllers\CRUDS\MuniAffController;
 use App\Http\Controllers\CRUDS\MunitionController;
-use App\Http\Controllers\CRUDS\VehiculeController;
-use App\Http\Controllers\CRUDS\ResidenceController;
 use App\Http\Controllers\CRUDS\TenueAffController;
+use App\Http\Controllers\CRUDS\VehiculeController;
+use App\Http\Controllers\CRUDS\LieuStockController;
+use App\Http\Controllers\CRUDS\ResidenceController;
+use App\Http\Controllers\UserCompte\UserProfilView;
 use App\Http\Controllers\CRUDS\VoitAffecteController;
+use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\UserCompte\UserProfilSecurity;
 use App\Http\Controllers\laravel_example\UserManagement;
-use App\Http\Controllers\pages\AccountSettingsAccount;
-use App\Http\Controllers\UserCompte\UserProfilView;
-use App\Http\Controllers\Visitors\Accueil;
-use App\Http\Controllers\Visitors\AuthenticatedSessionController;
 use App\Http\Controllers\Visitors\Inconnu as VisitorsInconnu;
 use App\Http\Controllers\Visitors\InconnuConnexionController;
+use App\Http\Controllers\Visitors\AuthenticatedSessionController;
 use App\Http\Controllers\Visitors\InconnuController as VisitorsInconnuController;
-use App\Http\Middleware\ActiveMiddleware;
-use App\Models\Inconnu;
+use RealRashid\SweetAlert\Facades\Alert;
 
 //Route de redirection quand le mdp est 123456
 // Route::middleware(['Mot_passe:123456'])->group(function () {
 // });
 
 
-// Route pour les visiteurs
-
-Route::get('/Accueil', [Accueil::class, 'index'])->name('Accueil');
+Route::get('/', [Accueil::class, 'index'])->name('Accueil');
 //Pour la creation d'un compte visiteur method="POST" action="{{ route('admin-login')
 Route::post('/Citoyen/Create', [VisitorsInconnuController::class, 'store'])->name('citcreate');
 //Pour la connexion du citoyen
@@ -144,7 +145,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     // Debut des routes dedies a l'Informaticien, a l'Administrateur, au Commissaire et au Commissaire Adjoint
 
       // Tableau de board
-      Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics')
+      Route::get('/Tableau-Bord', [Analytics::class, 'index'])->name('dashboard-analytics')
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Route pour Armement
@@ -240,7 +241,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
 
   });
-
+  Route::fallback(function () {
+        Alert::error('404', 'La page demandee est introuvable');
+        return redirect()->back();
+    })->name('404');
 
 });
 
