@@ -106,6 +106,8 @@ use App\Models\Tenue;
             {{-- Vue du modal de modification --}}
          @include('_partials/_modals/_CRUD-TENUE/modal-updtTenue')
 
+         @include('_partials/_modals/_CRUD-TENUEAFF/modal-addTenueaff')
+
 
 
 
@@ -135,7 +137,7 @@ use App\Models\Tenue;
 </div>
 
 {{-- Vue du modal d'insertion --}}
-  @include('_partials/_modals/_CRUD-TENUEAFF/modal-addTenueaff')
+
   @include('_partials/_modals/_CRUD-TENUE/modal-addTenue')
 
 

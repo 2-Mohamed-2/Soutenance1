@@ -100,6 +100,8 @@ use App\Models\Munition;
             {{-- Vue du modal de modification --}}
          @include('_partials/_modals/_CRUD-MUNI/modal-updtMuni')
 
+         @include('_partials/_modals/_CRUD-MUNIAFF/modal-addMuniaff')
+
 
 
          </td>
@@ -115,7 +117,7 @@ use App\Models\Munition;
 </div>
 
 {{-- Vue du modal d'insertion --}}
-@include('_partials/_modals/_CRUD-MUNIAFF/modal-addMuniaff')
+
 @include('_partials/_modals/_CRUD-MUNI/modal-addMuni')
 
 

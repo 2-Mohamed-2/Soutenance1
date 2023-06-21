@@ -63,7 +63,7 @@ class ArmementController extends Controller
             // 'revision' => $request->revision,
             // 'statut' => $request->statut,
             // 'lieu' => $request->lieu,
-            'quantite' => $request->stock,
+            'quantite' => $request->quantite,
             'lieu_stock_id' => $request->lieu_stock_id,
 
           ]);

@@ -118,6 +118,8 @@
             {{-- Vue du modal de suppression --}}
            @include('_partials/_modals/_CRUD-ARME/modal-deleteArme')
 
+           @include('_partials/_modals/_CRUD-AVOIR/modal-addAvoir')
+
           </td>
         </tr>
         @empty
@@ -150,7 +152,7 @@
 
 {{-- Vue du modal d'insertion --}}
   @include('_partials/_modals/_CRUD-ARME/modal-addArme')
-  @include('_partials/_modals/_CRUD-AVOIR/modal-addAvoir')
+
 
 
 @endsection

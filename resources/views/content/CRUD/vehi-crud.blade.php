@@ -112,12 +112,14 @@
             {{-- Vue du modal de suppression --}}
            @include('_partials/_modals/_CRUD-VEHI/modal-deleteVehi')
 
+            @include('_partials/_modals/_CRUD-VOIT/modal-addVoit')
+
           </td>
         </tr>
         @empty
         {{-- Le tableau sera vide s'il n'y a pas d'insertion --}}
         @endforelse
-
+        @include('_partials/_modals/_CRUD-VEHI/modal-addVehi')
 
       </tbody>
     </table>
@@ -138,8 +140,7 @@
 </div>
 
 {{-- Vue du modal d'insertion --}}
-  @include('_partials/_modals/_CRUD-VEHI/modal-addVehi')
-  @include('_partials/_modals/_CRUD-VOIT/modal-addVoit')
+
 
 
 @endsection
