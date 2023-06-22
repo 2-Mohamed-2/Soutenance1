@@ -35,6 +35,7 @@ use App\Http\Controllers\Visitors\Inconnu as VisitorsInconnu;
 use App\Http\Controllers\Visitors\InconnuConnexionController;
 use App\Http\Controllers\Visitors\AuthenticatedSessionController;
 use App\Http\Controllers\Visitors\InconnuController as VisitorsInconnuController;
+use App\Http\Controllers\Visitors\ProfilController;
 use RealRashid\SweetAlert\Facades\Alert;
 
 //Route de redirection quand le mdp est 123456
@@ -47,7 +48,17 @@ Route::get('/', [Accueil::class, 'index'])->name('Accueil');
 Route::post('/Citoyen/Create', [VisitorsInconnuController::class, 'store'])->name('citcreate');
 //Pour la connexion du citoyen
 Route::post('/vlogin', [InconnuConnexionController::class, 'test'])->name('vlogin');
+
+        //Pour la vue du profil et l'update du mot de passe
+
+//Modification du mdp citoyen
+Route::put('/Citoyen/Mdp/{id}', [ProfilController::class, 'update'])->middleware(['auth:inconnu'])->name('cimdp');
+//Pour la deconnexion
 Route::post('/vdestroy', [InconnuConnexionController::class, 'destroy2'])->name('vdestroy');
+
+
+
+
 
 
 
