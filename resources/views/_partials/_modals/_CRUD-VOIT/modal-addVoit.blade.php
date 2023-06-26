@@ -1,5 +1,4 @@
 <!-- End Offcanvas -->
-@if($vehi->id)
   <div class="modal fade" id="addVoit" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
@@ -40,7 +39,7 @@
       </div>
     </div>
   </div>
-@endif
+
 
 
 
