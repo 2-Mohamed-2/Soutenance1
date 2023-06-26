@@ -190,112 +190,203 @@ $configData = Helper::appClasses();
   <!-- Fin -->
 
   <!-- Text alignment -->
-<h5 class="pb-1 mb-4 fw-bolder text-center">Partenaires</h5>
-<div class="row mb-5">
-  <div class="col-md-3 col-lg-4">
-    <div class="card mb-3">
-      <img class="card-img card-img-left" src="{{asset('Imgs_Accueil/partenaire1.png')}}" alt="Card image" />
+  <h5 class="pb-1 mb-4 fw-bolder text-center">Partenaires</h5>
+  <div class="row mb-5">
+    <div class="col-md-3 col-lg-4">
+      <div class="card mb-3">
+        <img class="card-img card-img-left" src="{{asset('Imgs_Accueil/partenaire1.png')}}" alt="Card image" />
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-4">
+      <div class="card mb-3">
+        <img class="card-img card-img-left" src="{{asset('Imgs_Accueil/partenaire2.png')}}" alt="Card image" />
+      </div>
+    </div>
+    <div class="col-md-3 col-lg-4">
+      <div class="card mb-3">
+        <img class="card-img card-img-left" src="{{asset('Imgs_Accueil/partenaire3.png')}}" alt="Card image" />
+      </div>
     </div>
   </div>
-  <div class="col-md-3 col-lg-4">
-    <div class="card mb-3">
-      <img class="card-img card-img-left" src="{{asset('Imgs_Accueil/partenaire2.png')}}" alt="Card image" />
-    </div>
-  </div>
-  <div class="col-md-3 col-lg-4">
-    <div class="card mb-3">
-      <img class="card-img card-img-left" src="{{asset('Imgs_Accueil/partenaire3.png')}}" alt="Card image" />
-    </div>
-  </div>
-</div>
-<!--/ Text alignment -->
+  <!--/ Text alignment -->
 
 
-<!-- Advanced footer -->
-<section id="adv-footer">
+  @if (Auth::guard('inconnu')->user())
+      
+    <br>
+    <hr>
+    <hr>
+    <h2 class="text-muted text-center text-uppercase">Votre profil</h2>
+    <hr>
 
-  <footer class="footer bg-light">
-    <div class="container-fluid container-p-x pt-5 pb-4">
-      <div class="row">
-        
-        <div class="container-fluid d-flex flex-md-row flex-column justify-content-between align-items-md-center gap-1 container-p-x py-3">
-          <div>
-            <h4 class="fw-bolder mb-3"><a href="{{ config('variables.livePreview') }}" target="_blank" class="footer-text">{{ config('variables.templateName') }} </a></h4>
-            <span>Plateforme à la portée de tous !</span>
-          </div>
-
-          <div>
-            <h4 class="fw-bolder mb-3"><a href="javascript:void(0)" class="footer-text">
-              Contact </a></h4>
-            <span>Plateforme à la portée de tous !</span>
-            <div class="social-icon my-3">
-              <a href="https://www.facebook.com/ccpndgpn" class="btn btn-icon btn-sm btn-facebook me-2"><i class='bx bxl-facebook'></i></a>
-              <a href="https://twitter.com/CellulePolice?t=-Fx05Cfoj1aywYrA_Nq5mw&s=09" class="btn btn-icon btn-sm btn-twitter me-2"><i class='bx bxl-twitter'></i></a>
-            </div>
-            <ul class="list-unstyled">
-              <li>
-                <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
-                  <i class="fa-solid fa-phone"> </i>
-                   80 333
-                </a>
+    <div class="row">
+      <div class="col-xl-4 col-lg-5 col-md-5">
+        <!-- About User -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <small class="text-muted text-uppercase">Infos personnelles</small>
+            <ul class="list-unstyled mb-4 mt-3 text-wrap">
+              <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span class="fw-semibold mx-2">Num. Carte :</span> <span class="fw-bolder fs-5"> {{ Auth::guard('inconnu')->user()->n_ci ?? '' }}</span></li>
+              <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span class="fw-semibold mx-2 text-wrap">Nom complet :</span> <span class="fw-bolder fs-5"> {{ Auth::guard('inconnu')->user()->nomcomplet ?? '' }}</span></li>
+              <li class="d-flex align-items-center mb-3"><i class="bx bx-check"></i><span class="fw-semibold mx-2">Statut :</span> <span class="fw-bolder fs-5"> Citoyen Lambda</span></li>
+              <li class="d-flex align-items-center mb-3"><i class="bx bx-flag"></i><span class="fw-semibold mx-2">Pays :</span> <span class="fw-bolder fs-5"> Mali</span></li>              
+              <li class="d-flex align-items-center mb-3"><i class="bx bx-current-location"></i><span class="fw-semibold mx-2">Adresse : </span> <span class="fw-bolder fs-5"> {{ Auth::guard('inconnu')->user()->adresse ?? '' }}</span></li>
+              <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><span class="fw-semibold mx-2">Contact:</span> <span class="fw-bolder fs-5">(+223) {{ Auth::guard('inconnu')->user()->telephone ?? '' }}</span></li>
+              <li class="d-flex justify-content-between align-items-center mb-3">
+                <button class="btn btn-primary">C. Residence</button>
+                <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#mdpcitup{{ Auth::guard('inconnu')->user()->id }}">Sécurité</button>
               </li>
-              <li>
-                <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
-                  <i class="fa-solid fa-phone"> </i> 
-                   80 00 11 11
-                </a>
-              </li>
-              <li>
-                <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
-                  <i class="fa-solid fa-phone"> </i>
-                   80 00 11 15
-                </a>
-              </li>
-              <li>
-                <a href="mailto:dgpn@police.gouv.ml" class="footer-link d-block pb-2"> 
-                  <i class="fa-sharp fa-solid fa-envelope"></i>
-                   dgpn@police.gouv.ml
-                </a>
-              </li>
+              @include('Visitors.Modals.mdp_update')
             </ul>
           </div>
+        </div>
+        <!--/ About User -->
+      </div>
 
-          <div>
-            <h5>Annexes</h5>
-            <ul class="list-unstyled"> 
-              <hr>             
-              <li>
-                <a href="javascript:void(0)" class="footer-link d-block pb-2"> 
-                  <i class="fa-solid fa-location-dot">  </i>
-                    Hamdallaye ACI 2000, Bamako (Direction Generale)
-                </a>
+      <div class="col-xl-4 col-lg-7 col-md-7">
+        <!-- Activity Timeline -->
+        <div class="card card-action mb-4">
+          <div class="card-header align-items-center">
+            <h5 class="card-action-title mb-0"><i class='bx bx-list-ul me-2'></i>Vos activités</h5>
+          <br>
+          </div>
+          <div class="card-body">
+            <ul class="timeline ms-2">
+              @foreach ($sessions_cit as $session)
+                @php
+                  $created = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $session->created_at)->format('d-m-Y'.' à '.'H:i');
+                  $deconnexion = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $session->deconnexion_cit)->format('d-m-Y'.' à '.'H:i');
+                            
+                @endphp
+              <li class="timeline-item timeline-item-transparent">
+                <span class="timeline-point timeline-point-warning"></span>
+                <div class="timeline-event">
+                  <div class="timeline-header mb-1">
+                      <h6 class="mb-0">Du {{ $created }} à {{ $deconnexion }}</h6>
+                </div>
               </li>
-              <hr>
-              <li>
-                <a href="javascript:void(0)" class="footer-link d-block pb-2"> 
-                  <i class="fa-sharp fa-solid fa-clock"></i>
-                  24h/24
-                </a>
-              </li>
-              <hr>
-              <li class="text-center fw-bolder">
-                DIRECTION GENERALE DE LA POLICE DU MALI
-              </li>
-              <li class="text-center">
-                <i>Loyauté - Honneur - Dignité</i>                
+              @endforeach
+    
+              <li class="timeline-end-indicator">
+                <i class="bx bx-check-circle"></i>
               </li>
             </ul>
           </div>
         </div>
       </div>
+
+      <div class="col-xl-4 col-lg-5 col-md-5">
+        <!-- About User -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <small class="text-muted text-uppercase">Information sur vos documents (En cours ou validés)</small>
+            <ul class="list-unstyled mb-4 mt-3 text-wrap">              
+              <li class="d-flex align-items-center mb-3">
+                <i class='bx bxs-file-doc'></i>
+                <span class="fw-semibold mx-2">Titre : </span> 
+                <span class="fw-bolder fs-5"> Date </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--/ About User -->
+      </div>
+
     </div>
-  </footer>
-</section>
-<!--/ Advanced footer -->
+
+    <hr>
+    <hr>
+    <br>
+
+
+  @endif
+  
 
 
 
+  <!-- Advanced footer -->
+  <section id="adv-footer">
 
-@include('Visitors.Modals.login-createAccount')
+    <footer class="footer bg-light">
+      <div class="container-fluid container-p-x pt-5 pb-4">
+        <div class="row">
+          
+          <div class="container-fluid d-flex flex-md-row flex-column justify-content-between align-items-md-center gap-1 container-p-x py-3">
+            <div>
+              <h4 class="fw-bolder mb-3"><a href="{{ config('variables.livePreview') }}" target="_blank" class="footer-text">{{ config('variables.templateName') }} </a></h4>
+              <span>Plateforme à la portée de tous !</span>
+            </div>
+
+            <div>
+              <h4 class="fw-bolder mb-3"><a href="javascript:void(0)" class="footer-text">
+                Contact </a></h4>
+              <span>Plateforme à la portée de tous !</span>
+              <div class="social-icon my-3">
+                <a href="https://www.facebook.com/ccpndgpn" class="btn btn-icon btn-sm btn-facebook me-2"><i class='bx bxl-facebook'></i></a>
+                <a href="https://twitter.com/CellulePolice?t=-Fx05Cfoj1aywYrA_Nq5mw&s=09" class="btn btn-icon btn-sm btn-twitter me-2"><i class='bx bxl-twitter'></i></a>
+              </div>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
+                    <i class="fa-solid fa-phone"> </i>
+                    80 333
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
+                    <i class="fa-solid fa-phone"> </i> 
+                    80 00 11 11
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
+                    <i class="fa-solid fa-phone"> </i>
+                    80 00 11 15
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:dgpn@police.gouv.ml" class="footer-link d-block pb-2"> 
+                    <i class="fa-sharp fa-solid fa-envelope"></i>
+                    dgpn@police.gouv.ml
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h5>Annexes</h5>
+              <ul class="list-unstyled"> 
+                <hr>             
+                <li>
+                  <a href="javascript:void(0)" class="footer-link d-block pb-2"> 
+                    <i class="fa-solid fa-location-dot">  </i>
+                      Hamdallaye ACI 2000, Bamako (Direction Generale)
+                  </a>
+                </li>
+                <hr>
+                <li>
+                  <a href="javascript:void(0)" class="footer-link d-block pb-2"> 
+                    <i class="fa-sharp fa-solid fa-clock"></i>
+                    24h/24
+                  </a>
+                </li>
+                <hr>
+                <li class="text-center fw-bolder">
+                  DIRECTION GENERALE DE LA POLICE DU MALI
+                </li>
+                <li class="text-center">
+                  <i>Loyauté - Honneur - Dignité</i>                
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+  <!--/ Advanced footer -->
+
+
+  @include('Visitors.Modals.login-createAccount')
 
 @endsection

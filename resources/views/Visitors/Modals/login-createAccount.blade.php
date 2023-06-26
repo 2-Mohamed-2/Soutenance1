@@ -107,7 +107,7 @@
                         </a> --}}
                     </div>
                     <div class="input-group input-group-merge">
-                        <input type="password" id="login-password" minlength="8" maxlength="8" autocomplete="off" required name="password" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
+                        <input type="password" id="login-password" minlength="8" maxlength="12" autocomplete="off" required name="password" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                     </div>
                     </div>

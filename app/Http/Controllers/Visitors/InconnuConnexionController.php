@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Visitors;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Features;
+use App\Models\SessionCitoyen;
 use Illuminate\Routing\Pipeline;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -66,7 +68,6 @@ class InconnuConnexionController extends Controller
                     'n_ci' => 'required',
                     'password' => 'required',
         ]);
-
         // dd($validator);
 
         if ($validator->fails()) {
@@ -78,6 +79,13 @@ class InconnuConnexionController extends Controller
         $password = $request->password;
 
         if (Auth::guard('inconnu')->attempt(['n_ci' => $n_ci, 'password' => $password])) {
+
+            $session_cit = new SessionCitoyen();
+            $session_cit->inconnu_id = Auth::guard('inconnu')->user()->id;            
+            $session_cit->save();
+
+            $request->session()->put('session_cit_id', $session_cit->id); 
+
             Alert::info('Réussite', 'Bonjour et bienvenue sur Coms_Ml.');
             return redirect()->back();
         }
@@ -96,6 +104,17 @@ class InconnuConnexionController extends Controller
      * @return \Laravel\Fortify\Contracts\LogoutResponse
      */
     public function destroy2(Request $request) {
+
+        if ($request->session()->get('session_cit_id')) {
+            $id = $request->session()->get('session_cit_id');
+            $now = Carbon::now();
+            $session_cit = SessionCitoyen::find($id);
+            $session_cit->deconnexion_cit = $now;
+            $session_cit->save();
+        }
+        
+
+        
         $this->guard->logout();
 
         $request->session()->invalidate();
