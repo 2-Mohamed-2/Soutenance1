@@ -68,14 +68,14 @@ class ArmementController extends Controller
 
           ]);
           if ($arme) {
-            Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
+            Alert::success('Réussite','L\'enregistrement a bien été effectué !');
             return redirect('/Armement');
           } else {
-            Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+            Alert::error('Erreur','L\'enregistrement n\'a pas bien été effectué !');
             return redirect('/Armement');
             }
       }catch (\Throwable $th){
-        Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+        Alert::error( 'Erreur','L\'enregistrement n\'a pas bien été effectué !');
             return redirect('/Armement');
 
       }
@@ -95,14 +95,14 @@ class ArmementController extends Controller
           $arme->save();
 
           if ($arme) {
-            Alert::success('Arme a bien été modifié !', 'Réussite');
+            Alert::success( 'Réussite', 'Arme a bien été modifié !');
             return redirect('/Armement');
           } else {
-            Alert::error('Modification non effectuée !', 'Erreur');
+            Alert::error('Erreur','Modification non effectuée !');
             return redirect('/Armement');
           }
       } catch (\Throwable $th){
-        Alert::error('Modification non effectuée !', 'Erreur');
+        Alert::error('Erreur','Modification non effectuée !');
         return redirect('/Armement');
       }
 
@@ -115,10 +115,10 @@ class ArmementController extends Controller
 
         $arme = Armement::findOrFail($id);
         $arme->delete();
-        Alert::success('Arme a bien été supprimé !', 'Réussite');
+        Alert::success('Réussite','Arme a bien été supprimé !');
         return redirect('/Armement');
       }catch (\Throwable $th){
-      Alert::error('Suppression non effectuée !', 'Erreur');
+      Alert::error('Erreur','Suppression non effectuée !');
       return redirect('/Armement');
       }
 

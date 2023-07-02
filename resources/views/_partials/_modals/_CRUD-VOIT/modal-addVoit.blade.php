@@ -1,5 +1,5 @@
 <!-- End Offcanvas -->
-  <div class="modal fade" id="addVoit" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="addVoit{{ $vehi->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -8,7 +8,7 @@
         </div>
 
         <div class="modal-body">
-          <form action="{{route('voit',$vehi->id)}}" method="post">
+          <form action="{{route('voit', encrypt($vehi->id))}}" method="post">
             @csrf
 
             <div class="col-12 mb-4">

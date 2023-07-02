@@ -95,7 +95,7 @@ use App\Models\Tenue;
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueUpdt{{$tenue->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueDst{{ $tenue->id }}"><i class="bx bx-trash me-1"></i>Supprimer</a>
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueaff"><i class="fa fa-shirt me-1"></i>AffecterTenue</a>
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#tenueaff{{ $tenue->id }}"><i class="fa fa-shirt me-1"></i>AffecterTenue</a>
 
               </div>
             </div>
@@ -104,11 +104,8 @@ use App\Models\Tenue;
           @include('_partials/_modals/_CRUD-TENUE/modal-deleteTenue')
 
             {{-- Vue du modal de modification --}}
+            @include('_partials/_modals/_CRUD-TENUEAFF/modal-addTenueaff')
          @include('_partials/_modals/_CRUD-TENUE/modal-updtTenue')
-
-         @include('_partials/_modals/_CRUD-TENUEAFF/modal-addTenueaff')
-
-
 
 
 

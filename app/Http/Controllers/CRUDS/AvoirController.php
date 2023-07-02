@@ -183,7 +183,7 @@ class AvoirController extends Controller
     {
       try{
 
-
+        $id = decrypt($id);
       $armeaffInfos = Armement::where('id', $id)->first();
       $data = $this->validate($req, [
         'commissariat_id' => 'required',

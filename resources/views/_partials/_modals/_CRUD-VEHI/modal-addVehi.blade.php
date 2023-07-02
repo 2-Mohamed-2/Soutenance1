@@ -25,7 +25,7 @@
         <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Modele</label>
           <div class="input-group input-group-merge">
-            <input required type="text" autocomplete="off" minlength="5" name="modele" class="form-control phone-mask" placeholder="Modele" />
+            <input required type="text" autocomplete="off" minlength="3" name="modele" class="form-control phone-mask" placeholder="Modele" />
           </div>
         </div>
 

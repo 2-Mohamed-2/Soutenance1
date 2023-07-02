@@ -90,7 +90,7 @@ use App\Models\Munition;
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#muniUpdt{{$muni->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#muniDst{{$muni->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#muniaff"><i
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#muniaff{{$muni->id}}"><i
                     class="fa fa-gun me-1"></i>AffecterMunition</a>
               </div>
             </div>
@@ -98,9 +98,10 @@ use App\Models\Munition;
             {{-- Vue du modal de suppression --}}
           @include('_partials/_modals/_CRUD-MUNI/modal-deleteMuni')
             {{-- Vue du modal de modification --}}
+            @include('_partials/_modals/_CRUD-MUNIAFF/modal-addMuniaff')
          @include('_partials/_modals/_CRUD-MUNI/modal-updtMuni')
 
-         @include('_partials/_modals/_CRUD-MUNIAFF/modal-addMuniaff')
+
 
 
 

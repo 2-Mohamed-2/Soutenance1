@@ -164,7 +164,7 @@ class TenueAffController extends Controller
     try{
 
 
-    // $id = decrypt($tenueaff_id);
+      $tenueaff_id = decrypt($tenueaff_id);
      $tenueaffInfos = Tenue::where('id',$tenueaff_id)->first();
 
      $data = $this->validate($req, [

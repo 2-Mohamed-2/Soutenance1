@@ -108,7 +108,7 @@
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#armeUpdt{{$arme->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#armeDst{{$arme->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-               <button class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addAvoir"><i class="fa fa-gun me-1"></i>Affecter</button>
+               <button class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addAvoir{{ $arme->id }}"><i class="fa fa-gun me-1"></i>Affecter</button>
               </div>
             </div>
 

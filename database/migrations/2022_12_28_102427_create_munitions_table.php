@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('munitions', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('libelle');
+            // $table->string('libelle');
             $table->integer('quantite');
              $table->foreignId('lieu_stock_id')->constrained()->OnUpdate('Cascade')->OnDelete('Cascade');
             $table->timestamps();

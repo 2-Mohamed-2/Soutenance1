@@ -102,24 +102,22 @@
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#vehiUpdt{{$vehi->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#vehiDst{{$vehi->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addVoit"><i class="bx bx-car me-1"></i>Affecter</a>
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#addVoit{{ $vehi->id }}"><i class="bx bx-car me-1"></i>Affecter</a>
               </div>
             </div>
 
             {{-- Vue du modal de modification --}}
-           @include('_partials/_modals/_CRUD-VEHI/modal-updtVehi')
-
+            @include('_partials._modals._CRUD-VEHI.modal-updtVehi')
             {{-- Vue du modal de suppression --}}
-           @include('_partials/_modals/_CRUD-VEHI/modal-deleteVehi')
+            @include('_partials._modals._CRUD-VEHI.modal-deleteVehi')
 
-            @include('_partials/_modals/_CRUD-VOIT/modal-addVoit')
-
+            @include('_partials._modals._CRUD-VOIT.modal-addVoit')
           </td>
         </tr>
         @empty
         {{-- Le tableau sera vide s'il n'y a pas d'insertion --}}
         @endforelse
-        @include('_partials/_modals/_CRUD-VEHI/modal-addVehi')
+
 
       </tbody>
     </table>
@@ -133,7 +131,9 @@
           }, 4000);
 
         }
+
       </script>
+
       {!! $vehicules->withQueryString()->links('pagination::bootstrap-5') !!}
   </div>
 
@@ -142,5 +142,5 @@
 {{-- Vue du modal d'insertion --}}
 
 
-
+@include('_partials/_modals/_CRUD-VEHI/modal-addVehi')
 @endsection
