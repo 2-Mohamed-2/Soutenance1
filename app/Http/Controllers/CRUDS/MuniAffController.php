@@ -153,6 +153,7 @@ class MuniAffController extends Controller
     public function affecterMuni(Request $req, $muniaff_id){
       try
       {
+      $muniaff_id = decrypt($muniaff_id);
         $muniaffInfos = Munition::where('id', $muniaff_id)->first();
 
         $data =  $this->validate($req, [

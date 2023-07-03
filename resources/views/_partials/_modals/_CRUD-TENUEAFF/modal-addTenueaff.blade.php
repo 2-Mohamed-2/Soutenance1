@@ -1,7 +1,7 @@
 
 
 <!-- Enable OTP Modal -->
-<div class="modal fade" id="tenueaff" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="tenueaff{{ $tenue->id }}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-simple modal-enable-otp modal-dialog-centered">
     <div class="modal-content p-3 p-md-5">
       <div class="modal-body">
@@ -10,7 +10,7 @@
           <h3 class="mb-3">Affectation du tenue {{ $tenue->type }} {{ $tenue->modele }}</h3>
         </div>
 
-        <form action="{{ route('affectetenue', $tenue->id) }}" method="post">
+        <form action="{{ route('affectetenue', encrypt($tenue->id)) }}" method="post">
           @csrf
 
           <div class="col-12 mb-4">

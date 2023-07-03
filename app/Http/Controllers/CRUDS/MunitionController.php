@@ -38,7 +38,7 @@ class MunitionController extends Controller
           $this->validate($request, [
 
             'type' => 'required|max:255|min:3',
-            'libelle' => 'required|max:255|min:3',
+            // 'libelle' => 'required|max:255|min:3',
             'quantite' => 'required|max:255',
             'lieu_stock_id' => 'required',
           ]);
@@ -46,7 +46,7 @@ class MunitionController extends Controller
           $muni = Munition::create([
 
             'type' => $request->type,
-            'libelle' => $request->libelle,
+            // 'libelle' => $request->libelle,
             'quantite' => $request->quantite,
             'lieu_stock_id' => $request->lieu_stock_id,
 
@@ -74,7 +74,7 @@ class MunitionController extends Controller
 
           $muni = Munition::find($id);
           $muni->type = $request->type;
-          $muni->libelle = $request->libelle;
+          // $muni->libelle = $request->libelle;
           $muni->quantite = $request->quantite;
           $muni->lieu_stock_id = $request->lieu_stock_id;
           $muni->save();

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('n_serie');
             // $table->string('revision');
             // $table->string('statut');
-            $table->integer('stock');
+            $table->integer('quantite');
             $table->foreignId('lieu_stock_id')->constrained()->OnUpdate('cascade')->OnDelete('cascade');
             $table->timestamps();
         });

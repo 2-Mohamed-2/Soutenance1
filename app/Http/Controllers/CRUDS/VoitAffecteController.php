@@ -176,7 +176,7 @@ class VoitAffecteController extends Controller
   {
     try
     {
-    // $id = decrypt($voiture_id);
+      $voiture_id = decrypt($voiture_id);
     $voitureInfos = Vehicule::where('id',$voiture_id)->first();
     // return view('content.CRUD.voit-crud',compact('voitureInfos'));
     $validateData = $this->validate($req, [

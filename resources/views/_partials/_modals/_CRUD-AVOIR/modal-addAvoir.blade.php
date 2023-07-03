@@ -1,5 +1,5 @@
 <!-- End Offcanvas -->
-<div class="modal fade" id="addAvoir" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="addAvoir{{ $arme->id }}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -8,7 +8,7 @@
       </div>
 
       <div class="modal-body">
-          <form action="{{ route('affectearme', $arme->id) }}" method="post">
+          <form action="{{ route('affectearme', encrypt($arme->id)) }}" method="post">
           @csrf
 
           <div class="col-12 mb-4">

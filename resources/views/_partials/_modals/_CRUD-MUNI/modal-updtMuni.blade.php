@@ -19,12 +19,12 @@
                   <input required autocomplete="off" type="text" minlength="4" value="{{$muni->type}}" name="type" class="form-control" placeholder="Type de Vehicule" />
                 </div>
 
-              <div class="col-12">
+              {{-- <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">libelle</label>
                 <div class="input-group input-group-merge">
                   <input required type="text" autocomplete="off" minlength="4"  name="libelle" value="{{$muni->libelle}}" class="form-control phone-mask" />
                 </div>
-              </div>
+              </div> --}}
 
               <div class="col-12">
                 <label class="form-label" for="modalEnableOTPPhone">Quantite</label>
