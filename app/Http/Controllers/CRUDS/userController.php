@@ -109,7 +109,7 @@ class userController extends Controller
               'isActive' => 1,
             ]);  
   
-            $user->notify(new MdpNotification($password, $user->name));
+            // $user->notify(new MdpNotification($password, $user->name));
           }
   
         } 

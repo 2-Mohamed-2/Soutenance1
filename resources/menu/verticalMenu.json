@@ -109,25 +109,6 @@
     },
 
     {
-      "url": "app/calendar",
-      "name": "Calendar",
-      "icon": "menu-icon tf-icons bx bx-calendar",
-      "slug": "app-calendar"
-    },
-    {
-      "name": "Invoice",
-      "icon": "menu-icon tf-icons bx bx-food-menu",
-      "slug": "app-invoice",
-      "submenu": [
-        {
-          "url": "/app/invoice/list",
-          "name": "List",
-          "slug": "app-invoice-list"
-        }
-      ]
-    },
-
-    {
       "name": "Roles & Permissions",
       "icon": "menu-icon tf-icons bx bx-check-shield",
       "slug": "app-access",

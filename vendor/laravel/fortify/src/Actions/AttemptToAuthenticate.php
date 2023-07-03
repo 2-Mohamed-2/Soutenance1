@@ -73,7 +73,7 @@ class AttemptToAuthenticate
             $users = User::all();
             $usernbr = $users->count();
 
-            return view('content.dashboard.dashboards-principal', compact('usernbr'));
+            return redirect(route('dashboard-analytics', compact('usernbr')));
         }
 
         $this->throwFailedAuthenticationException($request);

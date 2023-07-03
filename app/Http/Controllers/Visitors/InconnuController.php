@@ -83,7 +83,7 @@ class InconnuController extends Controller {
             if ($inconnu) {
                 Alert::success('Réussite', 'Bonjour et bienvenue sur Coms_Ml. Merci d\'avoir creer un compte sur la plateforme.');                
                 Auth::guard('inconnu')->login($inconnu);
-                return redirect('Accueil');
+                return redirect('/');
             }
 
         } catch (\Throwable $th) {
