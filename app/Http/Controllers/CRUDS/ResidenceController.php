@@ -98,7 +98,7 @@ class ResidenceController extends Controller
           $resi->profession = $request->profession;
           $resi->resulte = $request->resulte;
           $resi->domicile = $request->domicile;
-          $resi->kati = $request->kati;
+          // $resi->kati = $request->kati;
           $resi->save();
 
           if ($resi) {
