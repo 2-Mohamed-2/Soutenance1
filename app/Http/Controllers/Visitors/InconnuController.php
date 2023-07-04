@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Visitors;
 
 use App\Models\Inconnu;
+use App\Models\Residence;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,10 @@ class InconnuController extends Controller {
         {            
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
+                'datenaiss' => 'required',
+                'lieunaiss' => 'required',
+                'namePere' => 'required',
+                'nameMere' => 'required',
                 'adresse' => 'required',
                 'telephone' => 'required',
                 'genre' => 'required',
@@ -74,6 +79,10 @@ class InconnuController extends Controller {
             }
             $inconnu = Inconnu::create([
                         'nomcomplet' => $request['name'],
+                        'date_naiss' => $request['datenaiss'],
+                        'lieu_naiss' => $request['lieunaiss'],
+                        'nom_pere' => $request['namePere'],
+                        'nom_mere' => $request['nameMere'],
                         'adresse' => $request['adresse'],
                         'genre' => $request['genre'],
                         'n_ci' => $request['n_ci'],
@@ -93,5 +102,42 @@ class InconnuController extends Controller {
         
         
     }
+
+
+    public function residence_store(Request $request) {
+
+        try 
+        {              
+          $test = Validator::make($request->all(), [
+            'commissariat_id' => 'required|max:255',
+            'adresseactu' => 'required|max:255',
+            'profession' => 'required|max:255',
+            'fils' => 'required|max:255'
+          ]);
+
+          $resi = Residence::create([
+            'commissariat_id' => $request->commissariat_id,
+            'inconnu_id' => Auth::guard('inconnu')->user()->id,
+            'profession' => $request->profession,
+            'domicile' => $request->adresseactu,
+          ]);
+
+          if ($resi) {
+            Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
+            return redirect()->back();
+          } else {
+            Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
+            return redirect()->back();
+          }
+       
+        }
+        catch (\Throwable $th) {
+            Alert::error('Echec', 'Operation echouee ! L\'operation s\'est soldé par un echec, veuilley reessayer .');
+            return redirect()->back();
+        }
+                
+    }
+
+
 
 }

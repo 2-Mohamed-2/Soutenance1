@@ -26,6 +26,26 @@
                       <label class="form-label" for="">Nom complet</label>
                       <input type="text" oninput="filtrerCaracteresSpeciaux(event)" minlength="5" autocomplete="off" value="{{ old('name') }}" required id="" name="name" class="form-control" placeholder="Prenom et nom" />
                     </div>
+                    
+                    <div class="col-12 col-md-6">
+                      <label class="form-label" for="">Date de naissance</label>
+                      <input type="date" minlength="5" autocomplete="off" value="{{ old('datenaiss') }}" required id="" name="datenaiss" class="form-control" placeholder="" />
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                      <label class="form-label" for="">Lieu de naissance</label>
+                      <input type="text" minlength="3" autocomplete="off" value="{{ old('lieunaiss') }}" required id="" name="lieunaiss" class="form-control" placeholder="Lieu de naissance" />
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                      <label class="form-label" for="">Prenom du père</label>
+                      <input type="text" oninput="filtrerCaracteresSpeciaux(event)" minlength="5" autocomplete="off" value="{{ old('namePere') }}" required id="" name="namePere" class="form-control" placeholder="Prenom du père" />
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                      <label class="form-label" for="">Nom complet de la mère</label>
+                      <input type="text" oninput="filtrerCaracteresSpeciaux(event)" minlength="5" autocomplete="off" value="{{ old('nameMere') }}" required id="" name="nameMere" class="form-control" placeholder="Prenom et nom de la mère" />
+                    </div>
 
                     <div class="col-12 col-md-6">
                       <label class="form-label" for="modalEditUserLastName">Adresse</label>
@@ -55,7 +75,7 @@
                     <div class="col-12 col-md-6 form-password-toggle">
                       <label class="form-label" for="modalEditUserLastName">Mot de passe</label>
                       <div class="col-12 col-md-6 input-group input-group-merge">
-                        <input type="password" required id="login-password" minlength="8" maxlength="8" autocomplete="off" value="{{ old('password') }}" name="password" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
+                        <input type="password" required id="login-password" minlength="8" maxlength="12" autocomplete="off" value="{{ old('password') }}" name="password" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                       </div>
                     </div>
@@ -63,7 +83,7 @@
                     <div class="col-12 col-md-6 form-password-toggle">
                       <label class="form-label" for="modalEditUserLastName">Confirmation</label>
                       <div class="col-12 col-md-6 input-group input-group-merge">
-                        <input type="password" id="login-password" minlength="8" maxlength="8" autocomplete="off" value="{{ old('password_confirmation') }}" required name="password_confirmation" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
+                        <input type="password" id="login-password" minlength="8" maxlength="12" autocomplete="off" value="{{ old('password_confirmation') }}" required name="password_confirmation" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                       </div>
                     </div>
@@ -100,16 +120,16 @@
                         <input type="text" id="test2" minlength="11" maxlength="11" oninput="convertToUppercase2()" required autocomplete="off" autofocus name="n_ci" class="form-control" placeholder="Numero de la carte d'identite" />
                     </div>
                     <div class="mb-3 form-password-toggle">
-                    <div class="d-flex justify-content-between">
-                        <label class="form-label" for="password">Mot de passe</label>
-                        {{-- <a href="{{url('auth/forgot-password-basic')}}">
-                        <small>Mot de passe oublie?</small>
-                        </a> --}}
-                    </div>
-                    <div class="input-group input-group-merge">
-                        <input type="password" id="login-password" minlength="8" maxlength="12" autocomplete="off" required name="password" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
-                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                    </div>
+                      <div class="d-flex justify-content-between">
+                          <label class="form-label" for="password">Mot de passe</label>
+                          {{-- <a href="{{url('auth/forgot-password-basic')}}">
+                          <small>Mot de passe oublie?</small>
+                          </a> --}}
+                      </div>
+                      <div class="input-group input-group-merge">
+                          <input type="password" id="login-password" minlength="8" maxlength="12" autocomplete="off" required name="password" style="letter-spacing: 5px;" class="form-control" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
+                          <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                      </div>
                     </div>
                     {{-- <div class="mb-3">
                     <div class="form-check">

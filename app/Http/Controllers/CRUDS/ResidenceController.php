@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\CRUDS;
 
 use PDF;
+use Str;
 use App\Models\Inconnu;
 use App\Models\Residence;
+use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Commissariat;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ResidenceController extends Controller
@@ -136,8 +137,11 @@ class ResidenceController extends Controller
       // $id = decrypt($id);
        $resi = Residence::find($request->id);
        $pdf = PDF::loadView('_partials.pdfResi',  compact('resi'));
-       $pdf->setPaper('A4');
+       $pdf->setPaper('A4', 'landscape');
        return $pdf->stream();
+
+      $pdf->save(public_path("storage/documents/".$resi->inconnu->nomcomplet.".pdf"));      
+      // return $pdf->download(Str::slug($resi->inconnu->nomcomplet).".pdf");
     }
 
 

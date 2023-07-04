@@ -39,10 +39,9 @@
     <div class="col-12">
       <label class="form-label" for="modalEnableOTPPhone">Fonction</label>
       <div class="input-group input-group-merge">
-        <input required type="text" autocomplete="off" maxlength="10" name="fonction" class="form-control phone-mask" placeholder="Fonction " />
+        <input required type="text" autocomplete="off" minlength="10" name="fonction" class="form-control phone-mask" placeholder="Fonction " />
       </div>
     </div>
-
 
 
       <div class="col-12">

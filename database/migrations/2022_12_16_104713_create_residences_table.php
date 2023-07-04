@@ -13,21 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('residences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('inconnu_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            // $table->integer('numero');
-            $table->string('certifions');
-            $table->date('ne');
-            $table->string('a');
-            $table->string('fils');
-            $table->string('et');
-            $table->string('profession');
-            $table->string('resulte');
-            $table->string('domicile');
-            // $table->date('kati');
-            $table->timestamps();
             $table->foreignId('commissariat_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            // $table->integer('numero');
+            // $table->string('certifions');
+            // $table->date('ne');
+            // $table->string('a');
+            // $table->string('fils');
+            // $table->string('et');
+            $table->string('profession');
+            // $table->string('resulte');
+            $table->string('domicile');
+            $table->timestamps();
         });
     }
 

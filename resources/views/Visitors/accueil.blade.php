@@ -233,9 +233,10 @@ $configData = Helper::appClasses();
               <li class="d-flex align-items-center mb-3"><i class="bx bx-current-location"></i><span class="fw-semibold mx-2">Adresse : </span> <span class="fw-bolder fs-5"> {{ Auth::guard('inconnu')->user()->adresse ?? '' }}</span></li>
               <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><span class="fw-semibold mx-2">Contact:</span> <span class="fw-bolder fs-5">(+223) {{ Auth::guard('inconnu')->user()->telephone ?? '' }}</span></li>
               <li class="d-flex justify-content-between align-items-center mb-3">
-                <button class="btn btn-primary">C. Residence</button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resicreate">C. Residence</button>
                 <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#mdpcitup{{ Auth::guard('inconnu')->user()->id }}">Sécurité</button>
               </li>
+              @include('Visitors.Modals.creat_resi') 
               @include('Visitors.Modals.mdp_update')
             </ul>
           </div>

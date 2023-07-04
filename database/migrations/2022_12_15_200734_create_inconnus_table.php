@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('inconnus', function (Blueprint $table) {
             $table->id();
             $table->string('nomcomplet');
+            $table->string('nom_pere');
+            $table->string('nom_mere');
+            $table->string('lieu_naiss');
+            $table->date('date_naiss');
             $table->string('adresse');
             $table->string('telephone')->unique();
             $table->string('genre');

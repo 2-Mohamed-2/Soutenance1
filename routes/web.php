@@ -49,7 +49,10 @@ Route::post('/Citoyen/Create', [VisitorsInconnuController::class, 'store'])->nam
 //Pour la connexion du citoyen
 Route::post('/vlogin', [InconnuConnexionController::class, 'test'])->name('vlogin');
 
-        //Pour la vue du profil et l'update du mot de passe
+        //Pour la vue du profil et l'update du mot de passe 
+
+// Pour la demande de residence
+Route::post('/Citoyen/Residence', [VisitorsInconnuController::class, 'residence_store'])->name('citresistore')->middleware(['auth:inconnu']);
 
 //Modification du mdp citoyen
 Route::put('/Citoyen/Mdp/{id}', [ProfilController::class, 'update'])->middleware(['auth:inconnu'])->name('cimdp');

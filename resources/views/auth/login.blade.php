@@ -26,9 +26,7 @@ $customizerHidden = 'customizer-hide';
     <!-- Login -->
     <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-start authentication-bg p-sm-3 p-3">      
       <div class="w-px-400 mx-auto mt-2">
-        {{-- <a href="{{ route('Accueil') }}" class="btn d-grid w-100">
-          <span class="bg-dark mx-auto"><i class="bx bx-home-circle"></i></span>
-        </a> --}}
+        
         <!-- Logo -->
         <div class="app-brand mb-3 text-center mt-2">   
           <div class="text-center">
@@ -113,16 +111,6 @@ $customizerHidden = 'customizer-hide';
           <button class="btn btn-primary d-grid w-100" type="submit">Se connecter</button>
         </form>
         
-
-        {{-- <p class="text-center">
-          <span>New on our platform?</span>
-          @if (Route::has('register'))
-          <a href="{{ route('register') }}">
-            <span>Create an account</span>
-          </a>
-          @endif
-        </p> --}}
-
         <div class="divider my-4">
          
         </div>
