@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Visitors;
 
 use App\Models\Inconnu;
 use App\Models\Residence;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -108,6 +109,20 @@ class InconnuController extends Controller {
 
         try 
         {              
+          
+          $date_jour = Carbon::now()->format('Y-m-d');
+          $verif = Residence::where('inconnu_id', '=', Auth::guard('inconnu')->user()->id)->get();
+
+          foreach ($verif as $veri) {
+            $new_date = Carbon::parse($veri['created_at'])->format('Y-m-d');
+
+            if ($date_jour == $new_date) {
+              Alert::error('Echec', 'Vous ne pouvez effectuer plus d\'une demande par jour !');
+              return redirect()->back(); 
+            }
+          } 
+          
+          
           $test = Validator::make($request->all(), [
             'commissariat_id' => 'required|max:255',
             'adresseactu' => 'required|max:255',
@@ -123,17 +138,16 @@ class InconnuController extends Controller {
           ]);
 
           if ($resi) {
-            Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
+            Alert::success('Réussite', 'Votre demande s\'est soldée par une réussite. Merci de vous rendre dans le commissariat ou la demande a été effectuée avec votre pièce d\'identité pour le retrait.');
             return redirect()->back();
           } else {
             Alert::error('Erreur', 'L\'enregistrement n\'a pas bien été effectué !');
             return redirect()->back();
-          }
-       
+          }        
         }
         catch (\Throwable $th) {
-            Alert::error('Echec', 'Operation echouee ! L\'operation s\'est soldé par un echec, veuilley reessayer .');
-            return redirect()->back();
+          Alert::error('Echec', 'Operation echouee ! L\'operation s\'est soldé par un echec, veuilley reessayer .');
+          return redirect()->back();
         }
                 
     }

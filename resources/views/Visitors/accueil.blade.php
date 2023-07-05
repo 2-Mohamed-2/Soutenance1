@@ -280,13 +280,19 @@ $configData = Helper::appClasses();
         <!-- About User -->
         <div class="card mb-4">
           <div class="card-body">
-            <small class="text-muted text-uppercase">Information sur vos documents (En cours ou validés)</small>
-            <ul class="list-unstyled mb-4 mt-3 text-wrap">              
-              <li class="d-flex align-items-center mb-3">
-                <i class='bx bxs-file-doc'></i>
-                <span class="fw-semibold mx-2">Titre : </span> 
-                <span class="fw-bolder fs-5"> Date </span>
-              </li>
+            <small class="text-muted text-uppercase">Information sur vos documents demandés</small>
+            <ul class="list-unstyled mb-4 mt-3 text-wrap"> 
+              @forelse ($resis as $resi)
+                <li class="d-flex align-items-center mb-3">
+                  <i class='bx bxs-file-doc'></i>
+                  <span class="fw-semibold mx-2">Residence :</span>
+                  <span class="fw-semibold ">  {{ ucfirst(\Carbon\Carbon::parse($resi['created_at'])->locale('fr_FR')->isoFormat('dddd DD MMMM YYYY')) }} à {{ \Carbon\Carbon::parse($resi['created_at'])->format('H:i') }}</span>
+                  {{-- <span class="fw-semibold ">Le  </span> --}}
+                </li>
+              @empty
+                <span class="fw-semibold mx-2">Pas de document a votre actif</span>
+              @endforelse             
+              
             </ul>
           </div>
         </div>
