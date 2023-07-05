@@ -30,9 +30,13 @@
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Efectif total</h5>
-  <div class="p-2">
-    <button class="btn btn-primary col-3 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
+  <div class="p-2 col-12">
+    <button class="btn btn-primary mx-auto text-start" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
       Créer un nouveau membre    
+    </button>
+    <button class="btn btn-primary mx-auto text-end" id="btnSubmit" style="display: none;"
+    data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
+      Créer un nouveau     
     </button>
   </div>
   
@@ -42,16 +46,18 @@
       <thead>
         <tr>
           <th></th>
-          <th>Matricule</th>
-          <th>Nom</th>
-          <th>Telephone</th>
-          <th>Action</th>
+          <th class="fs-6">Matricule</th>
+          <th class="fs-6">Nom</th>
+          <th class="fs-6">Telephone</th>
+          <th class="fs-6">Action</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
         @forelse ($users as $user)
         <tr>
-          <td></td>
+          <td class="text-center col-1">
+            <input class="form-check-input form-check-input-lg" type="checkbox" name="options[]" value="{{ $user->id }}">
+          </td>
           <td><strong>{{$user->matricule}}</strong></td>
           <td><strong>{{$user->name}}</strong></td>
           <td><strong>{{$user->telephone}}</strong></td>
@@ -89,6 +95,23 @@
 
 {{-- Vue du modal d'insertion --}}
 @include('_partials._modals._CRUD-USER.modal-add-User')
+
+
+<script>
+  const checkboxes = document.querySelectorAll('.form-check-input');
+  const btnSubmit = document.getElementById('btnSubmit');
+
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const checkedCheckboxes = document.querySelectorAll('.form-check-input:checked');
+      if (checkedCheckboxes.length > 0) {
+        btnSubmit.style.display = 'block';
+      } else {
+        btnSubmit.style.display = 'none';
+      }
+    });
+  });
+</script>
 
 
 @endsection
