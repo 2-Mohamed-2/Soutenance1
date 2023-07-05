@@ -12,9 +12,10 @@
         <div class="col-10">
           <div class="card mb-4">
             <div class="user-profile-header-banner bg-dark" style="background-color:black;">
-              <img src="{{asset('assets/img/pages/police_head.png')}}" style="width: 100%; " alt="User image" class="rounded-top">
+              <img src="https://police.gouv.ml/wp-content/uploads/2023/02/cropped-Police-Nationale-du-Mali-1-1.png" alt=""
+                  style="width: 300px; max-width: 600px; height: auto; margin: auto; display: block;)">
             </div>
-            <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center my-3 mx-3 fs-3" style="margin-left: 6px; margin-right: 6px; margin-top: 17px;">
+            <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center my-3 mx-3" style="margin-left: 6px; margin-right: 6px; margin-top: 17px;">
                 {{-- Intro Lines --}}
                 @foreach ($introLines as $line)
                 

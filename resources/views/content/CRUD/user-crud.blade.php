@@ -1,8 +1,23 @@
 @extends('layouts/layoutMaster')
 
 @section('title', 'Membres')
+
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/spinkit/spinkit.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-fixedheader-bs5/fixedheader.bootstrap5.css')}}">
+@endsection
+
+@section('vendor-script')
+<script src="{{asset('assets/vendor/libs/datatables/jquery.dataTables.js')}}"></script>
+<!-- Fixed columns -->
+<script src="{{asset('assets/vendor/libs/datatables-fixedcolumns/datatables.fixedcolumns.js')}}"></script>
+<!-- Fixed header -->
+<script src="{{asset('assets/vendor/libs/datatables-fixedheader-bs5/fixedheader.bootstrap5.js')}}"></script>
+@endsection
+
+@section('page-script')
+<script src="{{asset('assets/js/tables-datatables-extensions.js')}}"></script>
 @endsection
 
 @section('content')
@@ -21,11 +36,12 @@
     </button>
   </div>
   
-
-  <div class="table-responsive text-nowrap">
-    <table class="table table-hover">
+  
+  <div class="card-datatable table-responsive text-nowrap">
+    <table class="dt-fixedheader table border-top">
       <thead>
         <tr>
+          <th></th>
           <th>Matricule</th>
           <th>Nom</th>
           <th>Telephone</th>
@@ -35,6 +51,7 @@
       <tbody class="table-border-bottom-0">
         @forelse ($users as $user)
         <tr>
+          <td></td>
           <td><strong>{{$user->matricule}}</strong></td>
           <td><strong>{{$user->name}}</strong></td>
           <td><strong>{{$user->telephone}}</strong></td>
