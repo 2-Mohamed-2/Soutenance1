@@ -4,11 +4,14 @@ namespace App\Http\Controllers\CRUDS;
 
 use PDF;
 use Str;
+use App\Models\User;
 use App\Models\Inconnu;
 use App\Models\Residence;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ResidenceController extends Controller
@@ -22,12 +25,28 @@ class ResidenceController extends Controller
     $this->middleware('permission:resi-delete', ['only' => ['destroy']]);
   }
 
-    public function ResiView(){
-
+    public function ResiView()
+    {
+      if (User::role('Informaticien')) 
+      {
         $resis = Residence::latest()->get();
         $inconnus = Inconnu::latest()->get();
         $comms = Commissariat::latest()->get();
+
         return view('content.CRUD.resi-crud', compact('resis', 'inconnus','comms'));
+
+      }
+      else {
+
+        $resis = Residence::where('commissariat_id', Auth::user()->id)->latest()->get();
+        $inconnus = Inconnu::latest()->get();
+        $comms = Commissariat::latest()->get();
+
+        return view('content.CRUD.resi-crud', compact('resis', 'inconnus','comms'));
+
+      }
+
+      
     }
 
     public function index(){
@@ -119,6 +138,7 @@ class ResidenceController extends Controller
 
     public function destroy($id)
     {
+
       try{
         $id = decrypt($id);
         $resi = Residence::findOrFail($id);
@@ -134,14 +154,25 @@ class ResidenceController extends Controller
 
 
     public function PDF(Request $request) {
-      // $id = decrypt($id);
-       $resi = Residence::find($request->id);
+      try 
+      {
+
+       $resi = Residence::find(Crypt::decrypt($request->id));
        $pdf = PDF::loadView('_partials.pdfResi',  compact('resi'));
        $pdf->setPaper('A4', 'landscape');
        return $pdf->stream();
 
       $pdf->save(public_path("storage/documents/".$resi->inconnu->nomcomplet.".pdf"));      
       // return $pdf->download(Str::slug($resi->inconnu->nomcomplet).".pdf");
+
+      }
+
+      catch (\Throwable $th) 
+      {
+        Alert::error('Echec', 'Veuillez reessayer !');
+        return redirect()->back();
+      }
+      
     }
 
 

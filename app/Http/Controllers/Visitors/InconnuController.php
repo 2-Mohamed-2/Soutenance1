@@ -114,6 +114,7 @@ class InconnuController extends Controller {
           $verif = Residence::where('inconnu_id', '=', Auth::guard('inconnu')->user()->id)->get();
 
           foreach ($verif as $veri) {
+            
             $new_date = Carbon::parse($veri['created_at'])->format('Y-m-d');
 
             if ($date_jour == $new_date) {
