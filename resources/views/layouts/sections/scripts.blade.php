@@ -7,7 +7,7 @@
 <script src="{{ asset(mix('assets/vendor/libs/i18n/i18n.js')) }}"></script>
 <script src="{{ asset(mix('assets/vendor/libs/typeahead-js/typeahead.js')) }}"></script>
 <script src="{{ asset(mix('assets/vendor/js/menu.js')) }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 
 @yield('vendor-script')
 <!-- END: Page Vendor JS-->

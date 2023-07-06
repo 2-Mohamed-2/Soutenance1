@@ -70,7 +70,7 @@ use App\Models\Tenue;
     </div> --}}
    </div>
   <div class="table-responsive text-nowrap">
-    <table class="table table-hover">
+    <table class="table table-hover" id="data-table">
       <thead>
         <tr>
           <th>Nom</th>
@@ -118,7 +118,14 @@ use App\Models\Tenue;
 
       </tbody>
     </table>
-    <script type="text/javascript">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready(function(){
+              $('#data-table').dataTable();
+              });
+    </script>
+    {{-- <script type="text/javascript">
         function geeks(){
           $("#myClasse").removeClass("d-none");
         }
@@ -129,7 +136,7 @@ use App\Models\Tenue;
 
         }
       </script>
-      {!! $tenues->withQueryString()->links('pagination::bootstrap-5') !!}
+      {!! $tenues->withQueryString()->links('pagination::bootstrap-5') !!} --}}
   </div>
 </div>
 

@@ -3,7 +3,7 @@
 @section('title', 'Tables - Basic Tables')
 
 @section('content')
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <?php
    use App\Models\LieuStock;
 ?>
@@ -68,16 +68,17 @@
         <i class="fa fa-plus fa-sm"></i> Nouvel lieu.
       </button>
       <form action="" class="d-flex mr-3">
-        <div class="form-group mb-0 mr-1">
+        {{-- <div class="form-group mb-0 mr-1">
           <input type="text" name="search"  class="form-control col-xs-2" id="search"
             style="visibility:" placeholder="Search..">
-        </div>
-        <button class="btn bnt-info"><i class="fa fa-search" aria-hidden="true"></i></button>
+            <button class="btn bnt-info"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div> --}}
+
       </form>
     </div>
     <span class="alert alert-success d-none " id="myClasse">Liste des Lieux de Stockage</span>
     <div class="table-responsive text-nowrap">
-      <table class="datatables-basic table border-top">
+      <table id="example" class="datatables-basic table border-top">
         <thead>
           <tr>
             <th>Entrepot</th>
@@ -117,20 +118,12 @@
 
         </tbody>
       </table>
-      <script type="text/javascript">
-        function geeks(){
-          $("#myClasse").removeClass("d-none");
-        }
-        function out(){
-          setInterval(() => {
-                  $("#myClasse").addClass("d-none");
-          }, 4000);
-
-          $(document).ready(function(){
-            $("#myTable").DataTable();
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+      <script>
+        $(document).ready(function () {
+          $('#example').DataTable();
           });
-
-        }
       </script>
 
       {{-- {!! $armes->withQueryString()->links('pagination::bootstrap-5') !!} --}}

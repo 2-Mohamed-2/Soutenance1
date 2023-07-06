@@ -1,7 +1,7 @@
 @extends('layouts/layoutMaster')
 
 @section('title', 'Vehicule')
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 @section('content')
 <?php
   use App\Models\Vehicule;
@@ -79,7 +79,7 @@
    </div>
     <span class="alert alert-success d-none " id="myClasse">Liste des Vehicule Affecter</span>
   <div class="card-datatable table-responsive">
-    <table class="invoice-list-table table border-top">
+    <table class="invoice-list-table table border-top" id="table-data">
       <thead>
         <tr>
           <th>Nom</th>
@@ -121,7 +121,15 @@
 
       </tbody>
     </table>
-    <script type="text/javascript">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <scriptvoit src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></scriptvoit>
+    <script>
+      $(document).ready(function(){
+        $('#table-data').dataTable();
+      });
+    </script>
+    {{-- <script type="text/javascript">
+
         function geeks(){
           $("#myClasse").removeClass("d-none");
         }
@@ -134,7 +142,8 @@
 
       </script>
 
-      {!! $vehicules->withQueryString()->links('pagination::bootstrap-5') !!}
+      {!! $vehicules->withQueryString()->links('pagination::bootstrap-5') !!} --}}
+
   </div>
 
 </div>

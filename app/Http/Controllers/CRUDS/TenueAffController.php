@@ -28,7 +28,7 @@ class TenueAffController extends Controller
   public function index()
   {
     //
-    $tenueaffs = TenueAff::paginate(5);
+    $tenueaffs = TenueAff::all();
     $comms = Commissariat::all();
     $tenue = Tenue::all();
     return view('content.CRUD.tenueaff-crud', compact('tenueaffs', 'comms', 'tenue'));

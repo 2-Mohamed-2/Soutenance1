@@ -24,7 +24,7 @@ class TenueController extends Controller
 
     public function TenueView()
     {
-    $tenues = Tenue::paginate(5);
+    $tenues = Tenue::latest()->get();
     $comms = Commissariat::latest()->get();
     // $users = User::latest()->get();
     $lieustock = LieuStock::get();

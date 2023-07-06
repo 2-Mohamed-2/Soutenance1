@@ -31,7 +31,7 @@ class AvoirController extends Controller
     {
 
 
-        $avoirs = Avoir::paginate(5);
+        $avoirs = Avoir::latest()->get();
         $comms = Commissariat::latest()->get();
         $armements = Armement::latest()->get();
 

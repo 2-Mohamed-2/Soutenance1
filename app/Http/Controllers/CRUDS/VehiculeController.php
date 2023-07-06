@@ -23,23 +23,13 @@ class VehiculeController extends Controller
   }
 
     public function VehiView(Request $request){
-        $vehicules = Vehicule::paginate(5);
+        $vehicules = Vehicule::latest()->get();
         $comms = Commissariat::latest()->get();
-        // $voitaffectes = VoitAffecte::latest()->get();
         $users = User::latest()->get();
         return view('content.CRUD.vehi-crud', compact('vehicules', 'comms', 'users'));
 
 
     }
-
-
-    public function search(Request $request){
-      $query = $request->get('query');
-      $filterResult = Vehicule::where('type', 'LIKE', '%' . $query . '%')->get();
-      return response()->json($filterResult);
-    }
-
-
 
     public function index(Request $request)
     {
@@ -113,14 +103,14 @@ class VehiculeController extends Controller
           $vehi = Vehicule::whereId($id)->update($validateData);
 
           if ($vehi) {
-            Alert::info('Le vehicule a bien été modifié !', 'Réussite');
+            Alert::success('Le vehicule a bien été modifié !', 'Réussite');
             return redirect('/vehicule');
           } else {
-            Alert::info('Modification non effectuée !', 'Erreur');
+            Alert::error('Modification non effectuée !', 'Erreur');
             return redirect('/vehicule');
           }
        }catch(\Throwable $th){
-        Alert::info('Erreur', 'Modification non effectuée !');
+        Alert::error('Erreur', 'Modification non effectuée !');
         return redirect('/vehicule');
        }
 
@@ -134,10 +124,10 @@ class VehiculeController extends Controller
         $vehi = Vehicule::findOrFail($id);
         $vehi->delete();
 
-        Alert::info('Réussite', 'Le Vehicule a bien été supprimé');
+        Alert::success('Réussite', 'Le Vehicule a bien été supprimé');
         return redirect('/vehicule');
       }catch(\Throwable $th){
-      Alert::info('Erreur', 'Suppression non effectuée !');
+      Alert::error('Erreur', 'Suppression non effectuée !');
       return redirect('/vehicule');
       }
 

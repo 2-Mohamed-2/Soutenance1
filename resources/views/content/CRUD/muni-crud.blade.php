@@ -1,8 +1,9 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Tables - Basic Tables')
+@section('title', 'Tables - Munition')
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <h4 class="fw-bold py-3 mb-4">
   <span class="text-muted fw-light">Tables /</span> Munition
 </h4>
@@ -67,7 +68,7 @@ use App\Models\Munition;
   </button>
 </div>
   <div class="table-responsive text-nowrap">
-    <table class="table table-hover">
+    <table class="table table-hover" id="myTable">
       <thead>
         <tr>
           <th>Type</th>
@@ -114,6 +115,13 @@ use App\Models\Munition;
 
       </tbody>
     </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready(function(){
+            $("#myTable").DataTable();
+            });
+    </script>
   </div>
 </div>
 

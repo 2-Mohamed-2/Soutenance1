@@ -21,21 +21,21 @@ class ArmementController extends Controller
 
     public function ArmeView(Request $request)
     {
-      $search = $request['search'] ?? "";
-      if($search != ""){
-        $armes = Armement::where('modele', 'LIKE', "%$search%")
-        ->orWhere('n_serie', 'LIKE', "%$search%")
-        ->get();
+      // $search = $request['search'] ?? "";
+      // if($search != ""){
+      //   $armes = Armement::where('modele', 'LIKE', "%$search%")
+      //   ->orWhere('n_serie', 'LIKE', "%$search%")
+      //   ->get();
 
-      }else{
-      $armes = Armement::paginate(5);
-      }
+      // }else{
+      // $armes = Armement::paginate(5);
+      // }
 
 
         $comms = Commissariat::latest()->get();
         $armements = Armement::latest()->get();
         $lieustock = LieuStock::get();
-        return view('content.CRUD.arme-crud', compact('armes', 'comms', 'armements', 'search','lieustock'));
+        return view('content.CRUD.arme-crud', compact( 'comms', 'armements','lieustock'));
     }
 
     public function store(Request $request)

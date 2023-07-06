@@ -7,7 +7,7 @@
       "slug": "dashboard-analytics",
       "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
     },
-    
+
     {
       "url": "/Membre",
       "name": "Membre",
@@ -25,7 +25,7 @@
     },
     {
       "url": "/Inconnu",
-      "name": "Inconnu",
+      "name": "Citoyen",
       "icon": "menu-icon tf-icons fa fa-person",
       "slug": "inco-view",
       "role": "Informaticien"

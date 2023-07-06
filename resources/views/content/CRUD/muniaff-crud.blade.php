@@ -3,6 +3,7 @@
 @section('title', 'Munition Affecter')
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <h4 class="fw-bold py-3 mb-4">
   <span class="text-muted fw-light">Tables /</span> Munition Affecter
 </h4>
@@ -20,7 +21,7 @@
     Affecter.
   </button> --}}
   <span class="alert alert-info d-none " id="myClasse">Retour a la ligne</span>
-  <a class="btn btn-primary col-xl-3" href="{{ route('logistique-muni-view') }}">Retour</a>
+  <a class="btn btn-primary col-xl-3 m-2" href="{{ route('logistique-muni-view') }}">Retour</a>
   <div class="table-responsive text-nowrap">
     <table id="example" class="table table-striped" style="width:100%">
       <thead>
@@ -69,6 +70,8 @@
     </table>
     {{-- {!! $muniaff->withQueryString()->links('pagination::bootstrap-5') !!} --}}
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
   <script>
     $(document).ready(function () {
     $('#example').DataTable();

@@ -31,7 +31,7 @@ class VoitAffecteController extends Controller
   public function index()
   {
     //
-    $voitaffectes = VoitAffecte::paginate(5);
+    $voitaffectes = VoitAffecte::latest()->get();
     $users = User::latest()->get();
     $comms = Commissariat::latest()->get();
     $vehicules = Vehicule::latest()->get();

@@ -1,7 +1,7 @@
 @extends('layouts/layoutMaster')
 
 @section('title', 'Tables - Basic Tables')
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
   <span class="text-muted fw-light">Tables /</span> Vehicule Affecter
@@ -18,10 +18,10 @@
   {{-- <button class="btn btn-primary col-xl-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addVoit" aria-controls="offcanvasEnd">
     Affecter.
   </button> --}}
- <span class="alert alert-info d-none " id="myClasse">Retour a la ligne</span>
-  <a class="btn btn-primary col-xl-3" onmouseover="geeks()" onmouseout="out()" href="{{ route('logistique-vehi-view') }}">Retour</a>
+ <span class="alert alert-info d-none  " id="myClasse">Retour a la ligne</span>
+  <a class="btn btn-primary col-xl-3 m-2" onmouseover="geeks()" onmouseout="out()" href="{{ route('logistique-vehi-view') }}">Retour</a>
   <div class="table-responsive text-nowrap">
-    <table class="table table-hover">
+    <table class="table table-hover" id="data-table">
       <thead>
         <tr>
           <th>Commissariat</th>
@@ -62,19 +62,15 @@
 
       </tbody>
     </table>
-    {!! $voitaffectes->withQueryString()->links('pagination::bootstrap-5') !!}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready(function(){
+                $('#data-table').dataTable();
+              });
+    </script>
+    {{-- {!! $voitaffectes->withQueryString()->links('pagination::bootstrap-5') !!} --}}
   </div>
-      {{-- <script type="text/javascript">
-        function geeks(){
-          $("#myClasse").removeClass("d-none");
-        }
-        function out(){
-          setInterval(() => {
-                  $("#myClasse").addClass("d-none");
-          }, 2000);
-
-        }
-      </script> --}}
 </div>
 
 {{-- Vue du modal d'insertion --}}
