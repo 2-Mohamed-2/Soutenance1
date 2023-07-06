@@ -18,13 +18,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('commissariat_id')->constrained()
+            $table->foreignId('commissariat_id')->nullable()->constrained()
                   ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
-            $table->foreignId('grade_id')->constrained()
+            $table->foreignId('grade_id')->nullable()->constrained()
                 ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
-            $table->foreignId('section_id')->constrained()
+            $table->foreignId('section_id')->nullable()->constrained()
                 ->onUpdate('cascade')->onDelete('cascade')->nullable();
 
             $table->string('name');

@@ -63,13 +63,6 @@ Route::post('/vdestroy', [InconnuConnexionController::class, 'destroy2'])->name(
 
 
 
-
-
-
-// laravel example
-Route::get('/laravel/user-management', [UserManagement::class, 'UserManagement'])->name('laravel-example-user-management');
-Route::resource('/user-list', UserManagement::class);
-
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'], [testOk::class])->group(function () {
 
   //Gestion du compte
@@ -143,6 +136,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       // Route pour le crud du user
       Route::resource('/Mbr', userController::class)
               ->middleware('role:Informaticien|Administrateur');
+        
+        // Attribuer un role a un membre
+      Route::put('/Affecte/Membre', [userController::class, 'affecte_membres'])->name('aff-mbr')
+      ->middleware('role:Informaticien|Administrateur');
 
     // Fin
 

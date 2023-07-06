@@ -18,10 +18,11 @@ class userController extends Controller
 
   function __construct()
   {
-    $this->middleware('permission:membre-list|membre-create|membre-edit|membre-delete', ['only' => ['index', 'store']]);
+    $this->middleware('permission:membre-list|membre-create|membre-edit|membre-delete|membre-affect', ['only' => ['index', 'store']]);
     $this->middleware('permission:membre-create', ['only' => ['create', 'store']]);
     $this->middleware('permission:membre-edit', ['only' => ['edit', 'update']]);
     $this->middleware('permission:membre-delete', ['only' => ['destroy']]);
+    $this->middleware('permission:membre-affect', ['only' => ['affecte_membres']]);
   }
 
     /**
@@ -32,10 +33,10 @@ class userController extends Controller
     public function index(Request $request)
     {      
       $users = User::latest()->where('id', '!=', '1')->get();
-      //$coms = Commissariat::latest()->get();
       $roles = Role::all();
+      $comms = Commissariat::all();
 
-      return view('content.CRUD.user-crud', compact('users','roles'));
+      return view('content.CRUD.user-crud', compact('users','roles', 'comms'));
     }
 
     /**
@@ -57,8 +58,8 @@ class userController extends Controller
     public function store(Request $request)
     {
       
-      try 
-      {
+      // try 
+      // {
         
         $this->validate($request,[
           'matricule' => 'required',
@@ -66,10 +67,6 @@ class userController extends Controller
           'email' => 'required|max:255',
           'telephone' => 'required|max:255',
         ]);
-  
-        $com=1;
-        $gra=1;
-        $section=1;
   
         $test = User::select('*')
                     ->where([
@@ -92,14 +89,14 @@ class userController extends Controller
           }else {
   
             // Les caracteres a entré dans la combinaison
-            $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
+            $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890@-$%&$%&');
             // La combinaison
             $password = substr($random, 0, 8);
   
             $user = User::create([
-              'commissariat_id' => $com,
-              'grade_id' => $gra,
-              'section_id' => $section,
+              'commissariat_id' => null,
+              'grade_id' => 1,
+              'section_id' => null,
               'password' => Hash::make($password),
               'matricule' => $request->matricule,
               'name' => $request->name,
@@ -109,7 +106,7 @@ class userController extends Controller
               'isActive' => 1,
             ]);  
   
-            $user->notify(new MdpNotification($password, $user->name));
+            // $user->notify(new MdpNotification($password, $user->name));
           }
   
         } 
@@ -122,10 +119,10 @@ class userController extends Controller
             return redirect('/Membre');
         }
 
-      } catch (\Throwable $th) {
-        Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-        return redirect('/Membre');
-      }
+      // } catch (\Throwable $th) {
+      //   Alert::error('Erreur', 'L\'opération a rencontré un problème !');
+      //   return redirect('/Membre');
+      // }
 
       
     }
@@ -191,6 +188,45 @@ class userController extends Controller
         } else {
           Alert::error('Echec', 'Modification non effectuée !');
           return redirect('/Membre');
+        }
+
+      } catch (\Throwable $th) {
+        Alert::error('Erreur', 'L\'opération a rencontré un problème !');
+        return redirect('/Membre');
+      }
+
+      
+    }
+
+    // Fonction pour mettre a jour le commissariat des membres
+    public function affecte_membres(Request $request)
+    {
+      dd('Bonjour');
+      try 
+      {
+
+
+        $this->validate($request, [
+          'commissariat_id' => 'required',
+          'options' => 'required',
+        ]);
+        
+        $options = $request->input('options');
+
+        foreach($options as $option)
+        {
+          $users = User::where('id', $option)->get();
+
+          foreach ($users as $user) {
+
+            $user->commissariat_id = $request->input('commissariat_id');
+            $user->save();
+
+            Alert::success('Réussite', 'Le membre a bien été affecté au commissariat choisi !');
+            return redirect()->back();
+
+          }
+
         }
 
       } catch (\Throwable $th) {

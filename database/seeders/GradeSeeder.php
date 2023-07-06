@@ -18,22 +18,12 @@ class GradeSeeder extends Seeder
     {
       DB::table('grades')->insert([
         [
-          'libelle' => 'grade_1',
+          'libelle' => '2ème Classe',
           'created_at' =>now(),
           'updated_at' =>now(),
         ],
         [
-          'libelle' => 'grade_2',
-          'created_at' =>now(),
-          'updated_at' =>now(),
-        ],
-        [
-          'libelle' => 'grade_3',
-          'created_at' =>now(),
-          'updated_at' =>now(),
-        ],
-        [
-          'libelle' => 'grade_4',
+          'libelle' => '1ère Classe',
           'created_at' =>now(),
           'updated_at' =>now(),
         ]

@@ -23,7 +23,7 @@
       </div>
       <div class="mb-3">
         <label class="form-label" for="add-user-contact">Contact</label>
-        <input type="tel" id="space" class="form-control" placeholder="00 00 00 00"  autocomplete="off" maxlength="11" name="telephone"/>
+        <input type="text" inputmode="numeric" id="space" class="form-control" placeholder="00 00 00 00"  autocomplete="off" maxlength="11" name="telephone"/>
       </div>
       <div class="mb-3">
         <label class="form-label" for="country">Genre</label>
@@ -40,8 +40,4 @@
   </div>
 </div>
 
-<script>
-  document.getElementById('space').addEventListener('input', function (e) {
-  e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{2})/g, '$1 ').trim();
-});
-</script>
+

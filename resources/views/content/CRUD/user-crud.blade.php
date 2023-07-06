@@ -18,6 +18,37 @@
 
 @section('page-script')
 <script src="{{asset('assets/js/tables-datatables-extensions.js')}}"></script>
+
+<script>
+  // Sélectionner l'élément bouton et le champ de saisie
+  const bouton = document.getElementById('bouton');
+  const champ = document.getElementById('champ');
+  const champ1 = document.getElementById('champ1');
+  const champ2 = document.getElementById('champ2');
+  const champ3 = document.getElementById('champ3');
+
+  // Ajouter un écouteur d'événement sur le bouton pour afficher le champ de saisie
+  bouton.addEventListener('click', function() {
+    champ.style.display = 'block';
+  });
+
+  // Ajouter un écouteur d'événement sur le document pour masquer le champ de saisie lorsque l'utilisateur clique ailleurs
+  document.addEventListener('click', function(event) {
+    const elementClique = event.target;
+
+    // Vérifier si l'élément cliqué est différent du bouton et du champ de saisie
+    if (elementClique !== bouton && elementClique !== champ && elementClique !== champ1 && elementClique !== champ2 && elementClique !== champ3) {
+      champ.style.display = 'none';
+    }
+  });  
+</script> 
+
+<script>
+  document.getElementById('space').addEventListener('input', function (e) {
+  e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{2})/g, '$1 ').trim();
+});
+</script>
+
 @endsection
 
 @section('content')
@@ -30,14 +61,53 @@
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Efectif total</h5>
-  <div class="p-2 col-12">
-    <button class="btn btn-primary mx-auto text-start" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
-      Créer un nouveau membre    
-    </button>
-    <button class="btn btn-primary mx-auto text-end" id="btnSubmit" style="display: none;"
-    data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
-      Créer un nouveau     
-    </button>
+  <div class="p-2 col-12 d-flex justify-content-between">
+    {{-- <div class="col-lg-6">
+
+    </div>
+    <div class="col-lg-6">
+
+    </div> --}}
+    <div>
+      <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
+        Créer un nouveau membre    
+      </button>
+    </div>
+    
+    {{-- Vue du modal d'insertion --}}
+    @include('_partials._modals._CRUD-USER.modal-add-User')
+    
+    <div>
+      <button class="btn btn-info" id="bouton">
+        Affectation    
+      </button> 
+    </div>
+    
+  </div>
+
+  {{-- <form method="POST" id="test" action="{{ route('aff-mbr') }}">
+  @method('PUT')
+  @csrf --}}
+
+  <div class="p-2 d-flex justify-content-end" >
+    <div class="mb-3" id="champ" style="display: none;">
+      <label class="form-label fs-6" for="country">Selectionner le commissariat de destination</label>
+      <select id="champ1" name="commissariat_id" required class="form-select">
+        <option selected disabled>Commissariat cible</option>
+        @forelse ($comms as $comm)
+            <option id="champ2" value="{{ $comm->id }}">{{ $comm->sigle }} de {{ $comm->localite }}</option>                
+        @empty
+            
+        @endforelse
+      </select>
+      <br>
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-secondary" type="submit" form="test" id="champ3">
+          Effectuer    
+        </button> 
+      </div>
+    </div>
+    
   </div>
   
   
@@ -56,7 +126,7 @@
         @forelse ($users as $user)
         <tr>
           <td class="text-center col-1">
-            <input class="form-check-input form-check-input-lg" type="checkbox" name="options[]" value="{{ $user->id }}">
+            <input type="checkbox" class="dt-checkboxes form-check-input" name="options[{{ $user->id }}][]" value="{{ $user->id }}">
           </td>
           <td><strong>{{$user->matricule}}</strong></td>
           <td><strong>{{$user->name}}</strong></td>
@@ -83,6 +153,9 @@
 
           </td>
         </tr>
+
+        {{-- </form> --}}
+
         @empty
         {{-- Le tableau sera vide s'il n'y a pas d'insertion --}}
         @endforelse
@@ -92,26 +165,6 @@
     </table>
   </div>
 </div>
-
-{{-- Vue du modal d'insertion --}}
-@include('_partials._modals._CRUD-USER.modal-add-User')
-
-
-<script>
-  const checkboxes = document.querySelectorAll('.form-check-input');
-  const btnSubmit = document.getElementById('btnSubmit');
-
-  checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-      const checkedCheckboxes = document.querySelectorAll('.form-check-input:checked');
-      if (checkedCheckboxes.length > 0) {
-        btnSubmit.style.display = 'block';
-      } else {
-        btnSubmit.style.display = 'none';
-      }
-    });
-  });
-</script>
 
 
 @endsection

@@ -18,37 +18,23 @@ class SectionSeeder extends Seeder
     {
       DB::table('sections')->insert([
         [
-          'libelle' => 'section_1',
-          'sigle' => 'sect_1',
-          'fonction' => 'sect_1_fonction',
+          'libelle' => 'Section de la voie publique',
+          'sigle' => 'S.V.P',
+          'fonction' => 'Assure l\'ordre et le maintien de la population sur la voie publique.',
           'created_at' =>now(),
           'updated_at' =>now(),
         ],
         [
-          'libelle' => 'section_2',
-          'sigle' => 'sect_2',
-          'fonction' => 'sect_2_fonction',
+          'libelle' => 'Section administrative',
+          'sigle' => 'S.A',
+          'fonction' => 'Assure la gestion de l\'ensemble des documents administratifs.',
           'created_at' =>now(),
           'updated_at' =>now(),
         ],
         [
-          'libelle' => 'section_2',
-          'sigle' => 'sect_2',
-          'fonction' => 'sect_2_fonction',
-          'created_at' =>now(),
-          'updated_at' =>now(),
-        ],
-        [
-          'libelle' => 'section_3',
-          'sigle' => 'sect_3',
-          'fonction' => 'sect_3_fonction',
-          'created_at' =>now(),
-          'updated_at' =>now(),
-        ],
-        [
-          'libelle' => 'section_4',
-          'sigle' => 'sect_4',
-          'fonction' => 'sect_4_fonction',
+          'libelle' => 'Section de la police judiciaire',
+          'sigle' => 'S.P.J',
+          'fonction' => 'Assure les enquêtes, les recherches et toutes les questions du droit.',
           'created_at' =>now(),
           'updated_at' =>now(),
         ]

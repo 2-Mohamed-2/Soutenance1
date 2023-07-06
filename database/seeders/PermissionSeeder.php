@@ -74,8 +74,8 @@ class PermissionSeeder extends Seeder
         'voitaffecte-create',   //55
         'voitaffecte-edit',     //56
         'voitaffecte-delete',    //57
-
-        'dashboard-view'      //58
+        'dashboard-view',       //58
+        'membre-affect'        //59
      ];
 
      foreach ($permissions as $permission) {
