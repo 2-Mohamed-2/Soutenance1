@@ -74,5 +74,6 @@ class Kernel extends HttpKernel
 
     'ActiveMiddleware' => \App\Http\Middleware\ActiveMiddleware::class,
     'Mot_passe' => \App\Http\Middleware\MdpUpdateMiddleware::class,
+    'VerifyComMembre' => \App\Http\Middleware\VerifyComMembre::class,
   ]; 
 }

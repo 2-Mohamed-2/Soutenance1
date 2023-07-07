@@ -9,10 +9,6 @@
       @csrf
 
       <div class="mb-3">
-        <label class="form-label" for="add-user-fullname">Matricule</label>
-        <input type="text" autocomplete="off" required class="form-control" id="add-user-fullname" placeholder="Matricule" name="matricule"/>
-      </div>
-      <div class="mb-3">
         <label class="form-label" for="add-user-fullname">Nom complet</label>
         <input type="text" autocomplete="off" required class="form-control" id="add-user-fullname" placeholder="Nom complet" name="name"/>
       </div>

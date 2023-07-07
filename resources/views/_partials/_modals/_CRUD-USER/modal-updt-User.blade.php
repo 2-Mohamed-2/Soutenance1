@@ -1,7 +1,7 @@
 <!-- Offcanvas to add new user -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="userRole{{$user->id}}" aria-labelledby="offcanvasAddUserLabel">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="userUpdt{{$user->id}}" aria-labelledby="offcanvasAddUserLabel">
   <div class="offcanvas-header">
-    <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Roles d'un membre</h5>
+    <h5 id="offcanvasAddUserLabel" class="offcanvas-title">Modification d'un membre</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body mx-0 flex-grow-0">
@@ -24,7 +24,7 @@
       </div>
       <div class="mb-3">
         <label class="form-label" for="add-user-contact">Contact</label>
-        <input type="tel" id="space" value="{{$user->telephone}}" class="form-control" placeholder="00 00 00 00"  autocomplete="off" maxlength="11" name="telephone"/>
+        <input type="tel" id="spacee" value="{{$user->telephone}}" class="form-control" placeholder="00 00 00 00"  autocomplete="off" maxlength="11" name="telephone"/>
       </div>
       <div class="mb-3">
         <label class="form-label" for="country">Genre</label>
@@ -46,7 +46,7 @@
 </div>
 
 <script>
-  document.getElementById('space').addEventListener('input', function (e) {
+  document.getElementById('spacee').addEventListener('input', function (e) {
   e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{2})/g, '$1 ').trim();
 });
 </script>

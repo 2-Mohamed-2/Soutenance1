@@ -19,13 +19,13 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('commissariat_id')->nullable()->constrained()
-                  ->onUpdate('cascade')->onDelete('cascade')->nullable();
+                  ->onUpdate('cascade')->onDelete('cascade');
 
             $table->foreignId('grade_id')->nullable()->constrained()
-                ->onUpdate('cascade')->onDelete('cascade')->nullable();
+                ->onUpdate('cascade')->onDelete('cascade');
 
             $table->foreignId('section_id')->nullable()->constrained()
-                ->onUpdate('cascade')->onDelete('cascade')->nullable();
+                ->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('name');
             $table->string('matricule')->unique();

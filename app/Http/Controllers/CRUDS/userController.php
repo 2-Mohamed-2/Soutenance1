@@ -18,11 +18,13 @@ class userController extends Controller
 
   function __construct()
   {
-    $this->middleware('permission:membre-list|membre-create|membre-edit|membre-delete|membre-affect', ['only' => ['index', 'store']]);
+    $this->middleware('permission:membre-list|membre-create|membre-edit|membre-delete|membre-affect|membre-active|membre-desactive', ['only' => ['index', 'store']]);
     $this->middleware('permission:membre-create', ['only' => ['create', 'store']]);
     $this->middleware('permission:membre-edit', ['only' => ['edit', 'update']]);
     $this->middleware('permission:membre-delete', ['only' => ['destroy']]);
     $this->middleware('permission:membre-affect', ['only' => ['affecte_membres']]);
+    $this->middleware('permission:membre-active', ['only' => ['active_user']]);
+    $this->middleware('permission:membre-desactive', ['only' => ['desact_user']]);
   }
 
     /**
@@ -58,11 +60,11 @@ class userController extends Controller
     public function store(Request $request)
     {
       
-      // try 
-      // {
+      try 
+      {
         
         $this->validate($request,[
-          'matricule' => 'required',
+          // 'matricule' => 'required',
           'name' => 'required|max:255',
           'email' => 'required|max:255',
           'telephone' => 'required|max:255',
@@ -92,13 +94,18 @@ class userController extends Controller
             $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890@-$%&$%&');
             // La combinaison
             $password = substr($random, 0, 8);
+
+            // Récupérer le dernier matricule
+            $dernierMatricule = User::max('matricule');
+            // Incrémenter le dernier matricule
+            $nouveauMatricule = $dernierMatricule + 1;
   
             $user = User::create([
               'commissariat_id' => null,
               'grade_id' => 1,
               'section_id' => null,
               'password' => Hash::make($password),
-              'matricule' => $request->matricule,
+              'matricule' => $nouveauMatricule,
               'name' => $request->name,
               'email' => $request->email,
               'genre' => $request->genre,
@@ -119,10 +126,10 @@ class userController extends Controller
             return redirect('/Membre');
         }
 
-      // } catch (\Throwable $th) {
-      //   Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-      //   return redirect('/Membre');
-      // }
+      } catch (\Throwable $th) {
+        Alert::error('Erreur', 'L\'opération a rencontré un problème !');
+        return redirect('/Membre');
+      }
 
       
     }
@@ -201,7 +208,7 @@ class userController extends Controller
     // Fonction pour mettre a jour le commissariat des membres
     public function affecte_membres(Request $request)
     {
-      dd('Bonjour');
+      // dd('Bonjour');
       try 
       {
 
@@ -261,5 +268,65 @@ class userController extends Controller
       }
 
     
+    }
+
+    // Fonction de desactivation
+    public function desact_user($id)
+    {
+      try 
+      {
+
+        $id = decrypt($id);
+
+        $user = User::find($id);
+        if ($user) {
+          
+          $user->isActive = 0;
+          $user->save();
+
+          Alert::info('Réussite', 'Le compte du membre a bien été désactivé !');
+          return redirect('/Membre');
+        } 
+        else {
+          Alert::error('Echec', 'Modification non effectuée !');
+          return redirect('/Membre');
+        }
+
+      } catch (\Throwable $th) {
+        Alert::error('Erreur', 'L\'opération de desactivation a rencontré un problème !');
+        return redirect('/Membre');
+      }
+
+      
+    }
+
+    // Fonction de desactivation
+    public function active_user($id)
+    {
+      try 
+      {
+
+        $id = decrypt($id);
+
+        $user = User::find($id);
+        if ($user) {
+          
+          $user->isActive = 1;
+          $user->save();
+
+          Alert::success('Réussite', 'Le compte du membre a bien été activé !');
+          return redirect('/Membre');
+        } 
+        else {
+          Alert::error('Echec', 'Modification non effectuée !');
+          return redirect('/Membre');
+        }
+
+      } catch (\Throwable $th) {
+        Alert::error('Erreur', 'L\'opération de desactivation a rencontré un problème !');
+        return redirect('/Membre');
+      }
+
+      
     }
 }

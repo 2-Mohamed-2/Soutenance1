@@ -36,6 +36,7 @@ use App\Http\Controllers\Visitors\InconnuConnexionController;
 use App\Http\Controllers\Visitors\AuthenticatedSessionController;
 use App\Http\Controllers\Visitors\InconnuController as VisitorsInconnuController;
 use App\Http\Controllers\Visitors\ProfilController;
+use App\Http\Middleware\VerifyComMembre;
 use RealRashid\SweetAlert\Facades\Alert;
 
 //Route de redirection quand le mdp est 123456
@@ -74,7 +75,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
 
 
-  Route::middleware([ActiveMiddleware::class])->group(function () {
+  Route::middleware([ActiveMiddleware::class], [VerifyComMembre::class])->group(function () {
 
     // Pour le modify des donnees du User par lui mm
     Route::put('/Compte/Paramètre/Gestion/{id}', [AccountSettingsAccount::class, 'updateUser'])->name('cpgUpdate');
@@ -139,6 +140,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         
         // Attribuer un role a un membre
       Route::put('/Affecte/Membre', [userController::class, 'affecte_membres'])->name('aff-mbr')
+      ->middleware('role:Informaticien|Administrateur');
+
+        // Desactiver le compte membre
+      Route::put('/Desactivation/{id}', [userController::class, 'desact_user'])->name('desact-mbr')
+      ->middleware('role:Informaticien|Administrateur');
+        
+        // Activer le compte membre
+      Route::put('/Activation/{id}', [userController::class, 'active_user'])->name('active-mbr')
       ->middleware('role:Informaticien|Administrateur');
 
     // Fin

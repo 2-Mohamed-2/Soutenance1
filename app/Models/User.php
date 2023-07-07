@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function section()
     {
-        return $this->belongsToMany(Section::class);
+        return $this->belongsTo(Section::class);
     }
     public function tenues(){
         return $this->hasMany(Tenue::class);

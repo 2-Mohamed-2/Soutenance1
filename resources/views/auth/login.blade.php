@@ -55,7 +55,7 @@ $customizerHidden = 'customizer-hide';
           <div class="mb-3">
             <label for="login-email" class="form-label">Commissariat</label>
             <select class="form-control @error('commissariat_id') is-invalid @enderror" name="commissariat_id" id="">
-              <option value="{{0 ?? old('commissariat_id') }}" autofocus>Votre commissariat</option>
+              <option value="{{ 0 }}" autofocus>Votre commissariat</option>
               @forelse ($coms as $com )
               <option value="{{$com->id}}">{{$com->sigle}} de {{$com->localite}}</option>
               @empty
