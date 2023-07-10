@@ -1,10 +1,29 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Tables - Basic Tables')
+@section('title', 'Residence')
+
+@section('vendor-style')
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/spinkit/spinkit.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-fixedheader-bs5/fixedheader.bootstrap5.css')}}">
+@endsection
+
+@section('vendor-script')
+<script src="{{asset('assets/vendor/libs/datatables/jquery.dataTables.js')}}"></script>
+<!-- Fixed columns -->
+<script src="{{asset('assets/vendor/libs/datatables-fixedcolumns/datatables.fixedcolumns.js')}}"></script>
+<!-- Fixed header -->
+<script src="{{asset('assets/vendor/libs/datatables-fixedheader-bs5/fixedheader.bootstrap5.js')}}"></script>
+@endsection
+
+@section('page-script')
+<script src="{{asset('assets/js/tables-datatables-extensions.js')}}"></script>
+@endsection
+
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light">Tables /</span> Residence
+  <span class="text-muted fw-light">Coms_ML /</span> Residence
 </h4>
 
 <hr class="my-5">
@@ -12,11 +31,9 @@
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des Residences enregistrés</h5>
-  <button class="btn btn-primary col-sm-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addResi" aria-controls="offcanvasEnd">
-    Créer une nouvelle Residence.
-  </button>
-  <div class="table-responsive text-nowrap">
-    <table class="table table-hover">
+ 
+  <div class="card-datatable table-responsive text-nowrap">
+    <table class="dt-fixedheader table table-hover">
       <thead>
         <tr>
           <th>Identifiant</th>
@@ -51,8 +68,6 @@
                 
             </div>
 
-            {{-- Vue du modal de modification --}}
-            @include('_partials/_modals/_CRUD-RESI/modal-updtResi')
 
          {{--    @include('_partials/pdfResi') --}}
 
@@ -72,8 +87,6 @@
   </div>
 </div>
 
-{{-- Vue du modal d'insertion --}}
-@include('_partials/_modals/_CRUD-RESI/modal-addResi')
 
 
 @endsection

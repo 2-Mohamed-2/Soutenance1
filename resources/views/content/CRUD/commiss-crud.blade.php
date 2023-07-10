@@ -1,46 +1,25 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Tables - Basic Tables')
+@section('title', 'Commissariat')
 
 @section('vendor-style')
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/spinkit/spinkit.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css')}}">
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css')}}">
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css')}}">
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/flatpickr/flatpickr.css')}}" />
-<!-- Row Group CSS -->
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css')}}">
-<!-- Form Validation -->
-<link rel="stylesheet" href="{{asset('assets/vendor/libs/formvalidation/dist/css/formValidation.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-fixedheader-bs5/fixedheader.bootstrap5.css')}}">
 @endsection
 
 @section('vendor-script')
 <script src="{{asset('assets/vendor/libs/datatables/jquery.dataTables.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/datatables-responsive/datatables.responsive.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/datatables-buttons/datatables-buttons.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/jszip/jszip.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/pdfmake/pdfmake.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/datatables-buttons/buttons.html5.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/datatables-buttons/buttons.print.js')}}"></script>
-<!-- Flat Picker -->
-<script src="{{asset('assets/vendor/libs/moment/moment.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/flatpickr/flatpickr.js')}}"></script>
-<!-- Row Group JS -->
-<script src="{{asset('assets/vendor/libs/datatables-rowgroup/datatables.rowgroup.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.js')}}"></script>
-<!-- Form Validation -->
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/FormValidation.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/Bootstrap5.min.js')}}"></script>
-<script src="{{asset('assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js')}}"></script>
+<!-- Fixed columns -->
+<script src="{{asset('assets/vendor/libs/datatables-fixedcolumns/datatables.fixedcolumns.js')}}"></script>
+<!-- Fixed header -->
+<script src="{{asset('assets/vendor/libs/datatables-fixedheader-bs5/fixedheader.bootstrap5.js')}}"></script>
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/test.js')}}"></script>
+<script src="{{asset('assets/js/tables-datatables-extensions.js')}}"></script>
 @endsection
+
 
 
 @section('content')
@@ -50,206 +29,56 @@
 
 <hr class="my-5">
 
+<!-- Hoverable Table rows -->
 <div class="card">
-  <div class="card-datatable table-responsive">
-    <table class="datatables-basic table border-top">
+  <h5 class="card-header">Liste des commissariats enregistrés</h5>
+  <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addComm" aria-controls="offcanvasEnd">
+    Créer un nouveau comm.
+  </button>
+  <div class="card-datatable table-responsive text-nowrap">
+    <table class="dt-fixedheader table table-hover">
       <thead>
         <tr>
-          <th></th>
-          <th></th>
-          <th>id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Date</th>
-          <th>Salary</th>
-          <th>Status</th>
-          <th>Action</th>
+          <th>Sigle</th>
+          <th>Libelle</th>
+          <th>Adresse</th>
+          <th>Contact</th>
+          <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table-border-bottom-0">
+        @forelse ($coms as $com)
         <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na Na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
+          <td><strong>{{$com->sigle}}</strong></td>
+          <td><strong>{{$com->libelle}}</strong></td>
+          <td>{{$com->localite}}</span></td>
+          <td>{{$com->telephone}}</span></td>
+          <td>
+            <div class="dropdown">
+              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#commissUpdt{{$com->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
+                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#commissDst{{$com->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
+              </div>
+            </div>
+
+            {{-- Vue du modal de modification --}}
+            @include('_partials/_modals/_CRUD-COMMISS/modal-updtCommiss')
+
+            {{-- Vue du modal de suppression --}}
+            @include('_partials/_modals/_CRUD-COMMISS/modal-deleteCommiss')
+
+          </td>
         </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>Ousmane</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>Ousnau</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>Ouma</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
-        <tr>
-          <td></td>
-          <td></td>
-          <td>id</td>
-          <td>na</td>
-          <td>em</td>
-          <td>sa</td>
-          <td>sal</td>
-          <td>sal</td>
-          <td>sal</td>
-        </tr>
-        
+        @empty
+        {{-- Le tableau sera vide s'il n'y a pas d'insertion --}}
+        @endforelse
+
 
       </tbody>
     </table>
   </div>
 </div>
-
 
 {{-- Vue du modal d'insertion --}}
 @include('_partials/_modals/_CRUD-COMMISS/modal-addCommiss')

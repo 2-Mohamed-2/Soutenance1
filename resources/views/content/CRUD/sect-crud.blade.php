@@ -28,6 +28,7 @@
     <table class="table table-hover datatable">
       <thead>
         <tr>
+          <th>Commissariat</th>
           <th>Libelle</th>
           <th>Sigle</th>
           <th>Fonction</th>
@@ -37,6 +38,7 @@
       <tbody class="table-border-bottom-0">
         @forelse ($sects as $sect)
         <tr>
+          <td><strong>{{$sect->commissariat->sigle }}</strong></td>
           <td><strong>{{$sect->libelle}}</strong></td>
           <td><strong>{{$sect->sigle}}</strong></td>
           <td><strong>{{$sect->fonction}}</strong></td>

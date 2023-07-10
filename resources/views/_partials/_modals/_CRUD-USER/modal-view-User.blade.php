@@ -36,15 +36,13 @@
           <input type="tel" readonly value="{{$user->telephone}}" class="form-control" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="country">Genre</label>
-          <select readonly class="form-select">
-            @if ($user->genre == "H")
-            <option selected value="H">Homme</option>
-            @elseif ($user->genre == "F")
-            <option value="F">Femme</option>
-            @endif
-          </select>
-        </div>      
+          <label class="form-label" readonly for="add-user-contact">Genre</label>
+          @if ($user->genre == "H")
+          <input type="text" readonly value="Homme" class="form-control" />
+          @elseif ($user->genre == "F")
+          <input type="text" readonly value="Femme" class="form-control" />
+          @endif
+        </div> 
     </div>
   </div>
   

@@ -27,12 +27,7 @@ class SectionController extends Controller
         return view('content.CRUD.sect-crud', compact('sects', 'coms'));
 
     }
-
-    public function index(){
-        //
-    }
-
-
+    
 
     public function store(Request $request)
     {
@@ -55,16 +50,16 @@ class SectionController extends Controller
     
             if ($sect) {
                 Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
-                return redirect('/Section');
+                return redirect()->back();
             } else {
                 Alert::error('Echec', 'L\'enregistrement n\'a pas bien été effectué !');
-                return redirect('/Section');
+                return redirect()->back();
             }
 
         } 
         catch (\Throwable $th) {
             Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-            return redirect('/Section');
+            return redirect()->back();
         }
 
         
@@ -90,16 +85,16 @@ class SectionController extends Controller
             $sect = Section::whereId($id)->update($validateData);
             if ($sect) {
                 Alert::success('Réussite', 'La section a bien été modifié !');
-                return redirect('/Section');
+                return redirect()->back();
             } else {
                 Alert::error('Echec', 'Modification non effectuée !');
-                return redirect('/Section');
+                return redirect()->back();
             }
 
         } 
         catch (\Throwable $th) {
             Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-            return redirect('/Section');
+            return redirect()->back();
         }
         
     }
@@ -115,12 +110,12 @@ class SectionController extends Controller
 
             $sect = Section::findOrFail($id);
             $sect->delete();
-            Alert::success('La section a bien été supprimé !', 'Réussite');
-            return redirect('/Section');
+            Alert::success('Réussite', 'La section a bien été supprimé !');
+            return redirect()->back();
 
         } catch (\Throwable $th) {
             Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-            return redirect('/Section');
+            return redirect()->back();
         }
         
     }

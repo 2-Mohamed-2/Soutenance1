@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\MdpNotification;
+use Illuminate\Support\Facades\Auth;
 use Yudhatp\ActivityLogs\ActivityLogs;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -35,11 +36,21 @@ class userController extends Controller
      */
     public function index(Request $request)
     {      
+      if (!User::role(['Informaticien', 'Administrateur'])) {
+        $users = User::latest()->where([
+          ['id', '!=', '1'],
+          ['commissariat_id', Auth::user()->commissariat->id]
+          ])->get();
+        $roles = Role::all();
+        $comms = Commissariat::all();
+        $grades = Grade::all();
+        return view('content.CRUD.user-crud', compact('users','roles', 'comms', 'grades'));
+      }
+      
       $users = User::latest()->where('id', '!=', '1')->get();
       $roles = Role::all();
       $comms = Commissariat::all();
       $grades = Grade::all();
-
       return view('content.CRUD.user-crud', compact('users','roles', 'comms', 'grades'));
     }
 

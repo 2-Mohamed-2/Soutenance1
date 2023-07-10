@@ -111,9 +111,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
               ->middleware('role:Informaticien|Administrateur');
 
       //Routes pour crud du grade
-      Route::get('/Grade', [GradeController::class, 'GradeView'])->name('grade-view')
+      Route::get('/Grade', [GradeController::class, 'index'])->name('grade-view')
               ->middleware('role:Informaticien|Administrateur');
-      Route::resource('/Grade', GradeController::class)
+      Route::resource('/grd', GradeController::class)
               ->middleware('role:Informaticien|Administrateur');
 
       //Route pour vehicule
@@ -236,11 +236,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
               ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
 
       //Routes pour le crud Inconnu
-      Route::get('/Inconnu', [InconnuController::class, 'IncoView'])->name('inco-view')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+      Route::get('/Citoyen', [InconnuController::class, 'IncoView'])->name('inco-view')
+              ->middleware('role:Informaticien|Administrateur');
 
       Route::resource('/Inco', InconnuController::class)
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur');
+
+        // Reinitialiser le mot de passe d'un citoyen
+      Route::put('/Citoyen/Mot-de-passe/{id}', [InconnuController::class, 'ReinitialisePassword'])->name('reini-pwd')
+      ->middleware('role:Informaticien|Administrateur');
 
     //Routes pour crud du residence
     Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view')
@@ -265,6 +269,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Alert::error('404', 'La page demandee est introuvable');
         return redirect()->back();
     })->name('404');
+    Route::fallback(function () {
+        Alert::error('403', 'La page demandee est introuvable');
+        return redirect()->back();
+    })->name('403');
+    
 
 });
 

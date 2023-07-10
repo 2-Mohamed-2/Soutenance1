@@ -39,15 +39,15 @@ class GradeController extends Controller
             ]);
     
             if ($grade) {
-                Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
-                return redirect('/Grade');
+                Alert::success('Réussite', 'L\'enregistrement du grade a bien été effectué !');
+                return redirect()->back();
             } else {
-                Alert::error('Echec', 'L\'enregistrement n\'a pas bien été effectué !');
-                return redirect('/Grade');
+                Alert::error('Echec', 'L\'enregistrement du grade n\'a pas bien été effectué !');
+                return redirect()->back();
             }
         } catch (\Throwable $th) {
-            Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-            return redirect('/Grade');
+            Alert::error('Erreur', 'L\'opération d\'insertion du grade a rencontré un problème !');
+            return redirect()->back();
         }
         
 
@@ -64,16 +64,16 @@ class GradeController extends Controller
 
             $grade = Grade::whereId($id)->update($validateData);
             if ($grade) {
-                Alert::success('Le grade a bien été modifié !', 'Réussite');
-                return redirect('/Grade');
+                Alert::success('Réussite', 'Le grade a bien été modifié !');
+                return redirect()->back();
             } else {
-                Alert::error('Modification non effectuée !', 'Erreur');
-                return redirect('/Grade');
+                Alert::error('Erreur', 'Modification non effectuée !');
+                return redirect()->back();
             }
         } 
         catch (\Throwable $th) {
-            Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-            return redirect('/Grade');
+            Alert::error('Erreur', 'L\'opération de modification a rencontré un problème !');
+            return redirect()->back();
         }
         
     }
@@ -85,13 +85,13 @@ class GradeController extends Controller
 
             $grade = Grade::findOrFail($id);
             $grade->delete();
-            Alert::success('Le Grade a bien été supprimé !', 'Réussite');
-            return redirect('/Grade');
+            Alert::success('Réussite', 'Le Grade a bien été supprimé !');
+            return redirect()->back();
 
         } 
         catch (\Throwable $th) {
-            Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-            return redirect('/Grade');
+            Alert::error('Erreur', 'L\'opération de suppression du grade a rencontré un problème !');
+            return redirect()->back();
         }
         
     }

@@ -24,7 +24,7 @@
       "role": "Informaticien|Administrateur"
     },
     {
-      "url": "/Inconnu",
+      "url": "/Citoyen",
       "name": "Citoyen",
       "icon": "menu-icon tf-icons fa fa-person",
       "slug": "inco-view",
@@ -40,10 +40,11 @@
 
     {
 
-      "url": "/Section",
+       "url": "/Section",
        "name": "Section",
        "icon": "menu-icon tf-icons fa fa-section",
-       "slug": "sect-view"
+       "slug": "sect-view",       
+       "role": "Informaticien|Administrateur"
     },
 
     {
@@ -52,14 +53,6 @@
       "name": "Grade",
       "icon": "menu-icon tf-icons fa fa-medal",
       "slug": "grade-view",
-      "role": "Informaticien|Administrateur"
-    },
-
-    {
-      "url": "/Section",
-      "name": "Section",
-      "icon": "menu-icon tf-icons fa fa-section",
-      "slug": "sect-view",
       "role": "Informaticien|Administrateur"
     },
 

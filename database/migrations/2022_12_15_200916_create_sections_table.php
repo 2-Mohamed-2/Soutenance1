@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('commissariat_id')->constrained()
+                  ->onUpdate('cascade')->onDelete('cascade');
             $table->string('libelle');
             $table->string('sigle');
             $table->text('fonction');
