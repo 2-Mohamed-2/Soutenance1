@@ -3,17 +3,27 @@
 @section('title', 'Section ')
 
 @section('vendor-style')
-<link href="{{ asset('assets/datatables.min.css') }}" rel="stylesheet"/>
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/spinkit/spinkit.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css')}}">
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/datatables-fixedheader-bs5/fixedheader.bootstrap5.css')}}">
 @endsection
 
 @section('vendor-script')
-<script src="{{ asset('assets/datatables.min.js') }}"></script>
+<script src="{{asset('assets/vendor/libs/datatables/jquery.dataTables.js')}}"></script>
+<!-- Fixed columns -->
+<script src="{{asset('assets/vendor/libs/datatables-fixedcolumns/datatables.fixedcolumns.js')}}"></script>
+<!-- Fixed header -->
+<script src="{{asset('assets/vendor/libs/datatables-fixedheader-bs5/fixedheader.bootstrap5.js')}}"></script>
+@endsection
+
+@section('page-script')
+<script src="{{asset('assets/js/tables-datatables-extensions.js')}}"></script>
 @endsection
 
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
-  <span class="text-muted fw-light">Tables /</span> Section
+  <span class="text-muted fw-light">Coms_ML /</span> Section
 </h4>
 
 <hr class="my-5">
@@ -24,8 +34,8 @@
   <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addSect" aria-controls="offcanvasEnd">
     Créer une nouvelle Section.
   </button>
-  <div class="table-responsive text-nowrap">
-    <table class="table table-hover datatable">
+  <div class="card-datatable table-responsive text-nowrap">
+    <table class="dt-fixedheader table table-hover datatable">
       <thead>
         <tr>
           <th>Commissariat</th>

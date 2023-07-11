@@ -19,17 +19,19 @@ class AccessRoles extends Controller
     $this->middleware('permission:role-create', ['only' => ['create', 'store']]);
     $this->middleware('permission:role-edit', ['only' => ['edit', 'update']]);
     $this->middleware('permission:role-delete', ['only' => ['destroy']]);
-
-
     $this->middleware('permission:role-to-user', ['only' => ['roleUser']]);
+    // $this->middleware('permission:remove-role-to-user', ['only' => ['remove_role']]);
   }
 
   public function index()
   {
     $roles = Role::all();
     $permissions = Permission::get();
-    return view('content.CRUD.role-crud', compact('roles','permissions'));
+    $users = User::latest()->get();
+    return view('content.CRUD.role-crud', compact('roles','permissions','users'));
   }
+
+
 
   public function roleUser(Request $request)
   {
@@ -54,13 +56,15 @@ class AccessRoles extends Controller
 
     if ($test) {
       Alert::success('Réussite', 'Les roles sont bien assignes !');
-      return redirect('/Membre');
+      return redirect()->back();
     }
     else {
       Alert::error('Erreur', 'Erreur lors de l\'assignation !');
-      return redirect('/Membre');
+      return redirect()->back();
     }
   }
+
+
 
   public function store(Request $request)
   {
@@ -104,10 +108,8 @@ class AccessRoles extends Controller
         'RoleName' => 'required|max:255',
 
       ]);
-      // dd($te);
 
       $role = Role::find($id);
-
 
       $permissions = $request->permission;
 
@@ -159,6 +161,35 @@ class AccessRoles extends Controller
     Alert::success('Réussite', 'Le role a bien été supprimé !');
     return redirect('/access-roles');
   }
+
+  public function remove_role($id) {
+
+    try 
+    {
+      $id = decrypt($id);
+
+      $user = User::find($id);
+
+      $rols = DB::table('model_has_roles')->where('model_id', $user->id)->exists();
+
+      if ($rols) {
+        DB::table('model_has_roles')->where('model_id',$user->id)->delete();
+        Alert::success('Réussite', 'Les roles de l\'utilisateur ont bien été supprimés !');
+        return redirect()->back();
+      }
+      else {
+        Alert::error('Echec', 'Cet utilisateur n\'a pas de role !');
+        return redirect()->back();
+      }
+    } 
+    catch (\Throwable $th) {
+      Alert::error('Echec', 'Une erreur est survenue lors de la suppression de role, veuillez reessayer !');
+      return redirect()->back();
+    }
+    
+  }
+
+
 
 
 }

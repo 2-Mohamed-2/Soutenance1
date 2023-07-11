@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\ResetPassNotif as NotificationsResetPassNotif;
+use Yudhatp\ActivityLogs\Models\ActivityLog;
 
 class User extends Authenticatable
 {
@@ -61,18 +62,23 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Section::class);
     }
+
     public function tenues(){
         return $this->hasMany(Tenue::class);
+    }
+
+    public function activities(){
+        return $this->hasMany(ActivityLog::class);
     }
 
     public function avoir(){
         return $this->hasOne('App\Models\Avoir');
     }
 
-  public function voitaffecte()
-  {
-    return $this->hasOne('VoitAffecte');
-  }
+    public function voitaffecte()
+    {
+        return $this->hasOne('VoitAffecte');
+    }
 
     public function arme(): BelongsTo
     {

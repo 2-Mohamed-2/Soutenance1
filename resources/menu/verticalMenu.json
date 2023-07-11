@@ -123,6 +123,27 @@
     },
 
     {
+      "name": "Surveillance",
+      "icon": "menu-icon tf-icons bx bx-show",
+      "slug": "surv",
+      "role": "Informaticien",
+      "submenu": [
+        {
+          "url": "/Session-Vue",
+          "name": "Sessions",
+          "slug": "surv-sess-vue",
+          "role": "Informaticien"
+        },
+        {
+          "url": "/Activite-Vue",
+          "name": "Activités",
+          "slug": "surv-acti-vue",
+          "role": "Informaticien"
+        }
+      ]
+    },
+
+    {
       "name": "Compte",
       "icon": "menu-icon tf-icons bx bx-collection",
       "slug": "compte",

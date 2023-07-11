@@ -26,6 +26,7 @@ use App\Http\Controllers\CRUDS\TenueAffController;
 use App\Http\Controllers\CRUDS\VehiculeController;
 use App\Http\Controllers\CRUDS\LieuStockController;
 use App\Http\Controllers\CRUDS\ResidenceController;
+use App\Http\Controllers\CRUDS\SurveillanceController;
 use App\Http\Controllers\UserCompte\UserProfilView;
 use App\Http\Controllers\CRUDS\VoitAffecteController;
 use App\Http\Controllers\pages\AccountSettingsAccount;
@@ -153,87 +154,85 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     // Fin
 
 
-    // Debut des routes dedies a l'Informaticien, a l'Administrateur et au Commissaire
-
       // Attribuer un role a un membre
       Route::post('/access-roles-user', [AccessRoles::class, 'roleUser'])->name('roles-user')
               ->middleware('role:Informaticien|Administrateur|Commissaire');
 
-    // Fin
+        // Suprimer le role d'un membre
+      Route::delete('/roles-user-remove/{id}', [AccessRoles::class, 'remove_role'])->name('roles-user-remove')
+      ->middleware('role:Informaticien');
 
-
-    // Debut des routes dedies a l'Informaticien, a l'Administrateur, au Commissaire et au Commissaire Adjoint
 
       // Tableau de board
       Route::get('/Tableau-Bord', [Analytics::class, 'index'])->name('dashboard-analytics')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       //Route pour Armement
       Route::get('/Armement', [ArmementController::class, 'ArmeView'])->name('logistique-arme-view')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       //Route pour tenue
       Route::get('/Tenue', [TenueController::class, 'TenueView'])->name('logistique-tenue-view')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       //Route pour Munition
       Route::get('/Munition', [MunitionController::class, 'MuniView'])->name('logistique-muni-view')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       // Route pour la section
       Route::get('/Section', [SectionController::class, 'SectView'])->name('sect-view')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       //routes pour la vue du user
       Route::get('/Membre', [userController::class, 'index'])->name('user-view')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       // Route pour la dmde d'affectation
       Route::post('/Compte/Profil', [UserProfilView::class, 'affectationUser'])->name('user_affect')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
 
       // Madouba, après tu m'expliques tes routes là
 
       //Route pour statut
       Route::get('/Statut', [StatutController::class, 'StatutView'])->name('statut-view')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
       Route::resource('/Statut', StatutController::class)
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       //Route pour Avoir
       Route::get('/Avoir', [AvoirController::class, 'AvoirView'])->name('avoir-view')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
       Route::resource('/Avoir', AvoirController::class)
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
       Route::post('/affectearme/{armeaff_id}', [AvoirController::class, 'affecterArme'])->name('affectearme')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       //Route pour voiture affecter
       Route::get('/voitaffecte', [VoitAffecteController::class, 'voitView'])->name('voit')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
       Route::resource('/voitaffecte', VoitAffecteController::class)
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
       //Route affectation voiture
       Route::post('/affectevoiture/{voiture_id}', [VoitAffecteController::class, 'affecterVoiture'])->name('voit')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       //Route pour Tenueaff
       Route::get('/tenueaff', [TenueAffController::class, 'TenueAff'])->name('tenueaff')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
       Route::resource('/tenueaff', TenueAffController::class)
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
       Route::post('/affectetenue/{tenueaff_id}', [TenueAffController::class, 'affecterTenue'])->name('affectetenue')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
 
       // Route pour munition affecter
       Route::get('/muniaff', [MuniAffController::class, 'index'])->name('muniaff')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
       Route::resource('/muniaff', MuniAffController::class)
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
       Route::post('/affectemuni/{muniaff_id}', [MuniAffController::class, 'affecterMuni'])->name('affectemuni')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       //Routes pour le crud Inconnu
       Route::get('/Citoyen', [InconnuController::class, 'IncoView'])->name('inco-view')
@@ -248,19 +247,24 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     //Routes pour crud du residence
     Route::get('/Residence', [ResidenceController::class, 'ResiView'])->name('resi-view')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
-    Route::resource('/Resi', ResidenceController::class)->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
+    Route::resource('/Resi', ResidenceController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
     Route::get('/residencePDF/{id}', [ResidenceController::class, 'PDF'])->name('residencePDF')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
       //Lieu de stockage
-      Route::get('/lieu/stockage', [LieuStockController::class, 'index'])->name('logistique-lieustock')
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
-      Route::resource('/lieustock', LieuStockController::class)
-              ->middleware('role:Informaticien|Administrateur|Commissaire|Commissaire Adjoint');
+    Route::get('/lieu/stockage', [LieuStockController::class, 'index'])->name('logistique-lieustock')
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
+    Route::resource('/lieustock', LieuStockController::class)
+              ->middleware('role:Informaticien|Administrateur|Commissaire|Membre');
 
-    // Fin
+    //  Sessions vues
+    Route::get('/Session-Vue', [SurveillanceController::class, 'session_view'])->name('surv-sess-vue')
+    ->middleware('role:Informaticien');
+    //  Activites vues
+    Route::get('/Activite-Vue', [SurveillanceController::class, 'activity_view'])->name('surv-acti-vue')
+    ->middleware('role:Informaticien');
 
 
 

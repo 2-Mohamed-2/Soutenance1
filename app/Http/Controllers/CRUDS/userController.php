@@ -35,23 +35,34 @@ class userController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {      
-      if (!User::role(['Informaticien', 'Administrateur'])) {
+    {     
+      $user = Auth::user();
+
+      if ($user->hasanyrole('Commissaire', 'Membre')) {
         $users = User::latest()->where([
           ['id', '!=', '1'],
           ['commissariat_id', Auth::user()->commissariat->id]
           ])->get();
-        $roles = Role::all();
+        $comms = Commissariat::all();
+        $grades = Grade::all();
+        return view('content.CRUD.user-crud', compact('users','comms', 'grades'));
+      }
+      elseif($user->hasrole('Administrateur')) {
+        $users = User::latest()->where('id', '!=', '1')->get();
+        $roles_exclus = ['Informaticien','Administrateur'];
+        $roles = Role::whereNotIn('name', $roles_exclus)->get();
+        $comms = Commissariat::all();
+        $grades = Grade::all();
+        return view('content.CRUD.user-crud', compact('users','roles', 'comms', 'grades'));
+      }
+      elseif($user->hasrole('Informaticien')) {
+        $users = User::latest()->get();
+        $roles = Role::latest()->get();
         $comms = Commissariat::all();
         $grades = Grade::all();
         return view('content.CRUD.user-crud', compact('users','roles', 'comms', 'grades'));
       }
       
-      $users = User::latest()->where('id', '!=', '1')->get();
-      $roles = Role::all();
-      $comms = Commissariat::all();
-      $grades = Grade::all();
-      return view('content.CRUD.user-crud', compact('users','roles', 'comms', 'grades'));
     }
 
     /**
@@ -73,8 +84,8 @@ class userController extends Controller
     public function store(Request $request)
     {
       
-      try 
-      {
+      // try 
+      // {
         
         $this->validate($request,[
           // 'matricule' => 'required',
@@ -125,6 +136,10 @@ class userController extends Controller
               'telephone' => $request->telephone,
               'isActive' => 1,
             ]);  
+
+            // Inserer le role membre par defaut au nouveau membre creer
+            $role = Role::where('name', 'Membre')->get();            
+            $user->assignRole($role);
   
             // $user->notify(new MdpNotification($password, $user->name));
           }
@@ -139,10 +154,10 @@ class userController extends Controller
             return redirect('/Membre');
         }
 
-      } catch (\Throwable $th) {
-        Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-        return redirect('/Membre');
-      }
+      // } catch (\Throwable $th) {
+      //   Alert::error('Erreur', 'L\'opération a rencontré un problème !');
+      //   return redirect('/Membre');
+      // }
 
       
     }
@@ -184,7 +199,6 @@ class userController extends Controller
         $id = decrypt($id);
         //dd($id);
 
-
         $this->validate($request, [
           'matricule' => 'required',
           'name' => 'required|max:255',
@@ -224,7 +238,6 @@ class userController extends Controller
       // dd($request->all());
       try 
       {
-
         // dd($request->has('commissariat_id'), $request->has('grade_id'));
         $this->validate($request, [
           'options' => 'required',

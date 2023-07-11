@@ -43,7 +43,7 @@
               
               <div class="col-12 row mb-4">
                 @foreach($roles as $role)
-                <div class="col-4 mb-2">
+                <div class="col-6 mb-2">
                     
                     <label class="fs-4">{{ Form::checkbox('role_id[]', $role->id, false, array('class' => 'name')) }}                    
                         {{ $role->name }}  </label>  

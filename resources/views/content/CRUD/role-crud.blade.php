@@ -42,7 +42,7 @@
 @section('content')
 <h4 class="fw-bold py-3 mb-2">Liste des roles</h4>
 
-<p>Un role donne accès à des menus et des fonctionnailités prédefinis afin que, selon le role <br>
+<p>Un role donne accès à des menus et des fonctionnailités prédefinis afin que, selon le role 
    attribué, un administrateur puisse avoir accès à ce dont l'utilisateur a besoin.</p>
 <!-- Role cards -->
 <div class="row g-4">
@@ -67,29 +67,20 @@
   </div>
 
   @forelse ($roles as $role)
+  
+  @php
+    // Pour compter tous les utilisateurs qui ont le meme role name 
+    $roleName = $role->name;
+    $total = App\Models\User::whereHas('roles', function ($query) use ($roleName) {
+                            $query->where('name', $roleName);
+                            })->count();
+  @endphp
 
   <div class="col-xl-4 col-lg-6 col-md-6">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-between mb-2">
-          <h6 class="fw-normal">Total 4 users</h6>
-          <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Vinnie Mostowy" class="avatar avatar-sm pull-up">
-              <img class="rounded-circle" src="{{asset('assets/img/avatars/5.png')}}" alt="Avatar">
-            </li>
-            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Allen Rieske" class="avatar avatar-sm pull-up">
-              <img class="rounded-circle" src="{{asset('assets/img/avatars/12.png')}}" alt="Avatar">
-            </li>
-            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Julee Rossignol" class="avatar avatar-sm pull-up">
-              <img class="rounded-circle" src="{{asset('assets/img/avatars/6.png')}}" alt="Avatar">
-            </li>
-            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="Kaith D'souza" class="avatar avatar-sm pull-up">
-              <img class="rounded-circle" src="{{asset('assets/img/avatars/15.png')}}" alt="Avatar">
-            </li>
-            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title="John Doe" class="avatar avatar-sm pull-up">
-              <img class="rounded-circle" src="{{asset('assets/img/avatars/1.png')}}" alt="Avatar">
-            </li>
-          </ul>
+          <h6 class="fw-normal">Total users : {{ $total }}</h6>
         </div>
         <div class="d-flex justify-content-between align-items-end">
           <div class="role-heading">
@@ -119,27 +110,63 @@
 
   @endforelse
 
+  <hr>
+  <hr>
+
   <div class="col-12">
+    <h4 class="fw-bold py-3 mb-2">Liste des utilisateurs avec leurs roles</h4>
     <!-- Role Table -->
     <div class="card">
       <div class="card-datatable table-responsive">
         <table class="datatables-users table border-top">
           <thead>
-            {{-- @forelse ($roles as $role)
-
-            @empty
-
-            @endforelse --}}
             <tr>
-              <th></th>
+              <th>Matricule</th>
               <th>User</th>
               <th>Role</th>
-              <th>Plan</th>
-              <th>Billing</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th>Voir_User</th>
+              <th>Remove_role</th>
             </tr>
           </thead>
+          <tbody>
+            @forelse ($users as $user)
+              <tr>
+                <td>{{ $user->matricule }}</td> 
+                <td>{{ $user->name }}</td> 
+                @php
+                  $rols = Illuminate\Support\Facades\DB::table('model_has_roles')->where('model_id', $user->id)->get();
+                @endphp
+                <td>
+                  @forelse ($rols as $rol)
+                    @php
+                      $rm = Spatie\Permission\Models\Role::find($rol->role_id);
+                    @endphp 
+
+                    {{ $rm->name }} ||                  
+                  @empty
+                  Pas de role !
+                  @endforelse
+                </td>
+                <td> 
+                  <a href="{{ route('user-view') }}">
+                    <i class="bx bx-show-alt me-1"></i> 
+                  </a>
+                </td>                
+                <td> 
+                  <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#deleteRoleUser{{$user->id}}">
+                    <i class="bx bx-trash me-1"></i> 
+                  </a>
+                </td>
+                
+              </tr> 
+              <!-- Remove Role to user Modal -->
+                @include('_partials._modals._CRUD-ROLE.modal-rmv-roleto-user')
+              <!-- / Remove Role to user Modal -->
+            @empty
+              
+            @endforelse
+            
+          </tbody>
         </table>
       </div>
     </div>

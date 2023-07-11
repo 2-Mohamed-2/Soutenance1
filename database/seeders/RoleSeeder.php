@@ -24,7 +24,7 @@ class RoleSeeder extends Seeder
         ],
         $role4 = [
           'guard_name' => 'web',
-          'name' => 'Commissaire Adjoint',
+          'name' => 'Membre',
         ]
 
       ]);

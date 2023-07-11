@@ -35,26 +35,22 @@
         <tr>
           <th>Permission</th>
           <th>Creation</th>
-          <th>Actions</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
         @forelse ($permissions as $permission)
         <tr>
-          <td><strong>{{$permission->desc}}</strong></td>
+          <td><strong>{{$permission->name}}</strong></td>
 
           <td><strong>{{$permission->created_at->format('d-m-Y à H:i')}}</strong></td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#editPermissionModal{{$permission->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#deletePermissionModal{{$permission->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
               </div>
             </div>
-
-            {{-- Vue du modal de modification --}}
-            @include('_partials._modals._CRUD-PERMISSION.modal-edit-permission')
 
             {{-- Vue du modal de suppression --}}
            @include('_partials._modals._CRUD-PERMISSION.modal-delete-permission')
@@ -72,9 +68,4 @@
 </div>
 <!--/ Permission Table -->
 
-
-<!-- Modal -->
-@include('_partials._modals._CRUD-PERMISSION.modal-add-permission')
-
-<!-- /Modal -->
 @endsection
