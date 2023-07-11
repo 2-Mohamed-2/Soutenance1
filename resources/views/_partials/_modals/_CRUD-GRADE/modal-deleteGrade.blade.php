@@ -5,10 +5,10 @@
         <div class="modal-body">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="text-center mb-4">
-            <h3 class="mb-3">Suppression de Grade</h3>
+            <h3 class="mb-3">Suppression du grade</h3>
           </div>
 
-          <form id="enableOTPForm" class="row g-3" action="{{route('Grade.destroy', encrypt($grade->id))}}" method="POST">
+          <form id="enableOTPForm" class="row g-3" action="{{route('grd.destroy', encrypt($grade->id))}}" method="POST">
             @method('delete')
             @csrf
 

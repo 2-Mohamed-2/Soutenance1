@@ -5,11 +5,11 @@
         <div class="modal-body">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           <div class="text-center mb-4">
-            <h3 class="mb-5">Modification de Grade</h3>
+            <h3 class="mb-5">Modification du grade</h3>
           </div>
           <h6>Veuillez reverifier ces informations</h6>
 
-          <form id="enableOTPForm" class="row g-3" action="{{route('Grade.update', encrypt($grade->id))}}" method="POST">
+          <form id="enableOTPForm" class="row g-3" action="{{route('grd.update', encrypt($grade->id))}}" method="POST">
             @method('PUT')
             @csrf
 
@@ -20,6 +20,7 @@
                 <input required autocomplete="off" type="text" name="libelle" value="{{$grade->libelle}}" class="form-control" />
             </div>
             </div>
+            <br>
 
             <div class="col-12">
               <button type="submit" class="btn btn-primary me-sm-3 me-1">Modifier</button>

@@ -8,8 +8,10 @@ use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Models\Grade;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\MdpNotification;
+use Illuminate\Support\Facades\Auth;
 use Yudhatp\ActivityLogs\ActivityLogs;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -34,11 +36,22 @@ class userController extends Controller
      */
     public function index(Request $request)
     {      
+      if (!User::role(['Informaticien', 'Administrateur'])) {
+        $users = User::latest()->where([
+          ['id', '!=', '1'],
+          ['commissariat_id', Auth::user()->commissariat->id]
+          ])->get();
+        $roles = Role::all();
+        $comms = Commissariat::all();
+        $grades = Grade::all();
+        return view('content.CRUD.user-crud', compact('users','roles', 'comms', 'grades'));
+      }
+      
       $users = User::latest()->where('id', '!=', '1')->get();
       $roles = Role::all();
       $comms = Commissariat::all();
-
-      return view('content.CRUD.user-crud', compact('users','roles', 'comms'));
+      $grades = Grade::all();
+      return view('content.CRUD.user-crud', compact('users','roles', 'comms', 'grades'));
     }
 
     /**
@@ -208,35 +221,45 @@ class userController extends Controller
     // Fonction pour mettre a jour le commissariat des membres
     public function affecte_membres(Request $request)
     {
-      // dd('Bonjour');
+      // dd($request->all());
       try 
       {
 
-
+        // dd($request->has('commissariat_id'), $request->has('grade_id'));
         $this->validate($request, [
-          'commissariat_id' => 'required',
           'options' => 'required',
         ]);
-        
-        $options = $request->input('options');
 
-        foreach($options as $option)
-        {
-          $users = User::where('id', $option)->get();
-
-          foreach ($users as $user) {
-
-            $user->commissariat_id = $request->input('commissariat_id');
-            $user->save();
-
-            Alert::success('Réussite', 'Le membre a bien été affecté au commissariat choisi !');
-            return redirect()->back();
-
-          }
-
+        if ($request->has('commissariat_id') AND !$request->has('grade_id')) {
+          User::whereIn('id', $request->input('options'))->update(
+            ['commissariat_id' => $request->input('commissariat_id')]
+          );
+          Alert::success('Réussite', 'Le membre a bien été affecté au commissariat choisi !');
+          return redirect()->back();
         }
+        elseif ($request->has('grade_id') AND !$request->has('commissariat_id')) {
+          User::whereIn('id', $request->input('options'))->update(
+            ['grade_id' => $request->input('grade_id')]
+          );
+          Alert::success('Réussite', 'Le membre a bien été promu au grade choisi !');
+          return redirect()->back();
+        }
+        elseif ($request->has(['commissariat_id', 'grade_id'])) {
+          User::whereIn('id', $request->input('options'))->update([
+            'commissariat_id' => $request->input('commissariat_id'),
+            'grade_id' => $request->input('grade_id')
+          ]);
+          Alert::success('Réussite', 'Les promotions et affectations ont bien été effectuées !');
+          return redirect()->back();
+        }
+        else{
+          Alert::error('Echec', 'L\'affectation ou la promotion a échoué, veuillez revoir les entrées !');
+          return redirect()->back();
+        } 
+                
 
-      } catch (\Throwable $th) {
+      } 
+      catch (\Throwable $th) {
         Alert::error('Erreur', 'L\'opération a rencontré un problème !');
         return redirect('/Membre');
       }

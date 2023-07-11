@@ -77,7 +77,11 @@ class PermissionSeeder extends Seeder
         'dashboard-view',       //58
         'membre-affect',        //59
         'membre-active',        //60
-        'membre-desactive'        //61
+        'membre-desactive',        //61  
+        'citoyen-list',           //62
+        'citoyen-delete',         //63  
+        'citoyen-rmdp',            //64  Pour reinitialiser le password
+        'resi-pdf'                 //65   Pour generer le pdf
      ];
 
      foreach ($permissions as $permission) {

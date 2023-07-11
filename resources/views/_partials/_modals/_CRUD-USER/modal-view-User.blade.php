@@ -9,40 +9,40 @@
   
         <div class="mb-3">
           <label class="form-label" for="add-user-fullname">Matricule</label>
-          <input type="text" readonly autocomplete="off" value="{{$user->matricule}}" required class="form-control" id="add-user-fullname" placeholder="Matricule" name="matricule"/>
+          <input type="text" readonly autocomplete="off" value="{{$user->matricule}}" class="form-control"/>
         </div>
         <div class="mb-3">
           <label class="form-label" for="add-user-fullname">Nom complet</label>
-          <input type="text" readonly autocomplete="off" value="{{$user->name}}" required class="form-control" id="add-user-fullname" placeholder="Nom complet" name="name"/>
+          <input type="text" readonly autocomplete="off" value="{{$user->name}}" class="form-control"/>
         </div>
         <div class="mb-3">
-            <label class="form-label" for="add-user-fullname">Commissariat</label>
-            <input type="text" readonly autocomplete="off" value="{{$user->commissariat->libelle ?? "Pas encore affecté"}}" required class="form-control" id="add-user-fullname" placeholder="Nom complet" name="name"/>
+            <label class="form-label" for="add-user-fullname">Grade</label>
+            <input type="text" readonly autocomplete="off" value="{{$user->grade->libelle ?? "Pas encore affecté"}}" class="form-control"/>
         </div>
+        <div class="mb-3">
+          <label class="form-label" for="add-user-fullname">Commissariat</label>
+          <input type="text" readonly autocomplete="off" value="{{$user->commissariat->libelle ?? "Pas encore affecté"}}" class="form-control"/>
+      </div>
         <div class="mb-3">
             <label class="form-label" for="add-user-fullname">Section</label>
-            <input type="text" readonly autocomplete="off" value="{{$user->section->libelle ?? "Neutre "}}" required class="form-control" id="add-user-fullname" placeholder="Nom complet" name="name"/>
+            <input type="text" readonly autocomplete="off" value="{{$user->section->libelle ?? "Neutre "}}" class="form-control"/>
         </div>
         <div class="mb-3">
           <label class="form-label" for="add-user-email">Email</label>
-          <input type="text" readonly autocomplete="off" value="{{$user->email}}" required id="add-user-email" class="form-control" placeholder="police@police.com"
-            aria-label="john.doe@example.com" name="email" />
+          <input type="text" readonly autocomplete="off" value="{{$user->email}}" class="form-control"/>
         </div>
         <div class="mb-3">
           <label class="form-label" readonly for="add-user-contact">Contact</label>
-          <input type="tel" readonly id="spacee" value="{{$user->telephone}}" class="form-control" placeholder="00 00 00 00"  autocomplete="off" maxlength="11" name="telephone"/>
+          <input type="tel" readonly value="{{$user->telephone}}" class="form-control" />
         </div>
         <div class="mb-3">
-          <label class="form-label" for="country">Genre</label>
-          <select name="genre" readonly required class="form-select">
-            @if ($user->genre == "H")
-            <option selected value="H">Homme</option>
-            @elseif ($user->genre == "F")
-            <option value="F">Femme</option>
-            @endif
-          </select>
-        </div>
-      
+          <label class="form-label" readonly for="add-user-contact">Genre</label>
+          @if ($user->genre == "H")
+          <input type="text" readonly value="Homme" class="form-control" />
+          @elseif ($user->genre == "F")
+          <input type="text" readonly value="Femme" class="form-control" />
+          @endif
+        </div> 
     </div>
   </div>
   

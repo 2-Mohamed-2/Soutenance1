@@ -5,7 +5,7 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body mx-0 flex-grow-0">
-      <form id="enableOTPForm" class="row g-3" action="{{route('Grade.store')}}" method="POST">
+      <form id="enableOTPForm" class="row g-3" action="{{route('grd.store')}}" method="POST">
         @csrf
 
   
