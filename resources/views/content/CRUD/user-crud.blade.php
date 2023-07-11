@@ -40,8 +40,8 @@
     if (elementClique !== bouton && elementClique !== champ && elementClique !== champ1 && elementClique !== champ2 && elementClique !== champ3) {
       champ.style.display = 'none';
     }
-  });  
-</script> 
+  });
+</script>
 
 {{-- <script>
   // Sélectionner l'élément bouton et le champ de saisie
@@ -64,7 +64,7 @@
     if (elementCliques !== boutonn && elementCliques !== champp && elementCliques !== champp1 && elementCliques !== champp2 && elementCliques !== champp3) {
       champ.style.display = 'none';
     }
-  });  
+  });
 </script>  --}}
 
 <script>
@@ -94,53 +94,32 @@
     </div> --}}
     <div>
       <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
-        Créer un nouveau membre    
+        Créer un nouveau membre
       </button>
     </div>
-    
+
     {{-- Vue du modal d'insertion --}}
     @include('_partials._modals._CRUD-USER.modal-add-User')
-    
-    <div>
+
+    {{-- <div>
       <button class="btn btn-info" id="bouton2">
-        Graduation    
-      </button> 
-    </div>
+        Graduation
+      </button>
+    </div> --}}
 
     <div>
       <button class="btn btn-info" id="bouton">
-        Affectation    
-      </button> 
+        Affectation
+      </button>
     </div>
-    
+
   </div>
 
 {{-- Formulaire pour la graduation des membres --}}
-  <form method="POST" id="test2" action="{{ route('aff-mbr') }}">
-    @method('PUT')
-    @csrf  
-    <div class="p-2 d-flex justify-content-end" >
-      <div class="mb-3" id="champp" style="display: none;">
-        <label class="form-label fs-6" for="country">Selectionner le commissariat de destination</label>
-        <select id="champp1" name="commissariat_id" required class="form-select">
-          <option selected disabled>Commissariat cible</option>
-          @forelse ($comms as $comm)
-              <option id="champp2" value="{{ $comm->id }}">{{ $comm->sigle }} de {{ $comm->localite }}</option>                
-          @empty
-              
-          @endforelse
-        </select>
-        <br>
-        <div class="d-flex justify-content-center">
-          <button class="btn btn-secondary" type="submit" form="test" id="champp3">
-            Effectuer    
-          </button> 
-        </div>
-      </div>
-      
-    </div>
+  
 
- {{-- Formulaire pour affectation aux commissariats --}}
+
+    {{-- Formulaire pour affectation aux commissariats --}}
   <form method="POST" id="test" action="{{ route('aff-mbr') }}">
   @method('PUT')
   @csrf
@@ -151,22 +130,22 @@
       <select id="champ1" name="commissariat_id" required class="form-select">
         <option selected disabled>Commissariat cible</option>
         @forelse ($comms as $comm)
-            <option id="champ2" value="{{ $comm->id }}">{{ $comm->sigle }} de {{ $comm->localite }}</option>                
+            <option id="champ2" value="{{ $comm->id }}">{{ $comm->sigle }} de {{ $comm->localite }}</option>
         @empty
-            
+
         @endforelse
       </select>
       <br>
       <div class="d-flex justify-content-center">
         <button class="btn btn-secondary" type="submit" form="test" id="champ3">
-          Effectuer    
-        </button> 
+          Effectuer
+        </button>
       </div>
     </div>
-    
+
   </div>
-  
-  
+
+
   <div class="card-datatable table-responsive text-nowrap">
     <table class="dt-fixedheader table border-top">
       <thead>
@@ -195,8 +174,8 @@
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userRole{{$user->id}}"><i class="bx bx-check-shield me-1"></i> Roles</a>
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userUpdt{{$user->id}}" aria-controls="offcanvasEnd"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 @if ($user->isActive == 1)
-                  <a class="dropdown-item text-danger" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userDesact{{$user->id}}"><i class="bx bx-stop-circle me-1"></i> Desactiver</a>                  
-                @else                  
+                  <a class="dropdown-item text-danger" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userDesact{{$user->id}}"><i class="bx bx-stop-circle me-1"></i> Desactiver</a>
+                @else
                   <a class="dropdown-item text-success" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userAct{{$user->id}}"><i class="bx bx-play-circle me-1"></i> Activer</a>
                 @endif
                 <a class="dropdown-item text-danger" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userDst{{$user->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>

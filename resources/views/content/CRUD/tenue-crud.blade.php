@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Tables - Basic Tables')
+@section('title', 'Tenue')
 
 @section('content')
 <h4 class="fw-bold py-3 mb-4">
