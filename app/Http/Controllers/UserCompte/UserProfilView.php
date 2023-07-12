@@ -64,7 +64,7 @@ class UserProfilView extends Controller
           # code...
         }
 
-        Alert::success('Réussite', 'Votre demande a bien été envoyée !');
+        Alert::success('Réussite', 'Votre demande a bien été envoyée ! Vous receverez un email dans les 10 prochains jours et si tel n\'est pas le cas, sachez que votre ');
         return redirect('/Compte/Profil');
       } else {
         Alert::error('Erreur', 'L\operation a rencontre une erreur !');

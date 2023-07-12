@@ -61,7 +61,7 @@
 
             {{-- button pour demander une affectation --}}
             @if (Auth::user()->commissariat_id != 0)                
-              <button class="btn btn-info text-nowrap cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#addArme" aria-controls="offcanvasEnd">
+              <button class="btn btn-info text-nowrap cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#dmdeAffect" aria-controls="offcanvasEnd">
                 <i class='bx bx-user-x'></i> Demander une affectation              
               </button>            
             @endif
@@ -87,19 +87,6 @@
   </div>
 </div>
 <!--/ Header -->
-
-<!-- Navbar pills -->
-{{-- <div class="row">
-  <div class="col-md-12">
-    <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-      <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class='bx bx-user'></i> Profile</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{url('pages/profile-teams')}}"><i class='bx bx-group'></i> Teams</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{url('pages/profile-projects')}}"><i class='bx bx-grid-alt'></i> Projects</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{url('pages/profile-connections')}}"><i class='bx bx-link-alt'></i> Connections</a></li>
-    </ul>
-  </div>
-</div> --}}
-<!--/ Navbar pills -->
 
 <!-- User Profile Content -->
 <div class="row">

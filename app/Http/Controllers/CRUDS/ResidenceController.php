@@ -26,7 +26,8 @@ class ResidenceController extends Controller
 
     public function ResiView()
     {
-      if (User::role(['Informaticien', 'Administrateur'])) 
+      $user = Auth::user();
+      if ($user->hasanyrole('Informaticien', 'Administrateur')) 
       {
         $resis = Residence::latest()->get();
         $inconnus = Inconnu::latest()->get();
@@ -35,9 +36,18 @@ class ResidenceController extends Controller
         return view('content.CRUD.resi-crud', compact('resis', 'inconnus','comms'));
 
       }
-      else {
+      elseif ($user->hasrole('Commissaire')) {
 
-        $resis = Residence::where('commissariat_id', Auth::user()->id)->latest()->get();
+        $resis = Residence::where('commissariat_id', '=', Auth::user()->commissariat->id)->latest()->get();
+        $inconnus = Inconnu::latest()->get();
+        $comms = Commissariat::latest()->get();
+
+        return view('content.CRUD.resi-crud', compact('resis', 'inconnus','comms'));
+
+      }
+      elseif ($user->hasrole('Membre')) {
+
+        $resis = Residence::where('commissariat_id', '=', Auth::user()->commissariat->id)->latest()->get();
         $inconnus = Inconnu::latest()->get();
         $comms = Commissariat::latest()->get();
 

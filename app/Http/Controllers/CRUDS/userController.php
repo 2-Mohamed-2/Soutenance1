@@ -38,24 +38,29 @@ class userController extends Controller
     {     
       $user = Auth::user();
 
-      if ($user->hasanyrole('Commissaire', 'Membre')) {
-        $users = User::latest()->where([
-          ['id', '!=', '1'],
-          ['commissariat_id', Auth::user()->commissariat->id]
-          ])->get();
+      if ($user->hasrole('Commissaire')) {
+        $users = User::latest()->where('commissariat_id', Auth::user()->commissariat->id)
+                      ->whereDoesntHave('roles', function ($query){
+                        $query->whereIn('name', ['Informaticien', 'Administrateur','Commissaire']);
+                      })->get();
         $comms = Commissariat::all();
         $grades = Grade::all();
         return view('content.CRUD.user-crud', compact('users','comms', 'grades'));
       }
-      elseif($user->hasrole('Administrateur')) {
-        $users = User::latest()->where('id', '!=', '1')->get();
+      elseif($user->hasrole('Administrateur')) 
+      {
+        $users = User::latest()
+                      ->whereDoesntHave('roles', function ($query){
+                        $query->whereIn('name', ['Informaticien', 'Administrateur']);
+                      })->get();
         $roles_exclus = ['Informaticien','Administrateur'];
         $roles = Role::whereNotIn('name', $roles_exclus)->get();
         $comms = Commissariat::all();
         $grades = Grade::all();
         return view('content.CRUD.user-crud', compact('users','roles', 'comms', 'grades'));
       }
-      elseif($user->hasrole('Informaticien')) {
+      elseif($user->hasrole('Informaticien')) 
+      {
         $users = User::latest()->get();
         $roles = Role::latest()->get();
         $comms = Commissariat::all();

@@ -5,7 +5,7 @@
       "name": "Accueil",
       "icon": "menu-icon tf-icons bx bx-home-circle",
       "slug": "dashboard-analytics",
-      "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
+      "role": "Informaticien|Administrateur|Commissaire|Membre"
     },
 
     {
@@ -13,7 +13,7 @@
       "name": "Membre",
       "icon": "menu-icon tf-icons fa fa-person",
       "slug": "user-view",
-      "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
+      "role": "Informaticien|Administrateur|Commissaire"
     },
 
     {
@@ -35,7 +35,7 @@
       "name": "Residence",
       "icon": "menu-icon tf-icons fa fa-file",
       "slug": "resi-view",
-      "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint"
+      "role": "Informaticien|Administrateur|Commissaire|Membre"
     },
 
     {
@@ -147,7 +147,7 @@
       "name": "Compte",
       "icon": "menu-icon tf-icons bx bx-collection",
       "slug": "compte",
-      "role": "Informaticien|Administrateur|Commissaire|Commissaire Adjoint",
+      "role": "Informaticien|Administrateur|Commissaire|Membre",
 
       "submenu": [
         {
