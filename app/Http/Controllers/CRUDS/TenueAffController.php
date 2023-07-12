@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\CRUDS;
 
+use Carbon\Carbon;
 use App\Models\Tenue;
 use App\Models\TenueAff;
 use App\Models\Commissariat;
@@ -28,7 +29,13 @@ class TenueAffController extends Controller
   public function index()
   {
     //
+    $tenueaffs = TenueAff::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count ')
+                                ->where('created_at', '>=', Carbon::now()->subMonths(12))
+                                ->groupBy('mois')
+                                ->orderBy('mois')
+                                ->get()->toArray();
     $tenueaffs = TenueAff::all();
+    // dd($tenueaffs);
     $comms = Commissariat::all();
     $tenue = Tenue::all();
     return view('content.CRUD.tenueaff-crud', compact('tenueaffs', 'comms', 'tenue'));

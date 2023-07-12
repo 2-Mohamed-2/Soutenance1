@@ -51,7 +51,7 @@ Route::post('/Citoyen/Create', [VisitorsInconnuController::class, 'store'])->nam
 //Pour la connexion du citoyen
 Route::post('/vlogin', [InconnuConnexionController::class, 'test'])->name('vlogin');
 
-        //Pour la vue du profil et l'update du mot de passe 
+        //Pour la vue du profil et l'update du mot de passe
 
 // Pour la demande de residence
 Route::post('/Citoyen/Residence', [VisitorsInconnuController::class, 'residence_store'])->name('citresistore')->middleware(['auth:inconnu']);
@@ -138,7 +138,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       // Route pour le crud du user
       Route::resource('/Mbr', userController::class)
               ->middleware('role:Informaticien|Administrateur');
-        
+
         // Attribuer un role a un membre
       Route::put('/Affecte/Membre', [userController::class, 'affecte_membres'])->name('aff-mbr')
       ->middleware('role:Informaticien|Administrateur');
@@ -146,7 +146,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         // Desactiver le compte membre
       Route::put('/Desactivation/{id}', [userController::class, 'desact_user'])->name('desact-mbr')
       ->middleware('role:Informaticien|Administrateur');
-        
+
         // Activer le compte membre
       Route::put('/Activation/{id}', [userController::class, 'active_user'])->name('active-mbr')
       ->middleware('role:Informaticien|Administrateur');
@@ -238,6 +238,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
       Route::get('/Citoyen', [InconnuController::class, 'IncoView'])->name('inco-view')
               ->middleware('role:Informaticien|Administrateur');
 
+      //Statistique
+      Route::get('/statistique', [Analytics::class, 'statistique'])
+              ->middleware('role:Informaticien|Administrateur');
+
       Route::resource('/Inco', InconnuController::class)
               ->middleware('role:Informaticien|Administrateur');
 
@@ -277,7 +281,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Alert::error('403', 'La page demandee est introuvable');
         return redirect()->back();
     })->name('403');
-    
+
 
 });
 

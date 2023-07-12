@@ -15,10 +15,15 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('page-script')
-<script src="{{asset('assets/js/dashboards-analytics.js')}}"></script>
+
+<script src="{{asset('assets/js/dashboards-analytics.blade.php')}}"></script>
+<!-- Votre vue HTML ici -->
+
+
 @endsection
 
 @section('content')
+
 <div class="row">
   <div class="col-lg-8 mb-4 order-0">
     <div class="card">
@@ -47,7 +52,7 @@ $configData = Helper::appClasses();
             <span class="d-block fw-semibold mb-1">Membres</span>
             <h3 class="card-title mb-1">{{$usernbr}}</h3>
           </div>
-          <div id="orderChart" class="mb-3"></div>
+           <div id="orderChart" class="mb-3"></div>
         </div>
       </div>
       <div class="col-lg-6 col-md-12 col-6 mb-4">
@@ -80,48 +85,48 @@ $configData = Helper::appClasses();
     <div class="card">
       <div class="row row-bordered g-0">
         <div class="col-md-8">
-          <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
+          <h5 class="card-header m-0 me-2 pb-3">Evolution des affectations de Tenue</h5>
           <div id="totalRevenueChart" class="px-2"></div>
         </div>
-        <div class="col-md-4">
-          <div class="card-body">
-            <div class="text-center">
-              <div class="dropdown">
-                <button class="btn btn-sm btn-label-primary dropdown-toggle" type="button" id="growthReportId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{-- <div class="col-md-4"> --}}
+          {{-- <div class="card-body"> --}}
+            {{-- <div class="text-center"> --}}
+              {{-- <div class="dropdown"> --}}
+                {{-- <button class="btn btn-sm btn-label-primary dropdown-toggle" type="button" id="growthReportId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   2022
-                </button>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
+                </button> --}}
+                {{-- <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
                   <a class="dropdown-item" href="javascript:void(0);">2021</a>
                   <a class="dropdown-item" href="javascript:void(0);">2020</a>
                   <a class="dropdown-item" href="javascript:void(0);">2019</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="growthChart"></div>
-          <div class="text-center fw-semibold pt-3 mb-2">62% Company Growth</div>
+                </div> --}}
+              {{-- </div> --}}
+            {{-- </div> --}}
+          {{-- </div> --}}
+          {{-- <div id="growthChart"></div>
+          <div class="text-center fw-semibold pt-3 mb-2">62% Company Growth</div> --}}
 
-          <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-            <div class="d-flex">
-              <div class="me-2">
+          {{-- <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between"> --}}
+            {{-- <div class="d-flex"> --}}
+              {{-- <div class="me-2">
                 <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
-              </div>
-              <div class="d-flex flex-column">
+              </div> --}}
+              {{-- <div class="d-flex flex-column">
                 <small>2022</small>
                 <h6 class="mb-0">$32.5k</h6>
-              </div>
-            </div>
-            <div class="d-flex">
-              <div class="me-2">
+              </div> --}}
+            {{-- </div> --}}
+            {{-- <div class="d-flex"> --}}
+              {{-- <div class="me-2">
                 <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
-              </div>
-              <div class="d-flex flex-column">
+              </div> --}}
+              {{-- <div class="d-flex flex-column">
                 <small>2021</small>
                 <h6 class="mb-0">$41.2k</h6>
-              </div>
-            </div>
-          </div>
-        </div>
+              </div> --}}
+            {{-- </div> --}}
+          {{-- </div> --}}
+        {{-- </div> --}}
       </div>
     </div>
   </div>
@@ -162,7 +167,7 @@ $configData = Helper::appClasses();
       </div>
       <!-- </div>
     <div class="row"> -->
-      <div class="col-12 mb-4">
+      {{-- <div class="col-12 mb-4">
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
@@ -180,13 +185,14 @@ $configData = Helper::appClasses();
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
   </div>
 </div>
-<div class="row">
+
+{{-- <div class="row"> --}}
   <!-- Order Statistics -->
-  <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+  {{-- <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
     <div class="card h-100">
       <div class="card-header d-flex align-items-center justify-content-between pb-0">
         <div class="card-title mb-0">
@@ -272,11 +278,11 @@ $configData = Helper::appClasses();
         </ul>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ Order Statistics -->
 
   <!-- Expense Overview -->
-  <div class="col-md-6 col-lg-4 order-1 mb-4">
+  {{-- <div class="col-md-6 col-lg-4 order-1 mb-4">
     <div class="card h-100">
       <div class="card-header">
         <ul class="nav nav-pills" role="tablist">
@@ -323,11 +329,11 @@ $configData = Helper::appClasses();
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ Expense Overview -->
 
   <!-- Transactions -->
-  <div class="col-md-6 col-lg-4 order-2 mb-4">
+  {{-- <div class="col-md-6 col-lg-4 order-2 mb-4">
     <div class="card h-100">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="card-title m-0 me-2">Transactions</h5>
@@ -431,10 +437,10 @@ $configData = Helper::appClasses();
         </ul>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ Transactions -->
   <!-- Activity Timeline -->
-  <div class="col-md-12 col-lg-6 order-4 order-lg-3 ">
+  {{-- <div class="col-md-12 col-lg-6 order-4 order-lg-3 ">
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="card-title m-0 me-2">Activity Timeline</h5>
@@ -521,10 +527,10 @@ $configData = Helper::appClasses();
         <!-- /Activity Timeline -->
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ Activity Timeline -->
   <!-- pill table -->
-  <div class="col-md-6 order-3 order-lg-4 mb-4 mb-lg-0">
+  {{-- <div class="col-md-6 order-3 order-lg-4 mb-4 mb-lg-0">
     <div class="card text-center">
       <div class="card-header py-3">
         <ul class="nav nav-pills" role="tablist">
@@ -1022,7 +1028,851 @@ $configData = Helper::appClasses();
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ pill table -->
-</div>
+{{-- </div> --}}
+
+ <script>
+  //bar-charts
+  /**
+  * Dashboard Analytics
+  */
+
+  'use strict';
+
+  (function () {
+  let cardColor, headingColor, legendColor, labelColor, shadeColor, borderColor;
+
+  if (isDarkStyle) {
+  cardColor = config.colors_dark.cardColor;
+  headingColor = config.colors_dark.headingColor;
+  legendColor = config.colors_dark.bodyColor;
+  labelColor = config.colors_dark.textMuted;
+  borderColor = config.colors_dark.borderColor;
+  } else {
+  cardColor = config.colors.cardColor;
+  headingColor = config.colors.headingColor;
+  legendColor = config.colors.bodyColor;
+  labelColor = config.colors.textMuted;
+  borderColor = config.colors.borderColor;
+  }
+
+  // Order Area Chart
+  // --------------------------------------------------------------------
+  const orderAreaChartEl = document.querySelector('#orderChart'),
+  orderAreaChartConfig = {
+  chart: {
+  height: 80,
+  type: 'area',
+  toolbar: {
+  show: false
+  },
+  sparkline: {
+  enabled: true
+  }
+  },
+  markers: {
+  size: 6,
+  colors: 'transparent',
+  strokeColors: 'transparent',
+  strokeWidth: 4,
+  discrete: [
+  {
+  fillColor: config.colors.white,
+  seriesIndex: 0,
+  dataPointIndex: 6,
+  strokeColor: config.colors.success,
+  strokeWidth: 2,
+  size: 6,
+  radius: 8
+  }
+  ],
+  hover: {
+  size: 7
+  }
+  },
+  grid: {
+  show: false,
+  padding: {
+  right: 8
+  }
+  },
+  colors: [config.colors.success],
+  fill: {
+  type: 'gradient',
+  gradient: {
+  shade: shadeColor,
+  shadeIntensity: 0.8,
+  opacityFrom: 0.8,
+  opacityTo: 0.25,
+  stops: [0, 85, 100]
+  }
+  },
+  dataLabels: {
+  enabled: false
+  },
+  stroke: {
+  width: 2,
+  curve: 'smooth'
+  },
+  series: [
+  {
+  data: [180, 175, 275, 140, 205, 190, 295]
+  }
+  ],
+  xaxis: {
+  show: false,
+  lines: {
+  show: false
+  },
+  labels: {
+  show: false
+  },
+  stroke: {
+  width: 0
+  },
+  axisBorder: {
+  show: false
+  }
+  },
+  yaxis: {
+  stroke: {
+  width: 0
+  },
+  show: false
+  }
+  };
+  if (typeof orderAreaChartEl !== undefined && orderAreaChartEl !== null) {
+  const orderAreaChart = new ApexCharts(orderAreaChartEl, orderAreaChartConfig);
+  orderAreaChart.render();
+  }
+
+  // Total Revenue Report Chart - Bar Chart
+  // --------------------------------------------------------------------
+  const totalRevenueChartEl = document.querySelector('#totalRevenueChart'),
+  totalRevenueChartOptions = {
+  series: [
+  {
+  name: '2021',
+  data: [18, 7, 15, 29, 18, 12, 9]
+  },
+  {
+  name: '2020',
+  data: [-13, -18, -9, -14, -5, -17, -15]
+  }
+  ],
+  chart: {
+  height: 300,
+  stacked: true,
+  type: 'bar',
+  toolbar: { show: false }
+  },
+  plotOptions: {
+  bar: {
+  horizontal: false,
+  columnWidth: '33%',
+  borderRadius: 12,
+  startingShape: 'rounded',
+  endingShape: 'rounded'
+  }
+  },
+  colors: [config.colors.primary, config.colors.info],
+  dataLabels: {
+  enabled: false
+  },
+  stroke: {
+  curve: 'smooth',
+  width: 6,
+  lineCap: 'round',
+  colors: [cardColor]
+  },
+  legend: {
+  show: true,
+  horizontalAlign: 'left',
+  position: 'top',
+  markers: {
+  height: 8,
+  width: 8,
+  radius: 12,
+  offsetX: -3
+  },
+  labels: {
+  colors: legendColor
+  },
+  itemMargin: {
+  horizontal: 10
+  }
+  },
+  grid: {
+  borderColor: borderColor,
+  padding: {
+  top: 0,
+  bottom: -8,
+  left: 20,
+  right: 20
+  }
+  },
+  xaxis: {
+  categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+  labels: {
+  style: {
+  fontSize: '13px',
+  colors: labelColor
+  }
+  },
+  axisTicks: {
+  show: false
+  },
+  axisBorder: {
+  show: false
+  }
+  },
+  yaxis: {
+  labels: {
+  style: {
+  fontSize: '13px',
+  colors: labelColor
+  }
+  }
+  },
+  responsive: [
+  {
+  breakpoint: 1700,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '32%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 1580,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '35%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 1440,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '42%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 1300,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '48%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 1200,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '40%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 1040,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 11,
+  columnWidth: '48%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 991,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '30%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 840,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '35%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 768,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '28%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 640,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '32%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 576,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '37%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 480,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '45%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 420,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '52%'
+  }
+  }
+  }
+  },
+  {
+  breakpoint: 380,
+  options: {
+  plotOptions: {
+  bar: {
+  borderRadius: 10,
+  columnWidth: '60%'
+  }
+  }
+  }
+  }
+  ],
+  states: {
+  hover: {
+  filter: {
+  type: 'none'
+  }
+  },
+  active: {
+  filter: {
+  type: 'none'
+  }
+  }
+  }
+  };
+  if (typeof totalRevenueChartEl !== undefined && totalRevenueChartEl !== null) {
+  const totalRevenueChart = new ApexCharts(totalRevenueChartEl, totalRevenueChartOptions);
+  totalRevenueChart.render();
+  }
+
+  // Growth Chart - Radial Bar Chart
+  // --------------------------------------------------------------------
+  const growthChartEl = document.querySelector('#growthChart'),
+  growthChartOptions = {
+  series: [78],
+  labels: ['Growth'],
+  chart: {
+  height: 240,
+  type: 'radialBar'
+  },
+  plotOptions: {
+  radialBar: {
+  size: 150,
+  offsetY: 10,
+  startAngle: -150,
+  endAngle: 150,
+  hollow: {
+  size: '55%'
+  },
+  track: {
+  background: cardColor,
+  strokeWidth: '100%'
+  },
+  dataLabels: {
+  name: {
+  offsetY: 15,
+  color: legendColor,
+  fontSize: '15px',
+  fontWeight: '600',
+  fontFamily: 'Public Sans'
+  },
+  value: {
+  offsetY: -25,
+  color: headingColor,
+  fontSize: '22px',
+  fontWeight: '500',
+  fontFamily: 'Public Sans'
+  }
+  }
+  }
+  },
+  colors: [config.colors.primary],
+  fill: {
+  type: 'gradient',
+  gradient: {
+  shade: 'dark',
+  shadeIntensity: 0.5,
+  gradientToColors: [config.colors.primary],
+  inverseColors: true,
+  opacityFrom: 1,
+  opacityTo: 0.6,
+  stops: [30, 70, 100]
+  }
+  },
+  stroke: {
+  dashArray: 5
+  },
+  grid: {
+  padding: {
+  top: -35,
+  bottom: -10
+  }
+  },
+  states: {
+  hover: {
+  filter: {
+  type: 'none'
+  }
+  },
+  active: {
+  filter: {
+  type: 'none'
+  }
+  }
+  }
+  };
+  if (typeof growthChartEl !== undefined && growthChartEl !== null) {
+  const growthChart = new ApexCharts(growthChartEl, growthChartOptions);
+  growthChart.render();
+  }
+
+  // Revenue Bar Chart
+  // --------------------------------------------------------------------
+  const revenueBarChartEl = document.querySelector('#revenueChart'),
+  revenueBarChartConfig = {
+  chart: {
+  height: 80,
+  type: 'bar',
+  toolbar: {
+  show: false
+  }
+  },
+  plotOptions: {
+  bar: {
+  barHeight: '80%',
+  columnWidth: '75%',
+  startingShape: 'rounded',
+  endingShape: 'rounded',
+  borderRadius: 2,
+  distributed: true
+  }
+  },
+  grid: {
+  show: false,
+  padding: {
+  top: -20,
+  bottom: -12,
+  left: -10,
+  right: 0
+  }
+  },
+  colors: [
+  config.colors_label.primary,
+  config.colors_label.primary,
+  config.colors_label.primary,
+  config.colors_label.primary,
+  config.colors.primary,
+  config.colors_label.primary,
+  config.colors_label.primary
+  ],
+  dataLabels: {
+  enabled: false
+  },
+  series: [
+  {
+  data: [40, 95, 60, 45, 90, 50, 75]
+  }
+  ],
+  legend: {
+  show: false
+  },
+  xaxis: {
+  categories: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+  axisBorder: {
+  show: false
+  },
+  axisTicks: {
+  show: false
+  },
+  labels: {
+  style: {
+  colors: labelColor,
+  fontSize: '13px'
+  }
+  }
+  },
+  yaxis: {
+  labels: {
+  show: false
+  }
+  }
+  };
+  if (typeof revenueBarChartEl !== undefined && revenueBarChartEl !== null) {
+  const revenueBarChart = new ApexCharts(revenueBarChartEl, revenueBarChartConfig);
+  revenueBarChart.render();
+  }
+
+  // Profit Report Line Chart
+  // --------------------------------------------------------------------
+  const profileReportChartEl = document.querySelector('#profileReportChart'),
+  profileReportChartConfig = {
+  chart: {
+  height: 80,
+  // width: 175,
+  type: 'line',
+  toolbar: {
+  show: false
+  },
+  dropShadow: {
+  enabled: true,
+  top: 10,
+  left: 5,
+  blur: 3,
+  color: config.colors.warning,
+  opacity: 0.15
+  },
+  sparkline: {
+  enabled: true
+  }
+  },
+  grid: {
+  show: false,
+  padding: {
+  right: 8
+  }
+  },
+  colors: [config.colors.warning],
+  dataLabels: {
+  enabled: false
+  },
+  stroke: {
+  width: 5,
+  curve: 'smooth'
+  },
+  series: [
+  {
+  data: [110, 270, 145, 245, 205, 285]
+  }
+  ],
+  xaxis: {
+  show: false,
+  lines: {
+  show: false
+  },
+  labels: {
+  show: false
+  },
+  axisBorder: {
+  show: false
+  }
+  },
+  yaxis: {
+  show: false
+  }
+  };
+  if (typeof profileReportChartEl !== undefined && profileReportChartEl !== null) {
+  const profileReportChart = new ApexCharts(profileReportChartEl, profileReportChartConfig);
+  profileReportChart.render();
+  }
+
+  // Order Statistics Chart
+  // --------------------------------------------------------------------
+  const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
+  orderChartConfig = {
+  chart: {
+  height: 165,
+  width: 130,
+  type: 'donut'
+  },
+  labels: ['Electronic', 'Sports', 'Decor', 'Fashion'],
+  series: [85, 15, 50, 50],
+  colors: [config.colors.primary, config.colors.secondary, config.colors.info, config.colors.success],
+  stroke: {
+  width: 5,
+  colors: cardColor
+  },
+  dataLabels: {
+  enabled: false,
+  formatter: function (val, opt) {
+  return parseInt(val) + '%';
+  }
+  },
+  legend: {
+  show: false
+  },
+  grid: {
+  padding: {
+  top: 0,
+  bottom: 0,
+  right: 15
+  }
+  },
+  plotOptions: {
+  pie: {
+  donut: {
+  size: '75%',
+  labels: {
+  show: true,
+  value: {
+  fontSize: '1.5rem',
+  fontFamily: 'Public Sans',
+  color: headingColor,
+  offsetY: -15,
+  formatter: function (val) {
+  return parseInt(val) + '%';
+  }
+  },
+  name: {
+  offsetY: 20,
+  fontFamily: 'Public Sans'
+  },
+  total: {
+  show: true,
+  fontSize: '0.8125rem',
+  color: legendColor,
+  label: 'Weekly',
+  formatter: function (w) {
+  return '38%';
+  }
+  }
+  }
+  }
+  }
+  }
+  };
+  if (typeof chartOrderStatistics !== undefined && chartOrderStatistics !== null) {
+  const statisticsChart = new ApexCharts(chartOrderStatistics, orderChartConfig);
+  statisticsChart.render();
+  }
+
+  // Income Chart - Area chart
+  // --------------------------------------------------------------------
+  const incomeChartEl = document.querySelector('#incomeChart'),
+  incomeChartConfig = {
+  series: [
+  {
+  data: [24, 21, 30, 22, 42, 26, 35, 29]
+  }
+  ],
+  chart: {
+  height: 215,
+  parentHeightOffset: 0,
+  parentWidthOffset: 0,
+  toolbar: {
+  show: false
+  },
+  type: 'area'
+  },
+  dataLabels: {
+  enabled: false
+  },
+  stroke: {
+  width: 2,
+  curve: 'smooth'
+  },
+  legend: {
+  show: false
+  },
+  markers: {
+  size: 6,
+  colors: 'transparent',
+  strokeColors: 'transparent',
+  strokeWidth: 4,
+  discrete: [
+  {
+  fillColor: config.colors.white,
+  seriesIndex: 0,
+  dataPointIndex: 7,
+  strokeColor: config.colors.primary,
+  strokeWidth: 2,
+  size: 6,
+  radius: 8
+  }
+  ],
+  hover: {
+  size: 7
+  }
+  },
+  colors: [config.colors.primary],
+  fill: {
+  type: 'gradient',
+  gradient: {
+  shade: shadeColor,
+  shadeIntensity: 0.6,
+  opacityFrom: 0.5,
+  opacityTo: 0.25,
+  stops: [0, 95, 100]
+  }
+  },
+  grid: {
+  borderColor: borderColor,
+  strokeDashArray: 3,
+  padding: {
+  top: -20,
+  bottom: -8,
+  left: -10,
+  right: 8
+  }
+  },
+  xaxis: {
+  categories: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+  axisBorder: {
+  show: false
+  },
+  axisTicks: {
+  show: false
+  },
+  labels: {
+  show: true,
+  style: {
+  fontSize: '13px',
+  colors: labelColor
+  }
+  }
+  },
+  yaxis: {
+  labels: {
+  show: false
+  },
+  min: 10,
+  max: 50,
+  tickAmount: 4
+  }
+  };
+  if (typeof incomeChartEl !== undefined && incomeChartEl !== null) {
+  const incomeChart = new ApexCharts(incomeChartEl, incomeChartConfig);
+  incomeChart.render();
+  }
+
+  // Expenses Mini Chart - Radial Chart
+  // --------------------------------------------------------------------
+  const weeklyExpensesEl = document.querySelector('#expensesOfWeek'),
+  weeklyExpensesConfig = {
+  series: [65],
+  chart: {
+  width: 60,
+  height: 60,
+  type: 'radialBar'
+  },
+  plotOptions: {
+  radialBar: {
+  startAngle: 0,
+  endAngle: 360,
+  strokeWidth: '8',
+  hollow: {
+  margin: 2,
+  size: '45%'
+  },
+  track: {
+  strokeWidth: '50%',
+  background: borderColor
+  },
+  dataLabels: {
+  show: true,
+  name: {
+  show: false
+  },
+  value: {
+  formatter: function (val) {
+  return '$' + parseInt(val);
+  },
+  offsetY: 5,
+  color: '#697a8d',
+  fontSize: '13px',
+  show: true
+  }
+  }
+  }
+  },
+  fill: {
+  type: 'solid',
+  colors: config.colors.primary
+  },
+  stroke: {
+  lineCap: 'round'
+  },
+  grid: {
+  padding: {
+  top: -10,
+  bottom: -15,
+  left: -10,
+  right: -10
+  }
+  },
+  states: {
+  hover: {
+  filter: {
+  type: 'none'
+  }
+  },
+  active: {
+  filter: {
+  type: 'none'
+  }
+  }
+  }
+  };
+  if (typeof weeklyExpensesEl !== undefined && weeklyExpensesEl !== null) {
+  const weeklyExpenses = new ApexCharts(weeklyExpensesEl, weeklyExpensesConfig);
+  weeklyExpenses.render();
+  }
+  })();
+ </script>
+
 @endsection
+
+
