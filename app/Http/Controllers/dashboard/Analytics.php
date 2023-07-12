@@ -35,6 +35,10 @@ class Analytics extends Controller
                         $query->whereIn('name', ['Informaticien', 'Administrateur']);
                       })->get();
       $usernbr = $users->count();
+      $comms = Commissariat::all();
+      $commnbr = $comms->count();
+  
+      return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr'));
     } 
     elseif ($user->hasrole('Administrateur')) 
     {
@@ -43,18 +47,23 @@ class Analytics extends Controller
                         $query->whereIn('name', ['Informaticien']);
                       })->get();
       $usernbr = $users->count();
+      $comms = Commissariat::all();
+      $commnbr = $comms->count();
+  
+      return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr'));
     }
     elseif ($user->hasrole('Informaticien')) 
     {
             
       $users = User::all();
       $usernbr = $users->count();
+      $comms = Commissariat::all();
+      $commnbr = $comms->count();
+  
+      return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr'));
     }
 
-    $user = Auth::user();
-    $comms = Commissariat::all();
-    $commnbr = $comms->count();
+    return view('content.dashboard.dashboards-principal');
 
-    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr'));
   }
 }

@@ -92,7 +92,6 @@ class AttemptToAuthenticate
 
         if (! $user) {
             $this->fireFailedEvent($request);
-
             return $this->throwFailedAuthenticationException($request);
         }
 

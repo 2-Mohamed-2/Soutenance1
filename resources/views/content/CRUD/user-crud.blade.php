@@ -68,6 +68,12 @@
   <div class="p-2 col-12 d-flex justify-content-between">
 
     <div>
+      <button class="btn btn-info" id="bouton">
+        Affectation / Promotion   
+      </button> 
+    </div>
+
+    <div>
       <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
         Créer un nouveau membre    
       </button>
@@ -75,11 +81,6 @@
     {{-- Vue du modal d'insertion --}}
     @include('_partials._modals._CRUD-USER.modal-add-User')
     
-    <div>
-      <button class="btn btn-info" id="bouton">
-        Affectation / Promotion   
-      </button> 
-    </div>
     
   </div>
   @endhasanyrole
@@ -90,7 +91,7 @@
   <form method="POST" id="test_form1" action="{{ route('aff-mbr') }}">
   @csrf
   @method('PUT')
-  <div class="p-2 d-flex justify-content-end" >
+  <div class="p-2 d-flex justify-content-start" >
     <div id="champ" style="display: none;">
 
       <div class="mb-3">

@@ -20,7 +20,7 @@ class AccountSettingsAccount extends Controller
   public function updateUser(Request $request, $id)
   {
 
-    ActivityLogs::log(auth()->user()->id, $request->ip(), 'Update', '/Compte/Paramètre/Gestion');
+    // ActivityLogs::log(auth()->user()->id, $request->ip(), 'Update', '/Compte/Paramètre/Gestion');
 
     $id = decrypt($id);
     $user = User::findOrFail($id);
@@ -37,7 +37,7 @@ class AccountSettingsAccount extends Controller
           
         
         $fileName = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/images', $fileName);
+        $request->image->storeAs('public/Profils', $fileName);
     
           $user = User::whereId($id)->update([
               'name' => $request->name,

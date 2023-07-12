@@ -42,7 +42,7 @@ $customizerHidden = 'customizer-hide';
         <p class="mb-4">Veuillez renseigner les champs ci-dessous</p>
 
      
-        @error ('throttle')
+        @error ('fail')
         <div class="alert alert-success mb-1 rounded-0" role="alert">
           <div class="alert-body">
             {{ $message }}
