@@ -268,12 +268,12 @@ $navbarDetached = ($navbarDetached ?? '');
                   <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
                 </div>
               @elseif (Auth::guard('inconnu')->user())
-                <div class="avatar avatar">
+                <div class="avatar avatar-online">
                   <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
                 </div>
               @else
-                <div class="avatar avatar-online">
-                  <img src="{{ asset('storage/images/'.Auth::user()->profile_photo_path)}}" alt class="w-px-40 h-auto">
+                <div class="avatar avatar">
+                  <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
                 </div>
               @endif
               
@@ -286,7 +286,7 @@ $navbarDetached = ($navbarDetached ?? '');
                     <div class="d-flex">
                       <div class="flex-shrink-0 me-3">
                         <div class="avatar avatar-online">
-                            <img src="{{ asset('storage/images/'.Auth::user()->profile_photo_path)}}" alt class="w-px-40 h-auto rounded-circle">                          
+                            <img src="{{ asset('storage/Profils/'.Auth::user()->profile_photo_path)}}" alt class="w-px-40 h-auto rounded-circle">                          
                         </div>
                       </div>
                       <div class="flex-grow-1">
