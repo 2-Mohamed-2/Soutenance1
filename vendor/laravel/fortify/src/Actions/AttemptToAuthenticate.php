@@ -2,6 +2,7 @@
 
 namespace Laravel\Fortify\Actions;
 
+use App\Http\Controllers\dashboard\Analytics;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\SessionUser;
@@ -59,21 +60,20 @@ class AttemptToAuthenticate
         if ($this->guard->attempt(
             $request->only(Fortify::username(),'commissariat_id', 'password'),
             $request->boolean('remember'))
-        ) {
-                       
+        ) 
+        {                       
             $session_user = new SessionUser();
             $session_user->user_id = Auth::user()->id;
             
             $session_user->save();
 
-
             $request->session()->put('session_id', $session_user->id);             
             
             Alert::info('Bonjour '.$request->user()->name, 'Coms_Ml vous souhaite la bienvenue !');
-            $users = User::all();
-            $usernbr = $users->count();
+            
+            return redirect(route('dashboard-analytics'));
 
-            return redirect(route('dashboard-analytics', compact('usernbr')));
+            
         }
 
         $this->throwFailedAuthenticationException($request);
@@ -92,7 +92,6 @@ class AttemptToAuthenticate
 
         if (! $user) {
             $this->fireFailedEvent($request);
-
             return $this->throwFailedAuthenticationException($request);
         }
 

@@ -4,11 +4,12 @@ namespace App\Http\Controllers\dashboard;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use SebastianBergmann\Diff\Diff;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Commissariat;
+use Illuminate\Support\Facades\Auth;
 use App\Models\MuniAff;
 use App\Models\Tenue;
 use App\Models\TenueAff;
@@ -46,13 +47,7 @@ class Analytics extends Controller
     $usernbr = $users->count();
     $comms = Commissariat::all();
     $commnbr = $comms->count();
-    $tenueaffs = TenueAff::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count ')
-    ->where('created_at', '>=', Carbon::now()->subMonths(12))
-      ->groupBy('mois')->orderBy('mois')
-      ->get();
-    $voitaffectes = VoitAffecte::all();
-    $muniaff = MuniAff::all();
 
-    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr', 'tenueaffs', 'voitaffectes', 'muniaff'));
+    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr'));
   }
 }

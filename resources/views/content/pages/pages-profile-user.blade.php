@@ -40,7 +40,7 @@
       </div>
       <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
         <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-          <img src="{{ URL::to('storage/images/'.Auth::user()->profile_photo_path) ?? asset('assets/img/avatars/1.png') }}" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+          <img src="{{ URL::to('storage/Profils/'.Auth::user()->profile_photo_path) ?? asset('assets/img/avatars/1.png') }}" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
         </div>
         <div class="flex-grow-1 mt-3 mt-sm-5">
           <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
@@ -61,7 +61,7 @@
 
             {{-- button pour demander une affectation --}}
             @if (Auth::user()->commissariat_id != 0)                
-              <button class="btn btn-info text-nowrap cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#addArme" aria-controls="offcanvasEnd">
+              <button class="btn btn-info text-nowrap cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#dmdeAffect" aria-controls="offcanvasEnd">
                 <i class='bx bx-user-x'></i> Demander une affectation              
               </button>            
             @endif
@@ -87,19 +87,6 @@
   </div>
 </div>
 <!--/ Header -->
-
-<!-- Navbar pills -->
-{{-- <div class="row">
-  <div class="col-md-12">
-    <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-      <li class="nav-item"><a class="nav-link active" href="javascript:void(0);"><i class='bx bx-user'></i> Profile</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{url('pages/profile-teams')}}"><i class='bx bx-group'></i> Teams</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{url('pages/profile-projects')}}"><i class='bx bx-grid-alt'></i> Projects</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{url('pages/profile-connections')}}"><i class='bx bx-link-alt'></i> Connections</a></li>
-    </ul>
-  </div>
-</div> --}}
-<!--/ Navbar pills -->
 
 <!-- User Profile Content -->
 <div class="row">

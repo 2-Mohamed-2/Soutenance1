@@ -29,7 +29,7 @@
                   
                     @foreach($rolePermissions as $v)
                       <tr>
-                        <td class="text-nowrap fw-semibold">
+                        <td class="text-wrap fw-semibold">
                           {{ $v->name }}
                         </td>
                       </tr>

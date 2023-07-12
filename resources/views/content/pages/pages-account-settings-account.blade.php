@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Account settings - Account')
+@section('title', 'Compte - Gestion')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{asset('assets/vendor/libs/select2/select2.css')}}" />
@@ -43,7 +43,7 @@
           @csrf
         <div class="d-flex align-items-start align-items-sm-center gap-4">
           {{-- {{ dd(Auth::user()->profile_photo_path) }} --}}
-          <img src="{{ asset('storage/images/'.Auth::user()->profile_photo_path ?? asset('assets/img/avatars/1.png'))}}" alt="user-image" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+          <img src="{{ asset('storage/Profils/'.Auth::user()->profile_photo_path)}}" alt="user-image" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
           <div class="button-wrapper">
             <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
               <span class="d-none d-sm-block">Nouvelle photo</span>

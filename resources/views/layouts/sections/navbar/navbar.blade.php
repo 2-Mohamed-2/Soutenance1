@@ -50,42 +50,7 @@ $navbarDetached = ($navbarDetached ?? '');
         @endif
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-          @if(!isset($menuHorizontal))
-          <!-- Language -->
-          {{-- <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
-            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-              <i class='fi fi-us fis rounded-circle fs-3 me-1'></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <a class="dropdown-item" href="{{url('lang/en')}}" data-language="en">
-                  <i class="fi fi-us fis rounded-circle fs-4 me-1"></i>
-                  <span class="align-middle">English</span>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{{url('lang/fr')}}" data-language="fr">
-                  <i class="fi fi-fr fis rounded-circle fs-4 me-1"></i>
-                  <span class="align-middle">French</span>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{{url('lang/de')}}" data-language="de">
-                  <i class="fi fi-de fis rounded-circle fs-4 me-1"></i>
-                  <span class="align-middle">German</span>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="{{url('lang/pt')}}" data-language="pt">
-                  <i class="fi fi-pt fis rounded-circle fs-4 me-1"></i>
-                  <span class="align-middle">Portuguese</span>
-                </a>
-              </li>
-            </ul>
-          </li> --}}
-          <!--/ Language -->
-          @endif
-
+         
           @if(isset($menuHorizontal))
           <!-- Search -->
           <li class="nav-item navbar-search-wrapper me-2 me-xl-0">
@@ -302,6 +267,10 @@ $navbarDetached = ($navbarDetached ?? '');
                 <div class="avatar avatar-online">
                   <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
                 </div>
+              @elseif (Auth::guard('inconnu')->user())
+                <div class="avatar avatar-online">
+                  <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
+                </div>
               @else
                 <div class="avatar avatar">
                   <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
@@ -317,7 +286,7 @@ $navbarDetached = ($navbarDetached ?? '');
                     <div class="d-flex">
                       <div class="flex-shrink-0 me-3">
                         <div class="avatar avatar-online">
-                            <img src="{{ asset('storage/images/'.Auth::user()->profile_photo_path)}}" alt class="w-px-40 h-auto rounded-circle">                          
+                            <img src="{{ asset('storage/Profils/'.Auth::user()->profile_photo_path)}}" alt class="w-px-40 h-auto rounded-circle">                          
                         </div>
                       </div>
                       <div class="flex-grow-1">

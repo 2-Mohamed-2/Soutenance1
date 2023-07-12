@@ -17,12 +17,12 @@
                     placeholder="Enter a role name" value="{{$role->name}}" autocomplete="off" tabindex="-1" />
           </div>
 
-          <div class="col-12">
+          <div class="row">
             <h4>Role Permissions</h4>
             <!-- Permission table -->
             @foreach($permissions as $value)
-                <label class="fs-4">{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                {{ $value->name }} __| </label>                    
+                <label class="col-4 fs-4">{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
+                {{ $value->name }}</label>                    
             @endforeach
             <!-- Permission table -->
           </div>
