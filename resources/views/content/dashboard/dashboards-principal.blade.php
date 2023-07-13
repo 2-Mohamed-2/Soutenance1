@@ -1032,6 +1032,6 @@ $configData = Helper::appClasses();
     <!--/ pill table -->
   </div>
   @endunlessrole
-    
+
 
 @endsection
