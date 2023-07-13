@@ -48,7 +48,7 @@
 <script>
   document.getElementById('space').addEventListener('input', function (e) {
   e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{2})/g, '$1 ').trim();
-});
+  });
 </script>
 
 @endsection
@@ -167,9 +167,9 @@
                 @else                  
                   <a class="dropdown-item text-success" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userAct{{$user->id}}"><i class="bx bx-play-circle me-1"></i> Activer</a>
                 @endif
-                @hasanyrole('Informaticien|Administrateur')
+                {{-- @hasanyrole('Informaticien|Administrateur')
                 <a class="dropdown-item text-danger" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userDst{{$user->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-                @endhasanyrole
+                @endhasanyrole --}}
               </div>
             </div>
 
@@ -185,7 +185,7 @@
             @include('_partials._modals._CRUD-USER.modal-updt-User')
 
             {{-- Vue du modal de suppression --}}
-            @include('_partials._modals._CRUD-USER.mofal-delete-User')
+            {{-- @include('_partials._modals._CRUD-USER.mofal-delete-User') --}}
             @endhasanyrole
 
             {{-- Vue du modal de desactivation --}}

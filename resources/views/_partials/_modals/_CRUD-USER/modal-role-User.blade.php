@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-scrollable" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title" id="modalScrollableTitle">Les roles de : {{ $user->name }}</h3>
+          <h3 class="modal-title" id="modalScrollableTitle">Le role de : {{ $user->name }}</h3>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>       
   
@@ -25,7 +25,7 @@
                 @empty
 
                 <div class="col-6 mb-2">
-                    <span>Pas de roles pour le moment.</span>
+                    <span>Pas de role pour le moment.</span>
                 </div>
 
                 @endforelse
@@ -38,14 +38,14 @@
             @csrf  
             <input type="hidden" name="model_id" value="{{ $user->id }}">
             <div class="col-12">
-              <h4>Modifier ses roles</h4><br>
+              <h4>Modifier son role</h4><br>
               <!-- role table -->
               
               <div class="col-12 row mb-4">
                 @foreach($roles as $role)
                 <div class="col-6 mb-2">
                     
-                    <label class="fs-4">{{ Form::checkbox('role_id[]', $role->id, false, array('class' => 'name')) }}                    
+                    <label class="fs-4">{{ Form::radio('role_id[]', $role->id, false, array('class' => 'name')) }}                    
                         {{ $role->name }}  </label>  
 
                 </div>           

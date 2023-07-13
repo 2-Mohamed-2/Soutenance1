@@ -89,8 +89,8 @@ class userController extends Controller
     public function store(Request $request)
     {
       
-      // try 
-      // {
+      try 
+      {
         
         $this->validate($request,[
           // 'matricule' => 'required',
@@ -159,10 +159,10 @@ class userController extends Controller
             return redirect('/Membre');
         }
 
-      // } catch (\Throwable $th) {
-      //   Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-      //   return redirect('/Membre');
-      // }
+      } catch (\Throwable $th) {
+        Alert::error('Erreur', 'L\'opération a rencontré un problème !');
+        return redirect('/Membre');
+      }
 
       
     }
@@ -291,25 +291,28 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
-    {
-      try 
-      {
 
-        $id = decrypt($id);
-        $user = User::findOrFail($id);
-        $user->delete();
-        Alert::success('Réussite', 'Le membre a bien été supprimé !');
-        return redirect('/Membre');
+    //  Contenu plus valable etant donne qu'on ne supprime jamais un user
 
-      } 
-      catch (\Throwable $th) {
-        Alert::error('Erreur', 'L\'opération a rencontré un problème !');
-        return redirect('/Membre');
-      }
+    // public function destroy(Request $request, $id)
+    // {
+    //   try 
+    //   {
+
+    //     $id = decrypt($id);
+    //     $user = User::findOrFail($id);
+    //     $user->delete();
+    //     Alert::success('Réussite', 'Le membre a bien été supprimé !');
+    //     return redirect('/Membre');
+
+    //   } 
+    //   catch (\Throwable $th) {
+    //     Alert::error('Erreur', 'L\'opération a rencontré un problème !');
+    //     return redirect('/Membre');
+    //   }
 
     
-    }
+    // }
 
     // Fonction de desactivation
     public function desact_user($id)
