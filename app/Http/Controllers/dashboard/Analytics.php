@@ -27,8 +27,10 @@ class Analytics extends Controller
   {
     $this->middleware('permission:dashboard-view', ['only' => ['index']]);
   }
-  function statistique(){
 
+
+  function statistique()
+  {
     $data = TenueAff::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count, DATE_FORMAT(created_at, "%Y") as annee ')
                               ->where('created_at', '>=', Carbon::now()->subMonths(12))
                               ->groupBy('mois','annee')
