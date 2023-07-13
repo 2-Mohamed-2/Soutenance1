@@ -4,13 +4,11 @@ namespace App\Http\Controllers\dashboard;
 
 use Carbon\Carbon;
 use App\Models\User;
-use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use SebastianBergmann\Diff\Diff;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Avoir;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Commissariat;
 use App\Models\MuniAff;
 use App\Models\Tenue;
 use App\Models\TenueAff;
@@ -27,10 +25,8 @@ class Analytics extends Controller
   {
     $this->middleware('permission:dashboard-view', ['only' => ['index']]);
   }
+  function statistique(){
 
-
-  function statistique()
-  {
     $data = TenueAff::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count, DATE_FORMAT(created_at, "%Y") as annee ')
                               ->where('created_at', '>=', Carbon::now()->subMonths(12))
                               ->groupBy('mois','annee')
@@ -50,13 +46,13 @@ class Analytics extends Controller
     $usernbr = $users->count();
     $comms = Commissariat::all();
     $commnbr = $comms->count();
-    $armeAff = Avoir::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count, DATE_FORMAT(created_at, "%Y") as annee ')
+    $tenueaffs = TenueAff::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count ')
     ->where('created_at', '>=', Carbon::now()->subMonths(12))
-      ->groupBy('mois', 'annee')
-      ->orderBy('mois')
-      ->get()
-      ->toArray();
-       response()->json($armeAff);
-    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr','armeAff'));
+      ->groupBy('mois')->orderBy('mois')
+      ->get();
+    $voitaffectes = VoitAffecte::all();
+    $muniaff = MuniAff::all();
+
+    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr', 'tenueaffs', 'voitaffectes', 'muniaff'));
   }
 }
