@@ -9,6 +9,11 @@ use Yudhatp\ActivityLogs\Models\ActivityLog;
 
 class SurveillanceController extends Controller
 {
+    function __construct()
+    {
+        // $this->middleware('permission:session-users-view', ['only' => ['session_view']]);
+        // $this->middleware('permission:activities-users-view', ['only' => ['activity_view']]);
+    }
 
     public function session_view()
     {
