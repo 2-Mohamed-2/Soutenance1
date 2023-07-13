@@ -85,7 +85,7 @@ $configData = Helper::appClasses();
     <div class="card">
       <div class="row row-bordered g-0">
         <div class="col-md-8">
-          <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
+          <h5 class="card-header m-0 me-2 pb-3">Statistique des affectations du Tenue</h5>
           <div id="totalRevenueChart" class="px-2"></div>
         </div>
         <div class="col-md-4">
@@ -161,7 +161,7 @@ $configData = Helper::appClasses();
           <div class="card-body pb-2">
             <span class="d-block fw-semibold mb-1">Revenue</span>
             <h3 class="card-title mb-1">425k</h3>
-            <div id="revenueChart"></div>
+            <div id=""></div>
           </div>
         </div>
       </div>
@@ -191,7 +191,7 @@ $configData = Helper::appClasses();
 </div>
 <div class="row">
   <!-- Order Statistics -->
-  <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+  {{-- <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
     <div class="card h-100">
       <div class="card-header d-flex align-items-center justify-content-between pb-0">
         <div class="card-title mb-0">
@@ -277,52 +277,27 @@ $configData = Helper::appClasses();
         </ul>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ Order Statistics -->
 
   <!-- Expense Overview -->
   <div class="col-md-6 col-lg-4 order-1 mb-4">
     <div class="card h-100">
-      <div class="card-header">
-        <ul class="nav nav-pills" role="tablist">
-          <li class="nav-item">
-            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-tabs-line-card-income" aria-controls="navs-tabs-line-card-income" aria-selected="true">Income</button>
-          </li>
-          <li class="nav-item">
-            <button type="button" class="nav-link" role="tab">Expenses</button>
-          </li>
-          <li class="nav-item">
-            <button type="button" class="nav-link" role="tab">Profit</button>
-          </li>
-        </ul>
-      </div>
+      <h5 class="card-header m-0 me-2 pb-3">Statistique des affectations d'Arme</h5>
       <div class="card-body px-0">
         <div class="tab-content p-0">
           <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
             <div class="d-flex p-4 pt-3">
-              <div class="avatar flex-shrink-0 me-3">
-                <img src="{{asset('assets/img/icons/unicons/wallet.png')}}" alt="User">
-              </div>
-              <div>
-                <small class="text-muted d-block">Total Balance</small>
-                <div class="d-flex align-items-center">
-                  <h6 class="mb-0 me-1">$459.10</h6>
-                  <small class="text-success fw-semibold">
-                    <i class='bx bx-chevron-up'></i>
-                    42.9%
-                  </small>
-                </div>
-              </div>
             </div>
             <div id="incomeChart"></div>
             <div class="d-flex justify-content-center pt-4 gap-2">
-              <div class="flex-shrink-0">
+              {{-- <div class="flex-shrink-0">
                 <div id="expensesOfWeek"></div>
-              </div>
-              <div>
+              </div> --}}
+              {{-- <div>
                 <p class="mb-n1 mt-1">Expenses This Week</p>
                 <small class="text-muted">$39 less than last week</small>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -331,8 +306,48 @@ $configData = Helper::appClasses();
   </div>
   <!--/ Expense Overview -->
 
+<!-- Expense Overview -->
+<div class="col-md-6 col-lg-4 order-1 mb-4">
+  <div class="card h-100">
+    {{-- <div class="card-header">
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item">
+          <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
+            data-bs-target="#navs-tabs-line-card-income" aria-controls="navs-tabs-line-card-income"
+            aria-selected="true">Income</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link" role="tab">Expenses</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="nav-link" role="tab">Profit</button>
+        </li>
+      </ul>
+    </div> --}}
+    <div class="card-body px-0">
+      <div class="tab-content p-0">
+        <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
+          <div class="d-flex p-4 pt-3">
+          </div>
+          {{-- <div id="incomeChart"></div> --}}
+          <div class="d-flex justify-content-center pt-4 gap-2">
+            <div class="flex-shrink-0">
+              <div id="revenueChart"></div>
+            </div>
+            {{-- <div>
+              <p class="mb-n1 mt-1">Expenses This Week</p>
+              <small class="text-muted">$39 less than last week</small>
+            </div> --}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <!-- Transactions -->
-  <div class="col-md-6 col-lg-4 order-2 mb-4">
+  {{-- <div class="col-md-6 col-lg-4 order-2 mb-4">
     <div class="card h-100">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="card-title m-0 me-2">Transactions</h5>
@@ -436,10 +451,10 @@ $configData = Helper::appClasses();
         </ul>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ Transactions -->
   <!-- Activity Timeline -->
-  <div class="col-md-12 col-lg-6 order-4 order-lg-3 ">
+  {{-- <div class="col-md-12 col-lg-6 order-4 order-lg-3 ">
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="card-title m-0 me-2">Activity Timeline</h5>
@@ -526,10 +541,10 @@ $configData = Helper::appClasses();
         <!-- /Activity Timeline -->
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ Activity Timeline -->
   <!-- pill table -->
-  <div class="col-md-6 order-3 order-lg-4 mb-4 mb-lg-0">
+  {{-- <div class="col-md-6 order-3 order-lg-4 mb-4 mb-lg-0">
     <div class="card text-center">
       <div class="card-header py-3">
         <ul class="nav nav-pills" role="tablist">
@@ -1027,7 +1042,7 @@ $configData = Helper::appClasses();
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ pill table -->
 </div>
 @endsection

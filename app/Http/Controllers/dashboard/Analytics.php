@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use SebastianBergmann\Diff\Diff;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Avoir;
 use Illuminate\Support\Facades\Auth;
 use App\Models\MuniAff;
 use App\Models\Tenue;
@@ -47,7 +48,13 @@ class Analytics extends Controller
     $usernbr = $users->count();
     $comms = Commissariat::all();
     $commnbr = $comms->count();
-
-    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr'));
+    $armeAff = Avoir::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count, DATE_FORMAT(created_at, "%Y") as annee ')
+    ->where('created_at', '>=', Carbon::now()->subMonths(12))
+      ->groupBy('mois', 'annee')
+      ->orderBy('mois')
+      ->get()
+      ->toArray();
+       response()->json($armeAff);
+    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr','armeAff'));
   }
 }
