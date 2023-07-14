@@ -89,7 +89,7 @@
         <span style="position: absolute; left:500px; font-size: 19px"> depuis plus de trois(3)Mois.</span>
       </span><br>
         <div style="margin-top: 10px; margin-bottom: 10px;">
-           <span class="daou" style="margin-left: 80px; font-size: 20px">En foi de quoi, je lui délivre le présent certificat pour servir et valoir ce que de droit</span><br>
+           <span class="daou" style="margin-left: 80px; font-size: 20px">En foi de quoi, nous lui délivrons le présent certificat pour servir et valoir ce que de droit</span><br>
         </div>   
         <div class="float-end text-center">
           <span style="font-size: 20px;">{{ $resi->commissariat->localite }},  le   {{ \Carbon\Carbon::parse($resi['created_at'])->format('d / m / Y') }}</span> <br>

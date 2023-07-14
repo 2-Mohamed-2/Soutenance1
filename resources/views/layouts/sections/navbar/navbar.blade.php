@@ -67,6 +67,16 @@ $navbarDetached = ($navbarDetached ?? '');
               <i class='bx bx-sm'></i>
             </a>
           </li>
+          <li class="nav-item me-2 me-xl-0">
+            <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
+              <i class='bx bx-sm'></i>
+            </a>
+          </li>
+          <li class="nav-item me-2 me-xl-0">
+            <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
+              <i class='bx bx-sm'>Bonj</i>
+            </a>
+          </li>
           <!--/ Style Switcher -->
           
           <!-- Notification -->
@@ -267,11 +277,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 <div class="avatar avatar-online">
                   <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
                 </div>
-              @elseif (Auth::guard('inconnu')->user())
-                <div class="avatar avatar-online">
-                  <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
-                </div>
-              @else
+              @elseif (Auth::user())
                 <div class="avatar avatar">
                   <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
                 </div>

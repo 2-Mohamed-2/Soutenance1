@@ -114,7 +114,7 @@
     orderAreaChart.render();
   }
 
- $(document).ready(function() {
+  $(document).ready(function() {
     $.ajax({
         url: '/statistique',
         dataType: 'json',
@@ -290,7 +290,7 @@
             console.error(error);
         }
     });
-});
+  });
 
 
   // Total Revenue Report Chart - Bar Chart
@@ -302,7 +302,7 @@
   const revenueBarChartEl = document.querySelector('#revenueChart'),
     revenueBarChartConfig = {
       chart: {
-        height: 80,
+        height: 270,
         type: 'bar',
         toolbar: {
           show: false
@@ -348,9 +348,9 @@
         show: false
       },
       xaxis: {
-        categories: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+        categories: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'],
         axisBorder: {
-          show: false
+          show: true
         },
         axisTicks: {
           show: false
@@ -358,7 +358,7 @@
         labels: {
           style: {
             colors: labelColor,
-            fontSize: '13px'
+            fontSize: '15px'
           }
         }
       },

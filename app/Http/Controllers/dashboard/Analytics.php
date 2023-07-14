@@ -25,6 +25,7 @@ class Analytics extends Controller
   {
     $this->middleware('permission:dashboard-view', ['only' => ['index']]);
   }
+
   function statistique(){
 
     $data = TenueAff::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count, DATE_FORMAT(created_at, "%Y") as annee ')
@@ -33,10 +34,8 @@ class Analytics extends Controller
                               ->orderBy('mois')
                               ->get()
                               ->toArray();
-
-
-
     return response()->json($data);
+
   }
 
   public function index(Request $request)
@@ -55,4 +54,5 @@ class Analytics extends Controller
 
     return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr', 'tenueaffs', 'voitaffectes', 'muniaff'));
   }
+  
 }
