@@ -35,7 +35,7 @@
       <li class="nav-item"><a class="nav-link" href="{{url('/Compte/Paramètre/Sécurité')}}"><i class="bx bx-lock-alt me-1"></i> Sécurité</a></li>
     </ul>
     <div class="card mb-4">
-      <h5 class="card-header">Profile Details</h5>
+      <h5 class="card-header">Les details du profil</h5>
       <!-- Account -->
       <div class="card-body">
         <form id="" method="POST" action="{{ route('cpgUpdate', encrypt(Auth::user()->id)) }}" enctype="multipart/form-data">

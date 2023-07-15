@@ -23,7 +23,7 @@ class AccountSettingsAccount extends Controller
     try 
     {
       $validator = Validator::make($request->all(),[
-        'image' => 'required|image|max:2048', // Taille maximale de 2 Mo (2048 kilo-octets)
+        'image' => 'image|max:2048', // Taille maximale de 2 Mo (2048 kilo-octets)
       ]);
       
       // ActivityLogs::log(auth()->user()->id, $request->ip(), 'Update', '/Compte/Paramètre/Gestion');
