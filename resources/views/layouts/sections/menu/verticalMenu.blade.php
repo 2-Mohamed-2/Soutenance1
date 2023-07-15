@@ -7,7 +7,7 @@ $configData = Helper::appClasses();
   <!-- ! Hide app brand if navbar-full -->
   @if(!isset($navbarFull))
   <div class="app-brand demo mb-2">
-    <a href="{{url('/')}}" class="app-brand-link">
+    <a href="jaascript:void(0);" class="app-brand-link">
       <span class="app-brand-logo demo col-4">
         <img src="{{ asset('Coms_Ml_logo.png') }}" class="w-px-50 h-auto" alt="">
       </span>
