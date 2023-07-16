@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\CRUDS;
 
 use App\Models\User;
+use App\Models\Grade;
 use App\Models\Section;
 use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Models\Grade;
-use Illuminate\Support\Facades\Hash;
-use App\Notifications\MdpNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
+use App\Notifications\MdpNotification;
 use Yudhatp\ActivityLogs\ActivityLogs;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class userController extends Controller
 {
@@ -61,7 +63,10 @@ class userController extends Controller
       }
       elseif($user->hasrole('Informaticien')) 
       {
-        $users = User::latest()->get();
+        $users = User::latest()
+                      ->whereDoesntHave('roles', function ($query){
+                        $query->whereIn('name', ['Informaticien']);
+                      })->get();
         $roles = Role::latest()->get();
         $comms = Commissariat::all();
         $grades = Grade::all();
@@ -117,24 +122,40 @@ class userController extends Controller
           if ($test1) {
             Alert::error('Echec', 'Cet email existe déjà !');
             return redirect('/Membre');
-          }else {
+          } else 
+          {
   
             // Les caracteres a entré dans la combinaison
             $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890@-$%&$%&');
             // La combinaison
             $password = substr($random, 0, 8);
 
-            // Récupérer le dernier matricule
-            $dernierMatricule = User::max('matricule');
+
+
+            $dernierMatricule = User::latest()->first();
+            try {
+              $decrypted_last_mat = Crypt::decryptString($dernierMatricule->matricule);    
+                
+            } catch (DecryptException $e) {
+              Alert::error('Erreur', 'Le système n\'arrive pas à decrypter une donnée !');
+              return redirect()->back(); 
+            }
+            // dd($decrypted_last_mat);   
+            
             // Incrémenter le dernier matricule
-            $nouveauMatricule = $dernierMatricule + 1;
+            $nouveauMatricule = $decrypted_last_mat + 1;
+           
+            // Incrémenter le dernier matricule
+            $nouveauMatricule = $decrypted_last_mat + 1;
+
+            $test = Crypt::encryptString($nouveauMatricule);
   
             $user = User::create([
               'commissariat_id' => null,
-              'grade_id' => 1,
+              'grade_id' => null,
               'section_id' => null,
               'password' => Hash::make($password),
-              'matricule' => $nouveauMatricule,
+              'matricule' => $test,
               'name' => $request->name,
               'email' => $request->email,
               'genre' => $request->genre,
@@ -153,10 +174,10 @@ class userController extends Controller
     
         if ($user) {
             Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
-            return redirect('/Membre');
+            return redirect()->back();
         } else {
             Alert::error('Echec', 'L\'enregistrement n\'a pas bien été effectué !');
-            return redirect('/Membre');
+            return redirect()->back();
         }
 
       } catch (\Throwable $th) {

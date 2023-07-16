@@ -4,20 +4,22 @@ namespace App\Http\Controllers\dashboard;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Tenue;
+use App\Models\MuniAff;
+use App\Models\TenueAff;
+use App\Models\Vehicule;
+use App\Models\VoitAffecte;
+use App\Models\Commissariat;
 use Illuminate\Http\Request;
 use SebastianBergmann\Diff\Diff;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Commissariat;
-use App\Models\MuniAff;
-use App\Models\Tenue;
-use App\Models\TenueAff;
-use App\Models\Vehicule;
-use App\Models\VoitAffecte;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 use Yudhatp\ActivityLogs\ActivityLogs;
 use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class Analytics extends Controller
 {
@@ -52,6 +54,16 @@ class Analytics extends Controller
     $voitaffectes = VoitAffecte::all();
     $muniaff = MuniAff::all();
 
+    // // Récupérer le dernier matricule
+    // $dernierMatricule = User::latest()->first();
+    // try {
+    //   $decrypted_last_mat = Crypt::decryptString($dernierMatricule->matricule);    
+        
+    // } catch (DecryptException $e) {
+    //   dd("no"); 
+    // }
+    // dd($decrypted_last_mat);  
+    
     return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr', 'tenueaffs', 'voitaffectes', 'muniaff'));
   }
   

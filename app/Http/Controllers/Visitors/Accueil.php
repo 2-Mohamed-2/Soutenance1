@@ -27,10 +27,6 @@ class Accueil extends Controller
             ['deconnexion_cit', '<>', null]])->orderBy('deconnexion_cit', 'desc')->limit(5)->latest()->get();
             return view('Visitors.accueil',compact('pageConfigs', 'sessions_cit', 'comms', 'resis'));
         }
-
-
-        
-
         
         return view('Visitors.accueil',compact('pageConfigs'));
     }
