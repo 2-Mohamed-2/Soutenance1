@@ -40,7 +40,7 @@
       </div>
       <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
         <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-          <img src="{{ URL::to('storage/Profils/'.Auth::user()->profile_photo_path) ?? asset('assets/img/avatars/1.png') }}" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+          <img src="{{ URL::to('public/Profils/'.Auth::user()->profile_photo_path) ?? asset('assets/img/avatars/1.png') }}" alt="user image" class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
         </div>
         <div class="flex-grow-1 mt-3 mt-sm-5">
           <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
@@ -60,25 +60,25 @@
             </div>
 
             {{-- button pour demander une affectation --}}
-            @if (Auth::user()->commissariat_id != 0)                
+            @if (Auth::user()->commissariat_id != 0)
               <button class="btn btn-info text-nowrap cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#dmdeAffect" aria-controls="offcanvasEnd">
-                <i class='bx bx-user-x'></i> Demander une affectation              
-              </button>            
+                <i class='bx bx-user-x'></i> Demander une affectation
+              </button>
             @endif
 
             @if (Auth::user()->isActive == true)
 
             <button class="btn btn-primary text-nowrap">
-              <i class='bx bx-user-check'></i> Votre compte est activé              
+              <i class='bx bx-user-check'></i> Votre compte est activé
             </button>
 
             @else
 
             <button  class="btn btn-danger text-nowrap">
-              <i class='bx bx-user-x'></i> Votre compte est desactivé              
+              <i class='bx bx-user-x'></i> Votre compte est desactivé
             </button>
-              
-            @endif            
+
+            @endif
 
           </div>
         </div>
@@ -129,7 +129,7 @@
             @php
               $created = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $session->created_at)->format('d-m-Y'.' à '.'H:i');
               $deconnexion = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $session->deconnexion)->format('d-m-Y'.' à '.'H:i');
-                        
+
             @endphp
           <li class="timeline-item timeline-item-transparent">
             <span class="timeline-point timeline-point-warning"></span>

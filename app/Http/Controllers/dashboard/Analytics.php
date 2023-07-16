@@ -4,6 +4,7 @@ namespace App\Http\Controllers\dashboard;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Avoir;
 use App\Models\Tenue;
 use App\Models\MuniAff;
 use App\Models\TenueAff;

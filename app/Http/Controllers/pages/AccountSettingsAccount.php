@@ -20,49 +20,61 @@ class AccountSettingsAccount extends Controller
 
   public function updateUser(Request $request, $id)
   {
-    try 
-    {
-      $validator = Validator::make($request->all(),[
-        'image' => 'image|max:2048', // Taille maximale de 2 Mo (2048 kilo-octets)
-      ]);
-      
+    // try
+    // {
+      // $validator = Validator::make($request->all(),[
+      //   'image' => 'image|max:2048', // Taille maximale de 2 Mo (2048 kilo-octets)
+      // ]);
+
       // ActivityLogs::log(auth()->user()->id, $request->ip(), 'Update', '/Compte/Paramètre/Gestion');
 
       $id = decrypt($id);
-      $user = User::findOrFail($id);
+      // $user = User::findOrFail($id);
 
-      if ($validator->fails()) {
-        Alert::error('Erreur', 'L\'entrée au niveau de l\'image ne correspond pas aux attentes. Veuillez bien choisir une image de taille inférieure à 2 Mo.');
-        return redirect()->back();
-      }   
+      // if ($validator->fails()) {
+      //   Alert::error('Erreur', 'L\'entrée au niveau de l\'image ne correspond pas aux attentes. Veuillez bien choisir une image de taille inférieure à 2 Mo.');
+      //   return redirect()->back();
+      // }
 
 
-      if ($request->has("image")) 
-      {
+      // if ($request->has("image"))
+      // {
 
-        if (Auth::user()->profile_photo_path) {
+        $user = User::find(Auth::user()->id);
+        if ($request->hasFile('profile_photo_path')) {
           //On supprime l'ancienne image
-          Storage::delete('public/Profils/' . $user->profile_photo_path);
+          // Storage::delete('public/Profils/' . $user->profile_photo_path);
+          $image = $request->file('profile_photo_path');
+          $ext = $image->getClientOriginalExtension();
+          $autorise = ['png', 'jpg', 'jpeg'];
+          if (!in_array(strtolower($ext), $autorise)) {
+            return back()->with('error', 'Veuillez choissir une image');
+          }
+          $image_name = time() . '.' . $ext;
+          $user->update([
+            "profile_photo_path" => $image_name
+          ]);
+          $image->move(public_path('public/Profils/'), $image_name);
         }
 
-        $fileName = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/Profils', $fileName);
+        // $fileName = time() . '.' . $request->image->extension();
+        // $request->image->storeAs('public/Profils', $fileName);
 
-        $user = User::whereId($id)->update([
-          'name' => $request->name,
-          'adresse' => $request->adresse,
-          'email' => $request->email,
-          'telephone' => $request->telephone,
-          'profile_photo_path' => $fileName,
-        ]);
+          $user->name = $request->name;
+          $user->adresse = $request->adresse;
+          $user->email = $request->email;
+          $user->telephone = $request->telephone;
+          $user->save();
+          // 'profile_photo_path' => $image_name,
+
         if ($user) {
           Alert::success('Mis a jour Reussi', 'L\'utilisateur a ete mis a jour avec succes');
           return redirect()->back();
         }
-        
-        
-      }
-      
+
+
+      // }
+
 
       $user = User::whereId($id)->update([
         'name' => $request->name,
@@ -76,11 +88,11 @@ class AccountSettingsAccount extends Controller
         return redirect()->route('compte-user-modify');
       }
 
-    } 
-    catch (\Exception $e) {
-        Alert::error('Echec lors de la mise ajour', 'Une erreur c\'est produite lors de la mise a jour !');
-        return redirect()->back();
     }
- 
+    // catch (\Exception $e) {
+    //     Alert::error('Echec lors de la mise ajour', 'Une erreur c\'est produite lors de la mise a jour !');
+    //     return redirect()->back();
+    // }
+
   }
-}
+

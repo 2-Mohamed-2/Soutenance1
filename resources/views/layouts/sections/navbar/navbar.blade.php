@@ -37,7 +37,7 @@ $navbarDetached = ($navbarDetached ?? '');
       <div class="navbar-nav-right d-flex align-items-arround" id="navbar-collapse">
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-         
+
           @if (Auth::user())
             {{-- mode sombre
             <li class="nav-item me-2 me-xl-0">
@@ -50,7 +50,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 <div class="d-flex">
                   <div class="flex-shrink-0 me-3">
                     <div class="avatar avatar-online">
-                        <img src="{{ asset('storage/Profils/'.Auth::user()->profile_photo_path)}}" alt class="w-px-40 h-auto rounded-circle">                          
+                        <img src="{{ URL::to('public/Profils/'.Auth::user()->profile_photo_path)}}" alt class="w-px-40 h-auto rounded-circle">
                     </div>
                   </div>
                   <div class="flex-grow-1">
@@ -81,10 +81,10 @@ $navbarDetached = ($navbarDetached ?? '');
                   </span>
                   <span class="text-dark demo text-wrap">{{ Auth::guard('inconnu')->user()->nomcomplet }}</span>
                 </a>
-            </li> 
+            </li>
 
             <li class="nav-item me-2 me-xl-0">
-            </li> 
+            </li>
 
             <li class="nav-item me-2 me-xl-0 bg-danger">
               <a class="nav-link hide-arrow" title="Deconnexion" href="{{ route('vdestroy') }}" onclick="event.preventDefault(); document.getElementById('logout-form2').submit();">
@@ -106,9 +106,9 @@ $navbarDetached = ($navbarDetached ?? '');
               </a>
             </li>
           @endif
-          
+
           <!--/ Style Switcher -->
-          
+
           <!-- Notification -->
 
           {{-- Apres je vais venir modifier ce point --}}
