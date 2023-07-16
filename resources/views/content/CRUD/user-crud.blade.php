@@ -150,15 +150,18 @@
           </form>
           @endhasanyrole
           
-          @php
           
-            try {
-              $decrypted = Crypt::decryptString($user->matricule);
-            } catch (Illuminate\Contracts\Encryption\DecryptException $e) {
-               echo "No"; 
-            }
-          @endphp
-          <td><strong>{{ $decrypted }}</strong></td>
+          <td>
+            <strong>
+              @php
+                try {
+                  echo Crypt::decrypt($user->matricule);
+                } catch (Illuminate\Contracts\Encryption\DecryptException $e) {
+                  echo $user->matricule ;
+                }
+              @endphp
+            </strong>
+          </td>
           <td><strong>{{$user->name}}</strong></td>
           <td><strong>{{$user->telephone}}</strong></td>
           <td>

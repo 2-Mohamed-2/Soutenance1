@@ -22,17 +22,12 @@ class PasswordController extends Controller
      * @return \Laravel\Fortify\Contracts\PasswordUpdateResponse
      */
     public function update(Request $request, UpdatesUserPasswords $updater)
-    {
-        
-        // dd('Bjr');
+    {        
         try {
-            // Alert::succes('Ok', 'ok');
-
             $updater->update($request->user(), $request->all());
             
             Alert::info('Réussite', 'operation a bien été effectué ! Veuillez vous reconnecter avec le nouveau mot de passe');
-            return redirect(route('login'));
-        
+            return redirect(route('login'));        
 
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Erreur intervenue lors de la modification. Veuillez reverifier les entrées !');
