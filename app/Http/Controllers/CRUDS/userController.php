@@ -37,7 +37,7 @@ class userController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {     
+    {
       $user = Auth::user();
 
       if ($user->hasrole('Commissaire')) {
@@ -49,7 +49,7 @@ class userController extends Controller
         $grades = Grade::all();
         return view('content.CRUD.user-crud', compact('users','comms', 'grades'));
       }
-      elseif($user->hasrole('Administrateur')) 
+      elseif($user->hasrole('Administrateur'))
       {
         $users = User::latest()
                       ->whereDoesntHave('roles', function ($query){
@@ -61,7 +61,7 @@ class userController extends Controller
         $grades = Grade::all();
         return view('content.CRUD.user-crud', compact('users','roles', 'comms', 'grades'));
       }
-      elseif($user->hasrole('Informaticien')) 
+      elseif($user->hasrole('Informaticien'))
       {
         $users = User::latest()
                       ->whereDoesntHave('roles', function ($query){
@@ -72,7 +72,7 @@ class userController extends Controller
         $grades = Grade::all();
         return view('content.CRUD.user-crud', compact('users','roles', 'comms', 'grades'));
       }
-      
+
     }
 
     /**
@@ -93,28 +93,28 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-      
-      try 
+
+      try
       {
-        
+
         $this->validate($request,[
           // 'matricule' => 'required',
           'name' => 'required|max:255',
           'email' => 'required|max:255',
           'telephone' => 'required|max:255',
         ]);
-  
+
         $test = User::select('*')
                     ->where([
                       ['matricule', '=', $request->matricule]
                     ])->exists();
-  
+
         $test1 = User::select('*')
         ->where([
           ['email', '=', $request->email]
         ])->exists();
-  
-  
+
+
         if ($test) {
           Alert::error('Echec', 'Ce matricule existe déjà !');
           return redirect('/Membre');
@@ -122,21 +122,21 @@ class userController extends Controller
           if ($test1) {
             Alert::error('Echec', 'Cet email existe déjà !');
             return redirect('/Membre');
-          } else 
-          {
-  
+          }else {
+
             // Les caracteres a entré dans la combinaison
             $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890.@-_@.&');
             // La combinaison
             $password = substr($random, 0, 8);
 
+            // Récupérer le dernier matricule
             $dernierMatricule = User::max('matricule');
             // Incrémenter le dernier matricule
             $nouveauMatricule = $dernierMatricule + 1;
 
             $user = User::create([
               'commissariat_id' => null,
-              'grade_id' => null,
+              'grade_id' => 1,
               'section_id' => null,
               'password' => Hash::make($password),
               'matricule' => $nouveauMatricule,
@@ -146,17 +146,15 @@ class userController extends Controller
               'telephone' => $request->telephone,
               'isActive' => 1,
             ]);
-               
-            
             // Inserer le role membre par defaut au nouveau membre creer
-            $role = Role::where('name', 'Membre')->get();            
+            $role = Role::where('name', 'Membre')->get();
             $user->assignRole($role);
-  
-            // $user->notify(new MdpNotification($password, $user->name));
+
+            $user->notify(new MdpNotification($password, $user->name));
           }
-  
-        } 
-    
+
+        }
+
         if ($user) {
             Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');
             return redirect()->back();
@@ -170,7 +168,7 @@ class userController extends Controller
         return redirect('/Membre');
       }
 
-      
+
     }
 
     /**
@@ -204,7 +202,7 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-      try 
+      try
       {
 
         $id = decrypt($id);
@@ -240,14 +238,14 @@ class userController extends Controller
         return redirect('/Membre');
       }
 
-      
+
     }
 
     // Fonction pour mettre a jour le commissariat des membres
     public function affecte_membres(Request $request)
     {
       // dd($request->all());
-      try 
+      try
       {
         // dd($request->has('commissariat_id'), $request->has('grade_id'));
         $this->validate($request, [
@@ -279,16 +277,16 @@ class userController extends Controller
         else{
           Alert::error('Echec', 'L\'affectation ou la promotion a échoué, veuillez revoir les entrées !');
           return redirect()->back();
-        } 
-                
+        }
 
-      } 
+
+      }
       catch (\Throwable $th) {
         Alert::error('Erreur', 'L\'opération a rencontré un problème !');
         return redirect('/Membre');
       }
 
-      
+
     }
 
     /**
@@ -302,7 +300,7 @@ class userController extends Controller
 
     // public function destroy(Request $request, $id)
     // {
-    //   try 
+    //   try
     //   {
 
     //     $id = decrypt($id);
@@ -311,32 +309,32 @@ class userController extends Controller
     //     Alert::success('Réussite', 'Le membre a bien été supprimé !');
     //     return redirect('/Membre');
 
-    //   } 
+    //   }
     //   catch (\Throwable $th) {
     //     Alert::error('Erreur', 'L\'opération a rencontré un problème !');
     //     return redirect('/Membre');
     //   }
 
-    
+
     // }
 
     // Fonction de desactivation
     public function desact_user($id)
     {
-      try 
+      try
       {
 
         $id = decrypt($id);
 
         $user = User::find($id);
         if ($user) {
-          
+
           $user->isActive = 0;
           $user->save();
 
           Alert::info('Réussite', 'Le compte du membre a bien été désactivé !');
           return redirect('/Membre');
-        } 
+        }
         else {
           Alert::error('Echec', 'Modification non effectuée !');
           return redirect('/Membre');
@@ -347,26 +345,26 @@ class userController extends Controller
         return redirect('/Membre');
       }
 
-      
+
     }
 
     // Fonction de desactivation
     public function active_user($id)
     {
-      try 
+      try
       {
 
         $id = decrypt($id);
 
         $user = User::find($id);
         if ($user) {
-          
+
           $user->isActive = 1;
           $user->save();
 
           Alert::success('Réussite', 'Le compte du membre a bien été activé !');
           return redirect('/Membre');
-        } 
+        }
         else {
           Alert::error('Echec', 'Modification non effectuée !');
           return redirect('/Membre');
@@ -377,6 +375,6 @@ class userController extends Controller
         return redirect('/Membre');
       }
 
-      
+
     }
 }

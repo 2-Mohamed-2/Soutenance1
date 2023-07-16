@@ -509,40 +509,77 @@
   // Income Chart - Area chart
   // ------------------------------------------------------------------
 
+   $(document).ready(function() {
+    $.ajax({
+        url: '/statistique',
+        dataType: 'json',
+        success: function(armeAff) {
+          function getMois(i){
+              if(i == 1)
+                {
+                  return "Janvier"
+                }
+              if(i == 2)
+                {
+                  return "Fevrier"
+                }
+              if(i == 3)
+                {
+                  return "Mars"
+                }
+              if(i == 4)
+                {
+                  return "Avril"
+                }
+              if(i == 5)
+                {
+                  return "Mai"
+                }
+              if(i == 6)
+                {
+                    return "Juin"
+                }
+              if(i == 7)
+                {
+                  return "Juillet"
+                }
+              if(i == 8)
+                {
+                  return "Aout"
+                }
+              if(i == 9)
+                {
+                  return "Septembre"
+                }
+              if(i == 10)
+                {
+                  return "Octobre"
+                }
+              if(i == 11)
+                {
+                  return "Novembre"
+                }
+              if(i == 12)
+                {
+                  return "Decembre"
+                }
 
-  $(document).ready(function() {
-        // Effectuez une requête AJAX vers l'URL correspondant à votre action de contrôleur
-        $.ajax({
-            url: '/votre-url',
-            dataType: 'json',
-            success: function(data) {
-                // Manipulez les données JSON ici
-                var name = data.name;
-                var email = data.email;
-                // Faites ce que vous voulez avec les données récupérées
-                console.log(name);
-                console.log(email);
-            }
-        });
-        $.ajax({
-            url: '/votre-url',
-            dataType: 'json',
-            success: function(data) {
-                // Manipulez les données JSON ici
-                var name = data.name;
-                var email = data.email;
-                // Faites ce que vous voulez avec les données récupérées
-                console.log(name);
-                console.log(email);
-            }
-        });
-    });
-
-  const incomeChartEl = document.querySelector('#incomeChart'),
+          }
+            // Faites ce que vous voulez avec les données récupérées
+          console.log(armeAff[0]);
+          const incomeChartEl = document.querySelector('#incomeChart'),
+          // const data = [];
+          // const month = [];
+          // const years = [];
+          // for (var i = 0; i < armeAff.length; i++) {
+          //      data.push(armeAff[i].count);
+          //      month.push(getMois(armeAff[i].mois));
+          //      years.push(armeAff[i].annee);
+          //      }
     incomeChartConfig = {
       series: [
         {
-          data: [24,18,50]
+          data: [18,50,28]
         }
       ],
       chart: {
@@ -606,7 +643,7 @@
         }
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        categories: ['jan', 'Fev', 'mars'],
         axisBorder: {
           show: false
         },
@@ -634,16 +671,14 @@
     const incomeChart = new ApexCharts(incomeChartEl, incomeChartConfig);
     incomeChart.render();
   }
-  $(document).ready(function() {
-        // Effectuez une requête AJAX vers l'URL correspondant à votre action de contrôleur
-        $.ajax({
-            url: '/votre-url',
-            dataType: 'json',
-            success: function(data) {
 
-            }
-        });
+        },
+        error: function(error) {
+            console.log(error);
+        }
     });
+});
+
 
 
   // Expenses Mini Chart - Radial Chart

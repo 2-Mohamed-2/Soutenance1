@@ -108,7 +108,7 @@ $configData = Helper::appClasses();
   </div>
 
   @unlessrole(['Commissaire','Membre'])
-  <div class="row">
+  {{-- <div class="row">
     <!-- Expense Overview -->
     <div class="col-md-6 col-lg-4 order-1 mb-4">
       <div class="card h-100">
@@ -151,7 +151,7 @@ $configData = Helper::appClasses();
     </div>
     <!--/ Expense Overview -->
 
-  </div>
+  </div> --}}
   @endunlessrole
 
 

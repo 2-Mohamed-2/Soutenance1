@@ -51,20 +51,25 @@ class Analytics extends Controller
     ->where('created_at', '>=', Carbon::now()->subMonths(12))
       ->groupBy('mois')->orderBy('mois')
       ->get();
+    $data = Avoir::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count ')
+    ->where('created_at', '>=', Carbon::now()->subMonths(12))
+      ->groupBy('mois')->orderBy('mois')
+      ->get();
+      response()->json($data);
     $voitaffectes = VoitAffecte::all();
     $muniaff = MuniAff::all();
 
     // // Récupérer le dernier matricule
     // $dernierMatricule = User::latest()->first();
     // try {
-    //   $decrypted_last_mat = Crypt::decryptString($dernierMatricule->matricule);    
-        
+    //   $decrypted_last_mat = Crypt::decryptString($dernierMatricule->matricule);
+
     // } catch (DecryptException $e) {
-    //   dd("no"); 
+    //   dd("no");
     // }
-    // dd($decrypted_last_mat);  
-    
+    // dd($decrypted_last_mat);
+
     return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr', 'tenueaffs', 'voitaffectes', 'muniaff'));
   }
-  
+
 }
