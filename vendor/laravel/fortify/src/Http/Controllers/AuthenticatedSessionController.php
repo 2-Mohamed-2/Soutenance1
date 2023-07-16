@@ -54,7 +54,7 @@ class AuthenticatedSessionController extends Controller
     {
       $coms = Commissariat::latest()->get();
       return view('auth.login', compact('coms'));
-        // test return app(LoginViewResponse::class);
+        // return app(LoginViewResponse::class);
     }
 
     /**

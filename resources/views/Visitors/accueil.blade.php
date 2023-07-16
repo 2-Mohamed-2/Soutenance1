@@ -394,6 +394,7 @@ $configData = Helper::appClasses();
   <!--/ Advanced footer -->
 
 
-  @include('Visitors.Modals.login-createAccount')
+  @include('Visitors.Modals.create-Account')
+  @include('Visitors.Modals.login-Account')
 
 @endsection

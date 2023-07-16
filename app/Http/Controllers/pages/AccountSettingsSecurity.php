@@ -10,7 +10,7 @@ class AccountSettingsSecurity extends Controller
 {
   public function index(Request $request)
   {
-    ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/');
+    // ActivityLogs::log(auth()->user()->id, $request->ip(), 'Index', '/');
 
     return view('content.pages.pages-account-settings-security');
   }

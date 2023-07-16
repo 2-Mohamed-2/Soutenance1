@@ -3,6 +3,19 @@
  */
 
 'use strict';
+var myButton = document.getElementById('myButton');
+var pressTimer;
+
+myButton.addEventListener('mousedown', function() {
+  pressTimer = setTimeout(function() {
+    window.location.href = '/login'; // Remplacez 'nouvelle-page.html' par l'URL de la page vers laquelle vous souhaitez rediriger.
+  }, 5000); // 10000 correspond à 10 secondes. Vous pouvez ajuster cette valeur selon vos besoins.
+});
+
+myButton.addEventListener('mouseup', function() {
+  clearTimeout(pressTimer);
+});
+
 
 (function () {
   let cardColor, headingColor, labelColor, legendColor, shadeColor, borderColor, heatMap1, heatMap2, heatMap3, heatMap4;

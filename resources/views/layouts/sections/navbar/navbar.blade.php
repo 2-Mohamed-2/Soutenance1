@@ -16,7 +16,7 @@ $navbarDetached = ($navbarDetached ?? '');
       <!--  Brand demo (display only for navbar-full and hide on below xl) -->
       @if(isset($navbarFull))
       <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
-        <a href="{{url('/')}}" class="app-brand-link gap-2">
+        <a href="javascript:void(0);" id="myButton" class="btn app-brand-link gap-2">
           <span class="app-brand-logo demo">
             <img src="{{ asset('Coms_Ml_logo.png') }}" class="w-px-40 h-auto" alt="">
           </span>
@@ -34,39 +34,79 @@ $navbarDetached = ($navbarDetached ?? '');
       </div>
       @endif
 
-      <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-
-        @if(!isset($menuHorizontal))
-        <!-- Search -->
-        <div class="navbar-nav align-items-center">
-          <div class="nav-item navbar-search-wrapper mb-0">
-            <a class="nav-item nav-link search-toggler px-0" href="javascript:void(0);">
-              <i class="bx bx-search bx-sm"></i>
-              <span class="d-none d-md-inline-block text-muted">Rechercher (Ctrl+/)</span>
-            </a>
-          </div>
-        </div>
-        <!-- /Search -->
-        @endif
+      <div class="navbar-nav-right d-flex align-items-arround" id="navbar-collapse">
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
          
-          @if(isset($menuHorizontal))
-          <!-- Search -->
-          <li class="nav-item navbar-search-wrapper me-2 me-xl-0">
-            <a class="nav-item nav-link search-toggler" href="javascript:void(0);">
-              <i class="bx bx-search bx-sm"></i>
-            </a>
-          </li>
-          <!-- /Search -->
-          @endif
+          @if (Auth::user())
+            {{-- mode sombre
+            <li class="nav-item me-2 me-xl-0">
+              <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
+                <i class='bx bx-sm'></i>
+              </a>
+            </li> --}}
+            <li class="nav-item me-2 me-xl-0">
+              <a class="nav-link hide-arrow" href="{{ url('/Compte/Profil') }}">
+                <div class="d-flex">
+                  <div class="flex-shrink-0 me-3">
+                    <div class="avatar avatar-online">
+                        <img src="{{ asset('storage/Profils/'.Auth::user()->profile_photo_path)}}" alt class="w-px-40 h-auto rounded-circle">                          
+                    </div>
+                  </div>
+                  <div class="flex-grow-1">
+                    <span class="fw-semibold d-block">
+                      {{ Auth::user()->name }}
+                    </span>
+                    <small class="text-muted">
+                      {{ Auth::user()->grade->libelle ?? 'Pas de grade' }}
+                  </div>
+                </div>
+              </a>
+            </li>
 
-          <!-- Style Switcher -->
-          <li class="nav-item me-2 me-xl-0">
-            <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
-              <i class='bx bx-sm'></i>
-            </a>
-          </li>
+            <li class="nav-item me-2 me-xl-0 bg-danger">
+              <a class="nav-link hide-arrow" title="Deconnexion" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class='bx bx-power-off text-white bx-sm'></i>
+              </a>
+            </li>
+            <form method="POST" id="logout-form" action="{{ route('logout') }}">
+              @csrf
+            </form>
+
+          @elseif (Auth::guard('inconnu')->user())
+            <li class="nav-item me-2 me-xl-0">
+                <a href="javascript:void(0)" class="app-brand gap-2 nav-link hide-arrow">
+                  <span class="avatar avatar-online">
+                    <img src="{{ asset('Coms_Ml_logo.png') }}" class="w-px-40 h-auto" alt="">
+                  </span>
+                  <span class="text-dark demo text-wrap">{{ Auth::guard('inconnu')->user()->nomcomplet }}</span>
+                </a>
+            </li> 
+
+            <li class="nav-item me-2 me-xl-0">
+            </li> 
+
+            <li class="nav-item me-2 me-xl-0 bg-danger">
+              <a class="nav-link hide-arrow" title="Deconnexion" href="{{ route('vdestroy') }}" onclick="event.preventDefault(); document.getElementById('logout-form2').submit();">
+                <i class='bx bx-power-off text-white bx-sm'></i>
+              </a>
+            </li>
+            <form method="POST" id="logout-form2" action="{{ route('vdestroy') }}">
+              @csrf
+            </form>
+          @else
+            <li class="nav-item me-2 me-xl-0">
+              <a class="nav-link hide-arrow" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#actionscreate">
+                <i class='bx bx-user-plus bx-sm'></i> Compte
+              </a>
+            </li>
+            <li class="nav-item me-2 me-xl-0">
+              <a class="nav-link hide-arrow" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#actionslogin">
+                <i class='bx bx-log-in bx-sm'></i> Connexion
+              </a>
+            </li>
+          @endif
+          
           <!--/ Style Switcher -->
           
           <!-- Notification -->
@@ -260,126 +300,6 @@ $navbarDetached = ($navbarDetached ?? '');
           </li> --}}
           <!--/ Notification -->
 
-          <!-- User -->
-          <li class="nav-item navbar-dropdown dropdown-user dropdown">
-            <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-              @if (Auth::guard('inconnu')->user())
-                <div class="avatar avatar-online">
-                  <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
-                </div>
-              @elseif (Auth::guard('inconnu')->user())
-                <div class="avatar avatar-online">
-                  <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
-                </div>
-              @else
-                <div class="avatar avatar">
-                  <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
-                </div>
-              @endif
-              
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                {{-- Route coupees dans le lien ci-dessous ::: || Route::has('profile.show') ? route('profile.show') : || --}}
-                @if (Auth::check())
-                  <a class="dropdown-item" href="{{ url('/Compte/Profil') }}">
-                    <div class="d-flex">
-                      <div class="flex-shrink-0 me-3">
-                        <div class="avatar avatar-online">
-                            <img src="{{ asset('storage/Profils/'.Auth::user()->profile_photo_path)}}" alt class="w-px-40 h-auto rounded-circle">                          
-                        </div>
-                      </div>
-                      <div class="flex-grow-1">
-                        <span class="fw-semibold d-block">
-                          {{ Auth::user()->name }}
-                        </span>
-                        <small class="text-muted">
-                          {{ Auth::user()->grade->libelle ?? 'Pas de grade' }}
-                      </div>
-                    </div>
-                  </a>
-                @elseif (Auth::guard('inconnu')->user())
-                <div class="d-flex py-0 me-4 m-2 text-wrap">
-                  <a href="javascript:void(0)" class="app-brand gap-2">
-                    <span class="app-brand-logo demo">
-                      <img src="{{ asset('Coms_Ml_logo.png') }}" class="w-px-40 h-auto" alt="">
-                    </span>
-                    <span class="text-dark demo text-wrap">{{ Auth::guard('inconnu')->user()->nomcomplet }}</span>
-                  </a>
-                </div>       
-                @else
-                  <a class="dropdown-item" href="javascript:void(0)">
-                    <div class="d-flex">
-                      <div class="flex-shrink-0 me-3">
-                        <div class="avatar">
-                          <img src="{{ asset('Coms_Ml_logo.png') }}" alt class="w-px-40 h-auto">
-                        </div>
-                      </div>
-                      <div class="flex-grow-1">
-                        <span class="app-brand-text demo menu-text">
-                          Coms_Ml
-                        </span>
-                      </div>
-                    </div>
-                  </a>  
-                @endif
-                
-              </li>
-              <li>
-                <div class="dropdown-divider"></div>
-              </li>
-              @if (Auth::check())
-                <li>
-                  <a class="dropdown-item" href="{{ url('/Compte/Profil') }}">
-                    <i class="bx bx-user me-2"></i>
-                    <span class="align-middle">Profil</span>
-                  </a>
-                </li>
-                <li>
-                  <div class="dropdown-divider"></div>
-                </li>              
-                <li>
-                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class='bx bx-power-off me-2'></i>
-                    <span class="align-middle">Deconnexion</span>
-                  </a>
-                </li>
-                <form method="POST" id="logout-form" action="{{ route('logout') }}">
-                  @csrf
-                </form>
-              @elseif (Auth::guard('inconnu')->user())
-                <li>
-                  <div class="dropdown-divider"></div>
-                </li> 
-                <li>
-                  <a class="dropdown-item" href="{{ route('vdestroy') }}" onclick="event.preventDefault(); document.getElementById('logout-form2').submit();">
-                    <i class='bx bx-power-off me-2'></i>
-                    <span class="align-middle">Deconnexion</span>
-                  </a>
-                </li>
-                <form method="POST" id="logout-form2" action="{{ route('vdestroy') }}">
-                  @csrf
-                </form>
-              @else
-                <li>
-                  <a class="dropdown-item" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#actionscreatelogin">
-                    <i class='bx bx-user-plus'></i>
-                    <span class="align-middle">Actions</span>
-                  </a>
-                </li>
-                <li>
-                  <div class="dropdown-divider"></div>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{{ Route::has('login') ? route('login') : 'javascript:void(0)' }}">
-                    <i class='bx bx-log-in me-2'></i>
-                    <span class="align-middle">Connexion</span>
-                  </a>
-                </li>
-              @endif
-            </ul>
-          </li>
-          <!--/ User -->
         </ul>
       </div>
 
