@@ -236,7 +236,7 @@
 
 
     // Validation de la longueur
-    if(pwd.value.length >= 8){
+    if(pwd.value.length >= 10){
       lenght.classList.remove('invalid');
       lenght.classList.add('valid');
     }
@@ -249,7 +249,7 @@
     const button = document.getElementById('sauv');
     const npwd = document.getElementById('pwd2');
 
-    if ((pwd.value.length >= 8) && (pwd.value.match(nbre)) && (pwd.value.match(caractere)) && (pwd.value.match(majuscule)) && (pwd.value.match(minuscule))) {
+    if ((pwd.value.length >= 10) && (pwd.value.match(nbre)) && (pwd.value.match(caractere)) && (pwd.value.match(majuscule)) && (pwd.value.match(minuscule))) {
       button.disabled = false;
       npwd.disabled = false;
 

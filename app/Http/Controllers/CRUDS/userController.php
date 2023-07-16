@@ -126,39 +126,27 @@ class userController extends Controller
           {
   
             // Les caracteres a entré dans la combinaison
-            $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890@-$%&$%&');
+            $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890.@-_@.&');
             // La combinaison
             $password = substr($random, 0, 8);
 
+            $dernierMatricule = User::max('matricule');
+            // Incrémenter le dernier matricule
+            $nouveauMatricule = $dernierMatricule + 1;
 
-
-            
-            try {
-              $dernierMatricule = User::latest()->first();
-              $decrypted_last_mat = Crypt::decrypt($dernierMatricule->matricule);
-              
-              // Incrémenter le dernier matricule
-              $nouveauMatricule = $decrypted_last_mat + 1;
-
-              $mat_crypt = Crypt::encrypt($nouveauMatricule);
-    
-              $user = User::create([
-                'commissariat_id' => null,
-                'grade_id' => null,
-                'section_id' => null,
-                'password' => Hash::make($password),
-                'matricule' => $mat_crypt,
-                'name' => $request->name,
-                'email' => $request->email,
-                'genre' => $request->genre,
-                'telephone' => $request->telephone,
-                'isActive' => 1,
-              ]);
-                
-            } catch (DecryptException $e) {
-              Alert::error('Erreur', 'Le système n\'arrive pas à decrypter une donnée !');
-              return redirect()->back(); 
-            }
+            $user = User::create([
+              'commissariat_id' => null,
+              'grade_id' => null,
+              'section_id' => null,
+              'password' => Hash::make($password),
+              'matricule' => $nouveauMatricule,
+              'name' => $request->name,
+              'email' => $request->email,
+              'genre' => $request->genre,
+              'telephone' => $request->telephone,
+              'isActive' => 1,
+            ]);
+               
             
             // Inserer le role membre par defaut au nouveau membre creer
             $role = Role::where('name', 'Membre')->get();            
