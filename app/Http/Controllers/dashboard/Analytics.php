@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use SebastianBergmann\Diff\Diff;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Avoir;
 use App\Models\Commissariat;
 use App\Models\MuniAff;
 use App\Models\Tenue;
@@ -50,6 +51,11 @@ class Analytics extends Controller
     ->where('created_at', '>=', Carbon::now()->subMonths(12))
       ->groupBy('mois')->orderBy('mois')
       ->get();
+    $data = Avoir::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count ')
+    ->where('created_at', '>=', Carbon::now()->subMonths(12))
+      ->groupBy('mois')->orderBy('mois')
+      ->get();
+      response()->json($data);
     $voitaffectes = VoitAffecte::all();
     $muniaff = MuniAff::all();
 

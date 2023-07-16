@@ -150,9 +150,9 @@ $configData = Helper::appClasses();
                   </div>
                 </div>
               </div>
-              <span class="d-block mb-1">Payments</span>
+              {{-- <span class="d-block mb-1">Payments</span>
               <h3 class="card-title text-nowrap mb-2">$2,456</h3>
-              <small class="text-danger fw-semibold"><i class='bx bx-down-arrow-alt'></i> -14.82%</small>
+              <small class="text-danger fw-semibold"><i class='bx bx-down-arrow-alt'></i> -14.82%</small> --}}
             </div>
           </div>
         </div>
@@ -193,7 +193,7 @@ $configData = Helper::appClasses();
   </div>
 
   @unlessrole(['Commissaire','Membre'])
-  <div class="row">
+  {{-- <div class="row">
     <!-- Expense Overview -->
     <div class="col-md-6 col-lg-4 order-1 mb-4">
       <div class="card h-100">
@@ -236,7 +236,7 @@ $configData = Helper::appClasses();
     </div>
     <!--/ Expense Overview -->
 
-  </div>
+  </div> --}}
   @endunlessrole
 
 
