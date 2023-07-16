@@ -127,7 +127,7 @@ class userController extends Controller
             // Les caracteres a entré dans la combinaison
             $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890.@-_@.&');
             // La combinaison
-            $password = substr($random, 0, 8);
+            $password = substr($random, 0, 10);
 
             // Récupérer le dernier matricule
             $dernierMatricule = User::max('matricule');
