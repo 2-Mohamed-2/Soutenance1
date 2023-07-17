@@ -135,7 +135,7 @@
             <span class="timeline-point timeline-point-warning"></span>
             <div class="timeline-event">
               <div class="timeline-header mb-1">
-                  <h6 class="mb-0">Du {{ $created }} à {{ $deconnexion }}</h6>
+                  <h6 class="mb-0">Du {{ $created }} au {{ $deconnexion }}</h6>
             </div>
           </li>
           @endforeach

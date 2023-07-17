@@ -41,8 +41,7 @@
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
-        @forelse ($sessions as $session)
-          
+        @forelse ($sessions as $session)          
           <tr>
             <td>{{ $session->user->matricule }}</td>
             <td>{{ $session->user->name }}</td>
@@ -75,6 +74,13 @@
       </tbody>
     </table>
   </div>
+  {{-- <div class="p-2 col-12 d-flex justify-content-end">
+    <div>
+      <small class="mb-5">Les acrivites des utilisateurs par cinquantaine</small>
+      <br>
+      {{ $sessions->links() }}
+    </div>    
+  </div> --}}
 </div>
 
 

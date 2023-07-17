@@ -17,14 +17,14 @@ class SurveillanceController extends Controller
 
     public function session_view()
     {
-        $sessions = SessionUser::latest()->get();
+        $sessions = SessionUser::orderBy('deconnexion', 'desc')->take(50)->latest()->get();
         return view('content.surveillance.session-view', compact('sessions'));        
     }
 
 
     public function activity_view()
     {
-        $activities = ActivityLog::latest()->get();
+        $activities = ActivityLog::orderBy('created_at', 'desc')->take(1000)->latest()->get();
         return view('content.surveillance.activity-view', compact('activities'));
     }
 

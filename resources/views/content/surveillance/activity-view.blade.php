@@ -58,10 +58,17 @@
         @empty
           
         @endforelse
+        
       </tbody>
-    </table>
+    </table>    
   </div>
+  {{-- <div class="p-2 col-12 d-flex justify-content-end">
+    <div>
+      <small class="mb-5">Les 1000 dernièrres activités des utilisateurs.</small>
+      <br>
+      {{ $activities->links() }}
+    </div>    
+  </div> --}}
 </div>
-
 
 @endsection
