@@ -264,12 +264,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/Activite-Vue', [SurveillanceController::class, 'activity_view'])->name('surv-acti-vue')
             ->middleware('role:Informaticien');
     });
+
+    
     Route::fallback(function () {
         Alert::error('404', 'La page demandee est introuvable');
         return redirect()->back();
     })->name('404');
-    Route::fallback(function () {
-        Alert::error('403', 'La page demandee est introuvable');
-        return redirect()->back();
-    })->name('403');
+
 });
