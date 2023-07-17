@@ -45,7 +45,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 // });
 
 
-Route::get('/', [Accueil::class, 'index'])->name('Accueil');
+Route::get('/', [Accueil::class, 'index'])->name('Accueil')->middleware('guest');
 //Pour la creation d'un compte visiteur method="POST" action="{{ route('admin-login')
 Route::post('/Citoyen/Create', [VisitorsInconnuController::class, 'store'])->name('citcreate');
 //Pour la connexion du citoyen
@@ -264,12 +264,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/Activite-Vue', [SurveillanceController::class, 'activity_view'])->name('surv-acti-vue')
             ->middleware('role:Informaticien');
     });
+
+    
     Route::fallback(function () {
         Alert::error('404', 'La page demandee est introuvable');
         return redirect()->back();
     })->name('404');
-    Route::fallback(function () {
-        Alert::error('403', 'La page demandee est introuvable');
-        return redirect()->back();
-    })->name('403');
+
 });
