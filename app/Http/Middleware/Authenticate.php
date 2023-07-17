@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class Authenticate extends Middleware
 {
@@ -15,7 +16,8 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login');
+            Alert::error('404', 'Contenu introuvable !!!');
+            return route('Accueil');
         }
     }
 }

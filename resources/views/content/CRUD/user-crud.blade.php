@@ -136,7 +136,8 @@
           <th class="fs-6">Matricule</th>
           <th class="fs-6">Nom</th>
           <th class="fs-6">Telephone</th>
-          <th class="fs-6">Action</th>
+          <th @hasrole('Informaticien|Administrateur') colspan="4"@endhasrole
+              colspan="2" class="fs-6 text-center">Action</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
@@ -154,49 +155,59 @@
           <td><strong>{{ $user->matricule }}</strong></td>
           <td><strong>{{$user->name}}</strong></td>
           <td><strong>{{$user->telephone}}</strong></td>
-          <td>
-            <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userInfo{{$user->id}}" aria-controls="offcanvasEnd"><i class="bx bx-plus me-1"></i> Information</a>
-                @hasanyrole('Informaticien|Administrateur')
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userRole{{$user->id}}"><i class="bx bx-check-shield me-1"></i> Roles</a>
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userUpdt{{$user->id}}" aria-controls="offcanvasEnd"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
-                @endhasanyrole
-                @if ($user->isActive == 1)
-                  <a class="dropdown-item text-danger" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userDesact{{$user->id}}"><i class="bx bx-stop-circle me-1"></i> Desactiver</a>                  
-                @else                  
-                  <a class="dropdown-item text-success" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userAct{{$user->id}}"><i class="bx bx-play-circle me-1"></i> Activer</a>
-                @endif
-                {{-- @hasanyrole('Informaticien|Administrateur')
-                <a class="dropdown-item text-danger" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userDst{{$user->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-                @endhasanyrole --}}
-              </div>
-            </div>
 
-            
-            {{-- Vue du modal de d'apercu du membre --}}
-            @include('_partials._modals._CRUD-USER.modal-view-User')
-
-            @hasanyrole('Informaticien|Administrateur')
-            {{-- Vue du modal d'affectation de role --}}
-            @include('_partials._modals._CRUD-USER.modal-role-User')
-
-            {{-- Vue du modal de modification --}}
-            @include('_partials._modals._CRUD-USER.modal-updt-User')
-
-            {{-- Vue du modal de suppression --}}
-            {{-- @include('_partials._modals._CRUD-USER.mofal-delete-User') --}}
-            @endhasanyrole
-
-            {{-- Vue du modal de desactivation --}}
-            @include('_partials._modals._CRUD-USER.mofal-desactif-User')
-
-            {{-- Vue du modal d'activation --}}
-            @include('_partials._modals._CRUD-USER.mofal-actif-User')
-
-
+          <td class="bg-info text-center">
+            <a class="text-white" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userInfo{{$user->id}}" aria-controls="offcanvasEnd">
+              <i class="bx bx-plus me-0" title="Informations"></i> 
+            </a>
           </td>
+          @hasanyrole('Informaticien|Administrateur')
+            <td class="bg-warning text-center">
+              <a class="text-white" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userRole{{$user->id}}">
+                <i class="bx bx-check-shield me-0" title="Role"></i> 
+              </a>
+            </td>
+            <td class="bg-primary text-center">
+              <a class="text-white" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userUpdt{{$user->id}}" aria-controls="offcanvasEnd">
+                <i class="bx bx-edit-alt me-1" title="Modification"></i> 
+              </a>
+            </td>
+          @endhasanyrole
+          
+            @if ($user->isActive == 1)
+              <td class="bg-danger text-center">
+                <a class="text-white" href="javascript:void(0);" data-bs-toggle="modal"    data-bs-target="#userDesact{{$user->id}}">
+                  <i class="bx bx-stop-circle" title="Desactivation"></i> 
+                </a>
+              </td>                  
+            @else 
+              <td class="bg-success text-center">
+                <a class="text-white" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userAct{{$user->id}}">
+                  <i class="bx bx-play-circle me-1" title="Activation"></i> 
+                </a>
+              </td> 
+            @endif
+
+           {{-- Vue du modal de d'apercu du membre --}}
+           @include('_partials._modals._CRUD-USER.modal-view-User')
+
+           @hasanyrole('Informaticien|Administrateur')
+           {{-- Vue du modal d'affectation de role --}}
+           @include('_partials._modals._CRUD-USER.modal-role-User')
+
+           {{-- Vue du modal de modification --}}
+           @include('_partials._modals._CRUD-USER.modal-updt-User')
+
+           {{-- Vue du modal de suppression --}}
+           {{-- @include('_partials._modals._CRUD-USER.mofal-delete-User') --}}
+           @endhasanyrole
+
+           {{-- Vue du modal de desactivation --}}
+           @include('_partials._modals._CRUD-USER.mofal-desactif-User')
+
+           {{-- Vue du modal d'activation --}}
+           @include('_partials._modals._CRUD-USER.mofal-actif-User')
+
         </tr>
 
         @empty

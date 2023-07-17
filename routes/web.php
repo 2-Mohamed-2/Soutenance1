@@ -45,7 +45,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 // });
 
 
-Route::get('/', [Accueil::class, 'index'])->name('Accueil');
+Route::get('/', [Accueil::class, 'index'])->name('Accueil')->middleware('guest');
 //Pour la creation d'un compte visiteur method="POST" action="{{ route('admin-login')
 Route::post('/Citoyen/Create', [VisitorsInconnuController::class, 'store'])->name('citcreate');
 //Pour la connexion du citoyen
