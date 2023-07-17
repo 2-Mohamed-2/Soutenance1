@@ -43,12 +43,12 @@
           @csrf
         <div class="d-flex align-items-start align-items-sm-center gap-4">
           {{-- {{ dd(Auth::user()->profile_photo_path) }} --}}
-          <img src="{{ asset('storage/Profils/'.Auth::user()->profile_photo_path)}}" alt="user-image" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
+          <img src="{{ URL::to('public/Profils/'.Auth::user()->profile_photo_path)}}" alt="user-image" class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
           <div class="button-wrapper">
             <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
               <span class="d-none d-sm-block">Nouvelle photo</span>
               <i class="bx bx-upload d-block d-sm-none"></i>
-              <input type="file" id="upload" name="image" class="account-file-input" hidden accept="image/png, image/jpeg" />
+              <input type="file" id="upload" name="profile_photo_path" class="account-file-input" hidden accept="image/png, image/jpeg" />
             </label>
             <button type="button" class="btn btn-label-secondary account-image-reset mb-4">
               <i class="bx bx-reset d-block d-sm-none"></i>
@@ -58,11 +58,11 @@
             <p class="text-muted mb-0">Seulement les images sont autorisées</p>
           </div>
         </div>
-        
+
       </div>
       <hr class="my-0">
       <div class="card-body">
-        
+
           <div class="row">
             <div class="mb-3 col-md-6">
               <label for="firstName" class="form-label">Nom complet</label>
@@ -97,7 +97,7 @@
       <span id="formAccountDeactivation"></span>
 
     </div>
-    
+
   </div>
 </div>
 
