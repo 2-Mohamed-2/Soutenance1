@@ -43,10 +43,10 @@ class VehiculeController extends Controller
       try{
         $data = $this->validate($request, [
 
-          'type' => 'required|max:255',
+          'type' => 'required|max:255|min:3',
           // 'identifiant' => 'required',
-          'modele' => 'required|max:255',
-          'plaque' => 'required|max:255',
+          'modele' => 'required|max:255|min:3',
+          // 'plaque' => 'required|max:255',
           'quantite' => 'required',
           // 'revision' => 'required|max:255',
           // 'commissariat_id' => 'max:255',

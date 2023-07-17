@@ -59,13 +59,13 @@ class AvoirController extends Controller
     public function store(Request $request)
     {
         //
-        try{
+         try{
             $data = $this->validate($request, [
 
               // 'user_id' => 'required',
               'commissariat_id' => 'required',
               'armement_id' => 'required',
-              'quantite' => 'required',
+              // 'quantite' => 'required',
               // 'statut_id' => 'required',
               // 'date_acqui' => 'required|max:255',
 
@@ -75,23 +75,23 @@ class AvoirController extends Controller
               $avoir = new Avoir;
               $avoir->commissariat_id = $request->commissariat_id;
               $avoir->armement_id = $request->armement_id; //[$i];
-              $avoir->quantite = $request->quantite;//[$i];
+              // $avoir->quantite = $request->quantite;//[$i];
               $avoir->date_acqui = now();
               $avoir->save();
             // }
 
 
             if ($avoir) {
-              Alert::success('L\'enregistrement a bien été effectué !', 'Réussite');
+              Alert::success('Réussite', 'L\'affectation a bien été effectué !');
               return redirect('/Avoir');
             } else {
-              Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
+              Alert::error('Erreur', 'L\'affectation n\'a pas bien été effectué !');
               return redirect('/Avoir');
             }
-        }catch (\Throwable $th){
-          Alert::error('L\'enregistrement n\'a pas bien été effectué !', 'Erreur');
-          return redirect('/Avoir');
-        }
+         }catch (\Throwable $th){
+           Alert::error('L\'affectation n\'a pas bien été effectué !', 'Erreur');
+           return redirect('/Avoir');
+         }
 
 
     }
@@ -135,7 +135,7 @@ class AvoirController extends Controller
             // 'user_id' => 'required',
             'commissariat_id' => 'required',
             'armement_id' => 'required',
-            'quantite' => 'required',
+            // 'quantite' => 'required',
             // 'statut_id' => 'required',
             'date_acqui' => 'required|max:255',
 
@@ -181,40 +181,41 @@ class AvoirController extends Controller
 
     public function affecterArme(Request $req,$id)
     {
-      try{
+      // try{
 
         $id = decrypt($id);
-      $armeaffInfos = Armement::where('id', $id)->first();
+      // $armeaffInfos = Armement::where('id', $id)->first();
       $data = $this->validate($req, [
         'commissariat_id' => 'required',
-        'quantite' => 'required',
+        // 'quantite' => 'required',
+        'armement_id',
       ]);
-      if($req->quantite > $armeaffInfos->quantite || $req->quantite == 0)
-      {
-        Alert::error('Erreur', 'Quantite insuffisante !');
-        return redirect('/Armement');
-      }
-      else
-      {
+      // if($req->quantite > $armeaffInfos->quantite || $req->quantite == 0)
+      // {
+      //   Alert::error('Erreur', 'Quantite insuffisante !');
+      //   return redirect('/Armement');
+      // }
+      // else
+      // {
         $armeAff = new Avoir;
         $armeAff->commissariat_id = $req->commissariat_id;
         $armeAff->armement_id = $id;
-        $armeAff->quantite = $req->quantite;
+        // $armeAff->quantite = $req->quantite;
         $armeAff->date_acqui = now();
         $armeAff->save();
-      }
-      if($armeAff)
-      {
-        $updatearmeAff = Armement::find($armeaffInfos->id);
-        $updatearmeAff->quantite -= $req->quantite;
-        $updatearmeAff->update();
-      }
+      // }
+      // if($armeAff)
+      // {
+      //   $updatearmeAff = Armement::find($armeaffInfos->id);
+      //   // $updatearmeAff->quantite -= $req->quantite;
+      //   $updatearmeAff->update();
+      // }
         Alert::success('Success', 'Affectation réussite');
         return redirect('/Avoir');
-    }catch(\Throwable $th){
-      Alert::error('Erreur', 'Affectation non réussite');
-      return redirect('/Armement');
-    }
+    // }catch(\Throwable $th){
+    //   Alert::error('Erreur', 'Affectation non réussite');
+    //   return redirect('/Armement');
+    // }
 
     }
 

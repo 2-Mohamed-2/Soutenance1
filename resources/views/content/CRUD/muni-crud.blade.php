@@ -72,8 +72,8 @@ use App\Models\Munition;
       <thead>
         <tr>
           <th>Type</th>
-          <th>Libelle</th>
-          <th>Quantite</th>
+          <th>N Serie</th>
+          {{-- <th>Quantite</th> --}}
           <th>Lieu Stockage</th>
           <th>Action</th>
         </tr>
@@ -83,7 +83,7 @@ use App\Models\Munition;
         <tr>
           <td><strong>{{$muni->type}}</strong></td>
           <td>{{$muni->libelle}}</span></td>
-          <td>{{$muni->quantite}}</span></td>
+          {{-- <td>{{$muni->quantite}}</span></td> --}}
           <td>{{$muni->lieu_stock->entrepot}}</span></td>
           <td>
             <div class="dropdown">

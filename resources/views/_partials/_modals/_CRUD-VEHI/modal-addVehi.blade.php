@@ -30,12 +30,12 @@
         </div>
 
 
-       <div class="col-12">
+       {{-- <div class="col-12">
         <label class="form-label" for="modalEnableOTPPhone">Plaque</label>
         <div class="input-group input-group-merge">
           <input required type="text" autocomplete="off" minlength="5" name="plaque" class="form-control phone-mask" placeholder="NUmero du plaque" />
         </div>
-      </div>
+      </div> --}}
 
        <div class="col-12">
           <label class="form-label" for="modalEnableOTPPhone">Quantite</label>

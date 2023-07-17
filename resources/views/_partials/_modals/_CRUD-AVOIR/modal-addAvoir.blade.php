@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalScrollableTitle">Affectation du arme {{ $arme->modele }}</h5>
+        <h5 class="modal-title" id="modalScrollableTitle">Affectation des armes {{ $arme->modele }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -21,13 +21,15 @@
            </select>
           </div>
 
-          <div class="col-12">
-            <label class="form-label" for="modalEnableOTPPhone">Quantite</label>
-            <div class="input-group input-group-merge">
-              <input required type="number" autocomplete="off" name="quantite" class="form-control phone-mask"
-                placeholder="Quantite" />
-            </div>
-          </div>
+           {{-- <div class="col-12 mb-4">
+            <select class="form-control" name="armement_id">
+              @foreach($armements as $arme)
+              <option value="">{{ $arme->modele }}</option>
+              <option value="{{ $arme->id }}">{{ $arme->modele }}
+              </option>
+              @endforeach
+            </select>
+          </div> --}}
 
           {{-- <div class="col-12">
             <h4></h4>

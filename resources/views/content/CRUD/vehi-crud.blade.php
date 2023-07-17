@@ -84,7 +84,7 @@
         <tr>
           <th>Nom</th>
           <th>Modele</th>
-          <th>Plaque Numero</th>
+          {{-- <th>Plaque Numero</th> --}}
           <th>Quantite</th>
           <th>Action</th>
         </tr>
@@ -94,8 +94,8 @@
         <tr>
           <td><strong>{{$vehi->type}}</strong></td>
           <td>{{$vehi->modele}}</span></td>
-          <td>{{$vehi->plaque}}</span></td>
-          <td>{{$vehi->quantite}}</span></td>
+          {{-- <td>{{$vehi->plaque}}</span></td> --}}
+           <td>{{$vehi->quantite}}</span></td>
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>

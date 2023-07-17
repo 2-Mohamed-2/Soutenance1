@@ -50,7 +50,7 @@ class ArmementController extends Controller
             // 'revision' => 'required|max:255',
             // 'statut' => 'required|max:255',
             // 'lieu' => 'required|max:255',
-            'quantite' => 'required|max:255',
+            // 'quantite' => 'required|max:255',
             'lieu_stock_id' => 'required'
 
           ]);
@@ -63,7 +63,7 @@ class ArmementController extends Controller
             // 'revision' => $request->revision,
             // 'statut' => $request->statut,
             // 'lieu' => $request->lieu,
-            'quantite' => $request->quantite,
+            // 'quantite' => $request->quantite,
             'lieu_stock_id' => $request->lieu_stock_id,
 
           ]);
