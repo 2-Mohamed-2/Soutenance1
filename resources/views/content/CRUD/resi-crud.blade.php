@@ -42,7 +42,7 @@
           <th>Date de naissance</th>
           <th>Commissariat</th>
           <th>Date</th>
-          <th>Action</th>
+          <th @unlessrole('Membre') colspan="2" @endunlessrole class="text-center">Action</th>
         </tr>
       </thead>
       <tbody class="table-border-bottom-0">
@@ -58,6 +58,15 @@
           <td>{{$new_date_naiss}}</span></td>
           <td>{{$resi->commissariat->sigle}}</span></td>
           <td>{{$new_date_dmde}}</span></td>
+          <td class="bg-info text-center">
+            <a class="text-white" target="blank" href="{{ route('residencePDF', Crypt::encrypt($resi->id)) }}"><i class="fa fa-file-pdf me-1"></i></a>
+          </td>
+          @unlessrole('Membre')
+          <td class="bg-danger text-center">
+            <a class="text-white" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#resiDst{{$resi->id}}"><i class="fa fa-trash"></i> </a>
+          </td>            
+          @endunlessrole
+
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
