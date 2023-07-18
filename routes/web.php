@@ -162,7 +162,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         //Statistique
         Route::get('/statistique', [Analytics::class, 'statistique'])
             ->middleware('role:Informaticien|Administrateur');
-
+        Route::get('/statistique1', [Analytics::class, 'statistique'])
+          ->middleware('role:Informaticien|Administrateur');
 
 
         //Route pour Armement
@@ -265,7 +266,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             ->middleware('role:Informaticien');
     });
 
-    
+
     Route::fallback(function () {
         Alert::error('404', 'La page demandee est introuvable');
         return redirect()->back();

@@ -60,20 +60,20 @@ class AttemptToAuthenticate
         if ($this->guard->attempt(
             $request->only(Fortify::username(),'commissariat_id', 'password'),
             $request->boolean('remember'))
-        ) 
-        {                       
+        )
+        {
             $session_user = new SessionUser();
             $session_user->user_id = Auth::user()->id;
-            
+
             $session_user->save();
 
-            $request->session()->put('session_id', $session_user->id);             
-            
+            $request->session()->put('session_id', $session_user->id);
+
             Alert::info('Bonjour '.$request->user()->name, 'Coms_Ml vous souhaite la bienvenue !');
-            
+
             return redirect(route('dashboard-analytics'));
 
-            
+
         }
 
         $this->throwFailedAuthenticationException($request);

@@ -95,8 +95,8 @@ $configData = Helper::appClasses();
         <div class="col-12 mb-4">
           <div class="card">
             <div class="card-body pb-2">
-              <span class="d-block fw-semibold mb-1">Revenue</span>
-              <h3 class="card-title mb-1">425k</h3>
+              <span class="d-block fw-semibold mb-1">Statistique des Vehicules Affecter</span>
+              <h3 class="card-title mb-1"></h3>
               <div id="revenueChart"></div>
             </div>
           </div>

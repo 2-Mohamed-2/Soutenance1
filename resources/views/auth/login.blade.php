@@ -24,24 +24,24 @@ $customizerHidden = 'customizer-hide';
     <!-- /Left Text -->
 
     <!-- Login -->
-    <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-start authentication-bg p-sm-3 p-3">      
+    <div class="d-flex col-12 col-lg-5 col-xl-4 align-items-start authentication-bg p-sm-3 p-3">
       <div class="w-px-400 mx-auto mt-2">
-        
+
         <!-- Logo -->
-        <div class="app-brand mb-3 text-center mt-2">   
+        <div class="app-brand mb-3 text-center mt-2">
           <div class="text-center">
             <a href="{{url('/')}}" class="app-brand-link gap-2">
               <span class="app-brand-logo demo d-block">
                 <img src="{{ asset('Coms_Ml_logo.png') }}" class="mx-auto" width="30%" alt="">
               </span>
             </a>
-          </div> 
+          </div>
         </div>
         <!-- /Logo -->
         <h4 class="mb-2">Bonjour 👋 et Bienvenu sur {{config('variables.templateName')}}!</h4>
         <p class="mb-4">Veuillez renseigner les champs ci-dessous</p>
 
-     
+
         @error ('fail')
         <div class="alert alert-success mb-1 rounded-0" role="alert">
           <div class="alert-body">
@@ -70,11 +70,11 @@ $customizerHidden = 'customizer-hide';
           </div>
 
           <div class="mb-3">
-            <label for="login-email" class="form-label">Matricule</label>
-            <input type="text" autocomplete="off" class="form-control @error('matricule') is-invalid @enderror"
-               name="matricule" placeholder="Votre matricule" required value="{{ old('matricule') }}">
+            <label for="login-email" class="form-label">Pseudo</label>
+            <input type="text" autocomplete="off" class="form-control @error('pseudo') is-invalid @enderror"
+               name="pseudo" placeholder="Votre identifiant" required value="{{ old('pseudo') }}">
 
-            @error('matricule')
+            @error('pseudo')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
@@ -110,9 +110,9 @@ $customizerHidden = 'customizer-hide';
           </div>
           <button class="btn btn-primary d-grid w-100" type="submit">Se connecter</button>
         </form>
-        
+
         <div class="divider my-4">
-         
+
         </div>
         </div>
       </div>

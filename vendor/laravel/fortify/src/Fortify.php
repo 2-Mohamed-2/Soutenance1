@@ -60,7 +60,7 @@ class Fortify
      */
     public static function username()
     {
-        return config('fortify.username', 'matricule');
+        return config('fortify.username', 'pseudo');
     }
 
     /**

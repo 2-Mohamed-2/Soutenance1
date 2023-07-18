@@ -47,11 +47,13 @@ class MdpNotification extends Notification
         //             ->action('Notification Action', url('/'))
         //             ->line('Thank you for using our application!');
 
-     
+
         return (new MailMessage)->subject('Création de compte')
         ->line('Bonjour '.$notifiable->name. ', c\'est l\'equipe de Coms_ML. Vous avez bien été enregistré sur notre site !')
-        ->line('Votre mot de passe par defaut est : '.$this->password)
-        ->line('Vous pouvez le modifier dès votre prémière connexion.')
+        ->line('Votre identifiant de connexion unique est : '.$notifiable->pseudo)
+        ->line('Votre mot de passe par defaut est : ' . $this->password)
+        ->line('Vous pouvez modifier le mot de passe dès la prémière connexion.')
+        ->line('Vous ne devrez partager ces informations avec personne sous aucun pretexte.')
         ->view('vendor.notifications.test');
 
     }

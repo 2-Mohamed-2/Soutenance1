@@ -23,22 +23,23 @@ class UserSeeder extends Seeder
         'commissariat_id' => 0,
         'grade_id' => 0,
         'section_id' => 0,
-        'matricule' => '0',
+        'matricule' => 0,
+        'pseudo' => 'sys.coms',
         'name' => 'Informaticien',
         'email' => 'user1@user1.com',
         'password' => Hash::make('password'),
         'created_at' => now(),
         'updated_at' => now()
       ]);
-      
+
       $role = Role::create(['name' => 'Informaticien']);
-      
+
       $permissions = Permission::pluck('id','id')->all();
-    
+
       $role->syncPermissions($permissions);
-      
+
       $user->assignRole([$role->id]);
 
-      
+
     }
 }

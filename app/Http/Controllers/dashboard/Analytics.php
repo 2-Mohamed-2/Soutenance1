@@ -41,6 +41,16 @@ class Analytics extends Controller
 
   }
 
+  function statistique1(){
+    $data1 = VoitAffecte::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count, DATE_FORMAT(created_at, "%Y") as annee ')
+      ->where('created_at', '>=', Carbon::now()->subMonths(12))
+      ->groupBy('mois', 'annee')
+      ->orderBy('mois')
+      ->get()
+      ->toArray();
+    return response()->json($data1);
+  }
+
   public function index(Request $request)
   {
 
@@ -60,15 +70,6 @@ class Analytics extends Controller
     $voitaffectes = VoitAffecte::all();
     $muniaff = MuniAff::all();
 
-    // // Récupérer le dernier matricule
-    // $dernierMatricule = User::latest()->first();
-    // try {
-    //   $decrypted_last_mat = Crypt::decryptString($dernierMatricule->matricule);
-
-    // } catch (DecryptException $e) {
-    //   dd("no");
-    // }
-    // dd($decrypted_last_mat);
 
     return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr', 'tenueaffs', 'voitaffectes', 'muniaff'));
   }

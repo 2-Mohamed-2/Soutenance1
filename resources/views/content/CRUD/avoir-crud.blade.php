@@ -41,10 +41,10 @@
           <td>
             <div class="dropdown">
               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-              <div class="dropdown-menu">
+              {{-- <div class="dropdown-menu">
                 <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#avoirUpdt{{$avoir->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a>
                 <button class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#avoirDst{{$avoir->id}}"><i class="bx bx-trash me-1"></i> Supprimer</button>
-              </div>
+              </div> --}}
             </div>
           </td>
           {{-- Vue du modal de suppression --}}
