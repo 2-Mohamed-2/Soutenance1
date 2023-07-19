@@ -70,7 +70,7 @@ $customizerHidden = 'customizer-hide';
           </div>
 
           <div class="mb-3">
-            <label for="login-email" class="form-label">Pseudo</label>
+            <label for="login-email" class="form-label">Identifiant</label>
             <input type="text" autocomplete="off" class="form-control @error('pseudo') is-invalid @enderror"
                name="pseudo" placeholder="Votre identifiant" required value="{{ old('pseudo') }}">
 
