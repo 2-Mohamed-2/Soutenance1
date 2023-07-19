@@ -134,12 +134,19 @@ class userController extends Controller
             // Incrémenter le dernier matricule
             $nouveauMatricule = $dernierMatricule + 1;
 
+            // Avec les 3 prochaines lignes nous declarons d'abord des chiffres, puis a la deuxieme ligne nous generons un random de 2 chiffres aleatoires et en 3eme ligne, nous combinons les chiffres aleatoire avec le nom de l'application et le matricule du membre
+            $random_pseudo = str_shuffle('1234567890');
+            $pre_pseudo = substr($random_pseudo, 0, 2);
+            $pseudo = "coms".$pre_pseudo.".".$nouveauMatricule;
+
+
             $user = User::create([
               'commissariat_id' => null,
               'grade_id' => 1,
               'section_id' => null,
               'password' => Hash::make($password),
               'matricule' => $nouveauMatricule,
+              'pseudo' => $pseudo,
               'name' => $request->name,
               'email' => $request->email,
               'genre' => $request->genre,

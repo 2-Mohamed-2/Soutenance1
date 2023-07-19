@@ -42,8 +42,8 @@
     if (elementClique !== bouton && elementClique !== champ && elementClique !== champ1 && elementClique !== champ2 && elementClique !== champ3 && elementClique !== champ4 && elementClique !== champ5) {
       champ.style.display = 'none';
     }
-  });  
-</script> 
+  });
+</script>
 
 <script>
   document.getElementById('space').addEventListener('input', function (e) {
@@ -69,23 +69,23 @@
 
     <div>
       <button class="btn btn-info" id="bouton">
-        Affectation / Promotion   
-      </button> 
+        Affectation / Promotion
+      </button>
     </div>
 
     <div>
       <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser" aria-controls="offcanvasEnd">
-        Créer un nouveau membre    
+        Créer un nouveau membre
       </button>
-    </div>    
+    </div>
     {{-- Vue du modal d'insertion --}}
     @include('_partials._modals._CRUD-USER.modal-add-User')
-    
-    
+
+
   </div>
   @endhasanyrole
 
-  
+
   @hasanyrole('Informaticien|Administrateur')
  {{-- Formulaire pour affectation aux commissariats --}}
   <form method="POST" id="test_form1" action="{{ route('aff-mbr') }}">
@@ -99,9 +99,9 @@
         <select id="champ1" name="commissariat_id" required class="form-select">
           <option selected disabled>Commissariat cible</option>
           @forelse ($comms as $comm)
-              <option id="champ2" value="{{ $comm->id }}">{{ $comm->sigle }} de {{ $comm->localite }}</option>                
+              <option id="champ2" value="{{ $comm->id }}">{{ $comm->sigle }} de {{ $comm->localite }}</option>
           @empty
-              
+
           @endforelse
         </select>
       </div>
@@ -110,21 +110,21 @@
         <select id="champ4" name="grade_id" required class="form-select">
           <option selected disabled>Grade</option>
           @forelse ($grades as $grade)
-              <option id="champ5" value="{{ $grade->id }}">{{ $grade->libelle }}</option>                
+              <option id="champ5" value="{{ $grade->id }}">{{ $grade->libelle }}</option>
           @empty
-              
+
           @endforelse
         </select>
       </div>
-      
+
       <br>
       <div class="d-flex justify-content-center">
         <button class="btn btn-secondary" type="submit" form="test_form1" id="champ3">
-          Effectuer    
-        </button> 
+          Effectuer
+        </button>
       </div>
     </div>
-    
+
   </div>
   @endhasanyrole
 
@@ -145,47 +145,47 @@
         <tr>
           <td class="text-center col-1">
             <input type="checkbox" class="dt-checkboxes form-check-input" name="options[]" value="{{ $user->id }}">
-          </td>        
+          </td>
 
           @hasanyrole('Informaticien|Administrateur')
           </form>
           @endhasanyrole
-          
-          
+
+
           <td><strong>{{ $user->matricule }}</strong></td>
           <td><strong>{{$user->name}}</strong></td>
           <td><strong>{{$user->telephone}}</strong></td>
 
-          <td class="bg-info text-center">
-            <a class="text-white" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userInfo{{$user->id}}" aria-controls="offcanvasEnd">
-              <i class="bx bx-plus me-0" title="Informations"></i> 
+          <td class="text-center">
+            <a class="text-info" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userInfo{{$user->id}}" aria-controls="offcanvasEnd">
+              <i class="bx bx-plus me-0" title="Informations"></i>
             </a>
           </td>
           @hasanyrole('Informaticien|Administrateur')
-            <td class="bg-warning text-center">
-              <a class="text-white" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userRole{{$user->id}}">
-                <i class="bx bx-check-shield me-0" title="Role"></i> 
+            <td class="text-center">
+              <a class="text-warning" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userRole{{$user->id}}">
+                <i class="bx bx-check-shield me-0" title="Role"></i>
               </a>
             </td>
-            <td class="bg-primary text-center">
-              <a class="text-white" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userUpdt{{$user->id}}" aria-controls="offcanvasEnd">
-                <i class="bx bx-edit-alt me-1" title="Modification"></i> 
+            <td class="text-center">
+              <a class="text-primary" href="javascript:void(0);" data-bs-toggle="offcanvas" data-bs-target="#userUpdt{{$user->id}}" aria-controls="offcanvasEnd">
+                <i class="bx bx-edit-alt me-1" title="Modification"></i>
               </a>
             </td>
           @endhasanyrole
-          
+
             @if ($user->isActive == 1)
-              <td class="bg-danger text-center">
-                <a class="text-white" href="javascript:void(0);" data-bs-toggle="modal"    data-bs-target="#userDesact{{$user->id}}">
-                  <i class="bx bx-stop-circle" title="Desactivation"></i> 
+              <td class="text-center">
+                <a class="text-danger" href="javascript:void(0);" data-bs-toggle="modal"    data-bs-target="#userDesact{{$user->id}}">
+                  <i class="bx bx-stop-circle" title="Desactivation"></i>
                 </a>
-              </td>                  
-            @else 
-              <td class="bg-success text-center">
-                <a class="text-white" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userAct{{$user->id}}">
-                  <i class="bx bx-play-circle me-1" title="Activation"></i> 
+              </td>
+            @else
+              <td class="text-center">
+                <a class="text-success" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#userAct{{$user->id}}">
+                  <i class="bx bx-play-circle me-1" title="Activation"></i>
                 </a>
-              </td> 
+              </td>
             @endif
 
            {{-- Vue du modal de d'apercu du membre --}}

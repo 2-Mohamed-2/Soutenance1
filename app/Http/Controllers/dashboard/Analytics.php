@@ -42,6 +42,16 @@ class Analytics extends Controller
 
   }
 
+  function statistique1(){
+    $data1 = VoitAffecte::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count, DATE_FORMAT(created_at, "%Y") as annee ')
+      ->where('created_at', '>=', Carbon::now()->subMonths(12))
+      ->groupBy('mois', 'annee')
+      ->orderBy('mois')
+      ->get()
+      ->toArray();
+    return response()->json($data1);
+  }
+
   public function index(Request $request)
   {
 

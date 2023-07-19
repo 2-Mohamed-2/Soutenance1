@@ -31,6 +31,7 @@ return [
 
     'passwords' => 'users',
     'commissariat_id' => 'commissariat_id',
+    'pseudo' => 'pseudo',
 
     /*
     |--------------------------------------------------------------------------
@@ -47,7 +48,7 @@ return [
     |
     */
 
-    'username' => 'matricule',
+    'username' => 'pseudo',
 
     'email' => 'email',
 
@@ -61,7 +62,7 @@ return [
     | and the user is authenticated. You are free to change this value.
     |
     */
-    
+
     'home' => RouteServiceProvider::HOME,
 
     /*
