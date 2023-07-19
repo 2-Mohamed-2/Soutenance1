@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use SebastianBergmann\Diff\Diff;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\SessionUser;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
 use Yudhatp\ActivityLogs\ActivityLogs;
@@ -60,17 +61,37 @@ class Analytics extends Controller
     $voitaffectes = VoitAffecte::all();
     $muniaff = MuniAff::all();
 
-    // // Récupérer le dernier matricule
-    // $dernierMatricule = User::latest()->first();
-    // try {
-    //   $decrypted_last_mat = Crypt::decryptString($dernierMatricule->matricule);
+    $today = Carbon::today();
+    $Hours = SessionUser::whereDate('created_at', $today)->where('time', '!=', null)->sum('time');
+    // dd($Hours);
 
-    // } catch (DecryptException $e) {
-    //   dd("no");
-    // }
-    // dd($decrypted_last_mat);
-
-    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr', 'tenueaffs', 'voitaffectes', 'muniaff'));
+    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr', 'tenueaffs', 'voitaffectes', 'muniaff', 'Hours'));
   }
+
+  public function getPreviousWeekSessions()
+  {
+    // Récupérer la date d'il y a 7 jours
+    $startDate = Carbon::now()->subDays(7)->startOfDay();
+
+    // Récupérer les sessions pour les 7 jours précédents
+    $sessions = SessionUser::whereBetween('created_at', [$startDate, now()])
+      ->orderBy('created_at')
+      ->get();
+
+    // Préparer les données pour le graphique
+    $data = [];
+    $labels = [];
+
+    foreach ($sessions as $session) {
+      $data[] = $session->time;
+      $labels[] = $session->created_at->format('Y-m-d');
+    }
+
+    return response()->json([
+      'data' => $data,
+      'labels' => $labels,
+    ]);
+  }
+
 
 }

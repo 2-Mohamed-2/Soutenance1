@@ -95,8 +95,8 @@ $configData = Helper::appClasses();
         <div class="col-12 mb-4">
           <div class="card">
             <div class="card-body pb-2">
-              <span class="d-block fw-semibold mb-1">Revenue</span>
-              <h3 class="card-title mb-1">425k</h3>
+              <span class="d-block card-title fw-bold mb-1">Activites de connexion des utilisateurs</span>
+              <span class="d-block fw-semibold mb-1">Nombre de minutes d'activité enregistrées à ce jour : <strong>{{ $Hours }} mins</strong></span>
               <div id="revenueChart"></div>
             </div>
           </div>

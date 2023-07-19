@@ -115,6 +115,12 @@ class AuthenticatedSessionController extends Controller
 
         $session_user->deconnexion = $now;
 
+        $A = $session_user->created_at;
+        $B = $session_user->deconnexion;
+        $diff = $A->diff($B);
+
+        $session_user->time = $diff->i;
+
         $session_user->save();
 
 
@@ -125,7 +131,8 @@ class AuthenticatedSessionController extends Controller
         // $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-        
+
+                
         Alert::info('Deconnexion', 'Coms_Ml vous remercie de votre visite '. $test. '. A la prochaine !');
         return redirect(route('login'));
     }

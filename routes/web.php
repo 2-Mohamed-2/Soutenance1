@@ -75,7 +75,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('/Compte/Paramètre/Sécurité', [UserProfilSecurity::class, 'index'])->name('compte-user-settings-security');
 
 
-
     Route::middleware([ActiveMiddleware::class], [VerifyComMembre::class])->group(function () {
 
         // Pour le modify des donnees du User par lui mm
@@ -161,7 +160,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
         //Statistique
         Route::get('/statistique', [Analytics::class, 'statistique'])
-            ->middleware('role:Informaticien|Administrateur');
+                ->middleware('role:Informaticien|Administrateur');
+
+        // Graphique des sessions
+        Route::get('/Dash/Session/Stat', [Analytics::class, 'getPreviousWeekSessions'])
+                ->middleware('role:Informaticien|Administrateur');
 
 
 

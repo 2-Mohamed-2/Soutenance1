@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->text('user_agent')->nullable();
             $table->dateTime('deconnexion')->nullable();
+            $table->integer('time')->nullable();
             $table->timestamps();
         });
     }
