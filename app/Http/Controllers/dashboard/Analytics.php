@@ -55,10 +55,16 @@ class Analytics extends Controller
   public function index(Request $request)
   {
 
-    $users = User::all();
+    $users = User::whereDoesntHave('roles', function ($query){
+                      $query->whereIn('name', ['Informaticien']);
+                    })->get();
     $usernbr = $users->count();
-    $userH = User::where('genre', 'H')->count();
-    $userF = User::where('genre', 'F')->count();
+    $userH = User::where('genre', 'H')->whereDoesntHave('roles', function ($query){
+                      $query->whereIn('name', ['Informaticien']);
+                    })->count();
+    $userF = User::where('genre', 'F')->whereDoesntHave('roles', function ($query){
+                      $query->whereIn('name', ['Informaticien']);
+                    })->count();
     $userWithSex = User::where('genre', '!=', null)->count();
     $comms = Commissariat::all();
     $commnbr = $comms->count();
@@ -118,9 +124,15 @@ class Analytics extends Controller
 
   public function getStatGenre(Request $request)
   {
-    $userH = User::where('genre', 'H')->count();
-    $userF = User::where('genre', 'F')->count();
-    $userWithSex = User::where('genre', '!=', null)->count();
+    $userH = User::where('genre', 'H')->whereDoesntHave('roles', function ($query){
+                    $query->whereIn('name', ['Informaticien']);
+                  })->count();
+    $userF = User::where('genre', 'F')->whereDoesntHave('roles', function ($query){
+                    $query->whereIn('name', ['Informaticien']);
+                  })->count();
+    $userWithSex = User::where('genre', '!=', null)->whereDoesntHave('roles', function ($query){
+                    $query->whereIn('name', ['Informaticien']);
+                  })->count();
     $uhp = ($userH / $userWithSex)*100;
     $ufp = ($userF / $userWithSex)*100;
 

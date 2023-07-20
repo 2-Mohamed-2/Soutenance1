@@ -21,65 +21,6 @@ $configData = Helper::appClasses();
 
 @section('content')
 
-<div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
-  <div class="card h-100">
-    <div class="card-header d-flex align-items-center justify-content-between pb-0">
-      <div class="card-title mb-0">
-        <h5 class="m-0 me-2">Statistiques anuelles</h5>
-        {{-- <small class="text-muted"></small> --}}
-      </div>
-      {{-- <div class="dropdown">
-        <button class="btn p-0" type="button" id="orederStatistics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="bx bx-dots-vertical-rounded"></i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
-          <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-          <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-          <a class="dropdown-item" href="javascript:void(0);">Share</a>
-        </div>
-      </div> --}}
-    </div>
-    <div class="card-body">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <div class="d-flex flex-column align-items-center gap-1">
-          <h2 class="mb-2">{{$usernbr}}</h2>
-          <span>Total Membre</span>
-        </div>
-        <div id="orderStatisticsChart"></div>
-      </div>
-      <ul class="p-0 m-0">
-        <li class="d-flex mb-4 pb-1">
-          <div class="avatar flex-shrink-0 me-3">
-            <span class="avatar-initial rounded bg-label-primary"><i class='bx bx-male'></i></span>
-          </div>
-          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-            <div class="me-2">
-              <h6 class="mb-0">Homme</h6>
-              <small class="text-muted">Nombre de personnel masculin</small>
-            </div>
-            <div class="user-progress">
-              <small class="fw-bolder fs-6">{{ $userH }}</small>
-            </div>
-          </div>
-        </li>
-        <li class="d-flex mb-4 pb-1">
-          <div class="avatar flex-shrink-0 me-3">
-            <span class="avatar-initial rounded bg-label-success"><i class='bx bx-female'></i></span>
-          </div>
-          <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-            <div class="me-2">
-              <h6 class="mb-0">Femme</h6>
-              <small class="text-muted">Nombre de personnel feminin</small>
-            </div>
-            <div class="user-progress">
-              <small class="fw-bolder fs-6">{{ $userF }}</small>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
 
   <div class="row">
 
@@ -104,6 +45,7 @@ $configData = Helper::appClasses();
     </div>
 
     @unlessrole('Membre')
+    <!-- Stat des membres -->
     <div class="col-lg-4 col-md-4 order-1">
       <div class="row">
         <div class="col-lg-6 col-md-12 col-6 mb-4">
@@ -138,19 +80,65 @@ $configData = Helper::appClasses();
         @endunlessrole
       </div>
     </div>
-    <!-- Total Revenue -->
-    <div class="col-6 col-lg-6 order-2 order-md-3 order-lg-2 mb-4">
-      <div class="card">
-        <div class="row row-bordered g-0">
-          <div class="col-md-12">
-            <h5 class="card-header m-0 me-2 pb-3">Statistique des affectation du Tenue</h5>
-            <div id="totalRevenueChart" class="px-2"></div>
+    <!-- Fin Stat des membres -->
+
+    <!-- Statistiques users -->
+    <div class="col-lg-6 order-2 mb-4">
+      <div class="row">
+        <div class="col-12 mb-4">
+          <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between pb-0">
+              <div class="card-title mb-0">
+                <h5 class="m-0 me-2">Statistiques anuelles</h5>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex flex-column align-items-center gap-1">
+                  <h2 class="mb-2">{{$usernbr}}</h2>
+                  <span>Total Membre</span>
+                </div>
+                <div id="orderStatisticsChart"></div>
+              </div>
+              <ul class="p-0 m-0">
+                <li class="d-flex mb-4 pb-1">
+                  <div class="avatar flex-shrink-0 me-3">
+                    <span class="avatar-initial rounded bg-label-primary"><i class='bx bx-male'></i></span>
+                  </div>
+                  <div class="d-flex w-100 flex-wrap align-items-center justify-content-between">
+                    <div class="me-2">
+                      <h6 class="mb-0">Homme</h6>
+                      <small class="text-muted">Nombre de personnel masculin</small>
+                    </div>
+                    <div class="user-progress">
+                      <small class="fw-bolder fs-6">{{ $userH }}</small>
+                    </div>
+                  </div>
+                </li>
+                <li class="d-flex mb-0 pb-1">
+                  <div class="avatar flex-shrink-0 me-3">
+                    <span class="avatar-initial rounded bg-label-success"><i class='bx bx-female'></i></span>
+                  </div>
+                  <div class="d-flex w-100 flex-wrap align-items-center justify-content-between">
+                    <div class="me-2">
+                      <h6 class="mb-0">Femme</h6>
+                      <small class="text-muted">Nombre de personnel feminin</small>
+                    </div>
+                    <div class="user-progress">
+                      <small class="fw-bolder fs-6">{{ $userF }}</small>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </div>      
     </div>
-    <!--/ Total Revenue -->
-    <div class="col-6 col-lg-6 order-2 order-md-3 order-lg-2 mb-4">
+    <!-- Fin Statistiques users -->
+
+    <!-- Activites de connexion des utilisateurs -->
+    <div class="col-lg-6 order-2 order-md-3 order-lg-2 mb-4">
       <div class="row">
         <div class="col-12 mb-4">
           <div class="card">
@@ -163,9 +151,25 @@ $configData = Helper::appClasses();
         </div>
       </div>
     </div>
+    <!-- Fin Activites des utilisateurs -->
+
+    <!-- Statistiques affectations tenues -->
+    <div class="col-lg-6 order-2 order-md-3 order-lg-2 mb-4">
+      <div class="card">
+        <div class="row row-bordered g-0">
+          <div class="col-md-12">
+            <h5 class="card-header m-0 me-2 pb-3">Statistique des affectation du Tenue</h5>
+            <div id="totalRevenueChart" class="px-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin Statistiques affectations tenues -->
+    
     @endunlessrole
 
   </div>
   
+
 
 @endsection

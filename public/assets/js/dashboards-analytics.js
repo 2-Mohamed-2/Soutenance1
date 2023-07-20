@@ -24,12 +24,10 @@
   }
 
   // Graphique pour l'evolution des membres
-  
-  
     const orderAreaChartEl = document.querySelector('#orderChart'),
       orderAreaChartConfig = {
         chart: {
-          height: 80,
+          height: 65,
           type: 'area',
           toolbar: {
             show: false
@@ -128,8 +126,6 @@
           const homme = genre.userH;
           const femme = genre.userF;
           const gsomme = genre.userWS;
-          const uhp = genre.uhp;
-          const ufp = genre.ufp;
           
           const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
           orderChartConfig = {
@@ -173,7 +169,7 @@
                       color: headingColor,
                       offsetY: -15,
                       formatter: function (val) {
-                        return parseInt(val) + '%';
+                        return parseInt((val/gsomme)*100) + '%';
                       }
                     },
                     name: {
