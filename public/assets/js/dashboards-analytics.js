@@ -558,7 +558,7 @@
               const revenueBarChartEl = document.querySelector('#revenueChart'),
                 revenueBarChartConfig = {
                   chart: {
-                    height: 270,
+                    height: 210,
                     type: 'bar',
                     toolbar: {
                       show: false

@@ -98,16 +98,11 @@ class userController extends Controller
       {
 
         $this->validate($request,[
-          // 'matricule' => 'required',
+          'datenaiss' => 'required',
           'name' => 'required|max:255',
           'email' => 'required|max:255',
           'telephone' => 'required|max:255',
         ]);
-
-        $test = User::select('*')
-                    ->where([
-                      ['matricule', '=', $request->matricule]
-                    ])->exists();
 
         $test1 = User::select('*')
         ->where([
@@ -115,10 +110,7 @@ class userController extends Controller
         ])->exists();
 
 
-        if ($test) {
-          Alert::error('Echec', 'Ce matricule existe déjà !');
-          return redirect('/Membre');
-        }else {
+        
           if ($test1) {
             Alert::error('Echec', 'Cet email existe déjà !');
             return redirect('/Membre');
@@ -148,6 +140,7 @@ class userController extends Controller
               'matricule' => $nouveauMatricule,
               'pseudo' => $pseudo,
               'name' => $request->name,
+              'datenaiss' => $request->datenaiss,
               'email' => $request->email,
               'genre' => $request->genre,
               'telephone' => $request->telephone,
@@ -160,7 +153,7 @@ class userController extends Controller
             // $user->notify(new MdpNotification($password, $user->name));
           }
 
-        }
+        
 
         if ($user) {
             Alert::success('Réussite', 'L\'enregistrement a bien été effectué !');

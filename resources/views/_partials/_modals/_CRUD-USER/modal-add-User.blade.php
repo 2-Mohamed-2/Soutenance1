@@ -17,6 +17,12 @@
         <input type="text" autocomplete="off" required id="add-user-email" class="form-control" placeholder="police@police.com"
           aria-label="john.doe@example.com" name="email" />
       </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="">Date de naissance</label>
+        <input type="date" autocomplete="off" value="" required name="datenaiss" class="form-control" placeholder="" />
+      </div>
+      
       <div class="mb-3">
         <label class="form-label" for="add-user-contact">Contact</label>
         <input type="text" inputmode="numeric" id="space" class="form-control" placeholder="00 00 00 00"  autocomplete="off" maxlength="11" name="telephone"/>

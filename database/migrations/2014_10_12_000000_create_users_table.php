@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('pseudo')->unique();
             $table->string('adresse')->nullable();
             $table->string('telephone')->nullable();
-            $table->date('datearrive')->nullable();
+            $table->date('datenaiss')->nullable();
             $table->string('genre')->nullable();
             $table->date('datedepart')->nullable();
             $table->string('email')->unique()->nullable();

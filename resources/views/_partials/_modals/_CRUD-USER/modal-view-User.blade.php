@@ -7,13 +7,19 @@
     <div class="offcanvas-body mx-0 flex-grow-0">
       
   
-        <div class="mb-3">
-          <label class="form-label" for="add-user-fullname">Matricule</label>
-          <input type="text" readonly autocomplete="off" value="{{$user->matricule}}" class="form-control"/>
-        </div>
+        @hasrole('Informaticien|Administrateur')
+          <div class="mb-3">
+            <label class="form-label" for="add-user-fullname">Matricule</label>
+            <input type="text" readonly autocomplete="off" value="{{$user->matricule}}" class="form-control"/>
+          </div>
+        @endhasrole
         <div class="mb-3">
           <label class="form-label" for="add-user-fullname">Nom complet</label>
           <input type="text" readonly autocomplete="off" value="{{$user->name}}" class="form-control"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="add-user-fullname">Date Naissance</label>
+          <input type="date" readonly autocomplete="off" value="{{$user->datenaiss}}" class="form-control"/>
         </div>
         <div class="mb-3">
             <label class="form-label" for="add-user-fullname">Grade</label>

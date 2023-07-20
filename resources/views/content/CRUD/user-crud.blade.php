@@ -133,8 +133,9 @@
       <thead>
         <tr>
           <th></th>
-          <th class="fs-6">Matricule</th>
+          @hasrole('Informaticien|Administrateur') <th class="fs-6">Matricule</th> @endhasrole          
           <th class="fs-6">Nom</th>
+          <th class="fs-6">Grade</th>
           <th class="fs-6">Telephone</th>
           <th @hasrole('Informaticien|Administrateur') colspan="4"@endhasrole
               colspan="2" class="fs-6 text-center">Action</th>
@@ -146,14 +147,15 @@
           <td class="text-center col-1">
             <input type="checkbox" class="dt-checkboxes form-check-input" name="options[]" value="{{ $user->id }}">
           </td>
-
           @hasanyrole('Informaticien|Administrateur')
           </form>
           @endhasanyrole
 
-
+          @hasrole('Informaticien|Administrateur') 
           <td><strong>{{ $user->matricule }}</strong></td>
+          @endhasrole
           <td><strong>{{$user->name}}</strong></td>
+          <td><strong>{{$user->grade->libelle}}</strong></td>
           <td><strong>{{$user->telephone}}</strong></td>
 
           <td class="text-center">
