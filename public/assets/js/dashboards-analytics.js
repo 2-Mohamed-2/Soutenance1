@@ -494,13 +494,7 @@
                     }
                   },
                   colors: [
-                    config.colors_label.primary,
-                    config.colors_label.primary,
-                    config.colors_label.primary,
-                    config.colors_label.primary,
-                    config.colors.primary,
-                    config.colors_label.primary,
-                    config.colors_label.primary
+                    config.colors.secondary
                   ],
                   dataLabels: {
                     enabled: false

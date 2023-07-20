@@ -88,14 +88,22 @@ class Analytics extends Controller
     $dates = [];
     $minutes = [];
 
+    $auj = Carbon::today();
+    $e_auj = Carbon::parse($auj);
+    $ee_auj = $e_auj->isoFormat('dddd');
+
+
     foreach ($sessions as $session) {
-      $dates[] = $session->date;
+      $e = Carbon::parse($session->date);
+      $ee = $e->isoFormat('dddd');
+      $dates[] = $ee;
       $minutes[] = $session->total_minutes;
     }
 
     return response()->json([
       'dates' => $dates,
       'minutes' => $minutes,
+      'aujourd' => $ee_auj,
     ]);
 
   }
