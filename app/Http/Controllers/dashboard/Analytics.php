@@ -80,27 +80,24 @@ class Analytics extends Controller
 
   public function getPreviousWeekSessions()
   {
-    // Récupérer la date d'il y a 7 jours
-    $startDate = Carbon::now()->subDays(7)->startOfDay();
+    $sessions = SessionUser::selectRaw('DATE(created_at) as date, SUM(time) as total_minutes')
+                ->where('created_at', '>=', Carbon::now()->subDays(7))
+                ->groupBy('date')
+                ->get();
 
-    // Récupérer les sessions pour les 7 jours précédents
-    $sessions = SessionUser::whereBetween('created_at', [$startDate, now()])
-      ->orderBy('created_at')
-      ->get();
-
-    // Préparer les données pour le graphique
-    $data = [];
-    $labels = [];
+    $dates = [];
+    $minutes = [];
 
     foreach ($sessions as $session) {
-      $data[] = $session->time;
-      $labels[] = $session->created_at->format('Y-m-d');
+      $dates[] = $session->date;
+      $minutes[] = $session->total_minutes;
     }
 
     return response()->json([
-      'data' => $data,
-      'labels' => $labels,
+      'dates' => $dates,
+      'minutes' => $minutes,
     ]);
+
   }
 
 
