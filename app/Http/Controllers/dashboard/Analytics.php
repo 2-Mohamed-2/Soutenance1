@@ -57,25 +57,17 @@ class Analytics extends Controller
 
     $users = User::all();
     $usernbr = $users->count();
+    $userH = User::where('genre', 'H')->count();
+    $userF = User::where('genre', 'F')->count();
+    $userWithSex = User::where('genre', '!=', null)->count();
     $comms = Commissariat::all();
     $commnbr = $comms->count();
-    $tenueaffs = TenueAff::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count ')
-    ->where('created_at', '>=', Carbon::now()->subMonths(12))
-      ->groupBy('mois')->orderBy('mois')
-      ->get();
-    $data = Avoir::selectRaw('DATE_FORMAT(created_at, "%m") as mois, count(*) as count ')
-    ->where('created_at', '>=', Carbon::now()->subMonths(12))
-      ->groupBy('mois')->orderBy('mois')
-      ->get();
-      response()->json($data);
-    $voitaffectes = VoitAffecte::all();
-    $muniaff = MuniAff::all();
 
     $today = Carbon::today();
     $Hours = SessionUser::whereDate('created_at', $today)->where('time', '!=', null)->sum('time');
     // dd($Hours);
 
-    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr', 'tenueaffs', 'voitaffectes', 'muniaff', 'Hours'));
+    return view('content.dashboard.dashboards-principal', compact('usernbr', 'commnbr','Hours', 'userH', 'userF'));
   }
 
   public function getPreviousWeekSessions()
@@ -122,6 +114,23 @@ class Analytics extends Controller
       'aujourd' => $ee_auj,
     ]);
 
+  }
+
+  public function getStatGenre(Request $request)
+  {
+    $userH = User::where('genre', 'H')->count();
+    $userF = User::where('genre', 'F')->count();
+    $userWithSex = User::where('genre', '!=', null)->count();
+    $uhp = ($userH / $userWithSex)*100;
+    $ufp = ($userF / $userWithSex)*100;
+
+    return response()->json([
+      'userH' => $userH,
+      'userF' => $userF,
+      'userWS' => $userWithSex,
+      'uhp' => $uhp,
+      'ufp' => $ufp,
+    ]);
   }
 
 

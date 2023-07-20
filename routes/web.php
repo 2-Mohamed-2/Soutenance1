@@ -165,6 +165,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         // Graphique des sessions
         Route::get('/Dash/Session/Stat', [Analytics::class, 'getPreviousWeekSessions'])
                 ->middleware('role:Informaticien|Administrateur');
+        // Graphique des sessions
+        Route::get('/Dash/Genre/Stat', [Analytics::class, 'getStatGenre'])
+                ->middleware('role:Informaticien|Administrateur');
 
                 
         Route::get('/statistique1', [Analytics::class, 'statistique'])

@@ -157,7 +157,7 @@ class userController extends Controller
             $role = Role::where('name', 'Membre')->get();
             $user->assignRole($role);
 
-            $user->notify(new MdpNotification($password, $user->name));
+            // $user->notify(new MdpNotification($password, $user->name));
           }
 
         }
