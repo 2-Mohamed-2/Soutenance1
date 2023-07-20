@@ -6,7 +6,6 @@
 
 
 'use strict';
-
 (function () {
   let cardColor, headingColor, legendColor, labelColor, shadeColor, borderColor;
 
@@ -25,6 +24,8 @@
   }
 
   // Graphique pour l'evolution des membres
+  
+  
     const orderAreaChartEl = document.querySelector('#orderChart'),
       orderAreaChartConfig = {
         chart: {
@@ -87,6 +88,7 @@
           }
         ],
         xaxis: {
+          categories: ['mo','mk','km'],
           show: false,
           lines: {
             show: false
@@ -540,7 +542,6 @@
           }
       });
     });
-
     
   // Fin Session par jours
 

@@ -80,6 +80,8 @@ class Analytics extends Controller
 
   public function getPreviousWeekSessions()
   {
+
+    // Pour le graphe de la session 
     $sessions = SessionUser::selectRaw('DATE(created_at) as date, SUM(time) as total_minutes')
                 ->where('created_at', '>=', Carbon::now()->subDays(7))
                 ->groupBy('date')
@@ -99,8 +101,22 @@ class Analytics extends Controller
       $dates[] = $ee;
       $minutes[] = $session->total_minutes;
     }
+    // Fin de la session
+
+
+    // Pour le graphe de creation des membres par 06 mois
+    $sixMonthsAgo = now()->subMonths(6);
+    $userData = User::where('created_at','>=',$sixMonthsAgo)
+                      ->groupBy(\DB::raw('MONTH(created_at)'))
+                      ->selectRaw('COUNT(*) as user_count, MONTH(created_at) as month')
+                      ->get();
+    // Fin
+
+
+
 
     return response()->json([
+      'userData' => $userData,
       'dates' => $dates,
       'minutes' => $minutes,
       'aujourd' => $ee_auj,
