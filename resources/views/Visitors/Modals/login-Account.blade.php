@@ -8,7 +8,7 @@
         </div>
         <div id="modalCarouselControls" class="carousel slide pb-2" data-bs-interval="false">
           <div class="carousel-inner">
-            
+
             {{-- Modal pour la connexion du citoyen --}}
             <div class="carousel-item active">
               <div class="onboarding-content">
@@ -22,7 +22,7 @@
                 <p class="mb-4">Veuillez remplir ces informations</p>
 
                 <form id="" class="mb-3" method="POST" action="{{ route('vlogin') }}">
-                    
+
                   @csrf
 
                     <div class="mb-3">
@@ -70,7 +70,7 @@
       var value = event.target.value;
       value = value.replace(/[^A-Z0-9]/g, ""); // Supprimer tous les caractères non numériques
       value = value.slice(0, 9) + value.slice(9).toUpperCase(); // Convertir les caractères de 9 à la fin en majuscules
-     
+
       if (value.length >= 5) {
         value = value.slice(0, 4) + '/' + value.slice(4); // Insérer un '/' après les 4 premiers caractères
       }
@@ -90,7 +90,7 @@
     //Pour la suppression des caracteres speciaux
     function filtrerCaracteresSpeciaux(event) {
       var input = event.target;
-      var regex = /^[a-zA-Z0-9 ]*$/; // Expression régulière pour autoriser uniquement les lettres et les chiffres      
+      var regex = /^[a-zA-Z0-9 ]*$/; // Expression régulière pour autoriser uniquement les lettres et les chiffres
       if (!regex.test(input.value)) {
         input.value = input.value.replace(/[^a-zA-Z0-9]/g, ''); // Supprimer les caractères spéciaux
       }

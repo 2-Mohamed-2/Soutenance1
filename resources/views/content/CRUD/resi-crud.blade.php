@@ -31,7 +31,7 @@
 <!-- Hoverable Table rows -->
 <div class="card">
   <h5 class="card-header">Liste des Residences enregistrés</h5>
- 
+
   <div class="card-datatable table-responsive text-nowrap">
     <table class="dt-fixedheader table table-hover">
       <thead>
@@ -64,19 +64,9 @@
           @unlessrole('Membre')
           <td class="bg-danger text-center">
             <a class="text-white" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#resiDst{{$resi->id}}"><i class="fa fa-trash"></i> </a>
-          </td>            
+          </td>
           @endunlessrole
 
-          <td>
-            <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" target="blank" href="{{ route('residencePDF', Crypt::encrypt($resi->id)) }}"><i class="fa fa-file-pdf me-1"></i>PDF</a>
-                @unlessrole('Membre')
-                {{-- <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#resiUpdt{{$resi->id}}"><i class="bx bx-edit-alt me-1"></i> Modifier</a> --}}
-                <a class="dropdown-item" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#resiDst{{$resi->id}}"><i class="bx bx-trash me-1"></i> Supprimer</a>
-                @endunlessrole
-            </div>
 
             @unlessrole('Membre')
             {{-- Vue du modal de suppression --}}

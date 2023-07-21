@@ -20,8 +20,8 @@ $configData = Helper::appClasses();
 @endsection
 
 @section('content')
-  
-  <!-- test tses -->
+
+  <!-- Cards -->
   <div class="row mb-5">
     <div class="col-md">
       <div class="card mb-3">
@@ -34,7 +34,7 @@ $configData = Helper::appClasses();
               <h4 class="card-title">Présentation de la police</h4>
               <p class="card-text">
                 La Direction Générale de la Police Nationale a été créée par l’ordonnance n° 04-26/PRM du 16 septembre 2004 ratifiée par la Loi n° 05-020 du 30 mai 2005. C’est un Service Central qui a pour mission d’élaborer et d’assurer la mise en œuvre des éléments de la politique nationale dans le domaine du maintien de l’ordre et de la sécurité publique et de porter son concours, L’exécution des lois et des règlements. <br>
-                À cet effet, elle est chargée de : <br>                
+                À cet effet, elle est chargée de : <br>
                 • Assurer la protection des personnes et des biens ; <br>
                 • Maintenir l’ordre, la sécurité et la tranquillité publics ; <br>
                 • Veiller au respect des lois et règlements par l’exécution des missions de police administrative et de police judiciaire ; <br>
@@ -76,9 +76,9 @@ $configData = Helper::appClasses();
                 Je tiens ici à remercier chaleureusement nos policières et nos policiers pour le dévouement et la loyauté dont ils font preuve et je les encourage à persévérer dans cette voie afin de garantir la quiétude et la tranquillité publique. Je félicite particulièrement les patrouilles pédestres qui sillonnent depuis le début de l’année nos rues et nos quartiers afin de sécuriser au plus près nos compatriotes et leurs biens.
               </div>
             </div>
-          </p>          
+          </p>
         </div>
-        
+
       </div>
     </div>
 
@@ -110,9 +110,9 @@ $configData = Helper::appClasses();
                 Au niveau local : les Services Territoriaux de sécurité publique dans les agglomérations urbaines. Ils sont chargés des missions de police administrative et/ou de police judiciaire dans les limites de leur compétence territoriale. Ils comprennent : les Commissariats de Police et des Postes de sécurité publique.
               </div>
             </div>
-          </p>          
+          </p>
         </div>
-        
+
       </div>
     </div>
 
@@ -120,7 +120,7 @@ $configData = Helper::appClasses();
     <div class="col-md-6 col-lg-4 mb-3">
       <div class="card-body">
         <h4>Quelques clichés des éléments</h4>
-      </div>     
+      </div>
       <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
           <li data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></li>
@@ -180,7 +180,7 @@ $configData = Helper::appClasses();
       <div class="card-body">
         <p class="card-text" class="accordion-button collapsed">
           Le Directeur Générale de la Police Nationale dirige, coordonne et contrôle l’action de l’ensemble des services de la Police. L’Inspecteur en Chef, les Directeurs de Services, les Chefs des Services Rattachés la Direction Générale et les Directeurs Régionaux de la Police Nationale coordonnent et contrôlent les activités de leurs services et rendent compte au Directeur Général de la Police Nationale. Les Commissaires de Police de Sécurité Publique organisent et contrôlent le travail de leurs unités et rendent compte au Directeur Régional de la Police Nationale.
-        </p>          
+        </p>
       </div>
 
     </div>
@@ -212,7 +212,7 @@ $configData = Helper::appClasses();
 
 
   @if (Auth::guard('inconnu')->user())
-      
+
     <br>
     <hr>
     <hr>
@@ -229,14 +229,14 @@ $configData = Helper::appClasses();
               <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span class="fw-semibold mx-2">Num. Carte :</span> <span class="fw-bolder fs-5"> {{ Auth::guard('inconnu')->user()->n_ci ?? '' }}</span></li>
               <li class="d-flex align-items-center mb-3"><i class="bx bx-user"></i><span class="fw-semibold mx-2 text-wrap">Nom complet :</span> <span class="fw-bolder fs-5"> {{ Auth::guard('inconnu')->user()->nomcomplet ?? '' }}</span></li>
               <li class="d-flex align-items-center mb-3"><i class="bx bx-check"></i><span class="fw-semibold mx-2">Statut :</span> <span class="fw-bolder fs-5"> Citoyen Lambda</span></li>
-              <li class="d-flex align-items-center mb-3"><i class="bx bx-flag"></i><span class="fw-semibold mx-2">Pays :</span> <span class="fw-bolder fs-5"> Mali</span></li>              
+              <li class="d-flex align-items-center mb-3"><i class="bx bx-flag"></i><span class="fw-semibold mx-2">Pays :</span> <span class="fw-bolder fs-5"> Mali</span></li>
               <li class="d-flex align-items-center mb-3"><i class="bx bx-current-location"></i><span class="fw-semibold mx-2">Adresse : </span> <span class="fw-bolder fs-5"> {{ Auth::guard('inconnu')->user()->adresse ?? '' }}</span></li>
               <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><span class="fw-semibold mx-2">Contact:</span> <span class="fw-bolder fs-5">(+223) {{ Auth::guard('inconnu')->user()->telephone ?? '' }}</span></li>
               <li class="d-flex justify-content-between align-items-center mb-3">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resicreate">C. Residence</button>
                 <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#mdpcitup{{ Auth::guard('inconnu')->user()->id }}">Sécurité</button>
               </li>
-              @include('Visitors.Modals.creat_resi') 
+              @include('Visitors.Modals.creat_resi')
               @include('Visitors.Modals.mdp_update')
             </ul>
           </div>
@@ -257,7 +257,7 @@ $configData = Helper::appClasses();
                 @php
                   $created = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $session->created_at)->format('d-m-Y'.' à '.'H:i');
                   $deconnexion = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $session->deconnexion_cit)->format('d-m-Y'.' à '.'H:i');
-                            
+
                 @endphp
               <li class="timeline-item timeline-item-transparent">
                 <span class="timeline-point timeline-point-warning"></span>
@@ -267,7 +267,7 @@ $configData = Helper::appClasses();
                 </div>
               </li>
               @endforeach
-    
+
               <li class="timeline-end-indicator">
                 <i class="bx bx-check-circle"></i>
               </li>
@@ -281,7 +281,7 @@ $configData = Helper::appClasses();
         <div class="card mb-4">
           <div class="card-body">
             <small class="text-muted text-uppercase">Information sur vos documents demandés</small>
-            <ul class="list-unstyled mb-4 mt-3 text-wrap"> 
+            <ul class="list-unstyled mb-4 mt-3 text-wrap">
               @forelse ($resis as $resi)
                 <li class="d-flex align-items-center mb-3">
                   <i class='bx bxs-file-doc'></i>
@@ -291,8 +291,8 @@ $configData = Helper::appClasses();
                 </li>
               @empty
                 <span class="fw-semibold mx-2">Pas de document a votre actif</span>
-              @endforelse             
-              
+              @endforelse
+
             </ul>
           </div>
         </div>
@@ -307,7 +307,7 @@ $configData = Helper::appClasses();
 
 
   @endif
-  
+
 
 
 
@@ -317,7 +317,7 @@ $configData = Helper::appClasses();
     <footer class="footer bg-light">
       <div class="container-fluid container-p-x pt-5 pb-4">
         <div class="row">
-          
+
           <div class="container-fluid d-flex flex-md-row flex-column justify-content-between align-items-md-center gap-1 container-p-x py-3">
             <div>
               <h4 class="fw-bolder mb-3"><a href="{{ config('variables.livePreview') }}" target="_blank" class="footer-text">{{ config('variables.templateName') }} </a></h4>
@@ -334,25 +334,25 @@ $configData = Helper::appClasses();
               </div>
               <ul class="list-unstyled">
                 <li>
-                  <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
+                  <a href="tel:+223 80 333" class="footer-link d-block pb-2">
                     <i class="fa-solid fa-phone"> </i>
                     80 333
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
-                    <i class="fa-solid fa-phone"> </i> 
+                  <a href="tel:+223 80 333" class="footer-link d-block pb-2">
+                    <i class="fa-solid fa-phone"> </i>
                     80 00 11 11
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+223 80 333" class="footer-link d-block pb-2"> 
+                  <a href="tel:+223 80 333" class="footer-link d-block pb-2">
                     <i class="fa-solid fa-phone"> </i>
                     80 00 11 15
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:dgpn@police.gouv.ml" class="footer-link d-block pb-2"> 
+                  <a href="mailto:dgpn@police.gouv.ml" class="footer-link d-block pb-2">
                     <i class="fa-sharp fa-solid fa-envelope"></i>
                     dgpn@police.gouv.ml
                   </a>
@@ -362,17 +362,17 @@ $configData = Helper::appClasses();
 
             <div>
               <h5>Annexes</h5>
-              <ul class="list-unstyled"> 
-                <hr>             
+              <ul class="list-unstyled">
+                <hr>
                 <li>
-                  <a href="javascript:void(0)" class="footer-link d-block pb-2"> 
+                  <a href="javascript:void(0)" class="footer-link d-block pb-2">
                     <i class="fa-solid fa-location-dot">  </i>
                       Hamdallaye ACI 2000, Bamako (Direction Generale)
                   </a>
                 </li>
                 <hr>
                 <li>
-                  <a href="javascript:void(0)" class="footer-link d-block pb-2"> 
+                  <a href="javascript:void(0)" class="footer-link d-block pb-2">
                     <i class="fa-sharp fa-solid fa-clock"></i>
                     24h/24
                   </a>
@@ -382,7 +382,7 @@ $configData = Helper::appClasses();
                   DIRECTION GENERALE DE LA POLICE DU MALI
                 </li>
                 <li class="text-center">
-                  <i>Loyauté - Honneur - Dignité</i>                
+                  <i>Loyauté - Honneur - Dignité</i>
                 </li>
               </ul>
             </div>
