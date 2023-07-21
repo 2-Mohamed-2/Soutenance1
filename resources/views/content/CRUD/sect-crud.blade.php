@@ -30,7 +30,7 @@
 
 <!-- Hoverable Table rows -->
 <div class="card">
-  <h5 class="card-header">Liste des Section enregistrés</h5>
+  <h5 class="card-header">Liste des Section enregistrées</h5>
   <button class="btn btn-primary col-3 m-2 justify-content-end" data-bs-toggle="offcanvas" data-bs-target="#addSect" aria-controls="offcanvasEnd">
     Créer une nouvelle Section.
   </button>

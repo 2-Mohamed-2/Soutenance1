@@ -19,26 +19,26 @@ class CommSeeder extends Seeder
     {
       DB::table('commissariats')->insert([
         [
-          'libelle' => 'commissariat_1',
-          'sigle' => 'comm_1',
+          'libelle' => 'Commissariat de Bamako-Coura',
+          'sigle' => '1er_Arrd',
           'telephone' => '01 01 01 01',
-          'localite' => 'lieu_1',
+          'localite' => 'Bamako-Coura',
           'created_at' =>now(),
           'updated_at' =>now(),
         ],
         [
-          'libelle' => 'commissariat_2',
-          'sigle' => 'comm_2',
-          'telephone' => '01 01 01 01',
-          'localite' => 'lieu_2',
+          'libelle' => 'Commissariat de lafiabougou',
+          'sigle' => '2e_Arrd',
+          'telephone' => '01 02 01 01',
+          'localite' => 'Lafiabougou',
           'created_at' =>now(),
           'updated_at' =>now(),
         ],
         [
-          'libelle' => 'commissariat_3',
-          'sigle' => 'comm_3',
-          'telephone' => '01 01 01 01',
-          'localite' => 'lieu_3',
+          'libelle' => 'Commissariat de Sebenicoro',
+          'sigle' => '3e_Arrd',
+          'telephone' => '01 03 01 01',
+          'localite' => 'Sebenikoro',
           'created_at' =>now(),
           'updated_at' =>now(),
         ]
