@@ -31,6 +31,13 @@
       "role": "Informaticien"
     },
     {
+      "url": "/Carte_Biometrique",
+      "name": "C. Biometrique",
+      "icon": "menu-icon tf-icons fa fa-id-card",
+      "slug": "cartbio-view",
+      "role": "Informaticien"
+    },
+    {
       "url": "/Residence",
       "name": "Residence",
       "icon": "menu-icon tf-icons fa fa-file",

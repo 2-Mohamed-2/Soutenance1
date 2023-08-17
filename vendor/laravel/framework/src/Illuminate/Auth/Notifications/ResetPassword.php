@@ -2,17 +2,12 @@
 
 namespace Illuminate\Auth\Notifications;
 
-use App\Models\User;
-use Illuminate\Bus\Queueable;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\Mailables\Attachment;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Lang;
 
 class ResetPassword extends Notification
 {
-    use Queueable, SerializesModels;
     /**
      * The password reset token.
      *
@@ -44,13 +39,6 @@ class ResetPassword extends Notification
     {
         $this->token = $token;
     }
-
-    // public function attachments(): array
-    // {
-    //     return [
-    //         Attachment::fromPath('/path/to/file'),
-    //     ];
-    // }
 
     /**
      * Get the notification's channels.
@@ -86,12 +74,12 @@ class ResetPassword extends Notification
      */
     protected function buildMailMessage($url)
     {
-        
         return (new MailMessage)
-            ->subject(Lang::get('Réinitialisation de mot de passe'))
-            ->action(Lang::get('Cliquer ici'), $url)
-            ->line(Lang::get('Ce lien de reinitialisation ne sera valable que pendant :count minutes.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]));
-            // ->line(Lang::get('If you did not request a password reset, no further action is required.'));
+            ->subject(Lang::get('Reset Password Notification'))
+            ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
+            ->action(Lang::get('Reset Password'), $url)
+            ->line(Lang::get('This password reset link will expire in :count minutes.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
+            ->line(Lang::get('If you did not request a password reset, no further action is required.'));
     }
 
     /**
@@ -102,7 +90,6 @@ class ResetPassword extends Notification
      */
     protected function resetUrl($notifiable)
     {
-        
         if (static::$createUrlCallback) {
             return call_user_func(static::$createUrlCallback, $notifiable, $this->token);
         }

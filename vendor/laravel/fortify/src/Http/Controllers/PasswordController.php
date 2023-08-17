@@ -2,18 +2,13 @@
 
 namespace Laravel\Fortify\Http\Controllers;
 
-use toastr;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Yudhatp\ActivityLogs\ActivityLogs;
-use RealRashid\SweetAlert\Facades\Alert;
-use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 use Laravel\Fortify\Contracts\PasswordUpdateResponse;
-
+use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
 class PasswordController extends Controller
 {
-
     /**
      * Update the user's password.
      *
@@ -22,16 +17,9 @@ class PasswordController extends Controller
      * @return \Laravel\Fortify\Contracts\PasswordUpdateResponse
      */
     public function update(Request $request, UpdatesUserPasswords $updater)
-    {        
-        try {
-            $updater->update($request->user(), $request->all());
-            
-            Alert::info('Réussite', 'operation a bien été effectué ! Veuillez vous reconnecter avec le nouveau mot de passe');
-            return redirect(route('login'));        
+    {
+        $updater->update($request->user(), $request->all());
 
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Erreur intervenue lors de la modification. Veuillez reverifier les entrées !');
-        }
-
+        return app(PasswordUpdateResponse::class);
     }
 }

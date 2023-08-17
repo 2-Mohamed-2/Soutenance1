@@ -25,7 +25,6 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'commissariat_id'  => 'required',
             Fortify::username() => 'required|string',
             'password' => 'required|string',
         ];

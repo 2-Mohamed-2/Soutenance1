@@ -20,6 +20,7 @@ use App\Http\Controllers\CRUDS\InconnuController;
 use App\Http\Controllers\CRUDS\MuniAffController;
 use App\Http\Controllers\CRUDS\SectionController;
 use App\Http\Controllers\CRUDS\ArmementController;
+use App\Http\Controllers\CRUDS\CitBiomController;
 use App\Http\Controllers\CRUDS\MaterielController;
 use App\Http\Controllers\CRUDS\MunitionController;
 use App\Http\Controllers\CRUDS\TenueAffController;
@@ -29,6 +30,7 @@ use App\Http\Controllers\CRUDS\ResidenceController;
 use App\Http\Controllers\CRUDS\SurveillanceController;
 use App\Http\Controllers\UserCompte\UserProfilView;
 use App\Http\Controllers\CRUDS\VoitAffecteController;
+use App\Http\Controllers\ImportCarteBioExcel;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\UserCompte\UserProfilSecurity;
 use App\Http\Controllers\laravel_example\UserManagement;
@@ -247,6 +249,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
         Route::resource('/Inco', InconnuController::class)
             ->middleware('role:Informaticien|Administrateur');
+
+        Route::get('/Carte_Biometrique', [CitBiomController::class, 'index'])->name('cartbio-view')
+            ->middleware('role:Informaticien|Administrateur');
+        Route::post('/Carte_Biometrique/Import', [CitBiomController::class, 'importCarteBio'])->name('importCBExcel');
 
         // Reinitialiser le mot de passe d'un citoyen
         Route::put('/Citoyen/Mot-de-passe/{id}', [InconnuController::class, 'ReinitialisePassword'])->name('reini-pwd')

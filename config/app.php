@@ -167,7 +167,6 @@ return [
     Barryvdh\DomPDF\ServiceProvider::class,
 
 
-
     /*
          * Package Service Providers...
          */
@@ -211,6 +210,7 @@ return [
 
     //Msg d'alert
     'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
 
 
   ])->toArray(),
