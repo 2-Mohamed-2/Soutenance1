@@ -2,11 +2,18 @@
 
 namespace Laravel\Fortify\Actions;
 
+use App\Http\Controllers\dashboard\Analytics;
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\SessionUser;
+use Laravel\Fortify\Fortify;
 use Illuminate\Auth\Events\Failed;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Fortify\LoginRateLimiter;
+use Yudhatp\ActivityLogs\ActivityLogs;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Validation\ValidationException;
-use Laravel\Fortify\Fortify;
-use Laravel\Fortify\LoginRateLimiter;
 
 class AttemptToAuthenticate
 {
@@ -51,10 +58,22 @@ class AttemptToAuthenticate
         }
 
         if ($this->guard->attempt(
-            $request->only(Fortify::username(), 'password'),
+            $request->only(Fortify::username(),'commissariat_id', 'password'),
             $request->boolean('remember'))
-        ) {
-            return $next($request);
+        )
+        {
+            $session_user = new SessionUser();
+            $session_user->user_id = Auth::user()->id;
+
+            $session_user->save();
+
+            $request->session()->put('session_id', $session_user->id);
+
+            Alert::info('Bonjour '.$request->user()->name, 'Coms_Ml vous souhaite la bienvenue !');
+
+            return redirect(route('dashboard-analytics'));
+
+
         }
 
         $this->throwFailedAuthenticationException($request);
@@ -73,7 +92,6 @@ class AttemptToAuthenticate
 
         if (! $user) {
             $this->fireFailedEvent($request);
-
             return $this->throwFailedAuthenticationException($request);
         }
 
@@ -95,7 +113,7 @@ class AttemptToAuthenticate
         $this->limiter->increment($request);
 
         throw ValidationException::withMessages([
-            Fortify::username() => [trans('auth.failed')],
+            'fail' => [trans('auth.failed')],
         ]);
     }
 
@@ -109,6 +127,7 @@ class AttemptToAuthenticate
     {
         event(new Failed(config('fortify.guard'), null, [
             Fortify::username() => $request->{Fortify::username()},
+            'commissariat_id' => $request->commissariat_id,
             'password' => $request->password,
         ]));
     }
